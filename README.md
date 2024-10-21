@@ -5,12 +5,12 @@ On nous demande de réaliser un projet pour améliorer la communication entre le
 
 Nous avons décidé de réaliser cette application en php et javascript
 
-Les collaborateurs :
-Chef de projet : CARRAT Killian
-CONQUERANT Dan
-LEPAGE Nicolas
-CHESNEAU Marin
-FONTENY Noa
+Les collaborateurs :  
+Chef de projet : CARRAT Killian  
+CONQUERANT Dan  
+LEPAGE Nicolas  
+CHESNEAU Marin  
+FONTENY Noa  
 
 ## Fonctionnalitées
 
