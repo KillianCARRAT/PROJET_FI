@@ -1,5 +1,46 @@
+-- Une salle ne peut pas être réservée plusieure fois au même moment
 delimiter |
-CREATE OR REPLACE TRIGGER pasDeCheuvauchementConcerts before insert on CONCERT for each row
+CREATE OR REPLACE TRIGGER ReservationSalleMemeMoment BEFORE INSERT ON RESERVATION FOR EACH ROW
+begin
+    declare mess VARCHAR(500);
+    declare debut date;
+    declare fin date;
+    declare fini boolean default false;
+    declare lesHeures cursor for 
+        select dateR, ADDDATE(dateR,dureeR) FROM RESERVATION WHERE idS=new.idS;
+    declare continue handler for not found set fini = true;
+    open lesHeures;
+    while not fini do
+        fetch lesHeures into debut,fin;
+        if NEW.dateR < fin AND ADDDATE(NEW.dateR, INTERVAL NEW.dureeR DAY) > debut then
+            close lesHeures;
+            set mess = concat ("réservation impossible ", new.idR);
+            signal SQLSTATE '45000' set MESSAGE_TEXT = mess;
+        end if;
+    end while;
+    close lesHeures;
+end |
+delimiter ;
+
+
+-- Deux concerts d’un même groupe ne peuvent pas avoir lieu en même temps
+delimiter |
+CREATE OR REPLACE TRIGGER PlaceEnLogesSuffisantes BEFORE INSERT ON RESERVATION FOR EACH ROW
+begin
+    declare nbArtiste;
+    declare nbLoges;
+    declare mes varchar(100);
+    SELECT COUNT(idA) INTO nbArtiste FROM ARTISTE NATURAL JOIN APPARTIENT NATURAL JOIN GROUPE NATURAL JOIN RESERVATION;
+    SELECT SUM(nbPers) INTO nbLoges FROM LOGES NATURAL JOIN SALLE NATURAL JOIN RESERVATION;
+    if nbArtiste > nbLoges THEN
+        set mes = concat("le nombre de loges et insuffissant, ", nbLoges, " loges pour ", nbArtiste, " artistes.");
+        signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
+    end if;
+end |
+delimiter ;
+
+delimiter |
+CREATE OR REPLACE TRIGGER pasDeCheuvauchementConcertsInsert before insert on CONCERT for each row
 begin
     DECLARE heureAvant INT;
     DECLARE dureeAvant INT;
@@ -36,7 +77,7 @@ end|
 delimiter ;
 
 delimiter |
-CREATE OR REPLACE TRIGGER pasDeCheuvauchementConcerts before update on CONCERT for each row
+CREATE OR REPLACE TRIGGER pasDeCheuvauchementConcertsUpdate before update on CONCERT for each row
 begin
     DECLARE heureAvant INT;
     DECLARE dureeAvant INT;
@@ -71,22 +112,3 @@ begin
     end if;
 end|
 delimiter ;
-
--- Insert de test pour pasDeCheuvauchementConcerts
---
--- INSERT INTO SALLE VALUES(1,"test",30,"tst","3 rue",100,100);
--- INSERT INTO GROUPE VALUES(1,"eee");
--- INSERT INTO TECHNICIEN VALUES(1,"aea","0111");
--- INSERT INTO MATERIEL VALUES(1,"flute","instru",NULL,10,10,10);
--- INSERT INTO TECHNICIEN_DEMANDE VALUES(1,1);
--- INSERT INTO MATERIEL_DEMANDE VALUES(1,1);
--- INSERT INTO RESERVATION VALUES(1,1,1,1,1,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),2);
--- INSERT INTO CONCERT VALUES(1,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),SEC_TO_TIME(60*60*8),SEC_TO_TIME(60*30),SEC_TO_TIME(60*60*9),SEC_TO_TIME(60*60*3),1);
--- INSERT INTO CONCERT VALUES(2,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),SEC_TO_TIME(60*60*13),SEC_TO_TIME(60*30),SEC_TO_TIME(60*60*14),SEC_TO_TIME(60*60),1);
--- INSERT INTO CONCERT VALUES(3,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),SEC_TO_TIME(60*60*12),SEC_TO_TIME(60*30),SEC_TO_TIME(60*60*13),SEC_TO_TIME(60*60*2),1);
--- INSERT INTO CONCERT VALUES(3,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),SEC_TO_TIME(60*60*9),SEC_TO_TIME(60*30),SEC_TO_TIME(60*60*10),SEC_TO_TIME(60*60*2+60*30),1);
-
-
-
-
-
