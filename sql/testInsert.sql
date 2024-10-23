@@ -34,7 +34,9 @@ VALUES
 (1, '2024-12-01', '18:00:00', '19:00:00', '02:00:00', 1, 1, 1),
 (2, '2024-12-05', '17:30:00', '18:30:00', '01:30:00', 2, 2, 2);
 
+
 -- Insertion dans la table COMMENTAIRE
+
 INSERT INTO COMMENTAIRE (idCom, msg, idC)
 VALUES 
 (1, 'Super concert, j’ai adoré!', 1),
