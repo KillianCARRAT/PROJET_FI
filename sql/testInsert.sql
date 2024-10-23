@@ -32,7 +32,8 @@ VALUES (1, 50, 'Parking A, Paris'),
 INSERT INTO CONCERT (idC, dateCo, heureArrive, debutConcert, dureeConcert, idG, idS, idPark, idH)
 VALUES (1, '2024-11-15', '18:00:00', '19:30:00', '02:00:00', 1, 1, 1, 1),
        (2, '2024-11-20', '17:30:00', '19:00:00', '01:30:00', 2, 2, 2, 2),
-       (3, '2024-11-25', '18:00:00', '19:30:00', '02:00:00', 3, 3, 3, 3);
+       (3, '2024-11-25', '18:00:00', '19:30:00', '01:00:00', 3, 3, 3, 3),
+
 
 -- Inserts pour la table COMMENTAIRE
 INSERT INTO COMMENTAIRE (idCom, msg, idC)
