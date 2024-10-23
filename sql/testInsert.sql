@@ -1,77 +1,77 @@
--- Inserts pour la table GROUPE
-INSERT INTO GROUPE (idG, nomG, nbTechG, nbPersG) 
-VALUES (1, 'Groupe A', 5, 10), 
-       (2, 'Groupe B', 4, 8),
-       (3, 'Groupe C', 6, 12);
+-- Insertion dans la table SALLE
+INSERT INTO SALLE (idS, nomS, nbPlace, typePlace, adresseS, largeur, longueur, nbPlacesLo, nbTechS)
+VALUES 
+(1, 'Salle de Concert A', 500, 'Assise', '123 Rue de la Musique', 30, 50, 50, 10),
+(2, 'Salle de Spectacle B', 300, 'Debout', '45 Avenue des Arts', 20, 40, 20, 5);
 
--- Inserts pour la table SALLE
-INSERT INTO SALLE (idS, nomS, nbPlace, typePlace, adresseS, largeur, longueur, nbPlacesLo, nbTechS) 
-VALUES (1, 'Salle 1', 500, 'assis', '123 Rue de la Musique, Paris', 20, 30, 50, 4),
-       (2, 'Salle 2', 1000, 'debout', '456 Avenue des Artistes, Lyon', 25, 35, 80, 6),
-       (3, 'Salle 3', 800, 'mixte', '789 Boulevard du Concert, Marseille', 22, 32, 70, 5);
-
--- Inserts pour la table MATERIEL
-INSERT INTO MATERIEL (idM, nomM, typeM, idG, idS, idSt)
-VALUES (1, 'Micro', 'Son', 1, 1, NULL),
-       (2, 'Guitare', 'Instrument', 1, 1, NULL),
-       (3, 'Baffles', 'Son', 2, 2, NULL);
-
--- Inserts pour la table HOTEL
+-- Insertion dans la table HOTEL
 INSERT INTO HOTEL (idH, adresseH, nbPlaceH)
-VALUES (1, 'Hotel Central, Paris', 100),
-       (2, 'Hotel de Lyon, Lyon', 150),
-       (3, 'Hotel du Port, Marseille', 200);
+VALUES 
+(1, '456 Boulevard de l’Hôtel', 200),
+(2, '789 Chemin des Étoiles', 150);
 
--- Inserts pour la table PARKING
-INSERT INTO PARKING (idPark, nbPlaceVoiture, adressePark)
-VALUES (1, 50, 'Parking A, Paris'),
-       (2, 80, 'Parking B, Lyon'),
-       (3, 60, 'Parking C, Marseille');
+-- Insertion dans la table GROUPE
+INSERT INTO GROUPE (idG, nomG, nbTechG, nbPersG, idH)
+VALUES 
+(1, 'Groupe A', 5, 10, 1),
+(2, 'Groupe B', 3, 8, 2);
 
--- Inserts pour la table CONCERT
-INSERT INTO CONCERT (idC, dateCo, heureArrive, debutConcert, dureeConcert, idG, idS, idPark, idH)
-VALUES (1, '2024-11-15', '18:00:00', '19:30:00', '02:00:00', 1, 1, 1, 1),
-       (2, '2024-11-20', '17:30:00', '19:00:00', '01:30:00', 2, 2, 2, 2),
-       (3, '2024-11-25', '18:00:00', '19:30:00', '01:00:00', 3, 3, 3, 3),
+-- Insertion dans la table MATERIEL
+INSERT INTO MATERIEL (idM, nomM, typeM, idG, idS)
+VALUES 
+(1, 'Microphone', 'Audio', 1, 1),
+(2, 'Projecteur', 'Visuel', 2, 2);
 
--- Inserts pour la table COMMENTAIRE
+-- Insertion dans la table PARKING
+INSERT INTO PARKING (idPark, nbPlaceVoiture, adressePark, idS)
+VALUES 
+(1, 50, '789 Rue des Voitures', 1),
+(2, 30, '321 Rue des Parkings', 2);
+
+-- Insertion dans la table CONCERT
+INSERT INTO CONCERT (idC, dateCo, heureArrive, debutConcert, dureeConcert, idG, idM, idS)
+VALUES 
+(1, '2024-12-01', '18:00:00', '19:00:00', '02:00:00', 1, 1, 1),
+(2, '2024-12-05', '17:30:00', '18:30:00', '01:30:00', 2, 2, 2);
+
+-- Insertion dans la table COMMENTAIRE
 INSERT INTO COMMENTAIRE (idCom, msg, idC)
-VALUES (1, 'Super concert, très bonne ambiance!', 1),
-       (2, 'Le son était excellent!', 2),
-       (3, 'Lieu magnifique, expérience incroyable!', 3);
+VALUES 
+(1, 'Super concert, j’ai adoré!', 1),
+(2, 'Très belle performance.', 2);
 
--- Inserts pour la table RESTAURANT
+-- Insertion dans la table RESTAURANT
 INSERT INTO RESTAURANT (idR, nbPlaceR, adresseR)
-VALUES (1, 100, 'Restaurant 1, Paris'),
-       (2, 120, 'Restaurant 2, Lyon'),
-       (3, 80, 'Restaurant 3, Marseille');
+VALUES 
+(1, 100, '111 Rue des Délices'),
+(2, 80, '222 Rue de la Gastronomie');
 
--- Inserts pour la table RESTAURATION
-INSERT INTO RESTAURATION (idR, idC, heureRest)
-VALUES (1, 1, '17:00:00'),
-       (2, 2, '16:30:00'),
-       (3, 3, '17:00:00');
+-- Insertion dans la table RESTAURATION
+INSERT INTO RESTAURATION (idR, idG, heureR)
+VALUES 
+(1, 1, '20:00:00'),
+(2, 2, '19:00:00');
 
--- Inserts pour la table TRANSPORT
+-- Insertion dans la table TRANSPORT
 INSERT INTO TRANSPORT (idT, dureeT, heureT)
-VALUES (1, 45, '2024-11-15'),
-       (2, 30, '2024-11-20'),
-       (3, 60, '2024-11-25');
+VALUES 
+(1, 30, '2024-12-01'),
+(2, 45, '2024-12-05');
 
--- Inserts pour la table DEPLACE
-INSERT INTO DEPLACE (idC, idT)
-VALUES (1, 1),
-       (2, 2),
-       (3, 3);
+-- Insertion dans la table DEPLACE
+INSERT INTO DEPLACE (idG, idT)
+VALUES 
+(1, 1),
+(2, 2);
 
--- Inserts pour la table PERSONNEL
+-- Insertion dans la table PERSONNEL
 INSERT INTO PERSONNEL (idP, emailP, telephoneP)
-VALUES (1, 'personnel1@example.com', '0123456789'),
-       (2, 'personnel2@example.com', '0987654321'),
-       (3, 'personnel3@example.com', '0123456789');
+VALUES 
+(1, 'personnel1@example.com', '0123456789'),
+(2, 'personnel2@example.com', '0987654321');
 
--- Inserts pour la table PERSONNEL_ACCUEIL
+-- Insertion dans la table PERSONNEL_ACCUEIL
 INSERT INTO PERSONNEL_ACCUEIL (idC, idP)
-VALUES (1, 1),
-       (2, 2),
-       (3, 3);
+VALUES 
+(1, 1),
+(2, 2);
