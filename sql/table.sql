@@ -55,7 +55,7 @@ CREATE TABLE CONCERT (
     FOREIGN KEY(idS) REFERENCES SALLE(idS),
     FOREIGN KEY(idPark) REFERENCES PARKING(idPark),
     FOREIGN KEY(idH) REFERENCES HOTEL(idH),
-    CHECK (0<HOUR(debutConcert-heureArrive+dureeConcert)<24)
+    CONSTRAINT temps CHECK ((0<ABS(debutConcert-heureArrive+dureeConcert)) AND ABS((debutConcert-heureArrive+dureeConcert<60*60*24)))
 );
 
 CREATE TABLE COMMENTAIRE (
