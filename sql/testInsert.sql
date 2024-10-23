@@ -1,99 +1,77 @@
--- Table GROUPE
-INSERT INTO GROUPE (idG, nomG) VALUES (1, 'The Rockers'), (2, 'Jazz Fusion'), (3, 'Symphonic Sounds');
+-- Inserts pour la table GROUPE
+INSERT INTO GROUPE (idG, nomG, nbTechG, nbPersG) 
+VALUES (1, 'Groupe A', 5, 10), 
+       (2, 'Groupe B', 4, 8),
+       (3, 'Groupe C', 6, 12);
 
--- Table ARTISTE
-INSERT INTO ARTISTE (idA, nomA, prenomA, dtnA, lieuNaissance, adresseA, numeroSecu, numCongeSpect, numCNI, dateDelivrance, dateExpiration, reductionTrain)
-VALUES (1, 'Smith', 'John', '1985-05-12', 'New York', '123 Music Ave', 123456789, '12345CS', 'AB123456', '2020-01-15', '2030-01-15', '50%'),
-       (2, 'Doe', 'Jane', '1990-08-25', 'Los Angeles', '456 Harmony St', 987654321, '67890CS', 'CD654321', '2021-03-10', '2031-03-10', '25%');
+-- Inserts pour la table SALLE
+INSERT INTO SALLE (idS, nomS, nbPlace, typePlace, adresseS, largeur, longueur, nbPlacesLo, nbTechS) 
+VALUES (1, 'Salle 1', 500, 'assis', '123 Rue de la Musique, Paris', 20, 30, 50, 4),
+       (2, 'Salle 2', 1000, 'debout', '456 Avenue des Artistes, Lyon', 25, 35, 80, 6),
+       (3, 'Salle 3', 800, 'mixte', '789 Boulevard du Concert, Marseille', 22, 32, 70, 5);
 
--- Table APPARTIENT
-INSERT INTO APPARTIENT (idG, idA) VALUES (1, 1), (2, 2), (1, 2);
+-- Inserts pour la table MATERIEL
+INSERT INTO MATERIEL (idM, nomM, typeM, idG, idS, idSt)
+VALUES (1, 'Micro', 'Son', 1, 1, NULL),
+       (2, 'Guitare', 'Instrument', 1, 1, NULL),
+       (3, 'Baffles', 'Son', 2, 2, NULL);
 
--- Table MATERIEL
-INSERT INTO MATERIEL (idM, nomM, typeM, idA, hauteurM, largeurM, profonfeurM)
-VALUES (1, 'Guitar', 'Instrument', 1, 1.20, 0.40, 0.15),
-       (2, 'Drums', 'Instrument', 2, 1.50, 1.00, 0.80);
+-- Inserts pour la table HOTEL
+INSERT INTO HOTEL (idH, adresseH, nbPlaceH)
+VALUES (1, 'Hotel Central, Paris', 100),
+       (2, 'Hotel de Lyon, Lyon', 150),
+       (3, 'Hotel du Port, Marseille', 200);
 
--- Table TECHNICIEN
-INSERT INTO TECHNICIEN (idT, emailT, telephoneT) VALUES (1, 'tech1@example.com', '555-1234'), (2, 'tech2@example.com', '555-5678');
+-- Inserts pour la table PARKING
+INSERT INTO PARKING (idPark, nbPlaceVoiture, adressePark)
+VALUES (1, 50, 'Parking A, Paris'),
+       (2, 80, 'Parking B, Lyon'),
+       (3, 60, 'Parking C, Marseille');
 
--- Table EQUIPE_TECHNIQUE
-INSERT INTO EQUIPE_TECHNIQUE (idG, idT) VALUES (1, 1), (2, 2);
+-- Inserts pour la table CONCERT
+INSERT INTO CONCERT (idC, dateCo, heureArrive, debutConcert, dureeConcert, idG, idS, idPark, idH)
+VALUES (1, '2024-11-15', '18:00:00', '19:30:00', '02:00:00', 1, 1, 1, 1),
+       (2, '2024-11-20', '17:30:00', '19:00:00', '01:30:00', 2, 2, 2, 2),
+       (3, '2024-11-25', '18:00:00', '19:30:00', '02:00:00', 3, 3, 3, 3);
 
--- Table SALLE
-INSERT INTO SALLE (idS, nomS, nbPlace, typePlace, adresseS, largeur, longueur)
-VALUES (1, 'Main Hall', 500, 'Seated', '789 Performance Blvd', 20, 30),
-       (2, 'Outdoor Arena', 2000, 'Standing', '123 Concert Road', 50, 80);
+-- Inserts pour la table COMMENTAIRE
+INSERT INTO COMMENTAIRE (idCom, msg, idC)
+VALUES (1, 'Super concert, très bonne ambiance!', 1),
+       (2, 'Le son était excellent!', 2),
+       (3, 'Lieu magnifique, expérience incroyable!', 3);
 
--- Table CONTIENT
-INSERT INTO CONTIENT (idS, idM) VALUES (1, 1), (2, 2);
+-- Inserts pour la table RESTAURANT
+INSERT INTO RESTAURANT (idR, nbPlaceR, adresseR)
+VALUES (1, 100, 'Restaurant 1, Paris'),
+       (2, 120, 'Restaurant 2, Lyon'),
+       (3, 80, 'Restaurant 3, Marseille');
 
--- Table LOGES
-INSERT INTO LOGES (idL, nbPers, idS) VALUES (1, 10, 1), (2, 20, 2);
+-- Inserts pour la table RESTAURATION
+INSERT INTO RESTAURATION (idR, idC, heureRest)
+VALUES (1, 1, '17:00:00'),
+       (2, 2, '16:30:00'),
+       (3, 3, '17:00:00');
 
--- Table MATERIEL_DEMANDE
-INSERT INTO MATERIEL_DEMANDE (idMD, idM) VALUES (1, 1), (2, 2);
+-- Inserts pour la table TRANSPORT
+INSERT INTO TRANSPORT (idT, dureeT, heureT)
+VALUES (1, 45, '2024-11-15'),
+       (2, 30, '2024-11-20'),
+       (3, 60, '2024-11-25');
 
--- Table TECHNICIEN_DEMANDE
-INSERT INTO TECHNICIEN_DEMANDE (idTD, idT) VALUES (1, 1), (2, 2);
+-- Inserts pour la table DEPLACE
+INSERT INTO DEPLACE (idC, idT)
+VALUES (1, 1),
+       (2, 2),
+       (3, 3);
 
--- Table RESERVATION
-INSERT INTO RESERVATION (idR, idS, idG, idTD, idMD, dateR, dureeR)
-VALUES (1, 1, 1, 1, 1, '2024-11-01', 5),
-       (2, 2, 2, 2, 2, '2024-11-15', 7);
+-- Inserts pour la table PERSONNEL
+INSERT INTO PERSONNEL (idP, emailP, telephoneP)
+VALUES (1, 'personnel1@example.com', '0123456789'),
+       (2, 'personnel2@example.com', '0987654321'),
+       (3, 'personnel3@example.com', '0123456789');
 
--- Table CONCERT
-INSERT INTO CONCERT (idC, dateC, heureArrive, tempPrep, debutConcert, dureeConcert, idR)
-VALUES (1, '2024-11-01', '14:00:00', '02:00:00', '16:00:00', '03:00:00', 1);
-
--- Table FICHE_ACCEUIL
-INSERT INTO FICHE_ACCEUIL (idAcc, idR) VALUES (1, 1), (2, 2);
-
--- Table RESTAURANT
-INSERT INTO RESTAURANT (idResto, nbPlaceResto, adresseResto, prixResto)
-VALUES (1, 100, '500 Diner St', 50.000), (2, 200, '678 Eatery Ave', 75.000);
-
--- Table RESTAURATION
-INSERT INTO RESTAURATION (idAcc, idResto, dateResto)
-VALUES (1, 1, '2024-11-01'), (2, 2, '2024-11-15');
-
--- Table VEHICULE
-INSERT INTO VEHICULE (idV, nomV, nbPlaceV, volumeV)
-VALUES (1, 'Van', 5, 2000), (2, 'Bus', 40, 8000);
-
--- Table TRANSPORT
-INSERT INTO TRANSPORT (idAcc, idV, dateTrans, dureeTrans)
-VALUES (1, 1, '2024-11-01', 60), (2, 2, '2024-11-15', 120);
-
--- Table PARKING
-INSERT INTO PARKING (idPark, nbPlaceVoiture, nbPlaceCamion, adressePark)
-VALUES (1, 50, 10, '1000 Parking Lot'), (2, 100, 20, '2000 Garage Lane');
-
--- Table PARKING_PROCHE
-INSERT INTO PARKING_PROCHE (idAcc, idPark) VALUES (1, 1), (2, 2);
-
--- Table CHAMBRE
-INSERT INTO CHAMBRE (idChambre, tailleChambre) VALUES (1, 20), (2, 25);
-
--- Table HOTEL
-INSERT INTO HOTEL (idH, adresseH, etoileH, prixH)
-VALUES (1, 'Luxury Stay', 5, 300.000), (2, 'Budget Inn', 3, 100.000);
-
--- Table CHAMBRE_HOTEL
-INSERT INTO CHAMBRE_HOTEL (idH, idChambre) VALUES (1, 1), (2, 2);
-
--- Table HEBERGEMENT
-INSERT INTO HEBERGEMENT (idAcc, idH, dateHebergement, nbNuit)
-VALUES (1, 1, '2024-11-01', 2), (2, 2, '2024-11-15', 3);
-
--- Table PERSONNEL
-INSERT INTO PERSONNEL (idPerso, emailP, telephoneP) VALUES (1, 'personnel1@example.com', '555-8765'), (2, 'personnel2@example.com', '555-4321');
-
--- Table PERSONNEL_ACCEUIL
-INSERT INTO PERSONNEL_ACCEUIL (idAcc, idPerso) VALUES (1, 1), (2, 2);
-
--- Table COMMENTAIRE
-INSERT INTO COMMENTAIRE (idCom, msg, idR) VALUES (1, 'Great event!', 1), (2, 'Looking forward to the next show.', 2);
-
--- Table STOCK_ASSOCIATION
-INSERT INTO STOCK_ASSOCIATION (idM) VALUES (1), (2);
+-- Inserts pour la table PERSONNEL_ACCUEIL
+INSERT INTO PERSONNEL_ACCUEIL (idC, idP)
+VALUES (1, 1),
+       (2, 2),
+       (3, 3);
