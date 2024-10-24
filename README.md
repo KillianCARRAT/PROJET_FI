@@ -1,4 +1,4 @@
-# PROJET APPLICATION WEB
+# PROJET APPLICATION WEB Conert'Asso
 
 ## Contexte
 On nous demande de réaliser un projet pour améliorer la communication entre les associations et les artistes.

@@ -64,6 +64,12 @@ VALUES (1, "accueil@concert.com", "0123456789"),
        (2, "tech@concert.com", "0987654321");
 
 -- Insertion dans la table PERSONNEL_ACCUEIL
-INSERT INTO PERSONNEL_ACCUEIL (idC, idP) 
+INSERT INTO PERSONNEL_ACCUEIL (idC, idP)
 VALUES (1, 1),
        (2, 2);
+
+--Test du check dans la table CONCERT
+INSERT INTO CONCERT (idC, dateCo, heureArrive, debutConcert, dureeConcert, idG, idS, idPark, idH)
+VALUES (4, '2222-11-11', '15:00:00', '19:00:00', '22:00:00', 1, 1, 1, 1), --Fonctionne pas
+       (5, '7464-11-20', '22:30:00', '00:00:00', '01:30:00', 2, 2, 2, 2); --Fonctionne
+
