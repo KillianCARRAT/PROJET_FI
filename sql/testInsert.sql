@@ -1,7 +1,7 @@
 -- Insertion dans la table SALLE
-INSERT INTO SALLE (idS, nomS, nbPlace, typePlace, adresseS, largeur, longueur, nbPlacesLo, nbTechS) 
-VALUES (1, "Salle Olympia", 1500, "Assise", "12 rue des Artistes, Paris", 30, 40, 300, 5),
-       (2, "Zenith Paris", 5000, "Debout", "211 avenue Jean Jaurès, Paris", 50, 80, 1000, 10);
+INSERT INTO SALLE (idS, nomS, nbPlace, typePlace, adresseS, largeur, longueur, nbPlacesLo, nbTechS,nbPlaceVoiture) 
+VALUES (1, "Salle Olympia", 1500, "Assise", "12 rue des Artistes, Paris", 30, 40, 300, 5,100),
+       (2, "Zenith Paris", 5000, "Debout", "211 avenue Jean Jaurès, Paris", 50, 80, 1000, 10,200);
 
 -- Insertion dans la table HOTEL
 INSERT INTO HOTEL (idH, adresseH, nbPlaceH) 
@@ -22,11 +22,6 @@ VALUES (1, 1, "14:00:00", "2024-10-20"),
 INSERT INTO MATERIEL (idM, nomM, typeM, idG, idS) 
 VALUES (1, "Guitare électrique", "Instrument", 1, 1),
        (2, "Microphone", "Sonorisation", 2, 2);
-
--- Insertion dans la table PARKING
-INSERT INTO PARKING (idPark, nbPlaceVoiture, adressePark, idS) 
-VALUES (1, 200, "Parking Olympia, Paris", 1),
-       (2, 500, "Parking Zenith, Paris", 2);
 
 -- Insertion dans la table CONCERT
 INSERT INTO CONCERT (idC, dateCo, heureArrive, debutConcert, dureeConcert, idG, idM, idS) 

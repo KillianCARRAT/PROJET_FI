@@ -7,7 +7,8 @@ CREATE TABLE SALLE (
     largeur INT,
     longueur INT,
     nbPlacesLo INT,
-    nbTechS INT
+    nbTechS INT,
+    nbPlaceVoiture INT
 );
 
 CREATE TABLE HOTEL (
@@ -44,13 +45,6 @@ CREATE TABLE MATERIEL (
     FOREIGN KEY(idS) REFERENCES SALLE(idS)
 );
 
-CREATE TABLE PARKING (
-    idPark INT PRIMARY KEY,
-    nbPlaceVoiture INT,
-    adressePark VARCHAR(100),
-    idS INT NOT NULL,
-    FOREIGN KEY(idS) REFERENCES SALLE(idS)
-);
 
 CREATE TABLE CONCERT (
     idC INT PRIMARY KEY,
