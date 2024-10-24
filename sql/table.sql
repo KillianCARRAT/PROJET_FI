@@ -21,7 +21,16 @@ CREATE TABLE GROUPE (
     nomG VARCHAR(50),
     nbTechG INT,
     nbPersG INT,
+    FOREIGN KEY(idH) REFERENCES HOTEL(idH)
+);
+
+CREATE TABLE HEBERGEMENT (
     idH INT,
+    idG INT,
+    heureR TIME,
+    dateR DATE,
+    PRIMARY KEY(idH, idG),
+    FOREIGN KEY(idG) REFERENCES GROUPE(idG),
     FOREIGN KEY(idH) REFERENCES HOTEL(idH)
 );
 
@@ -75,6 +84,7 @@ CREATE TABLE RESTAURATION (
     idR INT,
     idG INT,
     heureR TIME,
+    dateR DATE,
     PRIMARY KEY(idR, idG),
     FOREIGN KEY(idG) REFERENCES GROUPE(idG),
     FOREIGN KEY(idR) REFERENCES RESTAURANT(idR)
