@@ -13,7 +13,7 @@ VALUES
 -- Insertion dans la table GROUPE
 INSERT INTO GROUPE (idG, nomG, nbTechG, nbPersG, idH)
 VALUES 
-(1, 'Groupe A', 5, 10, 1),
+(1, 'Groupe A', 5, 100, 1),
 (2, 'Groupe B', 3, 8, 2);
 
 -- Insertion dans la table MATERIEL
