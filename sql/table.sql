@@ -48,7 +48,7 @@ CREATE TABLE MATERIEL (
 
 CREATE TABLE CONCERT (
     idC INT PRIMARY KEY,
-    dateCo DATE,
+    dateC DATE,
     heureArrive TIME,
     debutConcert TIME,
     dureeConcert TIME,
