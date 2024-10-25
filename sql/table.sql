@@ -22,6 +22,7 @@ CREATE TABLE GROUPE (
     nomG VARCHAR(50),
     nbTechG INT,
     nbPersG INT,
+    idH INT,
     FOREIGN KEY(idH) REFERENCES HOTEL(idH)
 );
 
