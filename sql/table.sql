@@ -7,7 +7,8 @@ CREATE TABLE SALLE (
     largeur INT,
     longueur INT,
     nbPlacesLo INT,
-    nbTechS INT
+    nbTechS INT,
+    nbPlaceVoiture INT
 );
 
 CREATE TABLE HOTEL (
@@ -21,7 +22,16 @@ CREATE TABLE GROUPE (
     nomG VARCHAR(50),
     nbTechG INT,
     nbPersG INT,
+    FOREIGN KEY(idH) REFERENCES HOTEL(idH)
+);
+
+CREATE TABLE HEBERGEMENT (
     idH INT,
+    idG INT,
+    heureR TIME,
+    dateR DATE,
+    PRIMARY KEY(idH, idG),
+    FOREIGN KEY(idG) REFERENCES GROUPE(idG),
     FOREIGN KEY(idH) REFERENCES HOTEL(idH)
 );
 
@@ -35,17 +45,10 @@ CREATE TABLE MATERIEL (
     FOREIGN KEY(idS) REFERENCES SALLE(idS)
 );
 
-CREATE TABLE PARKING (
-    idPark INT PRIMARY KEY,
-    nbPlaceVoiture INT,
-    adressePark VARCHAR(100),
-    idS INT NOT NULL,
-    FOREIGN KEY(idS) REFERENCES SALLE(idS)
-);
 
 CREATE TABLE CONCERT (
     idC INT PRIMARY KEY,
-    dateCo DATE,
+    dateC DATE,
     heureArrive TIME,
     debutConcert TIME,
     dureeConcert TIME,
@@ -54,7 +57,8 @@ CREATE TABLE CONCERT (
     idS INT NOT NULL,
     FOREIGN KEY(idS) REFERENCES SALLE(idS),
     FOREIGN KEY(idG) REFERENCES GROUPE(idG),
-    FOREIGN KEY(idM) REFERENCES MATERIEL(idM)
+    FOREIGN KEY(idM) REFERENCES MATERIEL(idM),
+    CONSTRAINT temps CHECK ((0<ABS(debutConcert-heureArrive+dureeConcert)) AND ABS((debutConcert-heureArrive+dureeConcert<60*60*24)))
 );
 
 CREATE TABLE COMMENTAIRE (
@@ -75,6 +79,7 @@ CREATE TABLE RESTAURATION (
     idR INT,
     idG INT,
     heureR TIME,
+    dateR DATE,
     PRIMARY KEY(idR, idG),
     FOREIGN KEY(idG) REFERENCES GROUPE(idG),
     FOREIGN KEY(idR) REFERENCES RESTAURANT(idR)
