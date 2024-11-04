@@ -30,7 +30,6 @@ end |
 delimiter ;
 
 
-
 -- 2 Une salle doit avoir assez de place en loge pour accueillir les artistes
 delimiter |
 CREATE OR REPLACE TRIGGER PlaceEnLogesSuffisantes BEFORE INSERT ON CONCERT FOR EACH ROW
@@ -162,3 +161,18 @@ begin
 end |
 delimiter ;
 
+-- 7 Le nombre de place de l’hotels doit être supérieur ou égal au nombre de personnes dans le groupe + techniciens
+delimiter |
+CREATE OR REPLACE TRIGGER ReservationPourHotel BEFORE INSERT ON HOTEL FOR EACH ROW
+begin
+    declare mess varchar(100);
+    declare nbPers INT default 1;
+    declare place INT default 0;
+    SELECT nbPersG+nbTechG into nbPers FROM GROUPE WHERE idH=new.idH LIMIT 1;
+    SELECT nbPlaceH into place FROM HOTEL WHERE idH=new.idH LIMIT 1;
+    if nbPers>place then
+        set mess = concat("il manque des places dans l'hotel ", new.idH);
+        signal SQLSTATE '45000' set MESSAGE_TEXT = mess;
+    end if;
+end |
+delimiter ;
