@@ -1,50 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>rider</title>
     <link rel="stylesheet" href="../../public/assets/css/main.css">
+    <link rel="stylesheet" href="../../public/assets/css/aside.css">
 </head>
 
 <body>
     <aside>
-        <h2>$nomartiste</h2>
-        <p>Vos spectacle</p>
-        <p id='deco' >se deconetcter </p>
+        <div>
+            <h2>$nomartiste</h2>
+            <p>Vos spectacle</p>
+            <button id='deco'>Se déconnétcter </button>
+        </div>
+
     </aside>
     <main>
-        
+
         <h1>Fiche rider</h1>
-        <section id = "question">
-            <div>
-                 <p>titre</p>
-        <input type="text" name="titre" id="titre" placeholder="nom de l'artiste ">
-        <p>date de representation</p>
-        <input type="date" name="date" id="date" placeholder="date de representation">
-        <p>demande particuliaire</p>
-        <textarea type="text" name="demande" id="demande" size = '80'></textarea>
-        <input type="checkbox" name = "veicule" id="veicule"> 
-        <label for="checkbox">besoin d'un vehicule</label>
-        <p>if veicule</p>
-        <input type="text" name="adresse" id="adresse" placeholder="adresse">
-        <input type="checkbox" name = "hotel" id="hotel"> 
-        <label for="checkbox">besoin d'un hotel</label>
-       <p>if hotel</p> 
-        <textarea type="text" name="demande" id="demande">demande particuliaire</textarea>
+        <section id="question">
+            <form class="grand">
+
+                <label for="titre">titre</label>
+                <input type="text" name="titre" id="titre" placeholder="nom de l'artiste ">
+
+
+                <label for="date-repr">date de representation</label>
+                <input type="date" name="date-repr" id="date-repr" placeholder="date de representation">
+
+
+                <label for="demande">demande particuliaire</label>
+                <textarea type="text" name="demande" id="demande" size='80'></textarea>
+                <div class="chec">
+                    <input type="checkbox" name="veicule" id="veicule">
+                    <label for="vehicule">besoin d'un vehicule</label>
+                </div>
+
+                <p>if veicule</p>
+                <input type="text" name="adresse" id="adresse" placeholder="adresse">
+                <div class="chec">
+                    <input type="checkbox" name="hotel" id="hotel">
+                    <label for="hotel">besoin d'un hotel</label>
+
+                </div>
+
+                <p>if hotel</p>
+                <textarea type="text" name="demande" id="demande">demande particuliaire</textarea>
+
+            </form>
+            <div class="grand" id="matériels">
+                <table>
+                    <tr>
+                        <th>Type du matériels </th>
+                        <th>reference exacte</th>
+                        <th>Quantitée </th>
+                        <th>Commentaire</th>
+                    </tr>
+                    <tr>
+                        <td colspan="4">+Ajouter un ligne</td>
+                    </tr>
+                </table>
             </div>
-              <div>
-            <table>
-                <tr>
-                    <th>Type du matériels </th>
-                    <th>reference exacte</th>
-                    <th>Quantitée </th>
-                    <th>Commentaire</th>
-                </tr>
-                <tr>
-                    <td>+Ajouter un ligne</td>
-                </tr>
-            </table>
-        </div>
-    </section>
+        </section>
 
     </main>
 
