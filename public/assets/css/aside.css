@@ -1,0 +1,25 @@
+aside {
+    width: 20%;
+    left: 0;
+    top: 0;
+    bottom: 10%;
+
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #232926, #5500ff);
+    color: white;
+    align-items: center;
+}
+
+aside div {
+    width: 100%;
+    text-align: center;
+}
+
+
+#NomConnecter {
+    background-color: black;
+    width:100%;
+    text-align: center;
+}

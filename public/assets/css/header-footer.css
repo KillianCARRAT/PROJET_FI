@@ -1,0 +1,21 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10%;
+    background-color: rgb(188, 188, 188);
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+footer div {
+    display: flex;
+    align-items: right;
+    margin-right: 1%;
+}
+
+footer img {
+    height: 25px;
+}
