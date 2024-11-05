@@ -1,0 +1,146 @@
+aside {
+    width: 20%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(#1e0447, #0314ac);
+    color: white;
+    padding-top: 10px;
+}
+
+.image-profil {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px 0;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.menu li {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.menu-button {
+    width: 80%;
+    margin: 10px 0;
+    padding: 10px;
+    color: white;
+    border: none;
+    background-color: black;
+    font-size: 16px;
+    margin-top: 120%;
+    cursor: pointer;
+    border-radius: 42px;
+}
+
+.menu-button:hover{
+    background-color: #555;
+}
+
+body {
+    margin-left: 20%;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    padding: 20px;
+    margin-top: 15%;
+    
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form{
+    width: 100%;
+    max-width: 50rem;
+    display: flex;
+    flex-direction: column;
+}
+    
+.menu-button:active{
+    transform: scale(0.99);
+}
+
+.bouton-bas:active{
+    transform: scale(0.99);
+}
+
+label {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.bouton-bas{
+    align-items: center;
+    width: 55%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #120045;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-right: 5%;
+    margin-left: 5%;
+    cursor: pointer;
+}
+
+.bouton-bas:hover{
+    background-color: #2a0199;
+}
+
+div{
+    display:flex ;
+    align-items: center;
+}
+
+footer{
+    position: absolute;
+    bottom: 10%;
+    right: 0;
+    left: 20%;
+    border-top: solid;
+    padding: 10px;
+}
+
+.footer-images {
+    position: absolute;
+    right: 1em;
+}
+
+.footer-images img{
+    height:5rem ;
+    
+}
