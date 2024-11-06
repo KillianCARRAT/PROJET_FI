@@ -45,13 +45,12 @@
 
             sliderValue.innerHTML = slider.value;
 
-            // Position the value dynamically above the thumb
             let sliderWidth = slider.offsetWidth - slider.clientLeft * 2;
             let valuePosition = (slider.value - slider.min) / (slider.max - slider.min) * sliderWidth;
             sliderValue.style.left = `${valuePosition}px`;
         }
 
-        updateValue(); // Initialize the value on load
+        updateValue();
     </script>
 </body>
 
