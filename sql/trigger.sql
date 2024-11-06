@@ -3,21 +3,26 @@ delimiter |
 CREATE OR REPLACE TRIGGER ReservationSalleMemeMoment BEFORE INSERT ON CONCERT FOR EACH ROW
 begin
     declare mess VARCHAR(500);
-    declare debut date;
-    declare fin date;
+    declare dateConcert DATE;
+    declare arriveConcert TIME;
+    declare heureDebutConcert TIME;
+    declare dureeC TIME;
+    declare dateTimeVerifConcert DATETIME;
+    declare dateTimeNewConcert DATETIME;
+    declare timeDiffr INT;
     declare probleme boolean default false;
     declare fini boolean default false;
     declare lesHeures cursor for 
-        select heureArrive, ADDDATE(debutConcert,dureeConcert) FROM CONCERT WHERE idS=new.idS;
+        select dateC, heureArrive, debutConcert, dureeConcert FROM CONCERT WHERE idS=new.idS;
     declare continue handler for not found set fini = true;
     open lesHeures;
+    SET dateTimeNewConcert = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.heureArrive),"%Y-%m-%d %H:%i:%s");
     while not fini do
-        fetch lesHeures into debut,fin;
-        if NEW.heureArrive>debut OR ADDDATE(NEW.debutConcert,NEW.dureeConcert)<fin then
-            set probleme:=1;
-        end if;
-        if NEW.heureArrive<debut AND ADDDATE(NEW.debutConcert,NEW.dureeConcert)>fin then
-            set probleme:=1;
+        fetch lesHeures into dateConcert,arriveConcert,heureDebutConcert,dureeC;
+        SET dateTimeVerifConcert = STR_TO_DATE(concat(YEAR(dateConcert),"-",MONTH(dateConcert),"-",DAY(dateConcert)," ",arriveConcert),"%Y-%m-%d %H:%i:%s");
+        SET timeDiffr = TIMESTAMPDIFF(SECOND, dateTimeNewConcert,dateTimeVerifConcert);
+        IF ABS(timeDiffr) < ABS(arriveConcert-heureDebutConcert+dureeC) OR ABS(timeDiffr) < ABS(new.debutConcert-new.heureArrive+new.dureeConcert) THEN
+            SET probleme = 1;
         end if;
         if probleme then
             close lesHeures;
@@ -59,7 +64,6 @@ begin
     DECLARE dateTimeApres DATETIME;
     DECLARE dateTimeNew DATETIME;
     DECLARE timeDiffr INT;
-    DECLARE temp VARCHAR(100) default '';
     DECLARE mes VARCHAR(1000) default '';
 
     -- recupèration du premier concert avant celui ajouter
@@ -108,7 +112,6 @@ begin
     DECLARE dateTimeApres DATETIME;
     DECLARE dateTimeNew DATETIME;
     DECLARE timeDiffr INT;
-    DECLARE temp VARCHAR(100) default '';
     DECLARE mes VARCHAR(1000) default '';
 
     -- recupèration du premier concert avant celui ajouter
@@ -159,7 +162,6 @@ begin
     DECLARE dateTimeApres DATETIME;
     DECLARE dateTimeNew DATETIME;
     DECLARE timeDiffr INT;
-    DECLARE temp VARCHAR(100) default '';
     DECLARE mes VARCHAR(1000) default '';
 
     -- recupèration de la première preparation concert avant celui ajouter
@@ -212,7 +214,6 @@ begin
     DECLARE dateTimeApres DATETIME;
     DECLARE dateTimeNew DATETIME;
     DECLARE timeDiffr INT;
-    DECLARE temp VARCHAR(100) default '';
     DECLARE mes VARCHAR(1000) default '';
 
     -- recupèration de la première preparation concert avant celui ajouter
