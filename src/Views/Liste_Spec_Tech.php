@@ -1,25 +1,13 @@
-<!doctype html>
-<html lang="fr">
-
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../../public/assets/css/aside.css">
-    <link rel="stylesheet" href="../../public/assets/css/main.css">
-    <link rel="stylesheet" href="../../public/assets/css/header-footer.css">
-    <title>Liste sectacle</title>
-</head>
+<?php $title = 'Liste_Spec_Tech';
+$lesCSS = ["Table_Spec", "basPage", "cote"];
+include 'head.php'; ?>
 
 <body>
-    <aside>
-        <div class="aside">
-            <h1 id="NomConnecter">Asso tech</h1>
-            <button>Se déconnecter</button>
-        </div>
-    </aside>
+    <?php include "cote.php" ?>
     <main>
         <div class="main-liste-spec">
             <h1 id="les-specs-orga">Les spectacles</h1>
-            <table>
+            <table id="table-spec">
                 <thead>
                     <tr>
                         <th scope="col">Date</th>
@@ -59,12 +47,7 @@
             </table>
         </div>
     </main>
-    <footer>
-        <div>
-            <img src="../../public/assets/img/logo_insa.png" alt="Image INSA" />
-            <img src="../../public/assets/img/logo_doua.png" alt="Image DOUA" />
-        </div>
-    </footer>
+    <?php include "basPage.php" ?>
 </body>
 
 </html>

@@ -1,25 +1,13 @@
-<!doctype html>
-<html lang="fr">
-
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../../public/assets/css/aside.css">
-    <link rel="stylesheet" href="../../public/assets/css/main.css">
-    <link rel="stylesheet" href="../../public/assets/css/header-footer.css">
-    <title>Liste sectacle</title>
-</head>
+<?php $title = 'Liste_Spec_Art';
+$lesCSS = ["Table_Spec", "basPage", "cote"];
+include 'head.php'; ?>
 
 <body>
-    <aside>
-        <div class="aside">
-            <h1 id="NomConnecter">$Artiste</h1>
-            <button>Se déconnecter</button>
-        </div>
-    </aside>
+    <?php include "cote.php" ?>
     <main>
         <div class="main-liste-spec">
             <h1 id="les-specs-orga">Vos spectacles</h1>
-            <table>
+            <table id="table-spec">
                 <thead>
                     <tr>
                         <th scope="col">Date</th>
@@ -39,7 +27,7 @@
                     </tr>
                     <tr>
                         <td>02/02/2002</td>
-                        <td>Trill'Sall</td>
+                        <td>Trill"Sall</td>
                         <td>Manquante ( Avant le 02/01/2002)</td>
                         <td>$Consulter</td>
                         <td><a href="">$Infos spectacles</a></td>
@@ -55,12 +43,7 @@
             </table>
         </div>
     </main>
-    <footer>
-        <div>
-            <img src="../../public/assets/img/logo_insa.png" alt="Image INSA" />
-            <img src="../../public/assets/img/logo_doua.png" alt="Image DOUA" />
-        </div>
-    </footer>
+    <?php include "basPage.php"; ?>
 </body>
 
 </html>

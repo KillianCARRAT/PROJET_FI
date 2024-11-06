@@ -1,24 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <link href="../../public/assets/css/page-creation-spectacle.css" rel="stylesheet">
-</head>
+<?php $title = 'Create_Spec';
+$lesCSS = ["Create_Spec", "basPage", "cote"];
+include 'head.php'; ?>
 
 <body>
-    <aside>
-        <h1>Nom de l'asso</h1>
-        <img src="profil.png" alt="Profil" class="image-profil">
-        <ul class="menu">
-            <li>Liste Artistes</li>
-            <li>Les Sax'O</li>
-            <li>Les O'bisp'O</li>
-            <li>Tromperettes</li>
-            <li>Le doua dans le jus</li>
-        </ul>
-        <button class="menu-button">Se déconnecter</button>
-    </aside>
-
+    <?php include "cote.php" ?>
     <main>
         <h1>Créé un nouveau spectacle</h1>
         <section class="form-section">
@@ -42,12 +27,7 @@
             </form>
         </section>
     </main>
-    <footer>
-        <div class="footer-images">
-            <img src="../../public/assets/img/logo_insa.png" alt="logo de l'association un doua de jazz" />
-            <img src="../../public/assets/img/logo_doua.png" alt="logo de l'insa" />
-        </div>
-    </footer>
+    <?php include "basPage.php" ?>
 </body>
 
 </html>
