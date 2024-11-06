@@ -1,0 +1,20 @@
+#footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 15em;
+    border-top: solid 0.1em;
+    height: 6em;
+}
+
+#footer .footer-images {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    height: 4em;
+}
+
+#footer .footer-images img {
+    height: 4em;
+    width: auto;
+}

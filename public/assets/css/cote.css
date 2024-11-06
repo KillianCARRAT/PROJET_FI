@@ -1,37 +1,37 @@
-aside{
-    width: 20%;
+#aside-tout {
+    width: 15em;
     left: 0;
     top: 0;
     bottom: 0;
     text-align: center;
-
     position: fixed;
-    background:linear-gradient(to bottom,#232926, #5500ff);
-    color : white;
+    background: linear-gradient(to bottom, #232926, #5500ff);
+    color: white;
 }
 
 
-aside h2{
+#aside-tout h1 {
     margin: 0;
     padding: 10px;
-    background-color: #000;
+    background-color: black;
     color: white;
     border-bottom: solid 5px #e2d2ff;
 }
 
-#deco{
+#deco {
     position: fixed;
     border-radius: 18px;
-    font-size: 25px;
-    padding: 10px;
+    font-size: 1em;
+    padding: 0.5em;
     bottom: 1em;
-    left: 1%;
-    width: 18%;
+    width: 12em;
+    left: 1.5em;
     color: white;
     background-color: #000;
     border: none;
 }
-#deco:hover{
+
+#deco:hover {
     background-color: #1e1e20;
     color: white;
 }

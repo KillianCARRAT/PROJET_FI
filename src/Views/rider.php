@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>rider</title>
-    <link rel="stylesheet" href="../../public/assets/css/aside.css">
-    <link rel="stylesheet" href="../../public/assets/css/aside.css">
-</head>
+<?php $title = 'rider';
+$lesCSS = ["Style-Rider", "basPage", "cote"];
+include 'head.php'; ?>
 
 <body>
-    <aside>
-        <div>
-            <h2>$nomartiste</h2>
-            <p>Vos spectacle</p>
-            <button id='deco'>Se déconnétcter </button>
-        </div>
-
-    </aside>
-    <main>
+    <?php include "cote.php" ?>
+    <main id="main-rider">
 
         <h1>Fiche rider</h1>
         <section id="question">
@@ -65,7 +53,7 @@
         </section>
 
     </main>
-
+    <?php include "basPage.php" ?>
 </body>
 
 </html>
