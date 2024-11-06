@@ -3,6 +3,16 @@
 #inside-text {
     font-style: italic;
 }
+#retour{
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #120045;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
 #informations {
     font-style: italic;
