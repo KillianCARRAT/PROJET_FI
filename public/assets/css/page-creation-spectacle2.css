@@ -1,0 +1,184 @@
+#corps-principal{
+  margin-left: 20%;
+  font-family: Arial, sans-serif;
+}
+
+#principal {
+  padding: 20px;
+  margin-top: 15%;
+}
+
+#texte{
+  text-align: center;
+  font-size: 24px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#formulaire {
+  width: 100%;
+  max-width: 50rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#nbpersslider,
+#checkbox-etage,
+#combobox {
+  margin-bottom: 2em;
+}
+
+.label {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input[type="range"],
+input[type="checkbox"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.bouton-bas {
+  align-items: center;
+  width: 55%;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #120045;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-left: 20%;
+  cursor: pointer;
+}
+
+.bouton-bas:hover {
+  background-color: #2a0199;
+}
+
+.bouton-bas:active {
+  transform: scale(0.99);
+}
+
+.checkbox-etage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+input[type="checkbox"] {
+  width: auto;
+}
+
+
+/*partie slider*/
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  margin: 20px;
+}
+
+.slider-value {
+  position: absolute;
+  top: -25px;
+  color: #000000;
+  font-weight: bold;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  width: 100%;
+  background: #2d0894;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #120045;
+  cursor: pointer;
+  position: relative;
+}
+
+.slider::-moz-range-thumb {
+  width: 10px;
+  height: 15px;
+  background: #ffffff;
+  cursor: pointer;
+  position: relative;
+}
+/*fin slider*/
+
+
+@media (max-width: 1024px) {
+  #corps-principal {
+    margin-left: 10%;
+  }
+
+  .bouton-bas {
+    width: 60%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #corps-principal {
+    margin-left: 5%;
+  }
+
+  #texte {
+    font-size: 20px;
+  }
+
+  .bouton-bas {
+    width: 80%;
+    margin-left: 0;
+  }
+
+  #formulaire {
+    max-width: 100%;
+  }
+
+  #principal {
+    margin-top: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  #corps-principal {
+    margin-left: 0;
+  }
+
+  #texte {
+    font-size: 18px;
+  }
+
+  .bouton-bas {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .slider-container,
+  .checkbox-etage {
+    width: 100%;
+  }
+  
+  #principal {
+    margin-top: 3%;
+  }
+}

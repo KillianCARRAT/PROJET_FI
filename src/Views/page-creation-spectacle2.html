@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <link href="../../public/assets/css/page-creation-spectacle2.css" rel="stylesheet">
+</head>
+
+<body id="corps-principal">
+    <main id="principal">
+        <h1 id="texte">Créé un nouveau spectacle</h1>
+        <section class="form-section">
+            <form id="formulaire">
+                <div id="nbpersslider">
+                    <label for="nombre-Pers" class="label">Nombre personnes</label>
+                    <div class="slider-container">
+                        <span id="sliderValue" class="slider-value">641</span>
+                        <input type="range" id="slider" class="slider" min="0" max="1000" value="500"
+                            oninput="updateValue()">
+                    </div>
+                </div>
+                <div id="combobox">
+                    <label for="type-Place" class="label">Type de place</label>
+                    <select name="type-Place" id="type-Place">
+                        <option value="">---Type de place---</option>
+                        <option value="">Assis</option>
+                        <option value="">Debout</option>
+                        <option value="">Mixte</option>
+                    </select>
+                </div>
+                <div id="checkbox-etage">
+                    <input type="checkbox" id="etage" name="etage">
+                    <label for="etage" class="label">Présence d'un étage ?</label>
+                </div>
+                <div id="bouton-chercher">
+                    <button type="submit" class="bouton-bas">Chercher</button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+    <script>
+        function updateValue() {
+            let slider = document.getElementById('slider');
+            let sliderValue = document.getElementById('sliderValue');
+
+            sliderValue.innerHTML = slider.value;
+
+            let sliderWidth = slider.offsetWidth - slider.clientLeft * 2;
+            let valuePosition = (slider.value - slider.min) / (slider.max - slider.min) * sliderWidth;
+            sliderValue.style.left = `${valuePosition}px`;
+        }
+
+        updateValue();
+    </script>
+</body>
+
+</html>
