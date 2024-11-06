@@ -1,27 +1,27 @@
 -- -- Insert de test pour pasDeCheuvauchementConcerts (contrainte 3)
 
--- INSERT INTO SALLE VALUES(1,"test",30,"tst","3 rue",100,100,5,2);
--- INSERT INTO GROUPE VALUES(1,"eee",5,3);
--- INSERT INTO CONCERT VALUES(1,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',1,1,NULL,NULL);
--- INSERT INTO CONCERT VALUES(2,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'13:00:00','14:00:00','1:00:00',1,1,NULL,NULL);
--- INSERT INTO CONCERT VALUES(3,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'12:00:00','13:00:00','2:00:00',1,1,NULL,NULL);
--- INSERT INTO CONCERT VALUES(4,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'9:00:00','10:00:00','3:00:00',1,1,NULL,NULL);
--- INSERT INTO CONCERT VALUES(5,STR_TO_DATE("11/10/2010", "%d/%m/%Y"),'22:00:00','23:00:00','4:00:00',1,1,NULL,NULL);
--- INSERT INTO CONCERT VALUES(6,STR_TO_DATE("12/10/2010", "%d/%m/%Y"),'01:00:00','2:00:00','1:00:00',1,1,NULL,NULL);
--- INSERT INTO CONCERT VALUES(7,STR_TO_DATE("14/10/2010", "%d/%m/%Y"),'00:30:00','01:00:00','01:00:00',1,1,NULL,NULL);
--- INSERT INTO CONCERT VALUES(8,STR_TO_DATE("13/10/2010", "%d/%m/%Y"),'23:00:00','23:30:00','3:00:00',1,1,NULL,NULL);
+-- INSERT INTO SALLE VALUES(1, "Salle Olympia", 1500, "Assise", "12 rue des Artistes, Paris", 30, 40, 300, 5,100);
+-- INSERT INTO GROUPE VALUES(1, "The Rolling Stones", 10, 50);
+-- INSERT INTO CONCERT VALUES(1,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',1,1);
+-- INSERT INTO CONCERT VALUES(2,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'13:00:00','14:00:00','1:00:00',1,1);
+-- INSERT INTO CONCERT VALUES(3,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'12:00:00','13:00:00','2:00:00',1,1);
+-- INSERT INTO CONCERT VALUES(4,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'9:00:00','10:00:00','3:00:00',1,1);
+-- INSERT INTO CONCERT VALUES(5,STR_TO_DATE("11/10/2010", "%d/%m/%Y"),'22:00:00','23:00:00','4:00:00',1,1);
+-- INSERT INTO CONCERT VALUES(6,STR_TO_DATE("12/10/2010", "%d/%m/%Y"),'01:00:00','2:00:00','1:00:00',1,1);
+-- INSERT INTO CONCERT VALUES(7,STR_TO_DATE("14/10/2010", "%d/%m/%Y"),'00:30:00','01:00:00','01:00:00',1,1);
+-- INSERT INTO CONCERT VALUES(8,STR_TO_DATE("13/10/2010", "%d/%m/%Y"),'23:00:00','23:30:00','3:00:00',1,1);
 
 -- -- Insert de test pour pasDeCheuvauchementPrepConcerts (contrainte 4)
 
--- INSERT INTO SALLE VALUES(1,"test",30,"tst","3 rue",100,100,5,2,10);
--- INSERT INTO GROUPE VALUES(1,"eee",5,3,NULL);
--- INSERT INTO CONCERT VALUES(1,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'8:00:00','10:00:00','0:10:00',1,NULL,1);
--- INSERT INTO CONCERT VALUES(2,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'13:00:00','15:00:00','0:10:00',1,NULL,1);
--- INSERT INTO CONCERT VALUES(3,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'12:00:00','14:00:00','0:10:00',1,NULL,1);
--- INSERT INTO CONCERT VALUES(4,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'9:00:00','11:00:00','0:10:00',1,NULL,1);
+-- INSERT INTO SALLE VALUES(1, "Salle Olympia", 1500, "Assise", "12 rue des Artistes, Paris", 30, 40, 300, 5,100);
+-- INSERT INTO GROUPE VALUES(1, "The Rolling Stones", 10, 50);
+-- INSERT INTO CONCERT VALUES(1,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'8:00:00','10:00:00','0:10:00',1,1);
+-- INSERT INTO CONCERT VALUES(2,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'13:00:00','15:00:00','0:10:00',1,1);
+-- INSERT INTO CONCERT VALUES(3,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'12:00:00','14:00:00','0:10:00',1,1);
+-- INSERT INTO CONCERT VALUES(4,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'9:00:00','11:00:00','0:10:00',1,1);
 
 -- Insertion dans la table SALLE
-INSERT INTO SALLE (idS, nomS, nbPlace, typePlace, adresseS, largeur, longueur, nbPlacesLo, nbTechS,nbPlaceVoiture) 
+INSERT INTO SALLE (idS, nomS, nbPlaceS, typePlaceS, adresseS, largeurS, longueurS, nbPlacesLo, nbTechS,nbPlaceVoitureS) 
 VALUES (1, "Salle Olympia", 1500, "Assise", "12 rue des Artistes, Paris", 30, 40, 300, 5,100),
        (2, "Zenith Paris", 5000, "Debout", "211 avenue Jean Jaurès, Paris", 50, 80, 1000, 10,200);
 
@@ -32,12 +32,12 @@ VALUES (1, "5 rue de l'Hôtel, Paris", 200),
 
 -- Insertion dans la table GROUPE
 
-INSERT INTO GROUPE (idG, nomG, nbTechG, nbPersG, idH) 
-VALUES (1, "The Rolling Stones", 10, 50, 1),
-       (2, "Coldplay", 12, 60, 2);
+INSERT INTO GROUPE (idG, nomG, nbTechG, nbPersG) 
+VALUES (1, "The Rolling Stones", 10, 50),
+       (2, "Coldplay", 12, 60);
 
 -- Insertion dans la table HEBERGEMENT
-INSERT INTO HEBERGEMENT (idH, idG, heureR, dateR) 
+INSERT INTO HEBERGEMENT (idH, idG, heureH, dateH) 
 VALUES (1, 1, "14:00:00", "2024-10-20"),
        (2, 2, "15:00:00", "2024-10-21");
 
@@ -47,9 +47,9 @@ VALUES (1, "Guitare électrique", "Instrument", 1, 1),
        (2, "Microphone", "Sonorisation", 2, 2);
 
 -- Insertion dans la table CONCERT
-INSERT INTO CONCERT (idC, dateCo, heureArrive, debutConcert, dureeConcert, idG, idM, idS) 
-VALUES (1, "2024-10-25", "19:00:00", "20:00:00", "02:00:00", 1, 1, 1),
-       (2, "2024-10-26", "18:00:00", "19:00:00", "01:30:00", 2, 2, 2);
+INSERT INTO CONCERT (idC, dateC, heureArrive, debutConcert, dureeConcert, idG, idS) 
+VALUES (1, "2024-10-25", "19:00:00", "20:00:00", "02:00:00", 1, 1),
+       (2, "2024-10-26", "18:00:00", "19:00:00", "01:30:00", 2, 2);
 
 -- Insertion dans la table COMMENTAIRE
 INSERT INTO COMMENTAIRE (idCom, msg, idC) 
@@ -87,7 +87,7 @@ VALUES (1, 1),
        (2, 2);
 
 --Test du check dans la table CONCERT
-INSERT INTO CONCERT (idC, dateCo, heureArrive, debutConcert, dureeConcert, idG, idS, idPark, idH)
-VALUES (4, '2222-11-11', '15:00:00', '19:00:00', '22:00:00', 1, 1, 1, 1), --Fonctionne pas
-       (5, '7464-11-20', '22:30:00', '00:00:00', '01:30:00', 2, 2, 2, 2); --Fonctionne
+INSERT INTO CONCERT (idC, dateC, heureArrive, debutConcert, dureeConcert, idG, idS)
+VALUES (4, '2222-11-11', '15:00:00', '19:00:00', '22:00:00', 1, 1);
+INSERT INTO CONCERT VALUES (5, '7464-11-20', '22:30:00', '00:00:00', '01:30:00', 2, 2);
 
