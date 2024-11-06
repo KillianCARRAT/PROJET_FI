@@ -1,14 +1,14 @@
 CREATE TABLE SALLE (
     idS INT PRIMARY KEY,
     nomS VARCHAR(50),
-    nbPlace INT,
-    typePlace VARCHAR(50),
+    nbPlaceS INT,
+    typePlaceS VARCHAR(50),
     adresseS VARCHAR(100),
-    largeur INT,
-    longueur INT,
+    largeurS INT,
+    longueurS INT,
     nbPlacesLo INT,
     nbTechS INT,
-    nbPlaceVoiture INT
+    nbPlaceVoitureS INT
 );
 
 CREATE TABLE HOTEL (
@@ -21,16 +21,14 @@ CREATE TABLE GROUPE (
     idG INT PRIMARY KEY,
     nomG VARCHAR(50),
     nbTechG INT,
-    nbPersG INT,
-    idH INT,
-    FOREIGN KEY(idH) REFERENCES HOTEL(idH)
+    nbPersG INT
 );
 
 CREATE TABLE HEBERGEMENT (
     idH INT,
     idG INT,
-    heureR TIME,
-    dateR DATE,
+    heureH TIME,
+    dateH DATE,
     PRIMARY KEY(idH, idG),
     FOREIGN KEY(idG) REFERENCES GROUPE(idG),
     FOREIGN KEY(idH) REFERENCES HOTEL(idH)
@@ -54,12 +52,18 @@ CREATE TABLE CONCERT (
     debutConcert TIME,
     dureeConcert TIME,
     idG INT NOT NULL,
-    idM INT,
     idS INT NOT NULL,
     FOREIGN KEY(idS) REFERENCES SALLE(idS),
     FOREIGN KEY(idG) REFERENCES GROUPE(idG),
-    FOREIGN KEY(idM) REFERENCES MATERIEL(idM),
     CONSTRAINT temps CHECK ((0<ABS(debutConcert-heureArrive+dureeConcert)) AND ABS((debutConcert-heureArrive+dureeConcert<60*60*24)))
+);
+
+CREATE TABLE BESOIN (
+    idC INT,
+    idM INT,
+    PRIMARY KEY (idC,idM),
+    FOREIGN KEY(idC) REFERENCES CONCERT(idC),
+    FOREIGN KEY(idM) REFERENCES MATERIEL(idM)
 );
 
 CREATE TABLE COMMENTAIRE (
@@ -113,4 +117,3 @@ CREATE TABLE PERSONNEL_ACCUEIL(
     FOREIGN KEY(idC) REFERENCES CONCERT(idC),
     FOREIGN KEY(idP) REFERENCES PERSONNEL(idP)
 );
-

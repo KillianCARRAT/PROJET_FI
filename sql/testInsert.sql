@@ -31,6 +31,7 @@ VALUES (1, "5 rue de l'Hôtel, Paris", 200),
        (2, "10 avenue des Champs, Paris", 300);
 
 -- Insertion dans la table GROUPE
+
 INSERT INTO GROUPE (idG, nomG, nbTechG, nbPersG, idH) 
 VALUES (1, "The Rolling Stones", 10, 50, 1),
        (2, "Coldplay", 12, 60, 2);
