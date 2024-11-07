@@ -5,13 +5,6 @@ include 'head.php'; ?>
 <body>
     <?php include "cote.php" ?>
     <main>
-        <?php
-        try {
-            $bdd = new PDO('mysql:host=servinfo-maria;dbname=DBmchesneau', 'mchesneau', 'mchesneau');
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-        ?>
         <div class="main-liste-spec">
             <h1 id="les-specs-orga">Les salles</h1>
             <table id="table-spec">
