@@ -85,7 +85,7 @@ delimiter ;
 
 -- 2.2 Une salle doit avoir assez de place en loge pour accueillir les artistes
 delimiter |
-CREATE OR REPLACE TRIGGER PlaceEnLogesSuffisantesUpdate BEFORE INSERT ON CONCERT FOR EACH ROW
+CREATE OR REPLACE TRIGGER PlaceEnLogesSuffisantesUpdate BEFORE UPDATE ON CONCERT FOR EACH ROW
 begin
     declare nbArtiste int;
     declare nbLoges int;
@@ -101,7 +101,7 @@ delimiter ;
 
 -- 3.1 Contrainte pour vérifier que plusieurs concerts d'un même groupe ne se chevauche pas (on insert)
 delimiter |
-CREATE OR REPLACE TRIGGER pasDeCheuvauchementConcertsInsert before insert on CONCERT for each row
+CREATE OR REPLACE TRIGGER pasDeCheuvauchementConcertsInsert BEFORE INSERT ON CONCERT FOR EACH ROW
 begin
     DECLARE heureAvant TIME;
     DECLARE dureeAvant TIME;
@@ -149,7 +149,7 @@ delimiter ;
 
 -- 3.2 Contrainte pour vérifier que plusieurs concerts d'un même groupe ne se chevauche pas (on update)
 delimiter |
-CREATE OR REPLACE TRIGGER pasDeCheuvauchementConcertsUpdate before update on CONCERT for each row
+CREATE OR REPLACE TRIGGER pasDeCheuvauchementConcertsUpdate BEFORE UPDATE ON CONCERT FOR EACH ROW
 begin
     DECLARE heureAvant TIME;
     DECLARE dureeAvant TIME;
@@ -197,7 +197,7 @@ delimiter ;
 
 -- 4.1 Contrainte pour vérifier que plusieurs preparation de concerts d'un même groupe ne se chevauche pas (on insert)
 delimiter |
-CREATE OR REPLACE TRIGGER pasDeCheuvauchementPrepConcertsInsert before insert on CONCERT for each row
+CREATE OR REPLACE TRIGGER pasDeCheuvauchementPrepConcertsInsert BEFORE INSERT ON CONCERT FOR EACH ROW
 begin
     DECLARE prepAvant TIME;
     DECLARE finPrepAvant TIME;
@@ -249,7 +249,7 @@ delimiter ;
 
 -- 4.2 Contrainte pour vérifier que plusieurs preparation de concerts d'un même groupe ne se chevauche pas (on update)
 delimiter |
-CREATE OR REPLACE TRIGGER pasDeCheuvauchementPrepConcertsUpdate before update on CONCERT for each row
+CREATE OR REPLACE TRIGGER pasDeCheuvauchementPrepConcertsUpdate BEFORE UPDATE ON CONCERT FOR EACH ROW
 begin
     DECLARE prepAvant TIME;
     DECLARE finPrepAvant TIME;
@@ -331,17 +331,33 @@ begin
 end |
 delimiter ;
 
--- 7 Le nombre de place de l’hotels doit être supérieur ou égal au nombre de personnes dans le groupe + techniciens
+-- 7.1 Le nombre de place de l’hotels doit être supérieur ou égal au nombre de personnes dans le groupe + techniciens
 delimiter |
-CREATE OR REPLACE TRIGGER ReservationPourHotel BEFORE INSERT ON HEBERGEMENT FOR EACH ROW
+CREATE OR REPLACE TRIGGER ReservationPourHotelInsert BEFORE INSERT ON HEBERGEMENT FOR EACH ROW
 begin
     declare mess varchar(100);
-    declare nbPers INT default 1;
+    declare nbPers INT default 0;
     declare place INT default 0;
-    SELECT nbPersG+nbTechG into nbPers FROM GROUPE NATURAL JOIN HEBERGEMENT WHERE idH=new.idH LIMIT 1;
+    SELECT nbPersG+nbTechG into nbPers FROM GROUPE WHERE idG=new.idG LIMIT 1;
     SELECT nbPlaceH into place FROM HOTEL WHERE idH=new.idH LIMIT 1;
     if nbPers>place then
-        set mess = concat("il manque des places dans l'hotel ", new.idH);
+        set mess = concat("il manque des places dans l'hotel ", new.idH," (",nbPers," > ",place,")");
+        signal SQLSTATE '45000' set MESSAGE_TEXT = mess;
+    end if;
+end |
+delimiter ;
+
+-- 7.2 Le nombre de place de l’hotels doit être supérieur ou égal au nombre de personnes dans le groupe + techniciens
+delimiter |
+CREATE OR REPLACE TRIGGER ReservationPourHotelUpdate BEFORE UPDATE ON HEBERGEMENT FOR EACH ROW
+begin
+    declare mess varchar(100);
+    declare nbPers INT default 0;
+    declare place INT default 0;
+    SELECT nbPersG+nbTechG into nbPers FROM GROUPE WHERE idG=new.idG LIMIT 1;
+    SELECT nbPlaceH into place FROM HOTEL WHERE idH=new.idH LIMIT 1;
+    if nbPers>place then
+        set mess = concat("il manque des places dans l'hotel ", new.idH," (",nbPers," > ",place,")");
         signal SQLSTATE '45000' set MESSAGE_TEXT = mess;
     end if;
 end |
