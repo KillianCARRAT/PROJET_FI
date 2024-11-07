@@ -28,26 +28,6 @@ VALUES (1, "Guitare électrique", "Instrument", 1, 1),
 INSERT INTO CONCERT (idC, dateC, heureArrive, debutConcert, dureeConcert, idG, idS) 
 VALUES (1, "2024-10-25", "19:00:00", "20:00:00", "02:00:00", 1, 1),
        (2, "2024-10-26", "18:00:00", "19:00:00", "01:30:00", 2, 2);
-INSERT INTO CONCERT VALUES (3, "2024-10-26", "15:00:00", "16:00:00", "01:00:00", 1, 2);
-INSERT INTO CONCERT VALUES (4, "2024-10-26", "17:30:00", "17:45:00", "01:00:00", 1, 2);
-
--- Insert de test pour pasDeCheuvauchementConcerts (contrainte 3)
-
-INSERT INTO CONCERT VALUES(5,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',1,1);
-INSERT INTO CONCERT VALUES(6,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'13:00:00','14:00:00','1:00:00',1,1);
-INSERT INTO CONCERT VALUES(7,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'12:00:00','13:00:00','2:00:00',1,1);
-INSERT INTO CONCERT VALUES(8,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'9:00:00','10:00:00','3:00:00',1,1);
-INSERT INTO CONCERT VALUES(9,STR_TO_DATE("11/10/2010", "%d/%m/%Y"),'22:00:00','23:00:00','4:00:00',1,1);
-INSERT INTO CONCERT VALUES(10,STR_TO_DATE("12/10/2010", "%d/%m/%Y"),'01:00:00','2:00:00','1:00:00',1,1);
-INSERT INTO CONCERT VALUES(11,STR_TO_DATE("14/10/2010", "%d/%m/%Y"),'00:30:00','01:00:00','01:00:00',1,1);
-INSERT INTO CONCERT VALUES(12,STR_TO_DATE("13/10/2010", "%d/%m/%Y"),'23:00:00','23:30:00','3:00:00',1,1);
-
--- Insert de test pour pasDeCheuvauchementPrepConcerts (contrainte 4)
-
-INSERT INTO CONCERT VALUES(13,STR_TO_DATE("10/11/2010", "%d/%m/%Y"),'8:00:00','10:00:00','0:10:00',1,1);
-INSERT INTO CONCERT VALUES(14,STR_TO_DATE("10/11/2010", "%d/%m/%Y"),'13:00:00','15:00:00','0:10:00',1,1);
-INSERT INTO CONCERT VALUES(15,STR_TO_DATE("10/11/2010", "%d/%m/%Y"),'12:00:00','14:00:00','0:10:00',1,1);
-INSERT INTO CONCERT VALUES(16,STR_TO_DATE("10/11/2010", "%d/%m/%Y"),'9:00:00','11:00:00','0:10:00',1,1);
 
 -- Insertion dans la table COMMENTAIRE
 INSERT INTO COMMENTAIRE (idCom, msg, idC) 
@@ -84,8 +64,35 @@ INSERT INTO PERSONNEL_ACCUEIL (idC, idP)
 VALUES (1, 1),
        (2, 2);
 
---Test du check dans la table CONCERT
-INSERT INTO CONCERT (idC, dateC, heureArrive, debutConcert, dureeConcert, idG, idS)
-VALUES (17, '2030-11-11', '15:00:00', '19:00:00', '22:00:00', 1, 1);
-INSERT INTO CONCERT VALUES (18, '2031-11-20', '22:30:00', '00:00:00', '01:30:00', 2, 2);
+-- Insert de test pour ReservationSalleMemeMoment (contrainte 1)
 
+INSERT INTO CONCERT VALUES(3,STR_TO_DATE("10/10/2014", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',1,1);
+INSERT INTO CONCERT VALUES(4,STR_TO_DATE("10/10/2014", "%d/%m/%Y"),'10:00:00','11:00:00','3:00:00',2,1);
+INSERT INTO CONCERT VALUES(5,STR_TO_DATE("10/10/2014", "%d/%m/%Y"),'6:00:00','7:00:00','2:00:00',2,1);
+INSERT INTO CONCERT VALUES(6,STR_TO_DATE("10/10/2014", "%d/%m/%Y"),'5:00:00','6:00:00','2:00:00',2,1);
+
+SELECT * FROM CONCERT;
+
+-- Insert de test pour pasDeCheuvauchementConcerts (contrainte 3)
+
+INSERT INTO CONCERT VALUES(7,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',1,1);
+INSERT INTO CONCERT VALUES(8,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'13:00:00','14:00:00','1:00:00',1,1);
+INSERT INTO CONCERT VALUES(9,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'12:00:00','13:00:00','2:00:00',1,1);
+INSERT INTO CONCERT VALUES(10,STR_TO_DATE("10/10/2010", "%d/%m/%Y"),'9:00:00','10:00:00','3:00:00',1,1);
+INSERT INTO CONCERT VALUES(11,STR_TO_DATE("11/10/2010", "%d/%m/%Y"),'22:00:00','23:00:00','4:00:00',1,1);
+INSERT INTO CONCERT VALUES(12,STR_TO_DATE("12/10/2010", "%d/%m/%Y"),'01:00:00','2:00:00','1:00:00',1,1);
+INSERT INTO CONCERT VALUES(13,STR_TO_DATE("14/10/2010", "%d/%m/%Y"),'00:30:00','01:00:00','01:00:00',1,1);
+INSERT INTO CONCERT VALUES(14,STR_TO_DATE("13/10/2010", "%d/%m/%Y"),'23:00:00','23:30:00','3:00:00',1,1);
+
+-- Insert de test pour pasDeCheuvauchementPrepConcerts (contrainte 4)
+
+INSERT INTO CONCERT VALUES(15,STR_TO_DATE("10/11/2010", "%d/%m/%Y"),'8:00:00','10:00:00','0:10:00',1,1);
+INSERT INTO CONCERT VALUES(16,STR_TO_DATE("10/11/2010", "%d/%m/%Y"),'13:00:00','15:00:00','0:10:00',1,1);
+INSERT INTO CONCERT VALUES(17,STR_TO_DATE("10/11/2010", "%d/%m/%Y"),'12:00:00','14:00:00','0:10:00',1,1);
+INSERT INTO CONCERT VALUES(18,STR_TO_DATE("10/11/2010", "%d/%m/%Y"),'9:00:00','11:00:00','0:10:00',1,1);
+
+--Test du check dans la table CONCERT (contrainte 5)
+
+INSERT INTO CONCERT (idC, dateC, heureArrive, debutConcert, dureeConcert, idG, idS)
+VALUES (19, '2030-11-11', '15:00:00', '19:00:00', '22:00:00', 1, 1);
+INSERT INTO CONCERT VALUES (20, '2031-11-20', '22:30:00', '00:00:00', '01:30:00', 2, 2);

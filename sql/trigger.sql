@@ -2,7 +2,7 @@
 delimiter |
 CREATE OR REPLACE TRIGGER ReservationSalleMemeMoment BEFORE INSERT ON CONCERT FOR EACH ROW
 begin
-    declare mess VARCHAR(500);
+    declare mes VARCHAR(500);
     declare dateConcert DATE;
     declare arriveConcert TIME;
     declare heureDebutConcert TIME;
@@ -10,10 +10,9 @@ begin
     declare dateTimeVerifConcert DATETIME;
     declare dateTimeNewConcert DATETIME;
     declare timeDiffr INT;
-    declare probleme boolean default false;
     declare fini boolean default false;
     declare lesHeures cursor for 
-        select dateC, heureArrive, debutConcert, dureeConcert FROM CONCERT WHERE idS=new.idS;
+        select dateC, heureArrive, debutConcert, dureeConcert FROM CONCERT WHERE idS=new.idS AND idG!=new.idG;
     declare continue handler for not found set fini = true;
     open lesHeures;
     SET dateTimeNewConcert = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.heureArrive),"%Y-%m-%d %H:%i:%s");
@@ -21,13 +20,12 @@ begin
         fetch lesHeures into dateConcert,arriveConcert,heureDebutConcert,dureeC;
         SET dateTimeVerifConcert = STR_TO_DATE(concat(YEAR(dateConcert),"-",MONTH(dateConcert),"-",DAY(dateConcert)," ",arriveConcert),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND, dateTimeNewConcert,dateTimeVerifConcert);
-        IF ABS(timeDiffr) < ABS(arriveConcert-heureDebutConcert+dureeC) OR ABS(timeDiffr) < ABS(new.debutConcert-new.heureArrive+new.dureeConcert) THEN
-            SET probleme = 1;
-        end if;
-        if probleme then
-            close lesHeures;
-            set mess = concat ("réservation impossible pour la réservation numéro ", new.idC);
-            signal SQLSTATE '45000' set MESSAGE_TEXT = mess;
+        IF dateTimeNewConcert > dateTimeVerifConcert AND ABS(timeDiffr) < TIME_TO_SEC(ABS(heureDebutConcert-arriveConcert+dureeC))THEN
+            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un crénaux précédent.");
+            signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
+        ELSEIF dateTimeNewConcert < dateTimeVerifConcert AND ABS(timeDiffr) < TIME_TO_SEC(ABS(new.debutConcert-new.heureArrive+new.dureeConcert)) THEN
+            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un crénaux suivant.");
+            signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
         end if;
     end while;
     close lesHeures;
