@@ -11,35 +11,32 @@ include 'head.php'; ?>
                 <thead>
                     <tr>
                         <th scope="col">Date</th>
+                        <th scope="col">Heure</th>
+                        <th scope="col">Durée</th>
                         <th scope="col">Salle</th>
                         <th scope="col">Fiche rider</th>
                         <th scope="col">Fiche plan feu</th>
                         <th scope="col">Infos spectacles</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>$Date spectacle</td>
-                        <td>$Nom salle</td>
-                        <td>$Telecharger fiche rider</td>
-                        <td>$Telecharger plan feu</td>
-                        <td><a href="">$Infos spectacles</a></td>
-                    </tr>
-                    <tr>
-                        <td>02/02/2002</td>
-                        <td>Trill"Sall</td>
-                        <td>Manquante ( Avant le 02/01/2002)</td>
-                        <td>$Consulter</td>
-                        <td><a href="">$Infos spectacles</a></td>
-                    </tr>
-                    <tr>
-                        <td>02/02/2002</td>
-                        <td>Toî Toî</td>
-                        <td>$Consulter</td>
-                        <td>$Consulter</td>
-                        <td><a href="">$Infos spectacles</a></td>
-                    </tr>
-                </tbody>
+                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE');
+                while ($donnees = $reponse->fetch()) {
+                ?>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $donnees['dateCo']; ?></td>
+                            <td><?php echo $donnees['debutConcert']; ?></td>
+                            <td><?php echo $donnees['dureeConcert']; ?></td>
+                            <td><?php echo $donnees['nomS']; ?></td>
+                            <td><a href="src/Views/rider.php">Fiche rider</a></td>
+                            <td>Plan feu</td>
+                            <td>Info spectacle</td>
+                        </tr>
+                    </tbody>
+                <?php
+                }
+                $reponse->closeCursor();
+                ?>
             </table>
         </div>
     </main>
