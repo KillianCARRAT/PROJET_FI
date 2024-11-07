@@ -1,6 +1,6 @@
--- 1 Une salle ne peut pas être réservée plusieure fois au même moment
+-- 1.1 Une salle ne peut pas être réservée plusieure fois au même moment (on insert)
 delimiter |
-CREATE OR REPLACE TRIGGER ReservationSalleMemeMoment BEFORE INSERT ON CONCERT FOR EACH ROW
+CREATE OR REPLACE TRIGGER ReservationSalleMemeMomentInsert BEFORE INSERT ON CONCERT FOR EACH ROW
 begin
     declare mes VARCHAR(500);
     declare dateConcert DATE;
@@ -21,10 +21,44 @@ begin
         SET dateTimeVerifConcert = STR_TO_DATE(concat(YEAR(dateConcert),"-",MONTH(dateConcert),"-",DAY(dateConcert)," ",arriveConcert),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND, dateTimeNewConcert,dateTimeVerifConcert);
         IF dateTimeNewConcert > dateTimeVerifConcert AND ABS(timeDiffr) < TIME_TO_SEC(ABS(heureDebutConcert-arriveConcert+dureeC))THEN
-            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un crénaux précédent.");
+            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un créneau précédent.");
             signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
         ELSEIF dateTimeNewConcert < dateTimeVerifConcert AND ABS(timeDiffr) < TIME_TO_SEC(ABS(new.debutConcert-new.heureArrive+new.dureeConcert)) THEN
-            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un crénaux suivant.");
+            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un créneau suivant.");
+            signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
+        end if;
+    end while;
+    close lesHeures;
+end |
+delimiter ;
+
+-- 1.2 Une salle ne peut pas être réservée plusieure fois au même moment (on update)
+delimiter |
+CREATE OR REPLACE TRIGGER ReservationSalleMemeMomentUpdate BEFORE UPDATE ON CONCERT FOR EACH ROW
+begin
+    declare mes VARCHAR(500);
+    declare dateConcert DATE;
+    declare arriveConcert TIME;
+    declare heureDebutConcert TIME;
+    declare dureeC TIME;
+    declare dateTimeVerifConcert DATETIME;
+    declare dateTimeNewConcert DATETIME;
+    declare timeDiffr INT;
+    declare fini boolean default false;
+    declare lesHeures cursor for 
+        select dateC, heureArrive, debutConcert, dureeConcert FROM CONCERT WHERE idS=new.idS;
+    declare continue handler for not found set fini = true;
+    open lesHeures;
+    SET dateTimeNewConcert = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.heureArrive),"%Y-%m-%d %H:%i:%s");
+    while not fini do
+        fetch lesHeures into dateConcert,arriveConcert,heureDebutConcert,dureeC;
+        SET dateTimeVerifConcert = STR_TO_DATE(concat(YEAR(dateConcert),"-",MONTH(dateConcert),"-",DAY(dateConcert)," ",arriveConcert),"%Y-%m-%d %H:%i:%s");
+        SET timeDiffr = TIMESTAMPDIFF(SECOND, dateTimeNewConcert,dateTimeVerifConcert);
+        IF dateTimeNewConcert > dateTimeVerifConcert AND ABS(timeDiffr) < TIME_TO_SEC(ABS(heureDebutConcert-arriveConcert+dureeC))THEN
+            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un créneau précédent.");
+            signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
+        ELSEIF dateTimeNewConcert < dateTimeVerifConcert AND ABS(timeDiffr) < TIME_TO_SEC(ABS(new.debutConcert-new.heureArrive+new.dureeConcert)) THEN
+            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un créneau suivant.");
             signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
         end if;
     end while;
@@ -33,9 +67,25 @@ end |
 delimiter ;
 
 
--- 2 Une salle doit avoir assez de place en loge pour accueillir les artistes
+-- 2.1 Une salle doit avoir assez de place en loge pour accueillir les artistes
 delimiter |
-CREATE OR REPLACE TRIGGER PlaceEnLogesSuffisantes BEFORE INSERT ON CONCERT FOR EACH ROW
+CREATE OR REPLACE TRIGGER PlaceEnLogesSuffisantesInsert BEFORE INSERT ON CONCERT FOR EACH ROW
+begin
+    declare nbArtiste int;
+    declare nbLoges int;
+    declare mes varchar(250) default "";
+    SELECT nbPlacesLo into nbLoges FROM SALLE WHERE idS = new.idS;
+    SELECT nbPersG into nbArtiste FROM GROUPE WHERE idG = new.idG;
+    if nbLoges < nbArtiste THEN
+        set mes = concat("le nombre de loges et insuffissant, ", nbLoges, " loges pour ", nbArtiste, " artistes.");
+        signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
+    end if;
+end |
+delimiter ;
+
+-- 2.2 Une salle doit avoir assez de place en loge pour accueillir les artistes
+delimiter |
+CREATE OR REPLACE TRIGGER PlaceEnLogesSuffisantesUpdate BEFORE INSERT ON CONCERT FOR EACH ROW
 begin
     declare nbArtiste int;
     declare nbLoges int;
@@ -79,7 +129,7 @@ begin
         SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.debutConcert),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeAvant,dateTimeNew);
         IF ABS(timeDiffr) < TIME_TO_SEC(dureeAvant) THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà un concert précédent sur le créneau ",dateTimeNew," - ",dateAvant," ",SEC_TO_TIME(timeDiffr));
+            SET mes = concat(mes,"Ajout impossible car il existe déjà un concert précédent sur le créneau.");
             signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
         end if;
     end if;
@@ -90,7 +140,7 @@ begin
         SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.debutConcert),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeNew,dateTimeApres);
         IF ABS(timeDiffr) < TIME_TO_SEC(new.dureeConcert) THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà un concert suivant sur le créneau. ",dateTimeNew," - ",dateTimeApres," ",SEC_TO_TIME(timeDiffr)," ",new.dureeConcert);
+            SET mes = concat(mes,"Ajout impossible car il existe déjà un concert suivant sur le créneau.");
             signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
         end if;
     end if;
@@ -127,7 +177,7 @@ begin
         SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.debutConcert),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeAvant,dateTimeNew);
         IF ABS(timeDiffr) < TIME_TO_SEC(dureeAvant) THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà un concert précédent sur le créneau ",dateTimeNew," - ",dateAvant," ",SEC_TO_TIME(timeDiffr));
+            SET mes = concat(mes,"Ajout impossible car il existe déjà un concert précédent sur le créneau.");
             signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
         end if;
     end if;
@@ -138,7 +188,7 @@ begin
         SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.debutConcert),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeNew,dateTimeApres);
         IF ABS(timeDiffr) < TIME_TO_SEC(new.dureeConcert) THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà un concert suivant sur le créneau. ",dateTimeNew," - ",dateTimeApres," ",SEC_TO_TIME(timeDiffr)," ",new.dureeConcert);
+            SET mes = concat(mes,"Ajout impossible car il existe déjà un concert suivant sur le créneau.");
             signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
         end if;
     end if;
@@ -178,7 +228,7 @@ begin
         SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.heureArrive),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeAvant,dateTimeNew);
         IF ABS(timeDiffr) < dureeAvant THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà une preparation de concert précédent sur le créneau ",dateTimeNew," - ",dateAvant," ",SEC_TO_TIME(timeDiffr));
+            SET mes = concat(mes,"Ajout impossible car il existe déjà une preparation de concert précédent sur le créneau.");
             signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
         end if;
     end if;
@@ -190,7 +240,7 @@ begin
         SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.heureArrive),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeNew,dateTimeApres);
         IF ABS(timeDiffr) < dureeNew THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà une preparation de concert suivant sur le créneau. ",dateTimeNew," - ",dateTimeApres," ",SEC_TO_TIME(timeDiffr)," ",new.dureeConcert);
+            SET mes = concat(mes,"Ajout impossible car il existe déjà une preparation de concert suivant sur le créneau.");
             signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
         end if;
     end if;
@@ -230,7 +280,7 @@ begin
         SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.heureArrive),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeAvant,dateTimeNew);
         IF ABS(timeDiffr) < dureeAvant THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà une preparation de concert précédent sur le créneau ",dateTimeNew," - ",dateAvant," ",SEC_TO_TIME(timeDiffr));
+            SET mes = concat(mes,"Ajout impossible car il existe déjà une preparation de concert précédent sur le créneau.");
             signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
         end if;
     end if;
@@ -242,16 +292,16 @@ begin
         SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.heureArrive),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeNew,dateTimeApres);
         IF ABS(timeDiffr) < dureeNew THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà une preparation de concert suivant sur le créneau. ",dateTimeNew," - ",dateTimeApres," ",SEC_TO_TIME(timeDiffr)," ",new.dureeConcert);
+            SET mes = concat(mes,"Ajout impossible car il existe déjà une preparation de concert suivant sur le créneau.");
             signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
         end if;
     end if;
 end|
 delimiter ;
 
--- 6 Le nombre de place du restaurants doit être supérieur ou égal au nombre de personnes dans le groupe + techniciens
+-- 6.1 Le nombre de place du restaurants doit être supérieur ou égal au nombre de personnes dans le groupe + techniciens
 delimiter |
-CREATE OR REPLACE TRIGGER ReservationPourResto BEFORE INSERT ON RESTAURATION FOR EACH ROW
+CREATE OR REPLACE TRIGGER ReservationPourRestoInsert BEFORE INSERT ON RESTAURATION FOR EACH ROW
 begin
     declare mess varchar(100);
     declare nbPersonnes INT;
@@ -259,7 +309,23 @@ begin
     SELECT nbPersG+nbTechG INTO nbPersonnes FROM GROUPE WHERE idG=new.idG LIMIT 1;
     SELECT nbPlaceR INTO place FROM RESTAURANT WHERE idR=new.idR LIMIT 1;
     if nbPersonnes > place THEN
-        set mess = concat("il n'y a pas assez de place dans le restorant", new.idR);
+        set mess = concat("il n'y a pas assez de place dans le restaurant ", new.idR," (",nbPersonnes," > ",place,")");
+        signal SQLSTATE '45000' set MESSAGE_TEXT = mess;
+    end if;
+end |
+delimiter ;
+
+-- 6.2 Le nombre de place du restaurants doit être supérieur ou égal au nombre de personnes dans le groupe + techniciens
+delimiter |
+CREATE OR REPLACE TRIGGER ReservationPourRestoUpdate BEFORE UPDATE ON RESTAURATION FOR EACH ROW
+begin
+    declare mess varchar(100);
+    declare nbPersonnes INT;
+    declare place INT;
+    SELECT nbPersG+nbTechG INTO nbPersonnes FROM GROUPE WHERE idG=new.idG LIMIT 1;
+    SELECT nbPlaceR INTO place FROM RESTAURANT WHERE idR=new.idR LIMIT 1;
+    if nbPersonnes > place THEN
+        set mess = concat("il n'y a pas assez de place dans le restaurant ", new.idR," (",nbPersonnes," > ",place,")");
         signal SQLSTATE '45000' set MESSAGE_TEXT = mess;
     end if;
 end |
