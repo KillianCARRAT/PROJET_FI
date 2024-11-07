@@ -1,5 +1,5 @@
 <?php $title = 'artiste';
-$lesCSS = ["info_artiste", "basPage", "cote"];
+$lesCSS = ["info_art", "basPage", "cote"];
 include 'head.php'; ?>
 
 <body>
