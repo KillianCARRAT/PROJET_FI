@@ -19,7 +19,7 @@ include 'head.php'; ?>
                         <th scope="col">Infos spectacles</th>
                     </tr>
                 </thead>
-                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE');
+                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE where idG='.$idArt);
                 while ($donnees = $reponse->fetch()) {
                 ?>
                     <tbody>

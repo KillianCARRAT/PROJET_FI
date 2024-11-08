@@ -18,6 +18,7 @@ $reqType->execute();
 $role = $reqType->fetchColumn();
 
 $_SESSION["idUser"]=$id;
+$_SESSION["mdpUser"]=$mdp;
 
 if ($role == "ART") {
     header('Location: /src/Views/Liste_Spec_Art.php');

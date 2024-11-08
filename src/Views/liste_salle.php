@@ -23,7 +23,7 @@ include 'head.php'; ?>
             <tbody>
                 <tr>
                     <td><?php echo $donnees['nomS']; ?></td>
-                    <td><?php echo $donnees['nbPlace']; ?></td>
+                    <td><?php echo $donnees['nbPlaceS']; ?></td>
                     <td><?php echo $donnees['nbTechS']; ?></td>
                     <td><?php echo $donnees['adresseS']; ?></td>
                 </tr>
