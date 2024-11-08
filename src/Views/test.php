@@ -1,23 +1,20 @@
 <?php $title = 'Liste_Spec_Orga';
 $lesCSS = ["Table_Spec", "basPage", "cote"];
 include 'head.php'; ?>
+
 <body>
     <main>
         <?php
+        $idUser = "o2230";
+        $reqType = $bdd->prepare('SELECT idG, type FROM LIEN NATURAL JOIN UTILISATEUR WHERE iden=:id');
+        $reqType->bindParam(":id", $idUser, PDO::PARAM_STR);
+        $reqType->execute();
 
-        $reponse = $bdd->query('SELECT * FROM SALLE');
-
-        while ($donnees = $reponse->fetch()) {
-        ?>
-            <p>
-
-                <strong>Jeu</strong> : <?php echo $donnees['idS']; ?><br/>
-            </p>
-        <?php
-        }
-        $reponse->closeCursor(); // Termine le traitement de la requête
-        ?>
+        $role = $reqType->fetchAll();
+        print_r($role)
+            ?>
     </main>
     <?php include "basPage.php" ?>
 </body>
+
 </html>

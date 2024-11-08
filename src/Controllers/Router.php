@@ -31,12 +31,28 @@ class Router
                 require_once VIEWS_PATH . '/Liste_Spec_Art.php';
                 break;
 
+            case '/Info_Art':
+                require_once VIEWS_PATH . '/info_artiste.php';
+                break;
+            case '/Liste_S':
+                require_once VIEWS_PATH . '/liste_salle.php';
+                break;
+
+            case '/ML':
+                require_once VIEWS_PATH . '/mention_legal.php';
+                break;
+
+            case '/connexion_fail':
+                $_GET['fail'] = 'tr';
+                require_once VIEWS_PATH . '/connexion.php';
+                break;
+
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;
 
             default:
-                require_once PUBLIC_PATH . '/connexion.php';
+                require_once VIEWS_PATH . '/connexion.php';
                 break;
         }
     }

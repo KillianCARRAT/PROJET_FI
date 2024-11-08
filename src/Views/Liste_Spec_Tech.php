@@ -17,26 +17,24 @@ include 'head.php'; ?>
                         <th scope="col">Atiste</th>
                         <th scope="col">Fiche rider</th>
                         <th scope="col">Fiche plan feu</th>
-                        <th scope="col">Infos spectacles</th>
                     </tr>
                 </thead>
                 <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE');
                 while ($donnees = $reponse->fetch()) {
-                ?>
+                    ?>
                     <tbody>
                         <tr>
-                            <td><?php echo $donnees['dateCo']; ?></td>
+                            <td><?php echo $donnees['dateC']; ?></td>
                             <td><?php echo $donnees['debutConcert']; ?></td>
                             <td><?php echo $donnees['dureeConcert']; ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>
                             <td><?php echo $donnees['nomG']; ?></td>
                             <td><a href="src/Views/rider.php">Fiche rider</a></td>
                             <td>Plan feu</td>
-                            <td><a href="">Info spectacle</a></td>
                         </tr>
 
                     </tbody>
-                <?php
+                    <?php
                 }
                 $reponse->closeCursor();
                 ?>

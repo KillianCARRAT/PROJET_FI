@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
-    <link href="/PROJET_FI/public/assets/css/connexion.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL; ?>/public/assets/css/connexion.css">
     <title>Connexion Concert'asso</title>
 </head>
 
@@ -13,14 +13,24 @@
         <h1>Concert'asso</h1>
     </div>
     <div class="content">
-        <div class="connexion">
+
+        <form class="connexion" method="POST" action="/insert-bd">
             <p>CONNEXION</p>
-            <input type="text" id="ident" placeholder="Identifiant*" />
-            <input type="password" id="passwd" placeholder="Mot de passe" />
-            <button type="button" id="toggle-password" class="toggle-password">afficher</button>
+            <input type="text" name="ident" id="ident" placeholder="Identifiant*" />
+            <input type="password" name="passwd" id="passwd" placeholder="Mot de passe" />
+            <button type="button" name="toggle-password" id="toggle-password" class="toggle-password">afficher</button>
             <p id="informations">* reçu par mail si vous êtes un artiste</p>
+            <?php
+            $fail = $_GET["fail"];
+
+            if ($fail == "tr") {
+                ?>
+                <p class="fail">L'identifiant ou le mot de passe est incorrect</p>
+                <?php
+            }
+            ?>
             <input type="submit" value="Se connecter" />
-        </div>
+        </form>
         <aside>
             <img src="/PROJET_FI/public/assets/img/logo_doua.png" alt="logo de l'association un doua de jazz" />
             <img src="/PROJET_FI/public/assets/img/logo_insa.png" alt="logo de l'insa" />
