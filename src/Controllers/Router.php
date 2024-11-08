@@ -15,6 +15,10 @@ class Router
                 require_once VIEWS_PATH . '/Create_Spec.php';
                 break;
 
+            case '/insert-bd':
+                require_once VIEWS_PATH . '/insert-bd.php';
+                break;
+
             case '/rider':
                 require_once VIEWS_PATH . '/rider.php';
                 break;
@@ -40,6 +44,11 @@ class Router
 
             case '/ML':
                 require_once VIEWS_PATH . '/mention_legal.php';
+                break;
+            
+            case '/connexion_fail':
+                $_GET['fail'] = 'tr';
+                require_once VIEWS_PATH . '/connexion.php';
                 break;
 
             case '/':

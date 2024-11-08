@@ -13,15 +13,16 @@
         <h1>Concert'asso</h1>
     </div>
     <div class="content">
-        <form class="connexion" method="POST" action="insert-bd.php">
+        <form class="connexion" method="POST" action="/insert-bd">
             <p>CONNEXION</p>
             <input type="text" name="ident" id="ident" placeholder="Identifiant*" />
             <input type="password" name="passwd" id="passwd" placeholder="Mot de passe" />
             <button type="button" name="toggle-password" id="toggle-password" class="toggle-password">afficher</button>
             <p id="informations">* reçu par mail si vous êtes un artiste</p>
             <?php 
-                if ($fail==tr) {
-                    echo "prout";
+                $fail = $_GET["fail"];
+
+                if ($fail=="tr") {
                     ?>
                     <p class="fail">L'identifiant ou le mot de passe est incorrect</p>
                     <?php

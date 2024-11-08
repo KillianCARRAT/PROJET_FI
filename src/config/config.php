@@ -15,12 +15,12 @@ define('ASSETS_PATH', PUBLIC_PATH . '/assets');
 define('DB_HOST', 'localhost');    // Hôte de la base de données
 define('DB_USER', 'root');         // Nom d'utilisateur de la base de données
 define('DB_PASSWORD', '');         // Mot de passe de la base de données
-define('DB_NAME', 'my_database'); // Nom de la base de données
+define('DB_NAME', 'my_database');  // Nom de la base de données
 
 // Mode de développement : définir un mode de débogage ou d'affichage des erreurs
 define('DEBUG_MODE', true); // True pour afficher les erreurs, false pour masquer
 
 // Une constante pour la base de l'URL de votre application
-define('BASE_URL', 'http://localhost/PROJET_FI');
+define('BASE_URL', 'http://localhost:8000');
 
 // Vous pouvez aussi inclure d'autres configurations spécifiques à votre application ici, comme des clés API ou des paramètres spécifiques.

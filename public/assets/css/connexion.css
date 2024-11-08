@@ -21,6 +21,13 @@
     color: black;
 }
 
+#fail {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 0.5em;
+    color: darkred;
+}
+
 input[type="text"],
 input[type="password"],
 select {
