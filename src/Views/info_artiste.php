@@ -4,25 +4,27 @@ include 'head.php'; ?>
 
 <body>
     <?php include "cote.php" ?>
+    <?php $reponse = $bdd->query('select * from GROUPE NATURAL JOIN CONCERT NATURAL JOIN SALLE where idG=' . $idArt); ?>
     <main>
-        <h1>$nomartiste</h1>
+        <h1><?php echo $reponse['nomG']; ?></h1>
+
         <section>
             <div id="Infos">
                 <div class="duo">
                     <p class="fix">Nom du groupe : </p>
-                    <p class="rep">$nomartiste</p>
+                    <p class="rep"><?php echo $reponse["nomG"]; ?></p>
                 </div>
                 <div class="duo">
                     <p class="fix">Nombre de membres : </p>
-                    <p class="rep">$nbPersonne</p>
+                    <p class="rep"><?php echo $reponse["nbPersG"]; ?></p>
                 </div>
                 <div class="duo">
-                    <p class="fix">Identifiant</p>
-                    <p class="rep">$idartiste</p>
+                    <p class="fix">Identifiant :</p>
+                    <p class="rep"><?php $_SESSION["$idUser"]; ?></p>
                 </div>
                 <div class="duo">
-                    <p class="fix">Mot de passe</p>
-                    <p class="rep">$mdpArtiste</p>
+                    <p class="fix">Mot de passe :</p>
+                    <p class="rep"><?php $_SESSION["$mdpUser"]; ?></p>
                 </div>
 
             </div>
@@ -33,34 +35,26 @@ include 'head.php'; ?>
                         <th scope="col">Salle</th>
                         <th scope="col">Fiche rider</th>
                         <th scope="col">Fiche plan feu</th>
-                        <th scope="col">Suprimer le spéctacle</th>
+                        <th scope="col">Suprimer le spectacle</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>$Date spectacle</td>
-                        <td>$Nom salle</td>
-                        <td>$Telecharger fiche rider</td>
-                        <td>$Telecharger plan feu</td>
-                        <td style="text-align:center;" class="image"><img src="../../public/assets/img/supr.png" alt="Suprimer le spectacle"></td>
-                    </tr>
-                    <tr>
-                        <td>02/02/2002</td>
-                        <td>Trill'Sall</td>
-                        <td>Manquante ( Avant le 02/01/2002)</td>
-                        <td>$Consulter</td>
-                        <td style="text-align:center;" class="image"><img src="../../public/assets/img/supr.png" alt="Suprimer le spectacle"></td>
-                    </tr>
-                    <tr>
-                        <td>02/02/2002</td>
-                        <td>Toî Toî</td>
-                        <td>$Consulter</td>
-                        <td>$Consulter</td>
-                        <td style="text-align:center;" class="image"><img src="../../public/assets/img/supr.png" alt="Suprimer le spectacle"></td>
-                    </tr>
-                </tbody>
+                <?php while ($donnees = $reponse->fetch()) {
+                    ?>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $donnees['dateC']; ?></td>
+                            <td><?php echo $donnees['nomS']; ?></td>
+                            <td>$Telecharger fiche rider</td>
+                            <td>$Telecharger plan feu</td>
+                            <td style="text-align:center;" class="image"><img src="../../public/assets/img/supr.png"
+                                    alt="Suprimer le spectacle"></td>
+                        </tr>
+                    </tbody>
+                    <?php
+                }
+                $reponse->closeCursor();
+                ?>
             </table>
-
         </section>
     </main>
     <?php include "basPage.php" ?>

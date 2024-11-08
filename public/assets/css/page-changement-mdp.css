@@ -1,35 +1,8 @@
-/* champ + images */
-
-#inside-text {
-    font-style: italic;
-}
-
-#retour {
-    margin-left: 10px;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #120045;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
 #informations {
     font-style: italic;
-    font-weight: normal;
     font-size: 0.5em;
-    color: black;
 }
 
-#fail {
-    font-style: italic;
-    font-weight: normal;
-    font-size: 0.5em;
-    color: darkred;
-}
-
-input[type="text"],
 input[type="password"],
 select {
     width: 60%;
@@ -53,14 +26,12 @@ select {
 
 .toggle-password:hover {
     background-color: #2a0199;
-    cursor: pointer;
 }
 
 .toggle-password:active {
     transform: scale(0.95);
 }
 
-/* bouton se connecter */
 input[type="submit"] {
     background-color: #120045;
     color: white;
@@ -69,86 +40,78 @@ input[type="submit"] {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    margin-top: 1em;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 input[type="submit"]:hover {
     background-color: #2a0199;
-    cursor: pointer;
 }
 
 input[type="submit"]:active {
     transform: scale(0.95);
 }
 
-.content {
+.change_mdp {
     display: flex;
-}
-
-.connexion {
-    flex: 0 0 45%;
-    margin-left: 3em;
-    margin-right: 4em;
-    margin-top: 5em;
-    margin-bottom: 4em;
-    padding-left: 2em;
-    background-color: rgba(128, 128, 128, 0.3);
-    border: none;
+    flex-direction: column;
+    align-items: center;
+    margin: 5em 10em;
+    padding: 2em;
+    background-color: white;
     border-radius: 2em;
-}
-
-.connexion p:first-child {
-    font-size: 1.2em;
+    color: #120045;
     text-align: center;
-    margin-right: 1.2em;
 }
 
-aside {
-    flex: 0 0 45%;
-    margin-top: 3em;
+.change_mdp p {
+    font-size: 1.2em;
+    color: #120045;
+    margin: 0.5em 0;
+    font-weight: bold;
 }
 
-img {
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-}
 
-/* haut de la page */
 .header {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .header a {
     position: absolute;
     left: 0;
     top: 0;
+    color: white;
 }
 
 .header a:hover {
-    color: #2a0199;
-    cursor: pointer;
+    color: lightgray;
 }
 
 .header h1 {
     margin: 0;
-    padding: 0;
     font-size: 3em;
+    color: white;
 }
 
+.password-container {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+    width: 80%;
+    margin-left: 8em;
+}
 
-/* style basique */
 a {
+    font-weight: bold;
     text-decoration: none;
-    color: #120045;
 }
 
 html {
     font-size: 200%;
     font-family: Arial, Helvetica, sans-serif;
-    color: #120045;
-    font-weight: bold;
+    color: white;
+    background-color: #120045;
 }
