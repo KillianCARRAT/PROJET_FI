@@ -47,7 +47,7 @@ class Router
                 break;
 
             default:
-                require_once PUBLIC_PATH . '/connexion.php';
+                require_once VIEWS_PATH . '/connexion.php';
                 break;
         }
     }
