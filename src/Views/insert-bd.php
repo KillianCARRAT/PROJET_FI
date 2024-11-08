@@ -17,7 +17,7 @@ $reqType->execute();
 
 $role = $reqType->fetchColumn();
 
-$_SESSION["idUser"]=$id;
+$_SESSION["idUser"] = $id;
 
 if ($role == "ART") {
     header('Location: Ac_Art');
@@ -28,5 +28,7 @@ if ($role == "ART") {
 } elseif ($role == "TEC") {
     header("Location: /Ac_Tech");
     exit;
-}else{header("Location: /connexion_fail");}
+} else {
+    header("Location: /connexion_fail");
+}
 ?>

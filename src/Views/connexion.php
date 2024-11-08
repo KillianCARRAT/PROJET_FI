@@ -13,6 +13,7 @@
         <h1>Concert'asso</h1>
     </div>
     <div class="content">
+
         <form class="connexion" method="POST" action="/insert-bd">
             <p>CONNEXION</p>
             <input type="text" name="ident" id="ident" placeholder="Identifiant*" />
