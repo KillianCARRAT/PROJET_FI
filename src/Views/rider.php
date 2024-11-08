@@ -5,7 +5,7 @@ include 'head.php'; ?>
 <body>
     <?php include "cote.php" ?>
     <main id="main-rider">
-    
+
         <h1>Fiche rider</h1>
         <section id="question">
             <form class="grand">
@@ -20,8 +20,10 @@ include 'head.php'; ?>
                 <textarea type="text" name="demande" id="demande" size='80'></textarea>
 
                 <div class="chec">
-                    <input type="checkbox" name="veicule" id="checkbox-vehicule">
-                    <label for="vehicule" id="vehicule">besoin d'un vehicule</label>
+                        <input type="checkbox" name="veicule" id="checkbox-vehicule">
+                    <div >
+                        <label for="vehicule"> besoin d'un vehicule</label>
+                    </div>
                 </div>
 
                 <input type="text" name="adresse" id="adresse" placeholder="adresse">
@@ -31,7 +33,7 @@ include 'head.php'; ?>
 
                 </div>
 
-                <textarea type="text" name="demande" id="demande">demande particuliaire</textarea>
+                <textarea type="text" name="demande" id="demande" placeholder="demande particuliaire"></textarea>
 
             </form>
             <div class="grand" id="matériels">
@@ -41,7 +43,7 @@ include 'head.php'; ?>
                         <th>Nom</th>
                     </tr>
                     <?php while ($donnees = $reponse->fetch()) {
-                        ?>
+                    ?>
                         <tbody>
                             <tr>
                                 <th><?php echo $donnees['typeM']; ?></th>
@@ -61,15 +63,34 @@ include 'head.php'; ?>
     <?php include "basPage.php" ?>
 </body>
 <script>
-    if (document.getElementById('checkbox-vehicule').checked)
-        document.getElementById('vehicule').style.visibility = visible;
-    else
-        document.getElementById('vehicule').style.visibility = hidden;
+    function updateVisibility() {
+        const checkboxVehicule = document.getElementById('checkbox-vehicule');
+        const vehicule = document.getElementById('vehicule');
 
-    if (document.getElementById('checkbox-hotel').checked)
-        document.getElementById('hotel').style.visibility = visible;
-    else
-        document.getElementById('hotel').style.visibility = hidden;
+        if (checkboxVehicule.checked) {
+            vehicule.style.visibility = "visible";
+        } else {
+            vehicule.style.visibility = "hidden";
+        }
+
+        const checkboxHotel = document.getElementById('checkbox-hotel');
+        const hotel = document.getElementById('hotel');
+
+        if (checkboxHotel.checked) {
+            hotel.style.visibility = "visible";
+        } else {
+            hotel.style.visibility = "hidden";
+        }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateVisibility();
+
+
+        document.getElementById('checkbox-vehicule').addEventListener('change', updateVisibility);
+        document.getElementById('checkbox-hotel').addEventListener('change', updateVisibility);
+    });
 </script>
 
 </html>

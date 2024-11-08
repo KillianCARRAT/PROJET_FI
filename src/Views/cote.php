@@ -22,12 +22,12 @@ $toutArt = $reqArt->fetchAll();
 
 ?>
 <h1><?php echo $toutArt[0][1] ?></h1>
-            <p><a href="src/Views/Liste_Spec_Art.php">Vos spectacles</a></p>
+            <p><a href="/Ac_Art">Vos spectacles</a></p>
             <?php
         }elseif (($role == "TEC")||($role == "ORG")){
 ?>
 <h1>Asso Technique</h1>
-            <p><a href="src/Views/Liste_Spec_Tech.php">Les spectacles</a></p>
+            <p><a href="/Ac_Tech">Les spectacles</a></p>
             <?php
         }
         ?>
