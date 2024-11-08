@@ -1,4 +1,4 @@
-# PROJET APPLICATION WEB Conert'Asso
+# PROJET APPLICATION WEB Concert'Asso
 
 ## Contexte
 On nous demande de réaliser un projet pour améliorer la communication entre les associations et les artistes.
@@ -23,3 +23,14 @@ FONTENY Noa
 - Gestion des comptes, des artistes et des représentations
 - Création d'événements
 - Programmation des concerts
+
+
+
+## Lien 
+Lien vers les pages quand on est sur le serveur local
+
+Page connexion : PROJET_FI/  
+Page rider : PROJET_FI/rider  
+Page Liste_Spec_Art : PROJET_FI/Ac_Art  
+Page Liste_Spec_Orga : PROJET_FI/Ac_Orga  
+Page Liste_Spec_Tech : PROJET_FI/Ac_Tech  
