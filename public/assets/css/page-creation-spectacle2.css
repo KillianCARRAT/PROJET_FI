@@ -1,4 +1,4 @@
-#corps-principal{
+#corps-principal {
   margin-left: 20%;
   font-family: Arial, sans-serif;
 }
@@ -8,7 +8,7 @@
   margin-top: 15%;
 }
 
-#texte{
+#texte {
   text-align: center;
   font-size: 24px;
 }
@@ -122,6 +122,7 @@ input[type="checkbox"] {
   cursor: pointer;
   position: relative;
 }
+
 /*fin slider*/
 
 
@@ -177,7 +178,7 @@ input[type="checkbox"] {
   .checkbox-etage {
     width: 100%;
   }
-  
+
   #principal {
     margin-top: 3%;
   }

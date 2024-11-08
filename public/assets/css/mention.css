@@ -1,14 +1,16 @@
-main{
+main {
     margin-left: 21%;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
 }
-main section{
+
+main section {
     display: flex;
     flex-direction: column;
-    padding: 20px;    
+    padding: 20px;
 }
-main h1{
+
+main h1 {
     flex-wrap: wrap;
     flex-basis: 100%;
     text-align: center;

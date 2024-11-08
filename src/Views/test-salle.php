@@ -1,6 +1,7 @@
 <?php $title = 'Liste_Spec_Orga';
 $lesCSS = ["Table_Spec", "basPage", "cote"];
 include 'head.php'; ?>
+
 <body>
     <?php include "cote.php" ?>
     <main>
@@ -21,23 +22,24 @@ include 'head.php'; ?>
                 </tr>
             </thead>
 
-        <?php $reponse = $bdd->query('SELECT * FROM SALLE');
-        while($donnees = $reponse->fetch()) {
-        ?>
-            <tbody>
-                <tr>
-                    <td><?php echo $donnees['nomS']; ?></td>
-                    <td><?php echo $donnees['nbPlaceS']; ?></td>
-                    <td><?php echo $donnees['nbTechS']; ?></td>
-                    <td><?php echo $donnees['adresseS']; ?></td>
-                </tr>
-            </tbody>
-        <?php
-        }
-        $reponse->closeCursor();
-        ?>
+            <?php $reponse = $bdd->query('SELECT * FROM SALLE');
+            while ($donnees = $reponse->fetch()) {
+                ?>
+                <tbody>
+                    <tr>
+                        <td><?php echo $donnees['nomS']; ?></td>
+                        <td><?php echo $donnees['nbPlaceS']; ?></td>
+                        <td><?php echo $donnees['nbTechS']; ?></td>
+                        <td><?php echo $donnees['adresseS']; ?></td>
+                    </tr>
+                </tbody>
+                <?php
+            }
+            $reponse->closeCursor();
+            ?>
         </table>
     </main>
     <?php include "basPage.php" ?>
 </body>
+
 </html>

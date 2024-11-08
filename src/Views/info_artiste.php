@@ -4,7 +4,7 @@ include 'head.php'; ?>
 
 <body>
     <?php include "cote.php" ?>
-    <?php $reponse = $bdd->query('select * from GROUPE NATURAL JOIN CONCERT NATURAL JOIN SALLE where idG='.$idArt); ?>
+    <?php $reponse = $bdd->query('select * from GROUPE NATURAL JOIN CONCERT NATURAL JOIN SALLE where idG=' . $idArt); ?>
     <main>
         <h1><?php echo $reponse['nomG']; ?></h1>
 
@@ -39,17 +39,18 @@ include 'head.php'; ?>
                     </tr>
                 </thead>
                 <?php while ($donnees = $reponse->fetch()) {
-                ?>
+                    ?>
                     <tbody>
                         <tr>
                             <td><?php echo $donnees['dateC']; ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>
                             <td>$Telecharger fiche rider</td>
                             <td>$Telecharger plan feu</td>
-                            <td style="text-align:center;" class="image"><img src="../../public/assets/img/supr.png" alt="Suprimer le spectacle"></td>
+                            <td style="text-align:center;" class="image"><img src="../../public/assets/img/supr.png"
+                                    alt="Suprimer le spectacle"></td>
                         </tr>
                     </tbody>
-                <?php
+                    <?php
                 }
                 $reponse->closeCursor();
                 ?>

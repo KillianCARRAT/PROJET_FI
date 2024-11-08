@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="/public/assets/css/connexion.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL; ?>/public/assets/css/connexion.css">
     <title>Connexion Concert'asso</title>
 </head>
 
@@ -20,16 +20,16 @@
             <input type="password" name="passwd" id="passwd" placeholder="Mot de passe" />
             <button type="button" name="toggle-password" id="toggle-password" class="toggle-password">afficher</button>
             <p id="informations">* reçu par mail si vous êtes un artiste</p>
-            <?php 
-                $fail = $_GET["fail"];
+            <?php
+            $fail = $_GET["fail"];
 
-                if ($fail=="tr") {
-                    ?>
-                    <p class="fail">L'identifiant ou le mot de passe est incorrect</p>
-                    <?php
-                }
+            if ($fail == "tr") {
+                ?>
+                <p class="fail">L'identifiant ou le mot de passe est incorrect</p>
+                <?php
+            }
             ?>
-            <input type="submit" value="Se connecter"/>
+            <input type="submit" value="Se connecter" />
         </form>
         <aside>
             <img src="/PROJET_FI/public/assets/img/logo_doua.png" alt="logo de l'association un doua de jazz" />

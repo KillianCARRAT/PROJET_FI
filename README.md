@@ -29,8 +29,15 @@ FONTENY Noa
 ## Lien 
 Lien vers les pages quand on est sur le serveur local
 
-Page connexion : PROJET_FI/  
-Page rider : PROJET_FI/rider  
-Page Liste_Spec_Art : PROJET_FI/Ac_Art  
-Page Liste_Spec_Orga : PROJET_FI/Ac_Orga  
-Page Liste_Spec_Tech : PROJET_FI/Ac_Tech  
+Page connexion : /  
+Page rider : /rider  
+Page acceuil artiste : /Ac_Art  
+Page acceuil asso orga : /Ac_Orga  
+Page acceuil asso tech : /Ac_Tech  
+Page /connexion_fail : /connexion_fail  
+Page mention legal : /ML  
+Page liste des salles: /Liste_S  
+Page information sur un artiste : /Info_Art  
+Page de création d'un spectacle : /Create_Spec
+
+Tout autre lien se redirige vers /
