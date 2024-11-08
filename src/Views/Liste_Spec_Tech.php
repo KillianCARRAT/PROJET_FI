@@ -17,7 +17,6 @@ include 'head.php'; ?>
                         <th scope="col">Atiste</th>
                         <th scope="col">Fiche rider</th>
                         <th scope="col">Fiche plan feu</th>
-                        <th scope="col">Infos spectacles</th>
                     </tr>
                 </thead>
                 <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE');
@@ -32,7 +31,6 @@ include 'head.php'; ?>
                             <td><?php echo $donnees['nomG']; ?></td>
                             <td><a href="src/Views/rider.php">Fiche rider</a></td>
                             <td>Plan feu</td>
-                            <td><a href="">Info spectacle</a></td>
                         </tr>
 
                     </tbody>

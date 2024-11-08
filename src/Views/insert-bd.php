@@ -21,13 +21,15 @@ $_SESSION["idUser"]=$id;
 $_SESSION["mdpUser"]=$mdp;
 
 if ($role == "ART") {
-    header('Location: /src/Views/Liste_Spec_Art.php');
+    header('Location: Ac_Art');
     exit;
 } elseif ($role == "ORG") {
-    header('Location: /src/Views/Liste_Spec_Orga.php');
+    header('Location: Ac_Orga');
     exit;
 } elseif ($role == "TEC") {
-    header("Location: /src/Views/Liste_Spec_Tech.php");
+    header("Location: /Ac_Tech");
     exit;
-}else{include "connexion.php";}
+} else {
+    header("Location: /connexion_fail");
+}
 ?>

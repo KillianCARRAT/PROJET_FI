@@ -15,6 +15,11 @@ class Router
                 require_once VIEWS_PATH . '/Create_Spec.php';
                 break;
 
+
+            case '/insert-bd':
+                require_once VIEWS_PATH . '/insert-bd.php';
+                break;
+
             case '/rider':
                 require_once VIEWS_PATH . '/rider.php';
                 break;
@@ -42,12 +47,17 @@ class Router
                 require_once VIEWS_PATH . '/mention_legal.php';
                 break;
 
+            case '/connexion_fail':
+                $_GET['fail'] = 'tr';
+                require_once VIEWS_PATH . '/connexion.php';
+                break;
+
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;
 
             default:
-                require_once PUBLIC_PATH . '/connexion.php';
+                require_once VIEWS_PATH . '/connexion.php';
                 break;
         }
     }
