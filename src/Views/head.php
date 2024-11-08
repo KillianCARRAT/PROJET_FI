@@ -9,7 +9,7 @@
     <title><?php echo $title ?? 'Mon Site'; ?></title>
     <?php
     try {
-        $bdd = new PDO('mysql:host=localhost;dbname=projet_fi', 'root', 'carrat');
+        $bdd = new PDO('mysql:host=servinfo-maria;dbname=DBlepage', 'lepage', 'lepage');
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
