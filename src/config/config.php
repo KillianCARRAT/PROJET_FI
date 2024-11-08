@@ -10,3 +10,4 @@ define('CONTROLLERS_PATH', SRC_PATH . '/Controllers');
 define('ASSETS_PATH', PUBLIC_PATH . '/assets');
 
 define('BASE_URL', 'http://localhost:8000');
+

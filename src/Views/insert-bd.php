@@ -17,7 +17,8 @@ $reqType->execute();
 
 $role = $reqType->fetchColumn();
 
-$_SESSION["idUser"] = $id;
+$_SESSION["idUser"]=$id;
+$_SESSION["mdpUser"]=$mdp;
 
 if ($role == "ART") {
     header('Location: Ac_Art');
