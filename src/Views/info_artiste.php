@@ -4,7 +4,7 @@ include 'head.php'; ?>
 
 <body>
     <?php include "cote.php" ?>
-    <?php $reponse = $bdd->query('select * from GROUPE NATURAL JOIN CONCERT NATURAL JOIN SALLE where idG=' . $idArt); ?>
+    
     <main>
         <h1><?php echo $reponse['nomG']; ?></h1>
 
