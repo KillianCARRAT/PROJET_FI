@@ -37,6 +37,9 @@ class Router
             case '/Liste_S':
                 require_once VIEWS_PATH . '/liste_salle.php';
                 break;
+            case '/insert-bd':
+                require_once VIEWS_PATH . '/insert-bd.php';
+                break;
 
             case '/ML':
                 require_once VIEWS_PATH . '/mention_legal.php';

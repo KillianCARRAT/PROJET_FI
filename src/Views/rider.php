@@ -5,7 +5,7 @@ include 'head.php'; ?>
 <body>
     <?php include "cote.php" ?>
     <main id="main-rider">
-        <?php $reponse = $bdd->query('select * from GROUPE NATURAL JOIN CONCERT NATURAL JOIN MATERIEL where idG=' . $idArt); ?>
+    
         <h1>Fiche rider</h1>
         <section id="question">
             <form class="grand">

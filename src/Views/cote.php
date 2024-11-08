@@ -3,14 +3,18 @@
         <?php
         session_start();
 $idUser = $_SESSION["idUser"];
-$reqType = $bdd->prepare('SELECT idG, type FROM LIEN NATURAL JOIN UTILISATEUR WHERE iden=:id');
+$reqType = $bdd->prepare('SELECT type FROM UTILISATEUR WHERE iden=:id');
 $reqType->bindParam(":id", $idUser, PDO::PARAM_STR);
 $reqType->execute();
 
 $tout = $reqType->fetchAll();
-$role = $tout[0][1];
+$role = $tout[0][0];
         if ($role == "ART"){
-            $idArt = $tout[0][0];
+$reqId = $bdd->prepare('SELECT idG FROM LIEN WHERE iden=:id');
+$reqId->bindParam(":id", $idUser, PDO::PARAM_STR);
+$reqId->execute();
+$IdG = $reqId->fetchAll();
+$idArt = $IdG[0][0];
             $reqArt = $bdd->prepare('SELECT * FROM GROUPE WHERE idG=:id');
 $reqArt->bindParam(":id", $idArt, PDO::PARAM_STR);
 $reqArt->execute();
