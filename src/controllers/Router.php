@@ -37,11 +37,13 @@ class Router
             case '/Info_Art':
                 require_once VIEWS_PATH . '/info_artiste.php';
                 break;
+
             case '/Liste_S':
                 require_once VIEWS_PATH . '/liste_salle.php';
                 break;
-            case '/insert-bd':
-                require_once VIEWS_PATH . '/insert-bd.php';
+
+            case '/tentative_co':
+                require_once CONTROLLERS_PATH . '/tentative_co.php';
                 break;
 
             case '/ML':
