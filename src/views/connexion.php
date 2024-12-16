@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL; ?>/public/assets/css/connexion.css">
     <title>Connexion Concert'asso</title>
 </head>
-
 <body>
     <div class="header">
         <a href="http://www.undouadejazz.com">Retour</a>
@@ -20,9 +19,8 @@
             <input type="password" name="passwd" id="passwd" placeholder="Mot de passe" />
             <button type="button" name="toggle-password" id="toggle-password" class="toggle-password">afficher</button>
             <p id="informations">* reçu par mail si vous êtes un artiste</p>
-            <?php
-            $fail = $_GET["fail"];
-
+            <?php 
+                $fail = $_POST["fail"];
             if ($fail == "tr") {
                 ?>
                 <p class="fail">L'identifiant ou le mot de passe est incorrect</p>

@@ -1,4 +1,4 @@
-<?php $title = 'Liste_Spec_Orga';
+<?php $title = 'Liste_Spec_Tech';
 $lesCSS = ["Table_Spec", "basPage", "cote"];
 include 'head.php'; ?>
 
@@ -29,7 +29,7 @@ include 'head.php'; ?>
                             <td><?php echo $donnees['dureeConcert']; ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>
                             <td><?php echo $donnees['nomG']; ?></td>
-                            <td><a href="src/Views/rider.php">Fiche rider</a></td>
+                            <td><a href="rider">Fiche rider</a></td>
                             <td>Plan feu</td>
                         </tr>
 
@@ -41,7 +41,7 @@ include 'head.php'; ?>
             </table>
         </div>
     </main>
-    <?php include "basPage.php"; ?>
+    <?php include "basPage.php" ?>
 </body>
 
 </html>
