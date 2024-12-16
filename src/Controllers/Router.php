@@ -15,11 +15,6 @@ class Router
                 require_once VIEWS_PATH . '/Create_Spec.php';
                 break;
 
-
-            case '/insert-bd':
-                require_once VIEWS_PATH . '/insert-bd.php';
-                break;
-
             case '/rider':
                 require_once VIEWS_PATH . '/rider.php';
                 break;
@@ -41,6 +36,9 @@ class Router
                 break;
             case '/Liste_S':
                 require_once VIEWS_PATH . '/liste_salle.php';
+                break;
+            case '/insert-bd':
+                require_once VIEWS_PATH . '/insert-bd.php';
                 break;
 
             case '/ML':

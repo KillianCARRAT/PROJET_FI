@@ -21,10 +21,10 @@ include 'head.php'; ?>
                 </thead>
                 <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE');
                 while ($donnees = $reponse->fetch()) {
-                ?>
+                    ?>
                     <tbody>
                         <tr>
-                            <td><?php echo $donnees['dateCo']; ?></td>
+                            <td><?php echo $donnees['dateC']; ?></td>
                             <td><?php echo $donnees['debutConcert']; ?></td>
                             <td><?php echo $donnees['dureeConcert']; ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>
@@ -34,7 +34,7 @@ include 'head.php'; ?>
                         </tr>
 
                     </tbody>
-                <?php
+                    <?php
                 }
                 $reponse->closeCursor();
                 ?>

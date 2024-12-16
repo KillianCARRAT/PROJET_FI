@@ -128,4 +128,4 @@ VALUES ('o2230', 'TEC', 'TEC'),
        ('u6996', 'ORG', 'ORG');
 
 INSERT INTO LIEN (idG,iden)
-VALUES (2,'o2230' )
+VALUES (2,'p3022' )

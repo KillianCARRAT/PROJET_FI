@@ -18,9 +18,9 @@ include 'head.php'; ?>
                         <th scope="col">Fiche plan feu</th>
                     </tr>
                 </thead>
-                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE');
+                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE where idG=' . $idArt);
                 while ($donnees = $reponse->fetch()) {
-                ?>
+                    ?>
                     <tbody>
                         <tr>
                             <td><?php echo $donnees['dateCo']; ?></td>
@@ -31,7 +31,7 @@ include 'head.php'; ?>
                             <td>Plan feu</td>
                         </tr>
                     </tbody>
-                <?php
+                    <?php
                 }
                 $reponse->closeCursor();
                 ?>
