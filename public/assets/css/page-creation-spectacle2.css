@@ -1,16 +1,10 @@
-#corps-principal {
-  margin-left: 20%;
-  font-family: Arial, sans-serif;
+main {
+  margin-left: 17em;
 }
 
-#principal {
-  padding: 20px;
-  margin-top: 15%;
-}
-
-#texte {
+h1 {
   text-align: center;
-  font-size: 24px;
+  font-size: 2em;
 }
 
 .form-section {
@@ -19,31 +13,30 @@
   align-items: center;
 }
 
-#formulaire {
+form {
+  margin-top: 100px;
   width: 100%;
   max-width: 50rem;
   display: flex;
   flex-direction: column;
+  
 }
 
-#nbpersslider,
-#checkbox-etage,
-#combobox {
-  margin-bottom: 2em;
+.bouton-bas:active {
+  transform: scale(0.99);
 }
 
-.label {
-  margin-top: 15px;
+label {
+  margin-top: 100px;
   font-weight: bold;
 }
 
-input[type="range"],
-input[type="checkbox"],
-select {
+
+#nbpersslider, #combobox, #checkbox-etage, #bouton-chercher {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin-top: 30px;
+  text-align: center;
 }
 
 .bouton-bas {
@@ -55,7 +48,8 @@ select {
   color: white;
   border: none;
   border-radius: 4px;
-  margin-left: 20%;
+  margin-right: 5%;
+  margin-left: 5%;
   cursor: pointer;
 }
 
@@ -63,123 +57,7 @@ select {
   background-color: #2a0199;
 }
 
-.bouton-bas:active {
-  transform: scale(0.99);
-}
-
-.checkbox-etage {
+.boutons {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 15px;
-}
-
-input[type="checkbox"] {
-  width: auto;
-}
-
-
-/*partie slider*/
-.slider-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  position: relative;
-  margin: 20px;
-}
-
-.slider-value {
-  position: absolute;
-  top: -25px;
-  color: #000000;
-  font-weight: bold;
-}
-
-.slider {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 2px;
-  width: 100%;
-  background: #2d0894;
-  outline: none;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 10px;
-  height: 10px;
-  background: #120045;
-  cursor: pointer;
-  position: relative;
-}
-
-.slider::-moz-range-thumb {
-  width: 10px;
-  height: 15px;
-  background: #ffffff;
-  cursor: pointer;
-  position: relative;
-}
-
-/*fin slider*/
-
-
-@media (max-width: 1024px) {
-  #corps-principal {
-    margin-left: 10%;
-  }
-
-  .bouton-bas {
-    width: 60%;
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  #corps-principal {
-    margin-left: 5%;
-  }
-
-  #texte {
-    font-size: 20px;
-  }
-
-  .bouton-bas {
-    width: 80%;
-    margin-left: 0;
-  }
-
-  #formulaire {
-    max-width: 100%;
-  }
-
-  #principal {
-    margin-top: 5%;
-  }
-}
-
-@media (max-width: 480px) {
-  #corps-principal {
-    margin-left: 0;
-  }
-
-  #texte {
-    font-size: 18px;
-  }
-
-  .bouton-bas {
-    width: 100%;
-    margin: 20px 0;
-  }
-
-  .slider-container,
-  .checkbox-etage {
-    width: 100%;
-  }
-
-  #principal {
-    margin-top: 3%;
-  }
 }
