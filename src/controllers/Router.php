@@ -4,8 +4,11 @@ namespace Src\Controllers;
 
 class Router
 {
+    
     public function handleRequest()
     {
+        session_start();
+
         $requestUri = $_SERVER['REQUEST_URI'];
 
         $requestUri = str_replace('/PROJET_FI', '', $requestUri);
@@ -50,17 +53,17 @@ class Router
                 break;
 
             case '/connexion_fail':
-                $_POST['fail'] = 'tr';
-                require_once VIEWS_PATH . '/connexion.php';
-                break;
+                    $_SESSION['connexion_fail'] = true;
+                    header("Location: /");
+                    exit;
 
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;
 
             default:
-                require_once VIEWS_PATH . '/connexion.php';
-                break;
+                header("Location: /");
+                exit;
         }
     }
 }
