@@ -46,7 +46,7 @@ class Router
                 break;
 
             case '/connexion_fail':
-                $_GET['fail'] = 'tr';
+                $_POST['fail'] = 'tr';
                 require_once VIEWS_PATH . '/connexion.php';
                 break;
 
