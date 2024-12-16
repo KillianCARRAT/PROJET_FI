@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL; ?>/public/assets/css/connexion.css">
     <title>Connexion Concert'asso</title>
 </head>
+
 <body>
     <div class="header">
         <a href="http://www.undouadejazz.com">Retour</a>
@@ -13,7 +14,7 @@
     </div>
     <div class="content">
 
-        <form class="connexion" method="POST" action="/insert-bd">
+        <form class="connexion" method="POST" action="<?php CONTROLLERS_PATH; ?>/tentative_co">
             <p>CONNEXION</p>
             <input type="text" name="ident" id="ident" placeholder="Identifiant*" />
             <input type="password" name="passwd" id="passwd" placeholder="Mot de passe" />
