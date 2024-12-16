@@ -21,7 +21,7 @@
             <button type="button" name="toggle-password" id="toggle-password" class="toggle-password">afficher</button>
             <p id="informations">* reçu par mail si vous êtes un artiste</p>
             <?php 
-                $fail = $_GET["fail"];
+                $fail = $_POST["fail"];
 
                 if ($fail=="tr") {
                     ?>
