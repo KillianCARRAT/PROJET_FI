@@ -29,7 +29,7 @@ include 'head.php'; ?>
                             <td><?php echo $donnees['dureeConcert']; ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>
                             <td><?php echo $donnees['nomG']; ?></td>
-                            <td><a href="src/Views/rider.php">Fiche rider</a></td>
+                            <td><a href="rider">Fiche rider</a></td>
                             <td>Plan feu</td>
                         </tr>
 

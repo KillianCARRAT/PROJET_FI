@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/src/config/config.php';
-require_once __DIR__ . '/src/Controllers/Router.php';
+require_once __DIR__ . '/src/controllers/Router.php';
 
 
 use Src\Controllers\Router;
