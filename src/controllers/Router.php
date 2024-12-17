@@ -82,9 +82,9 @@ class Router
                 break;
 
             case '/connexion_fail':
-                    $_SESSION['connexion_fail'] = true;
-                    header("Location: /");
-                    exit;
+                $_SESSION['connexion_fail'] = true;
+                header("Location: /");
+                exit;
 
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';

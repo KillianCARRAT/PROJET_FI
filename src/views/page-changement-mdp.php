@@ -14,7 +14,8 @@
                 $mdp_bool = $_SESSION["mdp-bool"];
                 if ($mdp_bool=="reussi") {?>
                     <p class="reussi">Changement de mot de passe confirmé !</p>
-                    <input type="submit" value="retour à la page de connexion"/>
+                    <?php $_SESSION["mdp-bool"] = null;?>
+                    <input type="submit" value="retour à la page de connexion" onclick="window.location.href='/';"/>
                     <?php
                 }
                 else {?>
@@ -29,16 +30,17 @@
                         <input type="password" id="confirm-passwd" name="confirm-passwd" placeholder="confirmer mot de passe"/>
                         <p id="informations">* : l’utilisation de mot de passe fort est conseillé (majuscule, chiffre, caractère spéciaux, etc.)</p>
                         <?php 
-                            error_log($mdp_bool);
                             if ($mdp_bool=="meme") {?>
                                 <p class="rate">Vous ne pouvez pas utilisez le même mot de passe que l'actuel</p>
                                 <?php
                             } elseif ($mdp_bool=="diff") {?>
                                 <p class="rate">Les champs 'Mot de passe' et 'Confirmation' doivent être identiques</p>
+
                                 <?php
-                            }
+                            }?> <input type="submit" value="changer de mot de passe"/> <?php
                         }?>
-                        <input type="submit" value="changer de mot de passe"/>
+                        
+
                     </form>
         </div>
     </body>
