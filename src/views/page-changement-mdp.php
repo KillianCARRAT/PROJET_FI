@@ -65,23 +65,14 @@
         const popup = document.getElementById('popup');
         const closeButton = document.querySelector('.close-btn');
         const okButton = document.getElementById('popup-ok');
-
-        // Fonction pour afficher le popup
         function showPopup() {
             popup.style.display = 'flex';
         }
-
-        // Fonction pour cacher le popup
         function hidePopup() {
             popup.style.display = 'none';
         }
-
-        // Ajouter les événements
         closeButton.addEventListener('click', hidePopup);
         okButton.addEventListener('click', hidePopup);
-
-        // Exemple : afficher le popup après 2 secondes
-        setTimeout(showPopup, 2000);
         </script>
 </body>
 </html>
