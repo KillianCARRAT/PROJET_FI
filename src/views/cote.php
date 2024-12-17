@@ -3,7 +3,7 @@
         <?php
         session_start();
 $idUser = $_SESSION["idUser"];
-$reqType = $bdd->prepare('SELECT type FROM UTILISATEUR WHERE iden=:id');
+$reqType = $bdd->prepare('SELECT typeU FROM UTILISATEUR WHERE iden=:id');
 $reqType->bindParam(":id", $idUser, PDO::PARAM_STR);
 $reqType->execute();
 

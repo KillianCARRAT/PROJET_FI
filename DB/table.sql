@@ -20,6 +20,7 @@ CREATE TABLE HOTEL (
 CREATE TABLE GROUPE (
     idG INT PRIMARY KEY,
     nomG VARCHAR(50),
+    mail VARCHAR(50),
     nbTechG INT,
     nbPersG INT
 );
