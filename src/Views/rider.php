@@ -7,8 +7,18 @@ include 'head.php'; ?>
     <main id="main-rider">
     
         <h1>Fiche rider</h1>
-        <section id="question">
-            <form class="grand">
+            <section id="question">
+                <form class="grand">
+                    
+                    <?php
+                    $idC = $_GET['concert'];
+                    $reqType = $bdd->prepare('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE WHERE idC = :id');
+                    $reqType->bindParam(":id", $idC, PDO::PARAM_STR);
+                    $reqType->execute();
+                    $donnees = $reqType->fetch();
+
+                
+                 ?>
 
                 <label for="titre">Nom</label>
                 <p><?php echo $donnees['nomG']; ?></p>
@@ -35,24 +45,38 @@ include 'head.php'; ?>
 
             </form>
             <div class="grand" id="matériels">
+                <?php 
+                $mat = $bdd->prepare('SELECT typeM, nomM FROM CONCERT NATURAL JOIN MATERIEL WHERE idC = :id');
+                $mat->bindParam(":id", $idC, PDO::PARAM_STR);
+                $mat->execute();
+                
+                ?>
                 <table>
                     <tr>
                         <th>Type du matériels </th>
                         <th>Nom</th>
                     </tr>
-                    <?php while ($donnees = $reponse->fetch()) {
+                    <?php while ($mate = $mat->fetch()) {
                         ?>
                         <tbody>
                             <tr>
-                                <th><?php echo $donnees['typeM']; ?></th>
-                                <th><?php echo $donnees['nomM']; ?></th>
+                                <td><?php echo $mate['typeM']; ?></td>
+                                <td><?php echo $mate['nomM']; ?></td>
                             </tr>
-                        </tbody>
-                    <?php } ?>
+                        
+                    <?php }
+                    $today = getdate();
+                    $today = $today['year'] . '-' . $today['mon'] . '-' . $today['mday'];
+                    $max = $bdd->prepare('SELECT dateMax FROM CONCERT WHERE idC = :id');
+                    if(($today < $max)||($role == "TEC")){
+                        echo "<tr>
+                        <td colspan='4'>+Ajouter un ligne</td></tr>";
+                    } 
+                    echo "<tr><td>" . $max . "</td></tr>";
+                    echo "<tr><td>" . $today . "</td></tr>";
+                    ?>
 
-                    <tr>
-                        <td colspan="4">+Ajouter un ligne</td>
-                    </tr>
+</tbody>
                 </table>
             </div>
         </section>
