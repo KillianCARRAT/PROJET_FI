@@ -1,5 +1,4 @@
-<?php
-    try {
+<?php try {
         $bdd = new PDO('mysql:host=servinfo-maria;dbname=DBlepage', 'lepage', 'lepage');
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
@@ -31,4 +30,3 @@
     } else {
         header("Location: /connexion_fail");
     }
-?>
