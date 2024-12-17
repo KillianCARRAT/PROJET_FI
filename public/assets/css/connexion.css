@@ -22,11 +22,11 @@
     color: black;
 }
 
-#fail {
+.fail {
     font-style: italic;
     font-weight: normal;
-    font-size: 0.5em;
-    color: darkred;
+    font-size: 0.8em;
+    color: rgb(192, 0, 0);
 }
 
 input[type="text"],

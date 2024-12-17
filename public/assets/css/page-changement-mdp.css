@@ -104,6 +104,12 @@ input[type="submit"]:active {
     margin-left: 8em;
 }
 
+.rate {
+    font-style: italic;
+    font-size: 0.5em;
+    color: red;
+}
+
 a {
     font-weight: bold;
     text-decoration: none;
