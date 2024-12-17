@@ -31,8 +31,8 @@
             <?php
         }
         ?>
-        <form class="deco" method="POST" action="<?php CONTROLLERS_PATH; ?>/deconnexion">
-        <input type="submit" value="Se déconnecter" />
+        <form id="deco" method="POST" action="<?php CONTROLLERS_PATH; ?>/deconnexion">
+            <input type="submit" value="Se déconnecter" />
         </form>
     </div>
 </aside>
