@@ -4,8 +4,11 @@ namespace Src\Controllers;
 
 class Router
 {
+    
     public function handleRequest()
     {
+        session_start();
+
         $requestUri = $_SERVER['REQUEST_URI'];
 
         $requestUri = str_replace('/PROJET_FI', '', $requestUri);
@@ -39,8 +42,8 @@ class Router
                 require_once VIEWS_PATH . '/liste_salle.php';
                 break;
 
-            case '/insert-bd':
-                require_once VIEWS_PATH . '/insert-bd.php';
+            case '/tentative_co':
+                require_once CONTROLLERS_PATH . '/tentative_co.php';
                 break;
 
             case '/changement_mdp':
@@ -73,15 +76,23 @@ class Router
             case '/connexion_fail':
                 $_POST['fail'] = 'tr';
                 require_once VIEWS_PATH . '/connexion.php';
+
+            case '/Create_Spec2':
+                require_once VIEWS_PATH . '/page-creation-spectacle2.php';
                 break;
+
+            case '/connexion_fail':
+                    $_SESSION['connexion_fail'] = true;
+                    header("Location: /");
+                    exit;
 
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;
 
             default:
-                require_once VIEWS_PATH . '/connexion.php';
-                break;
+                header("Location: /");
+                exit;
         }
     }
 }
