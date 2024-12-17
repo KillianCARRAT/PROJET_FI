@@ -44,7 +44,7 @@ class Router
                 break;
 
             case '/changement_mdp':
-                require_once VIEWS_PATH . '/changement_mdp.php';
+                require_once CONTROLLERS_PATH . '/changement_mdp.php';
                 break;
 
             case '/ML':
