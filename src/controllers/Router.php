@@ -34,15 +34,40 @@ class Router
             case '/Info_Art':
                 require_once VIEWS_PATH . '/info_artiste.php';
                 break;
+
             case '/Liste_S':
                 require_once VIEWS_PATH . '/liste_salle.php';
                 break;
+
             case '/insert-bd':
                 require_once VIEWS_PATH . '/insert-bd.php';
                 break;
 
+            case '/changement_mdp':
+                require_once VIEWS_PATH . '/changement_mdp.php';
+                break;
+
             case '/ML':
                 require_once VIEWS_PATH . '/mention_legal.php';
+                break;
+
+            case '/Cmdp':
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
+            case '/chan-mdp-reussi':
+                $_POST['mdp-bool'] = "reussi";
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
+            case '/rate-diff-mdp':
+                $_POST['mdp-bool'] = "diff";
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
+            case '/rate-meme-mdp':
+                $_POST['mdp-bool'] = "meme";
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
             case '/connexion_fail':

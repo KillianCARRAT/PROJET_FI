@@ -21,11 +21,11 @@
             <p id="informations">* reçu par mail si vous êtes un artiste</p>
             <?php 
                 $fail = $_POST["fail"];
-            if ($fail == "tr") {
-                ?>
-                <p class="fail">L'identifiant ou le mot de passe est incorrect</p>
-                <?php
-            }
+                if ($fail == "tr") {
+                    ?>
+                    <p class="fail">L'identifiant ou le mot de passe est incorrect</p>
+                    <?php
+                }
             ?>
             <input type="submit" value="Se connecter" />
         </form>
