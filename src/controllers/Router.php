@@ -56,17 +56,17 @@ class Router
                 break;
 
             case '/chan-mdp-reussi':
-                $_POST['mdp-bool'] = "reussi";
+                $_SESSION['mdp-bool'] = "reussi";
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
             case '/rate-diff-mdp':
-                $_POST['mdp-bool'] = "diff";
+                $_SESSION['mdp-bool'] = "diff";
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
             case '/rate-meme-mdp':
-                $_POST['mdp-bool'] = "meme";
+                $_SESSION['mdp-bool'] = "meme";
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
