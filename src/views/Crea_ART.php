@@ -3,11 +3,11 @@ $lesCSS = ["basPage", "cote","Create_Spec"];
 include 'head.php'; ?>
 <body>
     <?php include "cote.php" ?>
-    <main>
+    <main id="create-art">
         <div>
             <h1>Création d'un artiste</h1>
             <section class="form-section">
-            <form method="POST" action="Create_ART2">
+            <form method="POST" action="/Create_ART2">
 
                 <label for="nom-Art">Nom de l'artiste</label>
                 <input type="text" id="nom-Art" name="nom-Art">

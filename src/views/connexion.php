@@ -20,7 +20,7 @@
             <input type="password" name="passwd" id="passwd" placeholder="Mot de passe" />
             <button type="button" name="toggle-password" id="toggle-password" class="toggle-password" data-target="passwd">afficher</button>
             <p id="informations">* reçu par mail si vous êtes un artiste</p>
-            <?php session_start();
+            <?php
             if (!empty($_SESSION['connexion_fail'])) {
                 $_SESSION['connexion_fail'] = false;
                 echo "<p class='fail'>L'identifiant ou le mot de passe est incorrect</p>";

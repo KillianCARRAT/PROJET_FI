@@ -9,6 +9,8 @@
         $reqType->execute();
         $tout = $reqType->fetchAll();
         $role = $tout[0][0];
+
+        /* Affichage ASIDE de l'art*/
         if ($role == "ART") {
             $reqId = $bdd->prepare('SELECT idG FROM LIEN WHERE iden=:id');
             $reqId->bindParam(":id", $idUser, PDO::PARAM_STR);
@@ -23,8 +25,11 @@
             ?>
             <h1><?php echo $toutArt[0][1] ?></h1>
             <p class = 'menu'><a href="/Ac_Art">Vos spectacles</a></p>
+
             <?php
-        } elseif ($role == "TEC") {
+        }
+
+        /* Affichage ASIDE de l'asso tech*/ elseif ($role == "TEC") {
             ?>
             <h1>Asso Technique</h1>
             <p class = 'menu'><a href="/Ac_Tech">Les spectacles</a></p>
@@ -35,6 +40,7 @@
             echo "<p class = 'menu'><a href='/Create_Spec'>Organiser un nouveau spectacle</a></p>";
             echo "<p class = 'menu'><a href='/Create_ART'>Créé un nouvelle artiste</a></p>";
             echo "<p class = 'menu'><a href='/Create_Salle'>Créé une nouvelle salle</a></p>";
+
         }
         ?>
         <form id="deco" method="POST" action="<?php CONTROLLERS_PATH; ?>/deconnexion">

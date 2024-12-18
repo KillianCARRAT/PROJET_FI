@@ -4,13 +4,12 @@ namespace Src\Controllers;
 
 class Router
 {
-    
+
     public function handleRequest()
     {
         session_start();
 
         $requestUri = $_SERVER['REQUEST_URI'];
-
         $requestUri = str_replace('/PROJET_FI', '', $requestUri);
 
         switch ($requestUri) {
@@ -54,9 +53,7 @@ class Router
                 require_once VIEWS_PATH . '/mention_legal.php';
                 break;
 
-
-                case '/Cmdp':
-
+            case '/Cmdp':
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
@@ -91,9 +88,7 @@ class Router
                         require_once VIEWS_PATH . '/Create_Salle2.php';
                         break;
 
-            case '/connexion_fail':
-                $_POST['fail'] = 'tr';
-                require_once VIEWS_PATH . '/connexion.php';
+
 
             case '/Create_Spec2':
                 require_once VIEWS_PATH . '/page-creation-spectacle2.php';
@@ -103,7 +98,7 @@ class Router
                 $_SESSION['connexion_fail'] = true;
                 header("Location: /");
                 exit;
-
+            
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;

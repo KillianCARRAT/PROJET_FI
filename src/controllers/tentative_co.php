@@ -20,6 +20,7 @@
 
     $_SESSION["idUser"] = $id;
 
+    
     if (password_verify($mdp, $bd_mdp)) {
         if ($role == "ART") {
             header('Location: Ac_Art');

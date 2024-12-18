@@ -4,7 +4,7 @@ include 'head.php'; ?>
 
 <body>
     <?php include "cote.php" ?>
-    <main>
+    <main id="creat-spec">
         <h1>Créé un nouveau spectacle</h1>
         <section class="form-section">
             <form method="POST" action="Create_Spec2">
