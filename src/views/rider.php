@@ -61,7 +61,7 @@ include 'head.php';
                             <?php } ?>
                         </table>
                         <button type="button" id="add-line-btn">+ Ajouter une ligne</button>
-                        <button type="submit">Envoyer</button>
+                        <button type="submit" id="infos-rider">Envoyer</button>
                     </form>
                 </div>
         </section>
