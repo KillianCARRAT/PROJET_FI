@@ -50,6 +50,39 @@ class Router
                 require_once VIEWS_PATH . '/mention_legal.php';
                 break;
 
+                case '/Cmdp':
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
+            case '/chan-mdp-reussi':
+                $_SESSION['mdp-bool'] = "reussi";
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
+            case '/rate-diff-mdp':
+                $_SESSION['mdp-bool'] = "diff";
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
+            case '/rate-meme-mdp':
+                $_SESSION['mdp-bool'] = "meme";
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
+            case '/Create_ART':
+                require_once VIEWS_PATH . '/Crea_ART.php';
+                break;
+
+                case '/Create_ART2':
+                    require_once VIEWS_PATH . '/Create_ART.php';
+                    break;
+    
+
+            case '/connexion_fail':
+                $_POST['fail'] = 'tr';
+                require_once VIEWS_PATH . '/connexion.php';
+
+
             case '/Create_Spec2':
                 require_once VIEWS_PATH . '/page-creation-spectacle2.php';
                 break;

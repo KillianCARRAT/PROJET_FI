@@ -51,6 +51,7 @@ CREATE TABLE CONCERT (
     heureArrive TIME,
     debutConcert TIME,
     dureeConcert TIME,
+    datemax DATE,
     idG INT NOT NULL,
     idS INT NOT NULL,
     FOREIGN KEY(idS) REFERENCES SALLE(idS),
