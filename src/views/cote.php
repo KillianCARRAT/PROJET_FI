@@ -1,5 +1,5 @@
-<aside>
-    <div id="aside-tout">
+<aside id="aside-tout">
+    <div>
         <?php
         session_start();
 
@@ -22,18 +22,19 @@
 
             ?>
             <h1><?php echo $toutArt[0][1] ?></h1>
-            <p><a href="/Ac_Art">Vos spectacles</a></p>
+            <p class = 'menu'><a href="/Ac_Art">Vos spectacles</a></p>
             <?php
         } elseif ($role == "TEC") {
             ?>
             <h1>Asso Technique</h1>
-            <p><a href="/Ac_Tech">Les spectacles</a></p>
+            <p class = 'menu'><a href="/Ac_Tech">Les spectacles</a></p>
             <?php
         } elseif ($role == "ORG"){
-            ?>
-            <h1>Asso Organisatrice</h1>
-            <p><a href="/Ac_Orga">Les spectacles</a></p>
-            <?php
+            echo '<h1>Asso Organisatrice</h1>';
+            echo "<p class = 'menu'><a href='/Ac_Orga'>Les spectacles</a></p>";
+            echo "<p class = 'menu'><a href='/Create_Spec'>Organiser un nouveau spectacle</a></p>";
+            echo "<p class = 'menu'><a href='/Create_ART'>Créé un nouvelle artiste</a></p>";
+            echo "<p class = 'menu'><a href='/Create_Salle'>Créé une nouvelle salle</a></p>";
         }
         ?>
         <form id="deco" method="POST" action="<?php CONTROLLERS_PATH; ?>/deconnexion">
