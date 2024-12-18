@@ -85,10 +85,6 @@ class Router
     
 
 
-            case '/connexion_fail':
-                $_POST['fail'] = 'tr';
-                require_once VIEWS_PATH . '/connexion.php';
-
             case '/Create_Spec2':
                 require_once VIEWS_PATH . '/page-creation-spectacle2.php';
                 break;
