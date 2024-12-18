@@ -10,9 +10,9 @@ VALUES (1, "5 rue de l'Hôtel, Paris", 200),
 
 -- Insertion dans la table GROUPE
 
-INSERT INTO GROUPE (idG, nomG, nbTechG, nbPersG) 
-VALUES (1, "The Rolling Stones", 10, 50),
-       (2, "Coldplay", 12, 60);
+INSERT INTO GROUPE (idG, nomG,mail, nbTechG, nbPersG) 
+VALUES (1, "The Rolling Stones",'e@e' ,10, 50),
+       (2, "Coldplay",'e@e' , 12, 60);
 
 -- Insertion dans la table HEBERGEMENT
 INSERT INTO HEBERGEMENT (idH, idG, heureH, dateH) 
@@ -65,16 +65,16 @@ VALUES (1, 1),
        (2, 2);
 
 -- Insert de test pour ReservationSalleMemeMoment (contrainte 1)
-
 INSERT INTO CONCERT VALUES(3,STR_TO_DATE("10/10/2014", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',STR_TO_DATE("10/01/2025", "%d/%m/%Y"),1,1);
 INSERT INTO CONCERT VALUES(4,STR_TO_DATE("10/10/2014", "%d/%m/%Y"),'10:00:00','11:00:00','3:00:00',STR_TO_DATE("10/01/2025", "%d/%m/%Y"),2,1);
 INSERT INTO CONCERT VALUES(5,STR_TO_DATE("10/10/2014", "%d/%m/%Y"),'6:00:00','7:00:00','2:00:00',STR_TO_DATE("10/01/2025", "%d/%m/%Y"),2,1);
 INSERT INTO CONCERT VALUES(6,STR_TO_DATE("10/10/2014", "%d/%m/%Y"),'5:00:00','6:00:00','2:00:00',STR_TO_DATE("10/01/2025", "%d/%m/%Y"),2,1);
 
--- Insert de test pour PlaceEnLogesSuffisantes (contrainte 2)
+-- Insert le test pour PlaceEnLogesSuffisantes (contrainte 2)
 
 INSERT INTO SALLE VALUES(3, "Temp", 250, "Mixte", "2 avenue te, Londre", 50, 80, 50, 10,200);
 INSERT INTO SALLE VALUES(4, "Temp", 250, "Mixte", "2 avenue te, Londre", 50, 80, 55, 10,200);
+
 INSERT INTO CONCERT VALUES(21,STR_TO_DATE("11/10/2015", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',STR_TO_DATE("10/01/2025", "%d/%m/%Y"),1,3);
 INSERT INTO CONCERT VALUES(23,STR_TO_DATE("12/10/2015", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',STR_TO_DATE("10/01/2025", "%d/%m/%Y"),2,3);
 INSERT INTO CONCERT VALUES(22,STR_TO_DATE("13/10/2015", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',STR_TO_DATE("10/01/2025", "%d/%m/%Y"),1,4);
@@ -122,12 +122,12 @@ INSERT INTO HEBERGEMENT VALUES(3,2,"11:11:11",'2000-11-11');
 INSERT INTO HEBERGEMENT VALUES(4,1,"11:11:11",'2000-11-11');
 INSERT INTO HEBERGEMENT VALUES(4,2,"11:11:11",'2000-11-11');
 
+
 INSERT INTO UTILISATEUR (iden, mdp, typeU)
-VALUES ('o2230', 'TEC', 'TEC'),
-       ('p3022', 'ART', 'ART'),
-       ('p3023', 'ART', 'ART'),
-       ('u6996', 'ORG', 'ORG');
+VALUES ('o2230', '$2y$10$PQgHjDz9RAji8TiJBAOk4uHbhhsMlhg1CswqPRwU2/RCbZJ3EfkhK', 'TEC'),
+       ('A3022', '$2y$10$64i6uYK8KGK9jNVPkKRak.0I3eht4ZOK2OZc/cWC1TbH59WzbLBb.', 'ART'),
+       ('u6996', '$2y$10$iLtz8UA1jcV77639chJbk.qsyxmZI0BR6p0WfiyLJ0YjXp8K21xRe', 'ORG');
+
 
 INSERT INTO LIEN (idG,iden)
-VALUES (2,'p3022'),
-       (1,'p3023');
+VALUES (2,'A3022' )

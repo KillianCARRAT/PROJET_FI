@@ -7,23 +7,9 @@ class Router
     
     public function handleRequest()
     {
-<<<<<<< HEAD:src/Controllers/Router.php
-        $data = $_SERVER['REQUEST_URI'];
-        $data = str_replace('/PROJET_FI', '', $data);
-        $requestUri = explode("?", $data);
-        $lesPOST = $requestUri[1];
-        $lesPOST = explode(";", $lesPOST);
-        foreach ($lesPOST as $key => $value) {
-            $unPOST = explode("=", $value);
-            $_POST[$unPOST[0]] = $unPOST[1];
-        }
-        error_log($requestUri[0]);
-        
-=======
         session_start();
 
         $requestUri = $_SERVER['REQUEST_URI'];
->>>>>>> baf3f50ad0131098c1ef02f699ca82c305e7ac4c:src/controllers/Router.php
 
 
         
@@ -69,13 +55,8 @@ class Router
                 require_once VIEWS_PATH . '/mention_legal.php';
                 break;
 
-<<<<<<< HEAD:src/Controllers/Router.php
-            case '/connexion_fail':
-                require_once VIEWS_PATH . '/connexion.php';
-=======
-            case '/Cmdp':
+                case '/Cmdp':
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
->>>>>>> baf3f50ad0131098c1ef02f699ca82c305e7ac4c:src/controllers/Router.php
                 break;
 
             case '/chan-mdp-reussi':
@@ -96,6 +77,13 @@ class Router
             case '/Create_ART':
                 require_once VIEWS_PATH . '/Crea_ART.php';
                 break;
+
+
+                case '/Create_ART2':
+                    require_once VIEWS_PATH . '/Create_ART.php';
+                    break;
+    
+
 
             case '/connexion_fail':
                 $_POST['fail'] = 'tr';
