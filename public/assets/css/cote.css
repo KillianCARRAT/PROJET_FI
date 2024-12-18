@@ -1,5 +1,5 @@
 #aside-tout {
-    width: 15%;
+    width: 15em;
     left: 0;
     top: 0;
     bottom: 0;
@@ -15,15 +15,15 @@
     left: 1.5em;
     width: 12em;
     padding: 0.5em;
-    font-size: 50%;
+    font-size: 50em;
     border: none;
     text-align: center;
 }
 
 .menu {
     text-align: center;
-    padding-top:25% ;
-    padding-bottom: 25%;
+    padding-top:25em ;
+    padding-bottom: 25em;
     margin-top: 0;
     margin-bottom: 0;
     border-bottom: 5px #e2d2ff solid;
