@@ -24,10 +24,15 @@
             <h1><?php echo $toutArt[0][1] ?></h1>
             <p><a href="/Ac_Art">Vos spectacles</a></p>
             <?php
-        } elseif (($role == "TEC") || ($role == "ORG")) {
+        } elseif ($role == "TEC") {
             ?>
             <h1>Asso Technique</h1>
             <p><a href="/Ac_Tech">Les spectacles</a></p>
+            <?php
+        } elseif ($role == "ORG"){
+            ?>
+            <h1>Asso Organisatrice</h1>
+            <p><a href="/Ac_Orga">Les spectacles</a></p>
             <?php
         }
         ?>
