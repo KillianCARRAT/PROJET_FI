@@ -38,8 +38,10 @@
         /* Affichage ASIDE de l'asso orga*/ elseif ($role == "ORG") {
             ?>
             <h1>Asso Organisatrice</h1>
-            <p><a href="/Ac_Orga">Les spectacles</a>
-                <a href="/Create_Spec">Créer un spectacle</a>
+            <p>
+                <a href="/Ac_Orga">Les spectacles</a><br><br>
+                <a href="/Create_Spec">Créer un spectacle</a><br><br>
+                <a href="/Create_ART">Ajouter un artiste</a>
             </p>
             <?php
         }
