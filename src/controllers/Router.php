@@ -54,7 +54,9 @@ class Router
                 require_once VIEWS_PATH . '/mention_legal.php';
                 break;
 
-            case '/Cmdp':
+
+                case '/Cmdp':
+
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
@@ -76,6 +78,12 @@ class Router
             case '/Create_ART':
                 require_once VIEWS_PATH . '/Crea_ART.php';
                 break;
+
+
+                case '/Create_ART2':
+                    require_once VIEWS_PATH . '/Create_ART.php';
+                    break;
+    
 
 
             case '/Create_Spec2':
