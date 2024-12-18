@@ -9,10 +9,19 @@ class Router
     {
         session_start();
 
-        $requestUri = $_SERVER['REQUEST_URI'];
-        $requestUri = str_replace('/PROJET_FI', '', $requestUri);
+        $data = $_SERVER['REQUEST_URI'];
+        $data = str_replace('/PROJET_FI', '', $data);
+        $requestUri = explode("?", $data);
+        $lesPOST = $requestUri[1];
+        $lesPOST = explode(";", $lesPOST);
+        foreach ($lesPOST as $key => $value) {
+            $unPOST = explode("=", $value);
+            $_POST[$unPOST[0]] = $unPOST[1];
+        }
+        error_log($requestUri[0]);
 
-        switch ($requestUri) {
+
+        switch ($requestUri[0]) {
             case '/Create_Spec':
                 require_once VIEWS_PATH . '/Create_Spec.php';
                 break;

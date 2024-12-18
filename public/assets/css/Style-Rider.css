@@ -16,6 +16,11 @@
     font-size: 2em;
 }
 
+#adresse, #demande-hotel {
+    display: none;
+}
+
+
 .grand {
     display: flex;
     flex-direction: column;
