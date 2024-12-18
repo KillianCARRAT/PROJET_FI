@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="header">
-            <a href="page-connexion.html">Retour</a>
+            <a href="connexion.php">Retour</a>
             <h1>Concert'asso</h1>
         </div>
             <?php 
@@ -21,7 +21,6 @@
                                 <input type="submit" id="popup-ok" value="Se connecter" onclick="window.location.href='/';"/>
                             </div>
                         </div>
-                    </form>
                     <?php
                 }
                 else {?>
@@ -45,7 +44,7 @@
                                 <?php
                             }?> <input type="submit" value="changer de mot de passe"/> <?php
                         }?>
-                        
+                    </form>
         </div>
         <script>
         document.querySelectorAll('.toggle-password').forEach(button => {
