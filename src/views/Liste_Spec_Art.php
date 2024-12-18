@@ -27,7 +27,11 @@ include 'head.php'; ?>
                             <td><?php echo $donnees['debutConcert']; ?></td>
                             <td><?php echo $donnees['dureeConcert']; ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>
+<<<<<<< HEAD:src/Views/Liste_Spec_Art.php
+                            <td><a href="rider?concert=<?php echo $donnees['idC']; ?>">Fiche rider</a></td>
+=======
                             <td><a href="rider">Fiche rider</a></td>
+>>>>>>> baf3f50ad0131098c1ef02f699ca82c305e7ac4c:src/views/Liste_Spec_Art.php
                             <td>Plan feu</td>
                         </tr>
                     </tbody>

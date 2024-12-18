@@ -11,9 +11,10 @@ class Router
 
         $requestUri = $_SERVER['REQUEST_URI'];
 
-        $requestUri = str_replace('/PROJET_FI', '', $requestUri);
 
-        switch ($requestUri) {
+        
+
+        switch ($requestUri[0]) {
             case '/Create_Spec':
                 require_once VIEWS_PATH . '/Create_Spec.php';
                 break;
@@ -54,9 +55,7 @@ class Router
                 require_once VIEWS_PATH . '/mention_legal.php';
                 break;
 
-
                 case '/Cmdp':
-
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
