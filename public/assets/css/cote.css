@@ -9,15 +9,6 @@
     color: white;
 }
 
-
-#aside-tout h1 {
-    margin: 0;
-    padding: 10px;
-    background-color: black;
-    color: white;
-    border-bottom: solid 5px #e2d2ff;
-}
-
 #deco {
     position: fixed;
     bottom: 1em;
@@ -48,4 +39,27 @@ input[type="submit"]:hover {
 
 input[type="submit"]:active {
     transform: scale(0.95);
+}
+
+#aside-tout img {
+    width: 2em;
+    height: auto;
+}
+
+
+#aside-tout h1#cote {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border-bottom: solid 5px #e2d2ff;
+}
+
+#aside-tout h1#cote img {
+    margin-left: 10px;
+    width: 1.5em;
+    height: auto;
 }
