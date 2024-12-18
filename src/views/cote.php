@@ -46,6 +46,7 @@
             <p>
                 <a href="/Ac_Orga">Les spectacles</a><br><br>
                 <a href="/Create_Spec">Créer un spectacle</a><br><br>
+                <a href="">Ajouter une salle</a><br><br>
                 <a href="/Create_ART">Ajouter un artiste</a>
             </p>
             <?php
