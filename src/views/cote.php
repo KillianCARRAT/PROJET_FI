@@ -2,11 +2,11 @@
     <div id="aside-tout">
         <?php
         session_start();
+
         $idUser = $_SESSION["idUser"];
-        $reqType = $bdd->prepare('SELECT type FROM UTILISATEUR WHERE iden=:id');
+        $reqType = $bdd->prepare('SELECT typeU FROM UTILISATEUR WHERE iden=:id');
         $reqType->bindParam(":id", $idUser, PDO::PARAM_STR);
         $reqType->execute();
-
         $tout = $reqType->fetchAll();
         $role = $tout[0][0];
         if ($role == "ART") {
@@ -24,10 +24,15 @@
             <h1><?php echo $toutArt[0][1] ?></h1>
             <p><a href="/Ac_Art">Vos spectacles</a></p>
             <?php
-        } elseif (($role == "TEC") || ($role == "ORG")) {
+        } elseif ($role == "TEC") {
             ?>
             <h1>Asso Technique</h1>
             <p><a href="/Ac_Tech">Les spectacles</a></p>
+            <?php
+        } elseif ($role == "ORG"){
+            ?>
+            <h1>Asso Organisatrice</h1>
+            <p><a href="/Ac_Orga">Les spectacles</a></p>
             <?php
         }
         ?>

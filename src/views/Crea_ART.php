@@ -8,6 +8,7 @@ include 'head.php'; ?>
             <h1>Création d'un artiste</h1>
             <section class="form-section">
             <form method="POST" action="Create_ART2">
+
                 <label for="nom-Art">Nom de l'artiste</label>
                 <input type="text" id="nom-Art" name="nom-Art">
 

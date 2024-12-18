@@ -46,11 +46,17 @@ class Router
                 require_once CONTROLLERS_PATH . '/tentative_co.php';
                 break;
 
+            case '/changement_mdp':
+                require_once CONTROLLERS_PATH . '/changement_mdp.php';
+                break;
+
             case '/ML':
                 require_once VIEWS_PATH . '/mention_legal.php';
                 break;
 
+
                 case '/Cmdp':
+
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
@@ -73,24 +79,25 @@ class Router
                 require_once VIEWS_PATH . '/Crea_ART.php';
                 break;
 
+
                 case '/Create_ART2':
                     require_once VIEWS_PATH . '/Create_ART.php';
                     break;
     
 
+
             case '/connexion_fail':
                 $_POST['fail'] = 'tr';
                 require_once VIEWS_PATH . '/connexion.php';
-
 
             case '/Create_Spec2':
                 require_once VIEWS_PATH . '/page-creation-spectacle2.php';
                 break;
 
             case '/connexion_fail':
-                    $_SESSION['connexion_fail'] = true;
-                    header("Location: /");
-                    exit;
+                $_SESSION['connexion_fail'] = true;
+                header("Location: /");
+                exit;
 
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';

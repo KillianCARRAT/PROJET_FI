@@ -128,5 +128,6 @@ VALUES ('o2230', '$2y$10$PQgHjDz9RAji8TiJBAOk4uHbhhsMlhg1CswqPRwU2/RCbZJ3EfkhK',
        ('A3022', '$2y$10$64i6uYK8KGK9jNVPkKRak.0I3eht4ZOK2OZc/cWC1TbH59WzbLBb.', 'ART'),
        ('u6996', '$2y$10$iLtz8UA1jcV77639chJbk.qsyxmZI0BR6p0WfiyLJ0YjXp8K21xRe', 'ORG');
 
+
 INSERT INTO LIEN (idG,iden)
 VALUES (2,'A3022' )
