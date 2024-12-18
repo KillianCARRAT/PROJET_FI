@@ -66,6 +66,10 @@ class Router
                 require_once VIEWS_PATH . '/Create_Spec.php';
                 break;
 
+            case "/creer_specacle":
+                require_once CONTROLLERS_PATH . '/creation_spec.php';
+                break;
+
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;

@@ -378,11 +378,14 @@ BEGIN
 
     DECLARE idSalle INT;
     DECLARE nomS varchar(50);
+    DECLARE largeurS INT;
+    DECLARE longueurS INT;
+    DECLARE nbPlaceS INT;
     DECLARE fini BOOLEAN DEFAULT FALSE;
 
     -- Déclaration du curseur pour récupérer les salles disponibles
     DECLARE sallesLibres CURSOR FOR
-        SELECT S.idS, S.nomS
+        SELECT S.idS, S.nomS, S.largeurS,S.longueurS,S.nbPlaceS
         FROM SALLE S
         WHERE S.idS NOT IN (
             SELECT C.idS
@@ -404,7 +407,10 @@ BEGIN
     DROP TEMPORARY TABLE IF EXISTS SalleTemp;
     CREATE TEMPORARY TABLE SalleTemp (
         idSalle INT,
-        nomS varchar(50)
+        nomS varchar(50),
+        largeurS INT,
+        longueurS INT,
+        nbPlaceS INT
     );
 
     -- Ouverture du curseur
@@ -412,9 +418,9 @@ BEGIN
 
     -- Parcourir les résultats et insérer dans SalleTemp
     WHILE NOT fini DO
-        FETCH sallesLibres INTO idSalle, nomS;
+        FETCH sallesLibres INTO idSalle, nomS,largeurS,longueurS,nbPlaceS;
         IF NOT fini THEN
-            INSERT INTO SalleTemp (idSalle, nomS) VALUES (idSalle, nomS);
+            INSERT INTO SalleTemp (idSalle, nomS,largeurS,longueurS,nbPlaceS) VALUES (idSalle, nomS,largeurS,longueurS,nbPlaceS);
         END IF;
     END WHILE;
 
