@@ -5,7 +5,7 @@ include 'head.php'; ?>
 <body>
     <?php include "cote.php" ?>
     
-    <main>
+    <main id="info-art">
         <h1><?php echo $reponse['nomG']; ?></h1>
 
         <section>

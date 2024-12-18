@@ -3,7 +3,7 @@ $lesCSS = ["basPage", "cote","Create_Spec"];
 include 'head.php'; ?>
 <body>
     <?php include "cote.php" ?>
-    <main>
+    <main id="create-art">
         <div>
             <h1>Création d'un artiste</h1>
             <section class="form-section">
