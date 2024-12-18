@@ -1,0 +1,150 @@
+#informations {
+    font-style: italic;
+    font-size: 0.5em;
+}
+
+input[type="password"],
+select {
+    width: 60%;
+    height: 1.2em;
+    font-size: 1.2em;
+    padding: 8px;
+    margin-top: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.toggle-password {
+    cursor: pointer;
+    font-size: 1em;
+    background-color: #120045;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.toggle-password:hover {
+    background-color: #2a0199;
+}
+
+.toggle-password:active {
+    transform: scale(0.95);
+}
+
+input[type="submit"] {
+    background-color: #120045;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #2a0199;
+}
+
+input[type="submit"]:active {
+    transform: scale(0.95);
+}
+
+.change_mdp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5em 10em;
+    padding: 2em;
+    background-color: white;
+    border-radius: 2em;
+    color: #120045;
+    text-align: center;
+}
+
+.change_mdp p {
+    font-size: 1.2em;
+    color: #120045;
+    margin: 0.5em 0;
+    font-weight: bold;
+}
+
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.header a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: white;
+}
+
+.header a:hover {
+    color: lightgray;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 3em;
+    color: white;
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+    width: 80%;
+    margin-left: 8em;
+}
+
+.rate {
+    font-style: italic;
+    font-size: 0.5em;
+    color: red;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+html {
+    font-size: 200%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: #120045;}

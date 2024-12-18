@@ -1,5 +1,5 @@
-<aside>
-    <div id="aside-tout">
+<aside id="aside-tout">
+    <div>
         <?php
         session_start();
 

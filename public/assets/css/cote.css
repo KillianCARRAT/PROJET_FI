@@ -1,5 +1,5 @@
 #aside-tout {
-    width: 15em;
+    width: 15%;
     left: 0;
     top: 0;
     bottom: 0;
@@ -15,9 +15,23 @@
     left: 1.5em;
     width: 12em;
     padding: 0.5em;
-    font-size: 1em;
+    font-size: 50%;
     border: none;
     text-align: center;
+}
+
+.menu {
+    text-align: center;
+    padding-top:25% ;
+    padding-bottom: 25%;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-bottom: 5px #e2d2ff solid;
+    
+}
+.menu >a {
+    font-size: large;
+    color: white;
 }
 
 /* bouton se déconnecter */

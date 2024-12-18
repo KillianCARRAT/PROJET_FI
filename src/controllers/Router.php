@@ -80,10 +80,18 @@ class Router
                 require_once VIEWS_PATH . '/Crea_ART.php';
                 break;
 
-
             case '/Create_ART2':
                 require_once VIEWS_PATH . '/Create_ART.php';
                 break;
+
+            case '/Create_Salle':
+                    require_once VIEWS_PATH . '/Create_Salle.php';
+                    break;
+
+                    case '/Create_Salle2':
+                        require_once VIEWS_PATH . '/Create_Salle2.php';
+                        break;
+
 
 
             case '/Create_Spec2':
