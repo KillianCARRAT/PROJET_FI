@@ -4,8 +4,10 @@ namespace Src\Controllers;
 
 class Router
 {
+    
     public function handleRequest()
     {
+<<<<<<< HEAD:src/Controllers/Router.php
         $data = $_SERVER['REQUEST_URI'];
         $data = str_replace('/PROJET_FI', '', $data);
         $requestUri = explode("?", $data);
@@ -17,6 +19,11 @@ class Router
         }
         error_log($requestUri[0]);
         
+=======
+        session_start();
+
+        $requestUri = $_SERVER['REQUEST_URI'];
+>>>>>>> baf3f50ad0131098c1ef02f699ca82c305e7ac4c:src/controllers/Router.php
 
 
         
@@ -45,28 +52,71 @@ class Router
             case '/Info_Art':
                 require_once VIEWS_PATH . '/info_artiste.php';
                 break;
+
             case '/Liste_S':
                 require_once VIEWS_PATH . '/liste_salle.php';
                 break;
-            case '/insert-bd':
-                require_once VIEWS_PATH . '/insert-bd.php';
+
+            case '/tentative_co':
+                require_once CONTROLLERS_PATH . '/tentative_co.php';
+                break;
+
+            case '/changement_mdp':
+                require_once CONTROLLERS_PATH . '/changement_mdp.php';
                 break;
 
             case '/ML':
                 require_once VIEWS_PATH . '/mention_legal.php';
                 break;
 
+<<<<<<< HEAD:src/Controllers/Router.php
             case '/connexion_fail':
                 require_once VIEWS_PATH . '/connexion.php';
+=======
+            case '/Cmdp':
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+>>>>>>> baf3f50ad0131098c1ef02f699ca82c305e7ac4c:src/controllers/Router.php
                 break;
+
+            case '/chan-mdp-reussi':
+                $_SESSION['mdp-bool'] = "reussi";
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
+            case '/rate-diff-mdp':
+                $_SESSION['mdp-bool'] = "diff";
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
+            case '/rate-meme-mdp':
+                $_SESSION['mdp-bool'] = "meme";
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
+            case '/Create_ART':
+                require_once VIEWS_PATH . '/Crea_ART.php';
+                break;
+
+            case '/connexion_fail':
+                $_POST['fail'] = 'tr';
+                require_once VIEWS_PATH . '/connexion.php';
+
+            case '/Create_Spec2':
+                require_once VIEWS_PATH . '/page-creation-spectacle2.php';
+                break;
+
+            case '/connexion_fail':
+                $_SESSION['connexion_fail'] = true;
+                header("Location: /");
+                exit;
 
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;
 
             default:
-                require_once VIEWS_PATH . '/connexion.php';
-                break;
+                header("Location: /");
+                exit;
         }
     }
 }

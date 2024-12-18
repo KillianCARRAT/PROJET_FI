@@ -7,7 +7,7 @@ include 'head.php'; ?>
     <main>
         <h1>Créé un nouveau spectacle</h1>
         <section class="form-section">
-            <form>
+            <form method="POST" action="Create_Spec2">
                 <label for="nom-Art">Nom de l'artiste</label>
                 <input type="text" id="nom-Art" name="nom-Art">
 

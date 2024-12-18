@@ -5,7 +5,7 @@ include 'head.php'; ?>
 <body>
     <?php include "cote.php" ?>
     <main id="main-rider">
-    
+
         <h1>Fiche rider</h1>
             <section id="question">
                 <form class="grand">
@@ -30,8 +30,10 @@ include 'head.php'; ?>
                 <textarea type="text" name="demande" id="demande" size='80'></textarea>
 
                 <div class="chec">
-                    <input type="checkbox" name="veicule" id="checkbox-vehicule">
-                    <label for="vehicule" id="vehicule">besoin d'un vehicule</label>
+                        <input type="checkbox" name="veicule" id="checkbox-vehicule">
+                    <div >
+                        <label for="vehicule"> besoin d'un vehicule</label>
+                    </div>
                 </div>
 
                 <input type="text" name="adresse" id="adresse" placeholder="adresse">
@@ -41,7 +43,7 @@ include 'head.php'; ?>
 
                 </div>
 
-                <textarea type="text" name="demande" id="demande">demande particuliaire</textarea>
+                <textarea type="text" name="demande" id="demande" placeholder="demande particuliaire"></textarea>
 
             </form>
             <div class="grand" id="matériels">
@@ -56,8 +58,13 @@ include 'head.php'; ?>
                         <th>Type du matériels </th>
                         <th>Nom</th>
                     </tr>
+<<<<<<< HEAD:src/Views/rider.php
                     <?php while ($mate = $mat->fetch()) {
                         ?>
+=======
+                    <?php while ($donnees = $reponse->fetch()) {
+                    ?>
+>>>>>>> baf3f50ad0131098c1ef02f699ca82c305e7ac4c:src/views/rider.php
                         <tbody>
                             <tr>
                                 <td><?php echo $mate['typeM']; ?></td>
@@ -84,16 +91,6 @@ include 'head.php'; ?>
     </main>
     <?php include "basPage.php" ?>
 </body>
-<script>
-    if (document.getElementById('checkbox-vehicule').checked)
-        document.getElementById('vehicule').style.visibility = visible;
-    else
-        document.getElementById('vehicule').style.visibility = hidden;
-
-    if (document.getElementById('checkbox-hotel').checked)
-        document.getElementById('hotel').style.visibility = visible;
-    else
-        document.getElementById('hotel').style.visibility = hidden;
-</script>
+<script src="../../public/assets/js/rider.js"></script>
 
 </html>
