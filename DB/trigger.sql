@@ -362,3 +362,63 @@ begin
     end if;
 end |
 delimiter ;
+
+
+--procédure qui fait la  liste des salles disponible pour une heure et une date
+DELIMITER |
+CREATE OR REPLACE PROCEDURE salles_dispo(
+    IN heure TIME, 
+    IN jour DATE, 
+    IN place VARCHAR(255), 
+    IN nombre INT, 
+    IN longueur INT, 
+    IN largeur INT
+)
+BEGIN
+
+    DECLARE idSalle INT;
+    DECLARE nomS varchar(50);
+    DECLARE fini BOOLEAN DEFAULT FALSE;
+
+    -- Déclaration du curseur pour récupérer les salles disponibles
+    DECLARE sallesLibres CURSOR FOR
+        SELECT S.idS, S.nomS
+        FROM SALLE S
+        WHERE S.idS NOT IN (
+            SELECT C.idS
+            FROM CONCERT C
+            WHERE C.dateC = jour
+              AND (
+                    (heure BETWEEN C.heureArrive AND ADDTIME(C.debutConcert, C.dureeConcert))
+                    OR (C.heureArrive BETWEEN heure AND ADDTIME(heure, '01:00:00'))
+                )
+        )
+        AND S.typePlaceS = place
+        AND S.nbPlaceS>= nombre
+        AND S.longueurS >= longueur
+        AND S.largeurS >= largeur;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET fini = TRUE;
+
+    -- Création de la table temporaire
+    DROP TEMPORARY TABLE IF EXISTS SalleTemp;
+    CREATE TEMPORARY TABLE SalleTemp (
+        idSalle INT,
+        nomS varchar(50)
+    );
+
+    -- Ouverture du curseur
+    OPEN sallesLibres;
+
+    -- Parcourir les résultats et insérer dans SalleTemp
+    WHILE NOT fini DO
+        FETCH sallesLibres INTO idSalle, nomS;
+        IF NOT fini THEN
+            INSERT INTO SalleTemp (idSalle, nomS) VALUES (idSalle, nomS);
+        END IF;
+    END WHILE;
+
+    -- Fermeture du curseur
+    CLOSE sallesLibres;
+END |
+DELIMITER ;

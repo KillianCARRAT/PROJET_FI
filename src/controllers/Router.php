@@ -54,6 +54,18 @@ class Router
                 require_once VIEWS_PATH . '/connexion.php';
                 break;
 
+            case "/salles_dipo":
+                require_once VIEWS_PATH . '/liste_salle_dispo.php';
+                break;
+
+            case "/verif_artiste":
+                require_once VIEWS_PATH . '/verification_artiste.php';
+                break;
+
+            case "/mauvais_artiste":
+                require_once VIEWS_PATH . '/Create_Spec.php';
+                break;
+
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;

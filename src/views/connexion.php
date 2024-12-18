@@ -19,14 +19,14 @@
             <input type="password" name="passwd" id="passwd" placeholder="Mot de passe" />
             <button type="button" name="toggle-password" id="toggle-password" class="toggle-password">afficher</button>
             <p id="informations">* reçu par mail si vous êtes un artiste</p>
-            <?php 
+            <?php
                 $fail = $_POST["fail"];
-            if ($fail == "tr") {
+                if ($fail == "tr") {
                 ?>
-                <p class="fail">L'identifiant ou le mot de passe est incorrect</p>
+                    <p class="fail">L'identifiant ou le mot de passe est incorrect</p>
                 <?php
-            }
-            ?>
+                }
+                ?>
             <input type="submit" value="Se connecter" />
         </form>
         <aside>
