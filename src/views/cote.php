@@ -2,11 +2,11 @@
     <div id="aside-tout">
         <?php
         session_start();
+
         $idUser = $_SESSION["idUser"];
         $reqType = $bdd->prepare('SELECT typeU FROM UTILISATEUR WHERE iden=:id');
         $reqType->bindParam(":id", $idUser, PDO::PARAM_STR);
         $reqType->execute();
-
         $tout = $reqType->fetchAll();
         $role = $tout[0][0];
         if ($role == "ART") {

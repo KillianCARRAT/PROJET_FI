@@ -73,6 +73,10 @@ class Router
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
+            case '/Create_ART':
+                require_once VIEWS_PATH . '/Crea_ART.php';
+                break;
+
             case '/connexion_fail':
                 $_POST['fail'] = 'tr';
                 require_once VIEWS_PATH . '/connexion.php';
