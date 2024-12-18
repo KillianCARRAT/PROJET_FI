@@ -13,9 +13,15 @@
             <?php 
                 $mdp_bool = $_SESSION["mdp-bool"];
                 if ($mdp_bool=="reussi") {?>
-                    <p class="reussi">Changement de mot de passe confirmé !</p>
-                    <?php $_SESSION["mdp-bool"] = null;?>
-                    <input type="submit" value="retour à la page de connexion" onclick="window.location.href='/';"/>
+                    <div id="popup" class="popup">
+                            <div class="popup-content">
+                                <span class="close-btn">&times;</span>
+                                <p>Changement de mot de passe confirmé !</p>
+                                <?php $_SESSION["mdp-bool"] = null;?>
+                                <input type="submit" id="popup-ok" value="Se connecter" onclick="window.location.href='/';"/>
+                            </div>
+                        </div>
+                    </form>
                     <?php
                 }
                 else {?>
@@ -25,7 +31,7 @@
                             <?php $id = $_SESSION["idUser"]; ?>
                             <input type="hidden" id="ident" name="ident" value=<?php $id ?>/>
                             <input type="password" id="new-passwd" name="new-passwd" placeholder="nouveau mot de passe"/>
-                            <button type="button" id="toggle-password" class="toggle-password">afficher</button>
+                            <button type="button" id="toggle-password" class="toggle-password" data-target="new-passwd">afficher</button>
                         </div>
                         <input type="password" id="confirm-passwd" name="confirm-passwd" placeholder="confirmer mot de passe"/>
                         <p id="informations">* : l’utilisation de mot de passe fort est conseillé (majuscule, chiffre, caractère spéciaux, etc.)</p>
@@ -40,8 +46,33 @@
                             }?> <input type="submit" value="changer de mot de passe"/> <?php
                         }?>
                         
-
-                    </form>
         </div>
-    </body>
+        <script>
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const passwordField = document.getElementById(targetId);
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    button.textContent = 'Cacher';
+                } else {
+                    passwordField.type = 'password';
+                    button.textContent = 'Afficher';
+                }
+            });
+        });
+
+        const popup = document.getElementById('popup');
+        const closeButton = document.querySelector('.close-btn');
+        const okButton = document.getElementById('popup-ok');
+        function showPopup() {
+            popup.style.display = 'flex';
+        }
+        function hidePopup() {
+            popup.style.display = 'none';
+        }
+        closeButton.addEventListener('click', hidePopup);
+        okButton.addEventListener('click', hidePopup);
+        </script>
+</body>
 </html>
