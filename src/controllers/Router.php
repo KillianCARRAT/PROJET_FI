@@ -85,12 +85,12 @@ class Router
                 break;
 
             case '/Create_Salle':
-                    require_once VIEWS_PATH . '/Create_Salle.php';
-                    break;
+                require_once VIEWS_PATH . '/Create_Salle.php';
+                break;
 
-                    case '/Create_Salle2':
-                        require_once VIEWS_PATH . '/Create_Salle2.php';
-                        break;
+            case '/Create_Salle2':
+                require_once VIEWS_PATH . '/Create_Salle2.php';
+                break;
 
 
 
@@ -102,7 +102,23 @@ class Router
                 $_SESSION['connexion_fail'] = true;
                 header("Location: /");
                 exit;
-            
+
+            case "/salles_dipo":
+                require_once VIEWS_PATH . '/liste_salle_dispo.php';
+                break;
+
+            case "/verif_artiste":
+                require_once VIEWS_PATH . '/verification_artiste.php';
+                break;
+
+            case "/mauvais_artiste":
+                require_once VIEWS_PATH . '/Create_Spec.php';
+                break;
+
+            case "/creer_specacle":
+                require_once CONTROLLERS_PATH . '/creation_spec.php';
+                break;
+
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;
