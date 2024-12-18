@@ -1,0 +1,51 @@
+<?php $title = 'Crea_Salle';
+$lesCSS = ["basPage", "cote","Create_Spec"];
+include 'head.php'; ?>
+<body>
+    <?php include "cote.php" ?>
+    <main>
+        <div>
+            <h1>Création d'une Salle</h1>
+            <section class="form-section">
+            <form method="POST" action="Create_Salle2">
+
+                <label for="nom-Salle">Nom de la salle</label>
+                <input type="text" id="nom-Salle" name="nom-Salle">
+
+                <label for="nb_place">Nombre de place</label>
+                <input type="number" id="nb_place" name="nb_place">
+
+                <label for="type-Place" class="label">Type de place</label>
+                    <select name="typePlace" id="typePlace">
+                        <option value="">---Type de place---</option>
+                        <option value="Assise">Assis</option>
+                        <option value="Sebout">Debout</option>
+                        <option value="Mixte">Mixte</option>
+                    </select>
+
+                <label for="adresse">Adresse de la salle</label>
+                <input type="text" id="adresse" name="adresse">
+
+                <label for="largeur">Largeur de la scene</label>
+                <input type="number" id="largeur" name="largeur">
+
+                <label for="Longeur">Longeur de la scene</label>
+                <input type="number" id="Longeur" name="Longeur">
+
+                <label for="nb_Tec">Nombre de Technicien</label>
+                <input type="number" id="nb_Tec" name="nb_Tec">
+
+                <label for="loges">Nombre de place dans les loges</label>
+                <input type="number" id="loges" name="loges">
+                <div id="boutons">
+                    <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>
+                    <button type="submit" class="bouton-bas" >Créé la Salle</button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+    <?php include "basPage.php" ?>
+</body>
+
+</html>

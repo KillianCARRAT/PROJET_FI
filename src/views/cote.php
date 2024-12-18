@@ -1,5 +1,5 @@
-<aside>
-    <div id="aside-tout">
+<aside id="aside-tout">
+    <div>
         <?php
         session_start();
 
@@ -23,27 +23,24 @@
             $toutArt = $reqArt->fetchAll();
 
             ?>
-            <h1 id="cote"><?php echo $toutArt[0][1] ?></h1>
-            <p><a href="/Ac_Art">Vos spectacles</a></p>
+            <h1><?php echo $toutArt[0][1] ?></h1>
+            <p class = 'menu'><a href="/Ac_Art">Vos spectacles</a></p>
+
             <?php
         }
 
         /* Affichage ASIDE de l'asso tech*/ elseif ($role == "TEC") {
             ?>
-            <h1 id="cote">Asso Technique</h1>
-            <p><a href="/Ac_Tech">Les spectacles</a></p>
+            <h1>Asso Technique</h1>
+            <p class = 'menu'><a href="/Ac_Tech">Les spectacles</a></p>
             <?php
-        }
+        } elseif ($role == "ORG"){
+            echo '<h1>Asso Organisatrice</h1>';
+            echo "<p class = 'menu'><a href='/Ac_Orga'>Les spectacles</a></p>";
+            echo "<p class = 'menu'><a href='/Create_Spec'>Organiser un nouveau spectacle</a></p>";
+            echo "<p class = 'menu'><a href='/Create_ART'>Créé un nouvelle artiste</a></p>";
+            echo "<p class = 'menu'><a href='/Create_Salle'>Créé une nouvelle salle</a></p>";
 
-        /* Affichage ASIDE de l'asso orga*/ elseif ($role == "ORG") {
-            ?>
-            <h1 id="cote">Asso Organisatrice</h1>
-            <p>
-                <a href="/Ac_Orga">Les spectacles</a><br><br>
-                <a href="/Create_Spec">Créer un spectacle</a><br><br>
-                <a href="/Create_ART">Ajouter un artiste</a>
-            </p>
-            <?php
         }
         ?>
         <form id="deco" method="POST" action="<?php CONTROLLERS_PATH; ?>/deconnexion">
