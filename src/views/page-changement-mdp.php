@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="header">
-            <a href="page-connexion.html">Retour</a>
+            <a href="/connexion">Retour</a>
             <h1>Concert'asso</h1>
         </div>
             <?php 
