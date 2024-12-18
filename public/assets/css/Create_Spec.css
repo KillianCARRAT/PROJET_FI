@@ -1,8 +1,9 @@
-main {
+#creat-spec, #create-art {
     margin-left: 17em;
 }
 
-h1 {
+main h1 {
+
     text-align: center;
     font-size: 2em;
 }

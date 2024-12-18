@@ -20,6 +20,7 @@ CREATE TABLE HOTEL (
 CREATE TABLE GROUPE (
     idG INT PRIMARY KEY,
     nomG VARCHAR(50),
+    mail VARCHAR(50),
     nbTechG INT,
     nbPersG INT
 );
@@ -51,6 +52,7 @@ CREATE TABLE CONCERT (
     heureArrive TIME,
     debutConcert TIME,
     dureeConcert TIME,
+    dateMax DATE,
     idG INT NOT NULL,
     idS INT NOT NULL,
     FOREIGN KEY(idS) REFERENCES SALLE(idS),
@@ -120,7 +122,7 @@ CREATE TABLE PERSONNEL_ACCUEIL(
 
 CREATE TABLE UTILISATEUR(
     iden VARCHAR(5) PRIMARY KEY,
-    mdp VARCHAR(15),
+    mdp VARCHAR(100),
     typeU VARCHAR(3)
 );
 

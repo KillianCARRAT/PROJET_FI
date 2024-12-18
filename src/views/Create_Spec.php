@@ -8,7 +8,7 @@ unset($_SESSION["mauvais_art"]);
 
 <body>
     <?php include "cote.php" ?>
-    <main>
+    <main id="creat-spec">
         <h1>Créé un nouveau spectacle</h1>
         <section class="form-section">
         <form method="POST" action="verif_artiste">
