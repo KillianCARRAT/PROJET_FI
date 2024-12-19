@@ -14,6 +14,13 @@ class Router
         $requestUri = str_replace('/PROJET_FI', '', $requestUri);
 
         switch ($requestUri) {
+            case '/ADM':
+                require_once VIEWS_PATH . '/admin.php';
+                break;
+
+                case '/crea_Asso':
+                    require_once CONTROLLERS_PATH . '/crea_Asso.php';
+                    break;
             case '/Create_Spec':
                 require_once VIEWS_PATH . '/Create_Spec.php';
                 break;
