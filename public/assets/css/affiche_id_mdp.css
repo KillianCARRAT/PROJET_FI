@@ -1,0 +1,21 @@
+#info-art {
+    margin-left: 15em;
+    padding: 2em;
+    
+}
+
+#info-art a {
+    text-decoration: none;
+    color: white;
+    background-color: #120045;
+    padding: 0.7em;
+    border-radius: 10%;
+}
+
+#info {
+    text-align: center;
+}
+
+#info p {
+    font-size: 2em;
+}
