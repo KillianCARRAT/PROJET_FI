@@ -9,6 +9,15 @@
     color: white;
 }
 
+
+
+.menu {
+    display: flex;
+    text-align: center;
+    border-bottom: 5px #e2d2ff solid;
+}
+
+/* bouton se déconnecter */
 #deco {
     position: fixed;
     bottom: 1em;
@@ -20,21 +29,6 @@
     text-align: center;
 }
 
-.menu {
-    text-align: center;
-    padding-top:25em ;
-    padding-bottom: 25em;
-    margin-top: 0;
-    margin-bottom: 0;
-    border-bottom: 5px #e2d2ff solid;
-    
-}
-.menu >a {
-    font-size: large;
-    color: white;
-}
-
-/* bouton se déconnecter */
 input[type="submit"] {
     background-color: #120045;
     color: white;
@@ -55,12 +49,7 @@ input[type="submit"]:active {
     transform: scale(0.95);
 }
 
-#aside-tout img {
-    width: 2em;
-    height: auto;
-}
-
-
+/* image accès compte */
 #aside-tout h1#cote {
     display: flex;
     align-items: center;

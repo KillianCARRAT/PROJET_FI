@@ -43,13 +43,13 @@
             ?>
             <h1 id="cote">Asso Organisatrice<a href="/Compte"><img src="<?= BASE_URL; ?>/public/assets/img/cpt.png"
                         alt="Logo compte"></a></h1>
-            <?php
-            echo "<p class = 'menu'><a href='/Ac_Orga'>Les spectacles</a></p>";
-            echo "<p class = 'menu'><a href='/Create_Spec'>Organiser un nouveau spectacle</a></p>";
-            echo "<p class = 'menu'><a href='/Create_ART'>Créé un nouvelle artiste</a></p>";
-            echo "<p class = 'menu'><a href='/Create_Salle'>Créé une nouvelle salle</a></p>";
-
-        }
+            <div class="menu">
+                <a href='/Ac_Orga'>Les spectacles</a>
+                <a href='/Create_Spec'>Organiser un nouveau spectacle</a>
+                <a href='/Create_ART'>Créé un nouvelle artiste</a>
+                <a href='/Create_Salle'>Créé une nouvelle salle</a>
+            </div>
+        <?php }
         ?>
         <form id="deco" method="POST" action="<?php CONTROLLERS_PATH; ?>/deconnexion">
             <input type="submit" value="Se déconnecter" />
