@@ -101,6 +101,10 @@ class Router
                 break;
 
 
+            case '/erreur_Creation_Spectacle':
+                require_once VIEWS_PATH . '/problème-Crea-spec.php';
+                break;
+                
 
             case '/Create_Spec2':
                 require_once VIEWS_PATH . '/page-creation-spectacle2.php';
