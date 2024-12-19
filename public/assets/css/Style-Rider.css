@@ -29,6 +29,16 @@
     max-height: 25em;
 }
 
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    margin: 0;
+}
+
 .gras {
     font-weight: bold;
 }

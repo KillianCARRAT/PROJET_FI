@@ -25,7 +25,7 @@
                 $_SESSION['connexion_fail'] = false;
                 echo "<p class='fail'>L'identifiant ou le mot de passe est incorrect</p>";
             } ?>
-            <input type="submit" value="Se connecter" />
+            <input class="btn-connexion" type="submit" value="Se connecter" />
         </form>
         <aside>
             <img src="<?= BASE_URL; ?>/public/assets/img/logo_doua.png" alt="logo de l'association un doua de jazz" />

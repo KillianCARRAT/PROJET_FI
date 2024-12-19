@@ -69,7 +69,7 @@ include 'head.php';
                                 <td>
                                     <input type="text" name="nom[]" value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
                                 </td>
-                                <td>
+                                <td class="chk-container">
                                     <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
                                 </td>
                                 <td>
@@ -134,6 +134,7 @@ include 'head.php';
                 // Colonne pour la checkbox "Besoin"
                 const besoinCell = document.createElement('td');
                 const besoinInput = document.createElement('input');
+                besoinCell.class = "chk-container";
                 besoinInput.type = 'checkbox';
                 besoinInput.name = 'besoin[]';
                 besoinInput.value = '1';
