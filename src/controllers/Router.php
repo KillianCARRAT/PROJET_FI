@@ -4,13 +4,12 @@ namespace Src\Controllers;
 
 class Router
 {
-    
+
     public function handleRequest()
     {
         session_start();
 
         $requestUri = $_SERVER['REQUEST_URI'];
-
         $requestUri = str_replace('/PROJET_FI', '', $requestUri);
 
         switch ($requestUri) {
@@ -21,6 +20,11 @@ class Router
                 case '/crea_Asso':
                     require_once CONTROLLERS_PATH . '/crea_Asso.php';
                     break;
+
+            case "/Compte":
+                require_once VIEWS_PATH . '/compte.php';
+                break;
+
             case '/Create_Spec':
                 require_once VIEWS_PATH . '/Create_Spec.php';
                 break;
@@ -61,9 +65,7 @@ class Router
                 require_once VIEWS_PATH . '/mention_legal.php';
                 break;
 
-
-                case '/Cmdp':
-
+            case '/Cmdp':
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
@@ -91,16 +93,14 @@ class Router
                 break;
 
             case '/Create_Salle':
-                    require_once VIEWS_PATH . '/Create_Salle.php';
-                    break;
+                require_once VIEWS_PATH . '/Create_Salle.php';
+                break;
 
-                    case '/Create_Salle2':
-                        require_once VIEWS_PATH . '/Create_Salle2.php';
-                        break;
+            case '/Create_Salle2':
+                require_once VIEWS_PATH . '/Create_Salle2.php';
+                break;
 
-            case '/connexion_fail':
-                $_POST['fail'] = 'tr';
-                require_once VIEWS_PATH . '/connexion.php';
+
 
             case '/Create_Spec2':
                 require_once VIEWS_PATH . '/page-creation-spectacle2.php';
@@ -110,6 +110,22 @@ class Router
                 $_SESSION['connexion_fail'] = true;
                 header("Location: /");
                 exit;
+
+            case "/salles_dipo":
+                require_once VIEWS_PATH . '/liste_salle_dispo.php';
+                break;
+
+            case "/verif_artiste":
+                require_once VIEWS_PATH . '/verification_artiste.php';
+                break;
+
+            case "/mauvais_artiste":
+                require_once VIEWS_PATH . '/Create_Spec.php';
+                break;
+
+            case "/creer_specacle":
+                require_once CONTROLLERS_PATH . '/creation_spec.php';
+                break;
 
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
