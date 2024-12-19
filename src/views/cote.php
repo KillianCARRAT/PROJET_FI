@@ -21,11 +21,13 @@
             $reqArt->bindParam(":id", $idArt, PDO::PARAM_STR);
             $reqArt->execute();
             $toutArt = $reqArt->fetchAll();
-
             ?>
+
             <h1 id="cote"><?php echo $toutArt[0][1] ?><a href="/Compte"><img
                         src="<?= BASE_URL; ?>/public/assets/img/cpt.png" alt="Logo compte"></a></h1>
-            <p><a href="/Ac_Art">Vos spectacles</a></p>
+            <div id="menu">
+                <p><a href="/Ac_Art">Vos spectacles</a></p>
+            </div>
             <?php
         }
 
@@ -33,7 +35,7 @@
             ?>
             <h1 id="cote">Asso Technique<a href="/Compte"><img src="<?= BASE_URL; ?>/public/assets/img/cpt.png"
                         alt="Logo compte"></a></h1>
-            <div id="corp-aside">
+            <div id="menu">
                 <p><a href="/Ac_Tech">Les spectacles</a></p>
             </div>
             <?php
@@ -43,11 +45,11 @@
             ?>
             <h1 id="cote">Asso Organisatrice<a href="/Compte"><img src="<?= BASE_URL; ?>/public/assets/img/cpt.png"
                         alt="Logo compte"></a></h1>
-            <div class="menu">
-                <a href='/Ac_Orga'>Les spectacles</a>
-                <a href='/Create_Spec'>Organiser un nouveau spectacle</a>
-                <a href='/Create_ART'>Créé un nouvelle artiste</a>
-                <a href='/Create_Salle'>Créé une nouvelle salle</a>
+            <div id="menu">
+                <p><a href='/Ac_Orga'>Les spectacles</a></p>
+                <p><a href='/Create_Spec'>Organiser un nouveau spectacle</a></p>
+                <p><a href='/Create_ART'>Créé un nouvelle artiste</a></p>
+                <p><a href='/Create_Salle'>Créé une nouvelle salle</a></p>
             </div>
         <?php }
         ?>

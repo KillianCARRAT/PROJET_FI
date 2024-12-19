@@ -1,4 +1,4 @@
-<?php $title = 'Crea_ART';
+<?php $title = 'Create_ART';
 $lesCSS = ["crationART", "basPage", "cote","Create_Spec"];
 include 'head.php';
 
@@ -50,7 +50,3 @@ $reqType = $bdd->prepare('INSERT INTO LIEN (idG, iden) VALUES (:idG, :iden)');
     $reqType->bindParam(":iden", $iden, PDO::PARAM_STR);
     $reqType->bindParam(":idG", $id, PDO::PARAM_STR);
     $reqType->execute();
-
-
-
- ?>
