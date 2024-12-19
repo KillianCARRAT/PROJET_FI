@@ -29,6 +29,7 @@ $reqType = $bdd->prepare("INSERT INTO UTILISATEUR (iden, mdp, typeU) VALUES (:id
     $reqType->bindParam(":typ", $type, PDO::PARAM_STR);
 
     $reqType->execute();
+    header('Location: /connexion');
 
 
 
