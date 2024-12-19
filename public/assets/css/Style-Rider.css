@@ -18,8 +18,20 @@
 
 #adresse, #demande-hotel {
     display: none;
+    margin-bottom: 1em;
 }
 
+#demandeP {
+    margin-bottom: 1em;
+}
+
+.gras {
+    font-weight: bold;
+}
+
+.rider{
+    display: flex;
+}
 
 .grand {
     display: flex;
@@ -40,45 +52,71 @@
     background-color: #f0f0f0;
     border-radius: 5px;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #000;
-    text-align: center;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
 }
 
-table th,
-table td {
-    border-collapse: collapse;
-    border: 1px solid #000;
-    text-align: center;
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
 }
 
-
-
-form {
-    width: 60%;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
+th {
+    background-color: #120045;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
-
-label {
-    margin-top: 15px;
-    font-weight: bold;
+tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
-input[type="text"],
-input[type="date"],
-select {
-    width: 100%;
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+select, input[type="text"], input[type="number"] {
+    font-size: 14px;
     padding: 8px;
-    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    width: calc(100% - 16px);
 }
+
+input[type="checkbox"] {
+    width: 20px; 
+    height: 20px;
+    margin: 0 auto;
+}
+
+table input[type="text"]::placeholder,
+table input[type="number"]::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+td {
+    vertical-align: middle;
+}
+
+td:first-child select {
+    width: 100%; 
+}
+
+td:nth-child(2) input[type="text"] {
+    width: 95%;
+}
+
+td:nth-child(4) input[type="number"] {
+    width: 80px;
+    text-align: center;
+}
+
 
 .bouton-bas {
     align-items: center;

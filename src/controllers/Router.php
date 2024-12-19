@@ -54,6 +54,10 @@ class Router
                 require_once CONTROLLERS_PATH . '/tentative_co.php';
                 break;
 
+            case '/info-rider':
+                require_once CONTROLLERS_PATH . '/info-rider.php';
+                break;
+
             case '/changement_mdp':
                 require_once CONTROLLERS_PATH . '/changement_mdp.php';
                 break;

@@ -10,7 +10,7 @@ include 'head.php';
 
         <h1>Fiche rider</h1>
         <section id="question">
-            <form class="grand" method="post" action="traitement.php">
+            <form class="rider" method="post" action="<?php CONTROLLERS_PATH; ?>/info-rider">
                 <div class="grand">
                     <?php
                     $idC = $_GET['concert'];
@@ -20,24 +20,27 @@ include 'head.php';
                     $donnees = $reqType->fetch();
                     ?>
 
-                    <label for="titre">Nom</label>
+                    <label class="gras" for="titre">Nom</label>
                     <p><?php echo $donnees['nomG']; ?></p>
+                    <input type="hidden" name="nom" id="nom" value="<?php $donnees['nomG']; ?>">
 
-                    <label for="date-repr">Date de représentation</label>
+
+                    <label class="gras" for="date-repr">Date de représentation</label>
                     <p><?php echo $donnees['dateC']; ?></p>
+                    <input type="hidden" name="date" id="date" value="<?php $donnees['dateC']; ?>">
 
-                    <label for="demandeP">Demande particulière</label>
+                    <label class="gras" for="demandeP">Demande particulière</label>
                     <textarea name="demandeP" id="demandeP" size="80"></textarea>
 
                     <div class="chec">
                         <input type="checkbox" name="vehicule" id="checkbox-vehicule">
-                        <label for="checkbox-vehicule">Besoin d'un véhicule</label>
+                        <label class="gras" for="checkbox-vehicule">Besoin d'un véhicule</label>
                     </div>
                     <input type="text" name="adresse" id="adresse" placeholder="Adresse">
 
                     <div class="chec">
                         <input type="checkbox" name="hotel" id="checkbox-hotel">
-                        <label for="checkbox-hotel">Besoin d'un hôtel</label>
+                        <label class="gras" for="checkbox-hotel">Besoin d'un hôtel</label>
                     </div>
                     <textarea name="demande-hotel" id="demande-hotel" placeholder="Demande pour l'hôtel"></textarea>
                 </div>
@@ -47,16 +50,31 @@ include 'head.php';
                     $mat->bindParam(":id", $idC, PDO::PARAM_STR);
                     $mat->execute();
                     ?>
-                    
                         <table>
                             <tr>
                                 <th>Type du matériel</th>
                                 <th>Nom</th>
+                                <th>je possède ?</th>
+                                <th>Quantité</th>
                             </tr>
                             <?php while ($mate = $mat->fetch()) { ?>
                                 <tr>
-                                    <td><input type="text" name="type[]" value="<?php echo htmlspecialchars($mate['typeM'], ENT_QUOTES, 'UTF-8'); ?>"></td>
-                                    <td><input type="text" name="nom[]" value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>"></td>
+                                    <td>
+                                        <select name="type[]">
+                                            <option value="instrument" <?php echo $mate['typeM'] === 'Instrument' ? 'selected' : ''; ?>>Instrument</option>
+                                            <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>Câble</option>
+                                            <option value="autres" <?php echo $mate['typeM'] === 'Autres' ? 'selected' : ''; ?>>Autres</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="nom[]" value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
+                                    </td>
+                                    <td>
+                                        <input type="number" name="quantite[]" value="<?php echo htmlspecialchars($mate['quantite'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>" min="0">
+                                    </td>
                                 </tr>
                             <?php } ?>
                         </table>
@@ -79,7 +97,7 @@ include 'head.php';
     document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('checkbox-vehicule').addEventListener('change', () => toggleVisibility('checkbox-vehicule', 'adresse'));
     document.getElementById('checkbox-hotel').addEventListener('change', () => toggleVisibility('checkbox-hotel', 'demande-hotel'));
-});
+    });
 
     document.addEventListener('DOMContentLoaded', () => {
         const table = document.querySelector('table'); // Sélectionne le tableau
@@ -87,33 +105,57 @@ include 'head.php';
 
         if (addLineButton) {
             addLineButton.addEventListener('click', (event) => {
-                event.preventDefault(); // Empêche le rechargement de la page
+            event.preventDefault(); // Empêche le rechargement de la page
 
-                // Création d'une nouvelle ligne
-                const newRow = document.createElement('tr');
+            // Création d'une nouvelle ligne
+            const newRow = document.createElement('tr');
 
-                // Colonne pour le type
-                const typeCell = document.createElement('td');
-                const typeInput = document.createElement('input');
-                typeInput.type = 'text';
-                typeInput.placeholder = 'Type du matériel';
-                typeCell.appendChild(typeInput);
+            // Colonne pour le type
+            const typeCell = document.createElement('td');
+            const typeSelect = document.createElement('select');
 
-                // Colonne pour le nom
-                const nameCell = document.createElement('td');
-                const nameInput = document.createElement('input');
-                nameInput.type = 'text';
-                nameInput.placeholder = 'Nom du matériel';
-                nameCell.appendChild(nameInput);
-
-                // Ajout des colonnes à la nouvelle ligne
-                newRow.appendChild(typeCell);
-                newRow.appendChild(nameCell);
-
-                // Ajout de la nouvelle ligne au tableau
-                table.appendChild(newRow);
+            const options = ['Instrument', 'Câble', 'Autres'];
+            options.forEach(optionText => {
+                const option = document.createElement('option');
+                option.value = optionText.toLowerCase(); // Valeur en minuscule
+                option.textContent = optionText;
+                typeSelect.appendChild(option);
             });
-        }
-    });
+
+            typeCell.appendChild(typeSelect);
+
+            // Colonne pour le nom
+            const nameCell = document.createElement('td');
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.placeholder = 'Nom du matériel';
+            nameCell.appendChild(nameInput);
+
+            // Colonne pour la checkbox "Besoin"
+            const besoinCell = document.createElement('td');
+            const besoinInput = document.createElement('input');
+            besoinInput.type = 'checkbox';
+            besoinInput.name = 'besoin[]';
+            besoinInput.value = '1';
+            besoinCell.appendChild(besoinInput);
+
+            // Colonne pour la quantité
+            const quantiteCell = document.createElement('td');
+            const quantiteInput = document.createElement('input');
+            quantiteInput.type = 'number';
+            quantiteInput.name = 'quantite[]';
+            quantiteInput.placeholder = '0';
+            quantiteInput.min = '0';
+            quantiteCell.appendChild(quantiteInput);
+
+            newRow.appendChild(typeCell);
+            newRow.appendChild(nameCell);
+            newRow.appendChild(besoinCell);
+            newRow.appendChild(quantiteCell);
+
+            table.appendChild(newRow);
+        });
+    }
+});
 </script>
 </html>
