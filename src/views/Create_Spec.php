@@ -21,6 +21,12 @@ unset($_SESSION["mauvais_art"]);
                 <label for="heure-Rep">Heure de représentation</label>
                 <input type="time" id="heure-Rep" name="heure-Rep" required>
 
+                <label for="duree-Rep">Durée de représentation</label>
+                <input type="time" id="duree-Rep" name="duree-Rep" required>
+
+                <label for="heure-arrivé">Heure arrivée artistes</label>
+                <input type="time" id="heure-arrivé" name="heure-arrivé" required>
+
                 <?php if ($fail): ?>
                     <p class="fail">Le groupe n'existe pas, veuillez le créer au préalable.</p>
                 <?php endif; ?>

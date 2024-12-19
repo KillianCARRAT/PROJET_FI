@@ -15,7 +15,7 @@ include 'head.php'; ?>
                     <label for="nombre-Pers" class="label">Nombre personnes</label>
                     <div class="slider-container">
                         <span id="sliderValue" class="slider-value">641</span>
-                        <input name="nbPers" type="range" id="slider" class="slider" min="0" max="10000" value="5000"
+                        <input name="nbPers" type="range" id="slider" class="slider" min="0" max="1000" value="500"
                             oninput="updateValue()">
                     </div>
                 </div>
@@ -42,9 +42,15 @@ include 'head.php'; ?>
                 <?php $nom=$_SESSION["nom-art-spec"];?>
                 <?php $date= $_SESSION["date-art-spec"];?>
                 <?php $heure=$_SESSION["heure-art-spec"];?>
+                <?php $duree=$_SESSION["duree-rep"];?>
+                <?php $arrive=$_SESSION["heure-arrivé"];?>
+                
                 <input type="hidden" id="nom" name="nom" value=<?php echo htmlspecialchars($nom); ?>>
                 <input type="hidden" id="date" name="date" value=<?php echo htmlspecialchars($date); ?>>
                 <input type="hidden" id="heure" name="heure" value=<?php echo htmlspecialchars($heure); ?>>
+                <input type="hidden" id="duree" name="duree" value=<?php echo htmlspecialchars($duree); ?>>
+                <input type="hidden" id="arrive" name="arrive" value=<?php echo htmlspecialchars($arrive); ?>>
+                
             </form>
         </section>
     </main>

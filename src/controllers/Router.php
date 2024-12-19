@@ -124,7 +124,7 @@ class Router
                 break;
 
             case "/creer_specacle":
-                require_once CONTROLLERS_PATH . '/creation_spec.php';
+                require_once VIEWS_PATH . '/creation_spec.php';
                 break;
 
             case '/':

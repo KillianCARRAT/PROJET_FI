@@ -72,8 +72,8 @@ INSERT INTO CONCERT VALUES(6,STR_TO_DATE("10/10/2014", "%d/%m/%Y"),'5:00:00','6:
 
 -- Insert le test pour PlaceEnLogesSuffisantes (contrainte 2)
 
-INSERT INTO SALLE VALUES(3, "Temp", 250, "Mixte", "2 avenue te, Londre", 50, 80, 50, 10,200);
-INSERT INTO SALLE VALUES(4, "Temp", 250, "Mixte", "2 avenue te, Londre", 50, 80, 55, 10,200);
+INSERT INTO SALLE VALUES(3, "Temp", 250, "Mixte", "2 avenue te, Londre", 50, 80, 500, 10,200);
+INSERT INTO SALLE VALUES(4, "Temp", 250, "Mixte", "2 avenue te, Londre", 50, 80, 550, 10,200);
 
 INSERT INTO CONCERT VALUES(21,STR_TO_DATE("11/10/2015", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',STR_TO_DATE("10/01/2025", "%d/%m/%Y"),1,3);
 INSERT INTO CONCERT VALUES(23,STR_TO_DATE("12/10/2015", "%d/%m/%Y"),'8:00:00','9:00:00','3:00:00',STR_TO_DATE("10/01/2025", "%d/%m/%Y"),2,3);
