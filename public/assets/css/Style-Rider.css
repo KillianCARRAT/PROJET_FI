@@ -1,14 +1,47 @@
-.rider {
+#main-rider {
+    margin-left: 17em;
     display: flex;
-    justify-content: space-between; /* Espace entre les deux colonnes */
-    gap: 2%; /* Espace horizontal entre les colonnes */
+    flex-direction: column;
+    margin-bottom: 6em;
+}
+
+#main-rider section {
+    display: flex;
+    flex-direction: left;
+}
+
+#main-rider h1 {
+    flex-wrap: wrap;
+    text-align: center;
+    font-size: 2em;
+}
+
+#adresse, #demande-hotel {
+    display: none;
+    margin-bottom: 1em;
+    width: 490px;
+}
+
+#demandeP, #demande-hotel {
+    margin-bottom: 1em;
+    max-width: 500px;
+    min-width: 500px;
+    max-height: 25em;
+}
+
+.gras {
+    font-weight: bold;
+}
+
+.rider{
+    display: flex;
 }
 
 .grand {
     display: flex;
     flex-direction: column;
-    flex-basis: 48%; /* Chaque div prend environ 50% avec un petit espace pour le gap */
-    margin: 0;
+    flex-basis: 45%;
+    margin: 1em;
 }
 
 .grand div {
@@ -16,6 +49,13 @@
     border-radius: 5px;
 }
 
+
+.question {
+    margin: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -49,23 +89,27 @@ select, input[type="text"], input[type="number"] {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: calc(100% - 16px); /* Ajustement pour les marges internes */
+    width: calc(100% - 16px);
 }
 
 input[type="checkbox"] {
-    width: 20px;
+    width: 20px; 
     height: 20px;
-    display: block; /* Convertit en bloc pour centrer */
-    margin: 0 auto; /* Centre horizontalement */
+    margin: 0 auto;
+}
+
+table input[type="text"]::placeholder,
+table input[type="number"]::placeholder {
+    color: #999;
+    font-style: italic;
 }
 
 td {
     vertical-align: middle;
-    text-align: center; /* Centre le contenu des cellules */
 }
 
 td:first-child select {
-    width: 100%;
+    width: 100%; 
 }
 
 td:nth-child(2) input[type="text"] {
@@ -75,4 +119,22 @@ td:nth-child(2) input[type="text"] {
 td:nth-child(4) input[type="number"] {
     width: 80px;
     text-align: center;
+}
+
+
+.bouton-bas {
+    align-items: center;
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+
+}
+
+.bouton-bas:hover {
+    background-color: #555;
 }
