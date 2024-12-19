@@ -1,7 +1,7 @@
-<?php 
+<?php
 $title = 'rider';
 $lesCSS = ["Style-Rider", "basPage", "cote"];
-include 'head.php'; 
+include 'head.php';
 ?>
 
 <body>
@@ -50,38 +50,38 @@ include 'head.php';
                     $mat->bindParam(":id", $idC, PDO::PARAM_STR);
                     $mat->execute();
                     ?>
-                        <table>
+                    <table>
+                        <tr>
+                            <th>Type du matériel</th>
+                            <th>Nom</th>
+                            <th>je possède ?</th>
+                            <th>Quantité</th>
+                        </tr>
+                        <?php while ($mate = $mat->fetch()) { ?>
                             <tr>
-                                <th>Type du matériel</th>
-                                <th>Nom</th>
-                                <th>je possède ?</th>
-                                <th>Quantité</th>
+                                <td>
+                                    <select name="type[]">
+                                        <option value="instrument" <?php echo $mate['typeM'] === 'Instrument' ? 'selected' : ''; ?>>Instrument</option>
+                                        <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>Câble</option>
+                                        <option value="autres" <?php echo $mate['typeM'] === 'Autres' ? 'selected' : ''; ?>>Autres</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" name="nom[]" value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
+                                </td>
+                                <td>
+                                    <input type="number" name="quantite[]" value="<?php echo htmlspecialchars($mate['quantite'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>" min="0">
+                                </td>
                             </tr>
-                            <?php while ($mate = $mat->fetch()) { ?>
-                                <tr>
-                                    <td>
-                                        <select name="type[]">
-                                            <option value="instrument" <?php echo $mate['typeM'] === 'Instrument' ? 'selected' : ''; ?>>Instrument</option>
-                                            <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>Câble</option>
-                                            <option value="autres" <?php echo $mate['typeM'] === 'Autres' ? 'selected' : ''; ?>>Autres</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="nom[]" value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
-                                    </td>
-                                    <td>
-                                        <input type="number" name="quantite[]" value="<?php echo htmlspecialchars($mate['quantite'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>" min="0">
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                        </table>
-                        <button type="button" id="add-line-btn">+ Ajouter une ligne</button>
-                        <button type="submit" id="infos-rider">Envoyer</button>
-                    </form>
-                </div>
+                        <?php } ?>
+                    </table>
+                    <button type="button" id="add-line-btn">+ Ajouter une ligne</button>
+                    <button type="submit" id="infos-rider">Envoyer</button>
+            </form>
+            </div>
         </section>
     </main>
     <?php include "basPage.php"; ?>
@@ -95,8 +95,8 @@ include 'head.php';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('checkbox-vehicule').addEventListener('change', () => toggleVisibility('checkbox-vehicule', 'adresse'));
-    document.getElementById('checkbox-hotel').addEventListener('change', () => toggleVisibility('checkbox-hotel', 'demande-hotel'));
+        document.getElementById('checkbox-vehicule').addEventListener('change', () => toggleVisibility('checkbox-vehicule', 'adresse'));
+        document.getElementById('checkbox-hotel').addEventListener('change', () => toggleVisibility('checkbox-hotel', 'demande-hotel'));
     });
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -105,57 +105,58 @@ include 'head.php';
 
         if (addLineButton) {
             addLineButton.addEventListener('click', (event) => {
-            event.preventDefault(); // Empêche le rechargement de la page
+                event.preventDefault(); // Empêche le rechargement de la page
 
-            // Création d'une nouvelle ligne
-            const newRow = document.createElement('tr');
+                // Création d'une nouvelle ligne
+                const newRow = document.createElement('tr');
 
-            // Colonne pour le type
-            const typeCell = document.createElement('td');
-            const typeSelect = document.createElement('select');
+                // Colonne pour le type
+                const typeCell = document.createElement('td');
+                const typeSelect = document.createElement('select');
 
-            const options = ['Instrument', 'Câble', 'Autres'];
-            options.forEach(optionText => {
-                const option = document.createElement('option');
-                option.value = optionText.toLowerCase(); // Valeur en minuscule
-                option.textContent = optionText;
-                typeSelect.appendChild(option);
+                const options = ['Instrument', 'Câble', 'Autres'];
+                options.forEach(optionText => {
+                    const option = document.createElement('option');
+                    option.value = optionText.toLowerCase(); // Valeur en minuscule
+                    option.textContent = optionText;
+                    typeSelect.appendChild(option);
+                });
+
+                typeCell.appendChild(typeSelect);
+
+                // Colonne pour le nom
+                const nameCell = document.createElement('td');
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.placeholder = 'Nom du matériel';
+                nameCell.appendChild(nameInput);
+
+                // Colonne pour la checkbox "Besoin"
+                const besoinCell = document.createElement('td');
+                const besoinInput = document.createElement('input');
+                besoinInput.type = 'checkbox';
+                besoinInput.name = 'besoin[]';
+                besoinInput.value = '1';
+                besoinCell.appendChild(besoinInput);
+
+                // Colonne pour la quantité
+                const quantiteCell = document.createElement('td');
+                const quantiteInput = document.createElement('input');
+                quantiteInput.type = 'number';
+                quantiteInput.name = 'quantite[]';
+                quantiteInput.placeholder = '0';
+                quantiteInput.min = '0';
+                quantiteCell.appendChild(quantiteInput);
+
+                newRow.appendChild(typeCell);
+                newRow.appendChild(nameCell);
+                newRow.appendChild(besoinCell);
+                newRow.appendChild(quantiteCell);
+
+                table.appendChild(newRow);
             });
-
-            typeCell.appendChild(typeSelect);
-
-            // Colonne pour le nom
-            const nameCell = document.createElement('td');
-            const nameInput = document.createElement('input');
-            nameInput.type = 'text';
-            nameInput.placeholder = 'Nom du matériel';
-            nameCell.appendChild(nameInput);
-
-            // Colonne pour la checkbox "Besoin"
-            const besoinCell = document.createElement('td');
-            const besoinInput = document.createElement('input');
-            besoinInput.type = 'checkbox';
-            besoinInput.name = 'besoin[]';
-            besoinInput.value = '1';
-            besoinCell.appendChild(besoinInput);
-
-            // Colonne pour la quantité
-            const quantiteCell = document.createElement('td');
-            const quantiteInput = document.createElement('input');
-            quantiteInput.type = 'number';
-            quantiteInput.name = 'quantite[]';
-            quantiteInput.placeholder = '0';
-            quantiteInput.min = '0';
-            quantiteCell.appendChild(quantiteInput);
-
-            newRow.appendChild(typeCell);
-            newRow.appendChild(nameCell);
-            newRow.appendChild(besoinCell);
-            newRow.appendChild(quantiteCell);
-
-            table.appendChild(newRow);
-        });
-    }
-});
+        }
+    });
 </script>
+
 </html>
