@@ -1,43 +1,14 @@
-#main-rider {
-    margin-left: 17em;
+.rider {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 6em;
-}
-
-#main-rider section {
-    display: flex;
-    flex-direction: left;
-}
-
-#main-rider h1 {
-    flex-wrap: wrap;
-    text-align: center;
-    font-size: 2em;
-}
-
-#adresse, #demande-hotel {
-    display: none;
-    margin-bottom: 1em;
-}
-
-#demandeP {
-    margin-bottom: 1em;
-}
-
-.gras {
-    font-weight: bold;
-}
-
-.rider{
-    display: flex;
+    justify-content: space-between; /* Espace entre les deux colonnes */
+    gap: 2%; /* Espace horizontal entre les colonnes */
 }
 
 .grand {
     display: flex;
     flex-direction: column;
-    flex-basis: 45%;
-    margin: 1em;
+    flex-basis: 48%; /* Chaque div prend environ 50% avec un petit espace pour le gap */
+    margin: 0;
 }
 
 .grand div {
@@ -45,13 +16,6 @@
     border-radius: 5px;
 }
 
-
-.question {
-    margin: 10px;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -85,27 +49,23 @@ select, input[type="text"], input[type="number"] {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: calc(100% - 16px);
+    width: calc(100% - 16px); /* Ajustement pour les marges internes */
 }
 
 input[type="checkbox"] {
-    width: 20px; 
+    width: 20px;
     height: 20px;
-    margin: 0 auto;
-}
-
-table input[type="text"]::placeholder,
-table input[type="number"]::placeholder {
-    color: #999;
-    font-style: italic;
+    display: block; /* Convertit en bloc pour centrer */
+    margin: 0 auto; /* Centre horizontalement */
 }
 
 td {
     vertical-align: middle;
+    text-align: center; /* Centre le contenu des cellules */
 }
 
 td:first-child select {
-    width: 100%; 
+    width: 100%;
 }
 
 td:nth-child(2) input[type="text"] {
@@ -115,22 +75,4 @@ td:nth-child(2) input[type="text"] {
 td:nth-child(4) input[type="number"] {
     width: 80px;
     text-align: center;
-}
-
-
-.bouton-bas {
-    align-items: center;
-    width: 50%;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    text-align: center;
-
-}
-
-.bouton-bas:hover {
-    background-color: #555;
 }
