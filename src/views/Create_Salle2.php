@@ -36,12 +36,13 @@ $reqType->execute();
 
 include 'head.php'; ?>
 
-<body id="create-salle">
+<body>
     <?php include "cote.php" ?>
-    <main>
+    <main id="create-salle">
         <a href="/Ac_Orga">Retour</a>
+        <div id="info-salle">
         <h1>La salle a été créé avec succés</h1>
-
+        </div>
     </main>
     <?php include "basPage.php" ?>
 </body>

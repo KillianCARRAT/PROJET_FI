@@ -7,7 +7,7 @@
     session_start();
 
     $id = $_POST['ident'];
-    $mdp = $_POST['passwd'];
+    $mdp_code = $_POST['passwd'];
     
 
     $reqType = $bdd->prepare('SELECT typeU, mdp FROM UTILISATEUR WHERE iden=:id');
@@ -21,7 +21,7 @@
     $_SESSION["idUser"] = $id;
 
     
-    if (password_verify($mdp, $bd_mdp)) {
+    if (password_verify($mdp_code, $bd_mdp)) {
         if ($role == "ART") {
             header('Location: Ac_Art');
             exit;
