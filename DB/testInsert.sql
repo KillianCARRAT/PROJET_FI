@@ -126,6 +126,7 @@ INSERT INTO HEBERGEMENT VALUES(4,2,"11:11:11",'2000-11-11');
 INSERT INTO UTILISATEUR (iden, mdp, typeU)
 VALUES ('o2230', '$2y$10$PQgHjDz9RAji8TiJBAOk4uHbhhsMlhg1CswqPRwU2/RCbZJ3EfkhK', 'TEC'),
        ('A3022', '$2y$10$64i6uYK8KGK9jNVPkKRak.0I3eht4ZOK2OZc/cWC1TbH59WzbLBb.', 'ART'),
+       ('admin', '$2y$10$wad64u6SRLILGA55en6Ycuf6QWEREe6xNrhPBmSD8YeYSqej4U3fy', 'ADM'),
        ('u6996', '$2y$10$iLtz8UA1jcV77639chJbk.qsyxmZI0BR6p0WfiyLJ0YjXp8K21xRe', 'ORG');
 
 

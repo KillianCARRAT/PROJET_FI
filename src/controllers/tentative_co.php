@@ -31,6 +31,9 @@
         } elseif ($role == "TEC") {
             header("Location: /Ac_Tech");
             exit;
+        } elseif ($role == "ADM") {
+            header("Location: /ADM");
+            exit;
         }
     } else {
         header("Location: /connexion_fail");
