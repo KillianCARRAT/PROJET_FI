@@ -1,6 +1,6 @@
 <?php
 $lesCSS = ["listeSalleDispo", "basPage", "cote"];
-include 'head.php'; 
+include 'head.php';
 
 
 $type=$_POST["typePlace"];
@@ -21,23 +21,24 @@ $arrive=$_POST["arrive"];
 <!DOCTYPE html>
 <html lang="fr">
 <?php include "cote.php" ?>
+
 <body id="principal">
-    
-<main>
 
-<?php 
-$procedure="call salles_dispo(:heure,:jour,:type,:nb,:longueur,:largeur)";
-$execution=$bdd->prepare($procedure);
-$execution->bindParam(':heure',$heure,PDO::PARAM_STR);
-$execution->bindParam(':jour',$date,PDO::PARAM_STR);
-$execution->bindParam(':nb',$nbPers,PDO::PARAM_STR);
-$execution->bindParam(':type',$type,PDO::PARAM_STR);
-$execution->bindParam(':longueur',$longueur,PDO::PARAM_STR);
-$execution->bindParam(':largeur',$largeur,PDO::PARAM_STR);
-$execution->execute();
+    <main>
 
-$table=$bdd->prepare("select * from SalleTemp");
-$table->execute();
+        <?php
+        $procedure = "call salles_dispo(:heure,:jour,:type,:nb,:longueur,:largeur)";
+        $execution = $bdd->prepare($procedure);
+        $execution->bindParam(':heure', $heure, PDO::PARAM_STR);
+        $execution->bindParam(':jour', $date, PDO::PARAM_STR);
+        $execution->bindParam(':nb', $nbPers, PDO::PARAM_STR);
+        $execution->bindParam(':type', $type, PDO::PARAM_STR);
+        $execution->bindParam(':longueur', $longueur, PDO::PARAM_STR);
+        $execution->bindParam(':largeur', $largeur, PDO::PARAM_STR);
+        $execution->execute();
+
+        $table = $bdd->prepare("select * from SalleTemp");
+        $table->execute();
 
 
 ?>
@@ -63,7 +64,7 @@ while ($row=$table->fetch()){
         </tr>
 <?php } ?>
 
-</table>
+        </table>
 
 <input type="hidden" name="nom" value=<?php echo htmlspecialchars($nom); ?>>
 <input type="hidden" name="date" value=<?php echo htmlspecialchars($date); ?>>
@@ -76,8 +77,8 @@ while ($row=$table->fetch()){
 
 
 
-<button id="bouton" type="submit" class="bouton-bas">Ajouter le spectacle</button>
-</form>
-</main>
+        <button id="bouton" type="submit" class="bouton-bas">Ajouter le spectacle</button>
+        </form>
+    </main>
 </body>
 <?php include "basPage.php" ?>

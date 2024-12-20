@@ -1,11 +1,9 @@
 #principal {
-    max-width: 1500px;
-    margin: 50px auto;
-    padding: 20px;
-  }
+    margin-left: 15em;
+}
 
 
-#bouton{
+#bouton {
     align-items: center;
 }
 
@@ -18,7 +16,9 @@
 }
 
 
-#tableau, #tableau th, #tableau td {
+#tableau,
+#tableau th,
+#tableau td {
     border: 1px solid #000;
 }
 
@@ -69,8 +69,8 @@ button.bouton-bas {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  button.bouton-bas:hover {
+}
+
+button.bouton-bas:hover {
     background-color: #434190;
-  }
+}

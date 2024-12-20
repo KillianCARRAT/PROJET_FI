@@ -22,6 +22,10 @@
     color: black;
 }
 
+.btn-connexion {
+    margin-bottom: 1em;
+}
+
 .fail {
     font-style: italic;
     font-weight: normal;

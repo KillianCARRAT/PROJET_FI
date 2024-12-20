@@ -5,7 +5,9 @@
         die('Erreur : ' . $e->getMessage());
     }
 
-    $id = $_SESSION['idUser'];
+
+    $id = $_POST['ident'];
+    error_log($id." id");
     $new_mdp = $_POST['new-passwd'];
     $confirm_mdp = $_POST['confirm-passwd'];
 
