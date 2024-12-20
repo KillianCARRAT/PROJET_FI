@@ -19,7 +19,7 @@ include 'head.php'; ?>
                     <select name="typePlace" id="typePlace">
                         <option value="">---Type de place---</option>
                         <option value="Assise">Assis</option>
-                        <option value="Sebout">Debout</option>
+                        <option value="Debout">Debout</option>
                         <option value="Mixte">Mixte</option>
                     </select>
 

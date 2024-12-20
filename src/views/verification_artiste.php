@@ -13,11 +13,17 @@ if (isset($_POST['nom-Art'], $_POST['date-Rep'], $_POST['heure-Rep'])) {
     $nom = $_POST['nom-Art'];
     $date = $_POST['date-Rep'];
     $heure = $_POST['heure-Rep'];
+    $duree= $_POST["duree-Rep"];
+    $arrive= $_POST["heure-arrivé"];
+
 
     // Stocke les données dans la session
     $_SESSION["nom-art-spec"] = $nom;
     $_SESSION["date-art-spec"] = $date;
     $_SESSION["heure-art-spec"] = $heure;
+    $_SESSION["duree-rep"] = $duree;
+    $_SESSION["heure-arrivé"] = $arrive;
+
 
     // Vérifie si le groupe existe dans la base de données
     $reqType = $bdd->prepare('SELECT nomG FROM GROUPE WHERE nomG = :nom');

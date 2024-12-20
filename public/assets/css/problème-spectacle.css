@@ -1,0 +1,17 @@
+h1#texte {
+    text-align: center;
+    margin-top: 250px;
+    color: red;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#principal {
+    max-width: 1500px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+#pro-crea-spec {
+    margin-left: 15em;
+}
