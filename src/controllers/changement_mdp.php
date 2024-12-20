@@ -5,9 +5,10 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 
-$id = $_SESSION['idUser'];
-$new_mdp = $_POST['new-passwd'];
-$confirm_mdp = $_POST['confirm-passwd'];
+
+    $id = $_POST['ident'];
+    $new_mdp = $_POST['new-passwd'];
+    $confirm_mdp = $_POST['confirm-passwd'];
 
 $reqType = $bdd->prepare('SELECT typeU, mdp FROM UTILISATEUR WHERE iden=:id');
 $reqType->bindParam(":id", $id, PDO::PARAM_STR);

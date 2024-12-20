@@ -1,4 +1,4 @@
-/* Style global */
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
@@ -13,14 +13,14 @@ body {
   padding: 20px;
 }
 
-h1#texte {
+#texte {
   text-align: center;
   color: #5a67d8;
   font-size: 2em;
   margin-bottom: 20px;
 }
 
-/* Formulaire */
+
 .form-section {
   margin: 20px;
 }

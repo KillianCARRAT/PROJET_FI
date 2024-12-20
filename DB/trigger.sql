@@ -404,8 +404,8 @@ BEGIN
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET fini = TRUE;
 
     -- Création de la table temporaire
-    DROP TEMPORARY TABLE IF EXISTS SalleTemp;
-    CREATE TEMPORARY TABLE SalleTemp (
+    DROP TABLE IF EXISTS SalleTemp;
+    CREATE TABLE SalleTemp (
         idSalle INT,
         nomS varchar(50),
         largeurS INT,

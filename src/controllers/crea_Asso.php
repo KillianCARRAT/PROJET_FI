@@ -24,5 +24,5 @@ $reqType->bindParam(":id", $iden, PDO::PARAM_STR);
 $reqType->bindParam(":mdp", $mdp, PDO::PARAM_STR);
 $reqType->bindParam(":typ", $type, PDO::PARAM_STR);
 
-$reqType->execute();
-header('Location: /connexion');
+    $reqType->execute();
+    header('Location: /List_asso');

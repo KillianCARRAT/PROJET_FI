@@ -10,6 +10,7 @@
 <body>
     <div class="header">
         <a href="/connexion">Retour</a>
+
         <h1>Concert'asso</h1>
     </div>
     <?php
@@ -29,8 +30,14 @@
         <form class="change_mdp" method="POST" action="/changement_mdp">
             <p>Veuillez changer de mot de passe</p>
             <div class="password-container">
-                <?php $id = $_SESSION["idUser"]; ?>
-                <input type="hidden" id="ident" name="ident" value=<?php $id ?> />
+
+                <?php
+                if ($_POST["admin"] == "tr") {
+                    $id = $_POST["id"];
+                } else {
+                    $id = $_SESSION["idUser"];
+                } ?>
+                <input type="hidden" id="ident" name="ident" value=<?php echo $id; ?>>
                 <input type="password" id="new-passwd" name="new-passwd" placeholder="nouveau mot de passe" />
                 <button type="button" id="toggle-password" class="toggle-password"
                     data-target="new-passwd">afficher</button>

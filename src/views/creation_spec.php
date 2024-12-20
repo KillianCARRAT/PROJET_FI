@@ -12,12 +12,6 @@ $duree = $_POST["duree"];
 $arrive = $_POST["arrive"];
 
 
-
-
-$execution = $bdd->prepare("DROP TABLE IF EXISTS SalleTemp");
-$execution->execute();
-
-
 $execution = $bdd->prepare("Select idG from GROUPE where nomG=:nomG");
 $execution->bindParam(':nomG', $nomG, PDO::PARAM_STR);
 $execution->execute();
@@ -46,6 +40,7 @@ try {
     $execution->bindParam(':arrive', $arrive, PDO::PARAM_STR);
     $execution->execute();
 } catch (PDOException $e) {
+    $_SESSION["erreur_Creation_Spectacle"] = $e;
     header("Location: erreur_Creation_Spectacle");
 }
 
@@ -54,7 +49,7 @@ try {
 
 <h1 id="texte">Le spectacle a été créé avec succès</h1>
 <form method="POST" action="Ac_Orga">
-    <button type="submit">Retourner à la liste des concerts</button>
+    <button id="bouton" type="submit">Retourner à la liste des concerts</button>
 </form>
 
 <?php require_once "bas.php"; ?>
