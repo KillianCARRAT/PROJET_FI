@@ -1,11 +1,9 @@
 #principal {
-    max-width: 1500px;
-    margin: 50px auto;
-    padding: 20px;
-  }
+    margin-left: 15em;
+}
 
 
-#bouton{
+#bouton {
     align-items: center;
 }
 
@@ -18,7 +16,9 @@
 }
 
 /* Bordures des cellules */
-#tableau, #tableau th, #tableau td {
+#tableau,
+#tableau th,
+#tableau td {
     border: 1px solid #000;
 }
 
@@ -38,7 +38,8 @@
 
 /* Style pour le texte dans les colonnes */
 #tableau td a {
-    color: #800080; /* Violet pour les liens */
+    color: #800080;
+    /* Violet pour les liens */
     text-decoration: none;
 }
 
@@ -69,8 +70,8 @@ button.bouton-bas {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  button.bouton-bas:hover {
+}
+
+button.bouton-bas:hover {
     background-color: #434190;
-  }
+}
