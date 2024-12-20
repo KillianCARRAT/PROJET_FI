@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-/* Styles pour le tableau */
+
 #tableau {
     width: 100%;
     border-collapse: collapse;
@@ -17,12 +17,12 @@
     font-family: Arial, sans-serif;
 }
 
-/* Bordures des cellules */
+
 #tableau, #tableau th, #tableau td {
     border: 1px solid #000;
 }
 
-/* Style pour les en-têtes */
+
 #tableau th {
     background-color: #f8f8f8;
     text-align: center;
@@ -30,15 +30,15 @@
     padding: 10px;
 }
 
-/* Style pour les cellules */
+
 #tableau td {
     text-align: center;
     padding: 10px;
 }
 
-/* Style pour le texte dans les colonnes */
+
 #tableau td a {
-    color: #800080; /* Violet pour les liens */
+    color: #800080; 
     text-decoration: none;
 }
 
@@ -46,7 +46,7 @@
     text-decoration: underline;
 }
 
-/* Style pour les titres */
+
 h1 {
     text-align: center;
     font-family: Arial, sans-serif;
@@ -54,7 +54,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Espacement général autour de la table */
+
 main {
     width: 90%;
     margin: auto;

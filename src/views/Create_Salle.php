@@ -9,7 +9,7 @@ include 'head.php'; ?>
             <section class="form-section">
             <form method="POST" action="Create_Salle2">
 
-                <label for="nom-Salle">Nom de la salle</label>
+                <label for="nom-Salle">Nom de la salle  (mettre des tirets a la place des espaces)</label>
                 <input type="text" id="nom-Salle" name="nom-Salle">
 
                 <label for="nb_place">Nombre de place</label>
