@@ -50,7 +50,6 @@ include 'head.php'; ?>
                 <input type="hidden" id="heure" name="heure" value=<?php echo htmlspecialchars($heure); ?>>
                 <input type="hidden" id="duree" name="duree" value=<?php echo htmlspecialchars($duree); ?>>
                 <input type="hidden" id="arrive" name="arrive" value=<?php echo htmlspecialchars($arrive); ?>>
-                
             </form>
         </section>
     </main>
