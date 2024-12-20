@@ -38,16 +38,11 @@
                     $id = $_SESSION["idUser"];
                 } ?>
                 <input type="hidden" id="ident" name="ident" value=<?php echo $id; ?>>
-                <div id="affichage">
-                    <div id="zone-password">
-                        <input type="password" id="new-passwd" name="new-passwd" placeholder="nouveau mot de passe" />
-
-                        <input type="password" id="confirm-passwd" name="confirm-passwd"
-                            placeholder="confirmer mot de passe" />
-                    </div>
+                <div id="zone-password">
+                    <input type="password" id="new-passwd" name="new-passwd" placeholder="nouveau mot de passe" />
+                    <input type="password" id="confirm-passwd" name="confirm-passwd" placeholder="confirmer mot de passe" />
                     <button type="button" id="toggle-all-passwords" class="toggle-password">Afficher</button>
                 </div>
-
             </div>
             <p id="informations">* : l’utilisation de mot de passe fort est conseillé (majuscule, chiffre, caractère
                 spéciaux, etc.)</p>
