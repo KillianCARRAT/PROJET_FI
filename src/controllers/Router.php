@@ -137,7 +137,7 @@ class Router
                 break;
 
             case "/verif_artiste":
-                require_once CONTROLLERS_PATH . '/verification_artiste.php';
+                require_once VIEWS_PATH . '/verification_artiste.php';
                 break;
 
             case "/mauvais_artiste":

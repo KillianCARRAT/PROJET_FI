@@ -1,6 +1,5 @@
 <?php
 // Définir la constante du chemin de base du projet (la racine de votre projet)
-
 define('BASE_PATH', dirname(__DIR__, 2)); // Déplace BASE_PATH à la racine du projet
 
 // Définir les chemins absolus
@@ -11,3 +10,4 @@ define('CONTROLLERS_PATH', SRC_PATH . '/controllers');
 define('ASSETS_PATH', PUBLIC_PATH . '/assets');
 
 define('BASE_URL', 'http://localhost:8000');
+

@@ -1,11 +1,11 @@
 <?php
+try {
+    $bdd = new PDO('mysql:host=servinfo-maria;dbname=DBlepage', 'lepage', 'lepage');
+} catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
+}
 
 session_start();
-
-use src\controllers\Database;
-$_SESSION["bd"] = Database::getConnection();
-
-$bdd = $_SESSION["bd"];
 
 $id = $_POST['ident'];
 $mdp_code = $_POST['passwd'];
@@ -34,9 +34,6 @@ if (password_verify($mdp_code, $bd_mdp)) {
             exit;
         case "ADM":
             header('Location: /ADM');
-            exit;
-        default:
-            header('Location: /');
             exit;
     }
 } else {
