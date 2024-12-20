@@ -1,11 +1,7 @@
-<?php try {
-    $bdd = new PDO('mysql:host=servinfo-maria;dbname=DBlepage', 'lepage', 'lepage');
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
+<?php
+$bdd = $_SESSION["bd"];
 
 session_start();
-
 
 $iden = $_POST["identifiant"];
 $mdp = $_POST["mot_de_passe"];
