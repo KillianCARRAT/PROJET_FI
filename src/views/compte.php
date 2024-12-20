@@ -27,15 +27,15 @@ $role = $tout[0][0]; ?>
 
         ?>
             <div id="info-compte">
-                    <?php $donnees = $toutArt[0]; ?>
-                    <p>
-                        Identifiant : <?php echo $idUser; ?><br>
-                        Nom du groupe : <?php echo $donnees['nomG']; ?><br>
-                        Mail : <?php echo $donnees['mail']; ?><br>
-                        Nombre de technicien : <?php echo $donnees['nbTechG']; ?><br>
-                        Nombre de personne dans le groupe : <?php echo $donnees['nbPersG']; ?><br>
-                    </p>
-                <?php  ?>
+                <?php $donnees = $toutArt[0]; ?>
+                <p>
+                    Identifiant : <?php echo $idUser; ?><br>
+                    Nom du groupe : <?php echo $donnees['nomG']; ?><br>
+                    Mail : <?php echo $donnees['mail']; ?><br>
+                    Nombre de technicien : <?php echo $donnees['nbTechG']; ?><br>
+                    Nombre de personne dans le groupe : <?php echo $donnees['nbPersG']; ?><br>
+                </p>
+                <?php ?>
             </div>
             <form id="Changement de mot de passe" method="POST" action="<?php VIEWS_PATH; ?>/Cmdp">
                 <input type="submit" value="Changer son mot de passe" />
@@ -50,10 +50,22 @@ $role = $tout[0][0]; ?>
 
 
     } elseif ($role == "ORG" || $role == "TEC") {
-        $rec_user = $bdd->prepare('SELECT * FROM UTILISATEUR WHERE iden=:id');
-        $rec_user->bindParam(":id", $idUser, PDO::PARAM_STR);
-        $rec_user->execute();
-    }
+
+        ?>
+            <div id="info-compte">
+                <?php $donnees = $toutArt[0]; ?>
+                <p>
+                    Identifiant : <?php echo $idUser; ?><br>
+                </p>
+                <?php ?>
+            </div>
+            <form id="Changement de mot de passe" method="POST" action="<?php VIEWS_PATH; ?>/Cmdp">
+                <input type="submit" value="Changer son mot de passe" />
+            </form>
+            <form id="Modifier" method="POST" action="">
+                <input type="submit" value="Modifier" />
+            </form>
+        <?php }
 
     ?>
     </main>
