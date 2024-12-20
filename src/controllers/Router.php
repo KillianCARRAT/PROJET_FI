@@ -21,7 +21,20 @@ class Router
         error_log($requestUri[0]);
 
 
+
         switch ($requestUri[0]) {
+            case '/ADM':
+                require_once VIEWS_PATH . '/admin.php';
+                break;
+
+                case '/crea_Asso':
+                    require_once CONTROLLERS_PATH . '/crea_Asso.php';
+                    break;
+
+            case "/Compte":
+                require_once VIEWS_PATH . '/compte.php';
+                break;
+            
             case '/Create_Spec':
                 require_once VIEWS_PATH . '/Create_Spec.php';
                 break;
@@ -89,11 +102,23 @@ class Router
                 require_once VIEWS_PATH . '/Crea_ART.php';
                 break;
 
-
             case '/Create_ART2':
                 require_once VIEWS_PATH . '/Create_ART.php';
                 break;
 
+            case '/Create_Salle':
+                require_once VIEWS_PATH . '/Create_Salle.php';
+                break;
+
+            case '/Create_Salle2':
+                require_once VIEWS_PATH . '/Create_Salle2.php';
+                break;
+
+
+            case '/erreur_Creation_Spectacle':
+                require_once VIEWS_PATH . '/problème-Crea-spec.php';
+                break;
+                
 
             case '/Create_Spec2':
                 require_once VIEWS_PATH . '/page-creation-spectacle2.php';
@@ -103,7 +128,23 @@ class Router
                 $_SESSION['connexion_fail'] = true;
                 header("Location: /");
                 exit;
-            
+
+            case "/salles_dipo":
+                require_once VIEWS_PATH . '/liste_salle_dispo.php';
+                break;
+
+            case "/verif_artiste":
+                require_once VIEWS_PATH . '/verification_artiste.php';
+                break;
+
+            case "/mauvais_artiste":
+                require_once VIEWS_PATH . '/Create_Spec.php';
+                break;
+
+            case "/creer_specacle":
+                require_once VIEWS_PATH . '/creation_spec.php';
+                break;
+
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;

@@ -1,5 +1,5 @@
-<aside>
-    <div id="aside-tout">
+<aside id="aside-tout">
+    <div>
         <?php
         session_start();
 
@@ -21,30 +21,37 @@
             $reqArt->bindParam(":id", $idArt, PDO::PARAM_STR);
             $reqArt->execute();
             $toutArt = $reqArt->fetchAll();
-
             ?>
-            <h1><?php echo $toutArt[0][1] ?></h1>
-            <p><a href="/Ac_Art">Vos spectacles</a></p>
+
+            <h1 id="cote"><?php echo $toutArt[0][1] ?><a href="/Compte"><img
+                        src="<?= BASE_URL; ?>/public/assets/img/cpt.png" alt="Logo compte"></a></h1>
+            <div id="menu">
+                <p><a href="/Ac_Art">Vos spectacles</a></p>
+            </div>
             <?php
         }
 
         /* Affichage ASIDE de l'asso tech*/ elseif ($role == "TEC") {
             ?>
-            <h1>Asso Technique</h1>
-            <p><a href="/Ac_Tech">Les spectacles</a></p>
+            <h1 id="cote">Asso Technique<a href="/Compte"><img src="<?= BASE_URL; ?>/public/assets/img/cpt.png"
+                        alt="Logo compte"></a></h1>
+            <div id="menu">
+                <p><a href="/Ac_Tech">Les spectacles</a></p>
+            </div>
             <?php
         }
 
         /* Affichage ASIDE de l'asso orga*/ elseif ($role == "ORG") {
             ?>
-            <h1>Asso Organisatrice</h1>
-            <p>
-                <a href="/Ac_Orga">Les spectacles</a><br><br>
-                <a href="/Create_Spec">Créer un spectacle</a><br><br>
-                <a href="/Create_ART">Ajouter un artiste</a>
-            </p>
-            <?php
-        }
+            <h1 id="cote">Asso Organisatrice<a href="/Compte"><img src="<?= BASE_URL; ?>/public/assets/img/cpt.png"
+                        alt="Logo compte"></a></h1>
+            <div id="menu">
+                <p><a href='/Ac_Orga'>Les spectacles</a></p>
+                <p><a href='/Create_Spec'>Organiser un nouveau spectacle</a></p>
+                <p><a href='/Create_ART'>Créé un nouvelle artiste</a></p>
+                <p><a href='/Create_Salle'>Créé une nouvelle salle</a></p>
+            </div>
+        <?php }
         ?>
         <form id="deco" method="POST" action="<?php CONTROLLERS_PATH; ?>/deconnexion">
             <input type="submit" value="Se déconnecter" />

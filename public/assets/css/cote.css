@@ -5,31 +5,56 @@
     bottom: 0;
     text-align: center;
     position: fixed;
-    background: linear-gradient(to bottom, #232926, #5500ff);
+    background:#3d00b6;
     color: white;
 }
 
-
-#aside-tout h1 {
+/* accès compte */
+#aside-tout h1#cote {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin: 0;
-    padding: 10px;
+    padding: 0.5em;
     background-color: black;
     color: white;
     border-bottom: solid 5px #e2d2ff;
 }
 
+#aside-tout h1#cote img {
+    margin-left: 10px;
+    width: 1.5em;
+    height: auto;
+}
+
+/* menu aside */
+#menu {
+    text-align: center;
+}
+
+#menu p {
+    text-align: center;
+    border-bottom: 5px #e2d2ff solid;
+    padding: 1.5em;
+    margin: 0;
+}
+
+#menu p a {
+    color: white;
+    text-decoration: none;
+}
+
+/* bouton se déconnecter */
 #deco {
     position: fixed;
     bottom: 1em;
     left: 1.5em;
     width: 12em;
     padding: 0.5em;
-    font-size: 1em;
     border: none;
     text-align: center;
 }
 
-/* bouton se déconnecter */
 input[type="submit"] {
     background-color: #120045;
     color: white;

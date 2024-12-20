@@ -7,10 +7,10 @@
     </head>
     <body>
         <div class="header">
-            <a href="page-connexion.html">Retour</a>
+            <a href="/connexion">Retour</a>
             <h1>Concert'asso</h1>
         </div>
-            <?php 
+            <?php
                 $mdp_bool = $_SESSION["mdp-bool"];
                 if ($mdp_bool=="reussi") {?>
                     <div id="popup" class="popup">
@@ -35,7 +35,7 @@
                         </div>
                         <input type="password" id="confirm-passwd" name="confirm-passwd" placeholder="confirmer mot de passe"/>
                         <p id="informations">* : l’utilisation de mot de passe fort est conseillé (majuscule, chiffre, caractère spéciaux, etc.)</p>
-                        <?php 
+                        <?php
                             if ($mdp_bool=="meme") {?>
                                 <p class="rate">Vous ne pouvez pas utilisez le même mot de passe que l'actuel</p>
                                 <?php
