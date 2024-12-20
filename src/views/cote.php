@@ -39,6 +39,10 @@
                 <p><a href="/Ac_Tech">Les spectacles</a></p>
             </div>
             <?php
+        } elseif ($role == "ADM"){
+            echo '<h1>admin</h1>';
+            echo "<p class = 'menu'><a href='/List_asso'>Les Associations</a></p>";
+            echo "<p class = 'menu'><a href='/ADM'>Créer une nouvelle association</a></p>";
         }
 
         /* Affichage ASIDE de l'asso orga*/ elseif ($role == "ORG") {
