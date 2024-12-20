@@ -1,9 +1,9 @@
 <?php $title = 'Liste_Spec_Orga';
 $lesCSS = ["Table_Spec", "basPage", "cote"];
-include 'head.php'; ?>
+require_once 'head.php'; ?>
 
 <body>
-    <?php include "cote.php" ?>
+    <?php require_once "cote.php" ?>
     <main>
         <?php
         try {
@@ -39,7 +39,7 @@ include 'head.php'; ?>
             ?>
         </table>
     </main>
-    <?php include "basPage.php" ?>
+    <?php require_once "basPage.php" ?>
 </body>
 
 </html>

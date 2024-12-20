@@ -1,26 +1,24 @@
 <?php
 $lesCSS = ["listeSalleDispo", "basPage", "cote"];
-include 'head.php';
+require_once 'head.php';
 
 
-$type=$_POST["typePlace"];
-$nbPers=$_POST["nbPers"];
-$longueur=$_POST["longueur"];
-$largeur=$_POST["largeur"];
-$nom=$_POST["nom"];
-$date=$_POST["date"];
-$heure=$_POST["heure"];
-$duree=$_POST["duree"];
-$arrive=$_POST["arrive"];
+$type = $_POST["typePlace"];
+$nbPers = $_POST["nbPers"];
+$longueur = $_POST["longueur"];
+$largeur = $_POST["largeur"];
+$nom = $_POST["nom"];
+$date = $_POST["date"];
+$heure = $_POST["heure"];
+$duree = $_POST["duree"];
+$arrive = $_POST["arrive"];
 
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html lang="fr">
-<?php include "cote.php" ?>
+<?php require_once "cote.php" ?>
 
 <body id="principal">
 
@@ -39,46 +37,43 @@ $arrive=$_POST["arrive"];
 
         $table = $bdd->prepare("select * from SalleTemp");
         $table->execute();
+        ?>
 
+        <table id="tableau">
+            <thead>
+                <tr>
+                    <th scope="col">Selectionnez une salle</th>
+                    <th scope="col">Nom de la salle</th>
+                    <th scope="col">Longueur</th>
+                    <th scope="col">Largeur</th>
+                    <th scope="col">Nombre de place</th>
+                </tr>
+            </thead>
+            <form method="POST" action="creer_specacle">
+                <?php
+                while ($row = $table->fetch()) {
+                    ?>
 
-?>
-<table  id="tableau">
-<tr>
-            <td scope="col">Selectionnez une salle</td>
-            <td scope="col">Nom de la salle</td>
-            <td scope="col">Longueur</td>
-            <td scope="col">Largeur</td>
-            <td scope="col">Nombre de place</td>
-        </tr>
-<form method="POST" action="creer_specacle">
-<?php
-while ($row=$table->fetch()){
-    ?>  
-        
-        <tr>
-            <td><input type="radio" name="nomS" classe="nomS" value=<?php echo htmlspecialchars($row["nomS"]); ?>></td>
-            <td><?php echo htmlspecialchars($row["nomS"]); ?></td>
-            <td><?php echo htmlspecialchars($row["longueurS"]); ?></td>
-            <td><?php echo htmlspecialchars($row["largeurS"]); ?></td>
-            <td><?php echo htmlspecialchars($row["nbPlaceS "]); ?></td>
-        </tr>
-<?php } ?>
+                    <tr>
+                        <td><input type="radio" name="nomS" classe="nomS" value=<?php echo htmlspecialchars($row["nomS"]); ?>></td>
+                        <td><?php echo htmlspecialchars($row["nomS"]); ?></td>
+                        <td><?php echo htmlspecialchars($row["longueurS"]); ?></td>
+                        <td><?php echo htmlspecialchars($row["largeurS"]); ?></td>
+                        <td><?php echo htmlspecialchars($row["nbPlaceS "]); ?></td>
+                    </tr>
+                <?php } ?>
 
         </table>
 
-<input type="hidden" name="nom" value=<?php echo htmlspecialchars($nom); ?>>
-<input type="hidden" name="date" value=<?php echo htmlspecialchars($date); ?>>
-<input type="hidden" name="heure" value=<?php echo htmlspecialchars($heure); ?>>
-<input type="hidden" name="duree" value=<?php echo htmlspecialchars($duree); ?>>
-<input type="hidden" name="arrive" value=<?php echo htmlspecialchars($arrive); ?>>
-
-
-
-
+        <input type="hidden" name="nom" value=<?php echo htmlspecialchars($nom); ?>>
+        <input type="hidden" name="date" value=<?php echo htmlspecialchars($date); ?>>
+        <input type="hidden" name="heure" value=<?php echo htmlspecialchars($heure); ?>>
+        <input type="hidden" name="duree" value=<?php echo htmlspecialchars($duree); ?>>
+        <input type="hidden" name="arrive" value=<?php echo htmlspecialchars($arrive); ?>>
 
 
         <button id="bouton" type="submit" class="bouton-bas">Ajouter le spectacle</button>
         </form>
     </main>
 </body>
-<?php include "basPage.php" ?>
+<?php require_once "basPage.php" ?>

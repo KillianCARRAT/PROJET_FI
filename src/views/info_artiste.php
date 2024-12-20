@@ -1,10 +1,10 @@
 <?php $title = 'artiste';
 $lesCSS = ["info_art", "basPage", "cote"];
-include 'head.php'; ?>
+require_once 'head.php'; ?>
 
 <body>
-    <?php include "cote.php" ?>
-    
+    <?php require_once "cote.php" ?>
+
     <main id="info-art">
         <h1><?php echo $reponse['nomG']; ?></h1>
 
@@ -57,7 +57,7 @@ include 'head.php'; ?>
             </table>
         </section>
     </main>
-    <?php include "basPage.php" ?>
+    <?php require_once "basPage.php" ?>
 </body>
 
 </html>

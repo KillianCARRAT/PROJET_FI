@@ -1,5 +1,4 @@
 <?php
-
 try {
     $bdd = new PDO('mysql:host=servinfo-maria;dbname=DBlepage', 'lepage', 'lepage');
 } catch (Exception $e) {
@@ -15,7 +14,6 @@ $mdp_code = $_POST['passwd'];
 $reqType = $bdd->prepare('SELECT typeU, mdp FROM UTILISATEUR WHERE iden=:id');
 $reqType->bindParam(":id", $id, PDO::PARAM_STR);
 $reqType->execute();
-
 $row = $reqType->fetch();
 $role = $row["typeU"];
 $bd_mdp = $row["mdp"];
@@ -41,5 +39,3 @@ if (password_verify($mdp_code, $bd_mdp)) {
 } else {
     header("Location: /connexion_fail");
 }
-
-?>

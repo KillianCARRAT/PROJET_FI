@@ -1,6 +1,6 @@
 <?php $title = 'Crea_ART';
 $lesCSS = ["basPage", "cote", "valid-salle"];
-include 'head.php';
+require_once 'head.php';
 
 
 $idma = $bdd->query('SELECT MAX(idS) FROM SALLE');
@@ -34,17 +34,17 @@ $reqType->bindParam(":loges", $loges, PDO::PARAM_STR);
 $reqType->bindParam(":nbTec", $nbT, PDO::PARAM_STR);
 $reqType->execute();
 
-include 'head.php'; ?>
+require_once 'head.php'; ?>
 
 <body>
-    <?php include "cote.php" ?>
+    <?php require_once "cote.php" ?>
     <main id="create-salle">
         <a href="/Ac_Orga">Retour</a>
         <div id="info-salle">
-        <h1>La salle a été créé avec succés</h1>
+            <h1>La salle a été créé avec succés</h1>
         </div>
     </main>
-    <?php include "basPage.php" ?>
+    <?php require_once "basPage.php" ?>
 </body>
 
 </html>

@@ -13,8 +13,8 @@ if (isset($_POST['nom-Art'], $_POST['date-Rep'], $_POST['heure-Rep'])) {
     $nom = $_POST['nom-Art'];
     $date = $_POST['date-Rep'];
     $heure = $_POST['heure-Rep'];
-    $duree= $_POST["duree-Rep"];
-    $arrive= $_POST["heure-arrivé"];
+    $duree = $_POST["duree-Rep"];
+    $arrive = $_POST["heure-arrivé"];
 
 
     // Stocke les données dans la session
