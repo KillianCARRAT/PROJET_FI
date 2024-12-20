@@ -1,11 +1,8 @@
-<?php try {
-    $bdd = new PDO('mysql:host=servinfo-maria;dbname=DBlepage', 'lepage', 'lepage');
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
+<?php
+use src\controllers\Database;
+$bdd = Database::getConnection();
 
 session_start();
-
 
 $iden = $_POST["identifiant"];
 $mdp = $_POST["mot_de_passe"];

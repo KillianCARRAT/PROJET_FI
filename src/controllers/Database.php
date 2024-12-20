@@ -1,10 +1,17 @@
 <?php
 
-namespace Src\Controllers;
+namespace src\controllers;
 
 class Database
 {
     private static $connection = null;
+
+    public function __construct()
+    {
+        if (self::$connection === null) {
+            self::$connection = $this->getConnection();
+        }
+    }
 
     public static function getConnection()
     {
