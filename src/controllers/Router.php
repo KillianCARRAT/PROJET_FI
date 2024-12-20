@@ -18,7 +18,6 @@ class Router
             $unPOST = explode("=", $value);
             $_POST[$unPOST[0]] = $unPOST[1];
         }
-        error_log($requestUri[0]);
 
 
 
