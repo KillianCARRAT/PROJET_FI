@@ -1,12 +1,10 @@
 <?php $title = 'Create_Spec';
 $lesCSS = ["page-creation-spectacle2", "basPage", "cote"];
-include 'head.php'; ?>
-<!DOCTYPE html>
-<html lang="fr">
-=
+?>
+<?php require_once 'head.php'; ?>
 
 <body id="corps-principal">
-    <?php include "cote.php" ?>
+    <?php require_once "cote.php" ?>
     <main id="principal">
         <h1 id="texte">Créé un nouveau spectacle</h1>
         <section class="form-section">
@@ -39,23 +37,23 @@ include 'head.php'; ?>
                 <div id="bouton-chercher">
                     <button type="submit" class="bouton-bas">Chercher</button>
                 </div>
-                <?php $nom=$_SESSION["nom-art-spec"];?>
-                <?php $date= $_SESSION["date-art-spec"];?>
-                <?php $heure=$_SESSION["heure-art-spec"];?>
-                <?php $duree=$_SESSION["duree-rep"];?>
-                <?php $arrive=$_SESSION["heure-arrivé"];?>
-                
+                <?php $nom = $_SESSION["nom-art-spec"]; ?>
+                <?php $date = $_SESSION["date-art-spec"]; ?>
+                <?php $heure = $_SESSION["heure-art-spec"]; ?>
+                <?php $duree = $_SESSION["duree-rep"]; ?>
+                <?php $arrive = $_SESSION["heure-arrivé"]; ?>
+
                 <input type="hidden" id="nom" name="nom" value=<?php echo htmlspecialchars($nom); ?>>
                 <input type="hidden" id="date" name="date" value=<?php echo htmlspecialchars($date); ?>>
                 <input type="hidden" id="heure" name="heure" value=<?php echo htmlspecialchars($heure); ?>>
                 <input type="hidden" id="duree" name="duree" value=<?php echo htmlspecialchars($duree); ?>>
                 <input type="hidden" id="arrive" name="arrive" value=<?php echo htmlspecialchars($arrive); ?>>
+
             </form>
         </section>
     </main>
     <script src="../../public/assets/js/slider.js"></script>
 </body>
-<?php include "basPage.php" ?>
+<?php require_once "basPage.php" ?>
 
 </html>
-

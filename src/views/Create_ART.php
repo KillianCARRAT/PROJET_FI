@@ -1,6 +1,6 @@
 <?php $title = 'Create_ART';
 $lesCSS = ["basPage", "cote", "affiche_id_mdp"];
-include 'head.php';
+require_once 'head.php';
 
 
 $idma = $bdd->query('SELECT MAX(idG) FROM GROUPE');
