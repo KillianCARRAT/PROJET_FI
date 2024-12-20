@@ -1,6 +1,6 @@
 <?php
 $lesCSS = ["listeSalleDispo", "basPage", "cote"];
-include 'head.php';
+require_once 'head.php';
 
 
 $type=$_POST["typePlace"];
@@ -20,7 +20,7 @@ $arrive=$_POST["arrive"];
 
 <!DOCTYPE html>
 <html lang="fr">
-<?php include "cote.php" ?>
+<?php require_once "cote.php" ?>
 
 <body id="principal">
 
@@ -81,4 +81,4 @@ while ($row=$table->fetch()){
         </form>
     </main>
 </body>
-<?php include "basPage.php" ?>
+<?php require_once "basPage.php" ?>

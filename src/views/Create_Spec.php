@@ -1,13 +1,13 @@
 <?php $title = 'Create_Spec';
 $lesCSS = ["Create_Spec", "basPage", "cote"];
-include 'head.php';
+require_once 'head.php';
 session_start();
 $fail = isset($_SESSION["mauvais_art"]) ? $_SESSION["mauvais_art"] : false;
 unset($_SESSION["mauvais_art"]); 
 ?>
 
 <body>
-    <?php include "cote.php" ?>
+    <?php require_once "cote.php" ?>
     <main id="creat-spec">
         <h1>Créé un nouveau spectacle</h1>
         <section class="form-section">
@@ -38,7 +38,7 @@ unset($_SESSION["mauvais_art"]);
             </form>
         </section>
     </main>
-    <?php include "basPage.php" ?>
+    <?php require_once "basPage.php" ?>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
 <?php $title = 'Crea_ART';
 $lesCSS = ["basPage", "cote","Create_Spec"];
-include 'head.php'; ?>
+require_once 'head.php'; ?>
 <body>
-    <?php include "cote.php" ?>
+    <?php require_once "cote.php" ?>
     <main id="create-art">
         <div>
             <h1>Création d'un artiste</h1>
@@ -28,7 +28,7 @@ include 'head.php'; ?>
             </form>
         </section>
     </main>
-    <?php include "basPage.php" ?>
+    <?php require_once "basPage.php" ?>
 </body>
 
 </html>

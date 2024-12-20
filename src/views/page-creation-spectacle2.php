@@ -1,12 +1,12 @@
 <?php $title = 'Create_Spec';
 $lesCSS = ["page-creation-spectacle2", "basPage", "cote"];
-include 'head.php'; ?>
+require_once 'head.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 =
 
 <body id="corps-principal">
-    <?php include "cote.php" ?>
+    <?php require_once "cote.php" ?>
     <main id="principal">
         <h1 id="texte">Créé un nouveau spectacle</h1>
         <section class="form-section">
@@ -56,7 +56,6 @@ include 'head.php'; ?>
     </main>
     <script src="../../public/assets/js/slider.js"></script>
 </body>
-<?php include "basPage.php" ?>
+<?php require_once "basPage.php" ?>
 
 </html>
-

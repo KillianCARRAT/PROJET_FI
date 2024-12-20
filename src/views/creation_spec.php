@@ -1,7 +1,7 @@
 <?php
 $lesCSS = ["listeSalleDispo", "basPage", "cote"];
-    include 'head.php'; 
-    include "cote.php";
+    require_once 'head.php';
+    require_once "cote.php";
 
   
     $date=$_POST["date"];
@@ -58,4 +58,4 @@ $lesCSS = ["listeSalleDispo", "basPage", "cote"];
         <button type="submit">Retourner à la liste des concerts</button>
     </form>
 
-    <?php include "bas.php"; ?>
+    <?php require_once "bas.php"; ?>

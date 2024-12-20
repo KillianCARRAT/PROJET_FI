@@ -1,11 +1,11 @@
 <?php
 $title = 'rider';
 $lesCSS = ["Style-Rider", "basPage", "cote"];
-include 'head.php';
+require_once 'head.php';
 ?>
 
 <body>
-    <?php include "cote.php"; ?>
+    <?php require_once "cote.php"; ?>
     <main id="main-rider">
         <h1>Fiche rider</h1>
         <section id="question">
@@ -83,7 +83,7 @@ include 'head.php';
             </div>
         </section>
     </main>
-    <?php include "basPage.php"; ?>
+    <?php require_once "basPage.php"; ?>
 </body>
 
 <script>

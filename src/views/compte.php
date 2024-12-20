@@ -24,8 +24,8 @@ $role = $tout[0][0]; ?>
         $reqArt->bindParam(":id", $idArt, PDO::PARAM_STR);
         $reqArt->execute();
         $toutArt = $reqArt->fetchAll();
-
         ?>
+        
             <div id="info-compte">
                 <?php $donnees = $toutArt[0]; ?>
                 <p>
@@ -35,7 +35,6 @@ $role = $tout[0][0]; ?>
                     Nombre de technicien : <?php echo $donnees['nbTechG']; ?><br>
                     Nombre de personne dans le groupe : <?php echo $donnees['nbPersG']; ?><br>
                 </p>
-                <?php ?>
             </div>
             <form id="Changement de mot de passe" method="POST" action="<?php VIEWS_PATH; ?>/Cmdp">
                 <input type="submit" value="Changer son mot de passe" />
@@ -46,11 +45,7 @@ $role = $tout[0][0]; ?>
 
 
             <?php
-
-
-
     } elseif ($role == "ORG" || $role == "TEC") {
-
         ?>
             <div id="info-compte">
                 <?php $donnees = $toutArt[0]; ?>

@@ -1,8 +1,8 @@
 <?php $title = 'Crea_Salle';
 $lesCSS = ["basPage", "cote","Create_Spec"];
-include 'head.php'; ?>
+require_once 'head.php'; ?>
 <body>
-    <?php include "cote.php" ?>
+    <?php require_once "cote.php" ?>
     <main>
         <div>
             <h1>Création d'une Salle</h1>
@@ -45,7 +45,7 @@ include 'head.php'; ?>
             </form>
         </section>
     </main>
-    <?php include "basPage.php" ?>
+    <?php require_once "basPage.php" ?>
 </body>
 
 </html>
