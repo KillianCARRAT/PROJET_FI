@@ -29,14 +29,32 @@
     max-height: 25em;
 }
 
+#envoyer-rider {
+    cursor: pointer;
+    font-size: 1em;
+    background-color: #120045;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 1em;
+    padding: 0.5em;
+    width: 10em;
+    }
+      
+#envoyer-rider:hover {
+    background-color: #2a0199;
+    cursor: pointer;
+}
+
+#envoyer-rider:active {
+    transform: scale(0.95);
+}
+
 .checkbox-container {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-input[type="checkbox"] {
-    margin: 0;
 }
 
 .gras {
@@ -71,7 +89,7 @@ table {
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 16px;
-    text-align: left;
+    text-align: center;
 }
 
 th, td {
@@ -123,7 +141,7 @@ td:first-child select {
 }
 
 td:nth-child(2) input[type="text"] {
-    width: 95%;
+    margin-right: 3em;
 }
 
 td:nth-child(4) input[type="number"] {

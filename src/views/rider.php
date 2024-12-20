@@ -7,7 +7,6 @@ include 'head.php';
 <body>
     <?php include "cote.php"; ?>
     <main id="main-rider">
-
         <h1>Fiche rider</h1>
         <section id="question">
             <form class="rider" method="post" action="<?php CONTROLLERS_PATH; ?>/info-rider">
@@ -39,10 +38,11 @@ include 'head.php';
                     <input type="text" name="adresse" id="adresse" placeholder="Adresse">
 
                     <div class="chec">
-                        <input type="checkbox" name="hotel" id="checkbox-hotel">
+                        <input type="checkbox" name="vehicule" id="checkbox-hotel">
                         <label class="gras" for="checkbox-hotel">Besoin d'un hôtel</label>
                     </div>
                     <textarea name="demande-hotel" id="demande-hotel" placeholder="Demande pour l'hôtel"></textarea>
+                    <button type="submit" id="envoyer-rider">Envoyer</button>
                 </div>
                 <div class="grand" id="matériels">
                     <?php
@@ -79,13 +79,13 @@ include 'head.php';
                         <?php } ?>
                     </table>
                     <button type="button" id="add-line-btn">+ Ajouter une ligne</button>
-                    <button type="submit" id="infos-rider">Envoyer</button>
-            </form>
+                </form>
             </div>
         </section>
     </main>
     <?php include "basPage.php"; ?>
 </body>
+
 <script>
     function toggleVisibility(checkboxId, targetId) {
         const checkbox = document.getElementById(checkboxId);
@@ -100,38 +100,34 @@ include 'head.php';
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-        const table = document.querySelector('table'); // Sélectionne le tableau
-        const addLineButton = document.getElementById('add-line-btn'); // Bouton d'ajout
+        const table = document.querySelector('table');
+        const addLineButton = document.getElementById('add-line-btn');
 
         if (addLineButton) {
             addLineButton.addEventListener('click', (event) => {
-                event.preventDefault(); // Empêche le rechargement de la page
+                event.preventDefault();
 
-                // Création d'une nouvelle ligne
                 const newRow = document.createElement('tr');
 
-                // Colonne pour le type
                 const typeCell = document.createElement('td');
                 const typeSelect = document.createElement('select');
 
                 const options = ['Instrument', 'Câble', 'Autres'];
                 options.forEach(optionText => {
                     const option = document.createElement('option');
-                    option.value = optionText.toLowerCase(); // Valeur en minuscule
+                    option.value = optionText.toLowerCase();
                     option.textContent = optionText;
                     typeSelect.appendChild(option);
                 });
 
                 typeCell.appendChild(typeSelect);
 
-                // Colonne pour le nom
                 const nameCell = document.createElement('td');
                 const nameInput = document.createElement('input');
                 nameInput.type = 'text';
                 nameInput.placeholder = 'Nom du matériel';
                 nameCell.appendChild(nameInput);
 
-                // Colonne pour la checkbox "Besoin"
                 const besoinCell = document.createElement('td');
                 const besoinInput = document.createElement('input');
                 besoinCell.class = "chk-container";
@@ -140,7 +136,6 @@ include 'head.php';
                 besoinInput.value = '1';
                 besoinCell.appendChild(besoinInput);
 
-                // Colonne pour la quantité
                 const quantiteCell = document.createElement('td');
                 const quantiteInput = document.createElement('input');
                 quantiteInput.type = 'number';
