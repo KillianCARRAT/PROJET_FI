@@ -9,10 +9,19 @@ class Router
     {
         session_start();
 
-        $requestUri = $_SERVER['REQUEST_URI'];
-        $requestUri = str_replace('/PROJET_FI', '', $requestUri);
+        $data = $_SERVER['REQUEST_URI'];
+        $data = str_replace('/PROJET_FI', '', $data);
+        $requestUri = explode("?", $data);
+        $lesPOST = $requestUri[1];
+        $lesPOST = explode(";", $lesPOST);
+        foreach ($lesPOST as $key => $value) {
+            $unPOST = explode("=", $value);
+            $_POST[$unPOST[0]] = $unPOST[1];
+        }
 
-        switch ($requestUri) {
+
+
+        switch ($requestUri[0]) {
             case '/ADM':
                 require_once VIEWS_PATH . '/admin.php';
                 break;
@@ -24,7 +33,7 @@ class Router
             case "/Compte":
                 require_once VIEWS_PATH . '/compte.php';
                 break;
-
+            
             case '/Create_Spec':
                 require_once VIEWS_PATH . '/Create_Spec.php';
                 break;
@@ -55,6 +64,10 @@ class Router
 
             case '/tentative_co':
                 require_once CONTROLLERS_PATH . '/tentative_co.php';
+                break;
+
+            case '/info-rider':
+                require_once CONTROLLERS_PATH . '/info-rider.php';
                 break;
 
             case '/changement_mdp':
