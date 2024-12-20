@@ -59,7 +59,7 @@ $arrive = $_POST["arrive"];
                         <td><?php echo htmlspecialchars($row["nomS"]); ?></td>
                         <td><?php echo htmlspecialchars($row["longueurS"]); ?></td>
                         <td><?php echo htmlspecialchars($row["largeurS"]); ?></td>
-                        <td><?php echo htmlspecialchars($row["nbPlaceS "]); ?></td>
+                        <td><?php echo htmlspecialchars($row["nbPlaceS"]); ?></td>
                     </tr>
                 <?php } ?>
 
