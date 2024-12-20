@@ -25,11 +25,11 @@ include 'head.php'; ?>
                     <tbody>
                         <tr>
                             <td><?php echo $donnees['dateC']; ?></td>
-                            <td><?php echo $donnees['debutConcert']; ?></td>
-                            <td><?php echo $donnees['dureeConcert']; ?></td>
+                            <td><?php echo date('H', strtotime($donnees['debutConcert']))."h".date('i', strtotime($donnees['debutConcert'])); ?></td>
+                            <td><?php echo date('H', strtotime($donnees['dureeConcert']))."h".date('i', strtotime($donnees['dureeConcert'])); ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>
                             <td><?php echo $donnees['nomG']; ?></td>
-                            <td><a href="rider">Fiche rider</a></td>
+                            <td><a href="rider?concert=<?php echo $donnees['idC']; ?>">Fiche rider</a></td>
                             <td>Plan feu</td>
                         </tr>
 

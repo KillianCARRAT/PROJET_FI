@@ -1,0 +1,17 @@
+#create-salle {
+    margin-left: 15em;
+    padding: 2em;
+    
+}
+
+#create-salle a {
+    text-decoration: none;
+    color: white;
+    background-color: #120045;
+    padding: 0.7em;
+    border-radius: 10%;
+}
+
+#info-salle {
+    text-align: center;
+}

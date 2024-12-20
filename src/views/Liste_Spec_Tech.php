@@ -29,10 +29,9 @@ include 'head.php'; ?>
                             <td><?php echo $donnees['dureeConcert']; ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>
                             <td><?php echo $donnees['nomG']; ?></td>
-                            <td><a href="rider">Fiche rider</a></td>
+                            <td><a href="rider?concert=<?php echo $donnees['idC']; ?>">Fiche rider</a></td>
                             <td>Plan feu</td>
                         </tr>
-
                     </tbody>
                     <?php
                 }
@@ -43,5 +42,4 @@ include 'head.php'; ?>
     </main>
     <?php include "basPage.php" ?>
 </body>
-
 </html>

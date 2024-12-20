@@ -1,0 +1,77 @@
+#principal {
+    margin-left: 15em;
+}
+
+
+#bouton {
+    align-items: center;
+}
+
+/* Styles pour le tableau */
+#tableau {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Bordures des cellules */
+#tableau,
+#tableau th,
+#tableau td {
+    border: 1px solid #000;
+}
+
+/* Style pour les en-têtes */
+#tableau th {
+    background-color: #f8f8f8;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Style pour les cellules */
+#tableau td {
+    text-align: center;
+    padding: 10px;
+}
+
+/* Style pour le texte dans les colonnes */
+#tableau td a {
+    color: #800080;
+    /* Violet pour les liens */
+    text-decoration: none;
+}
+
+#tableau td a:hover {
+    text-decoration: underline;
+}
+
+/* Style pour les titres */
+h1 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+/* Espacement général autour de la table */
+main {
+    width: 90%;
+    margin: auto;
+}
+
+button.bouton-bas {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #5a67d8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.bouton-bas:hover {
+    background-color: #434190;
+}

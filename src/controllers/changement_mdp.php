@@ -17,11 +17,11 @@
 
     $row = $reqType->fetch();
     $role = $row["typeU"];
-    $mdp = $row["mdp"];
+    $mdp_code = $row["mdp"];
 
     if ($new_mdp != $confirm_mdp) {
         header("Location: /rate-diff-mdp");
-    } elseif(password_verify($new_mdp, $mdp)) {
+    } elseif(password_verify($new_mdp, $mdp_code)) {
         header("Location: /rate-meme-mdp");
     } else {
         $hash_mdp = password_hash($new_mdp, PASSWORD_DEFAULT);
