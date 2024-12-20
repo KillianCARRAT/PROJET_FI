@@ -42,4 +42,5 @@ require_once 'head.php'; ?>
     </main>
     <?php require_once "basPage.php" ?>
 </body>
+
 </html>

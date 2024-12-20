@@ -62,24 +62,29 @@ require_once 'head.php';
                                 <td>
                                     <select name="type[]">
                                         <option value="instrument" <?php echo $mate['typeM'] === 'Instrument' ? 'selected' : ''; ?>>Instrument</option>
-                                        <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>Câble</option>
-                                        <option value="autres" <?php echo $mate['typeM'] === 'Autres' ? 'selected' : ''; ?>>Autres</option>
+                                        <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>
+                                            Câble</option>
+                                        <option value="autres" <?php echo $mate['typeM'] === 'Autres' ? 'selected' : ''; ?>>
+                                            Autres</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text" name="nom[]" value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
+                                    <input type="text" name="nom[]"
+                                        value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
                                 </td>
                                 <td class="chk-container">
                                     <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
                                 </td>
                                 <td>
-                                    <input type="number" name="quantite[]" value="<?php echo htmlspecialchars($mate['quantite'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>" min="0">
+                                    <input type="number" name="quantite[]"
+                                        value="<?php echo htmlspecialchars($mate['quantite'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>"
+                                        min="0">
                                 </td>
                             </tr>
                         <?php } ?>
                     </table>
                     <button type="button" id="add-line-btn">+ Ajouter une ligne</button>
-                </form>
+            </form>
             </div>
         </section>
     </main>

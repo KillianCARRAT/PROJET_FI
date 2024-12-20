@@ -4,7 +4,7 @@ require_once 'head.php'; ?>
 
 <body>
     <?php require_once "cote.php" ?>
-    
+
     <main id="info-art">
         <h1><?php echo $reponse['nomG']; ?></h1>
 

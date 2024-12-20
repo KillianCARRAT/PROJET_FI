@@ -18,7 +18,8 @@
             <p>CONNEXION</p>
             <input type="text" name="ident" id="ident" placeholder="Identifiant*" />
             <input type="password" name="passwd" id="passwd" placeholder="Mot de passe" />
-            <button type="button" name="toggle-password" id="toggle-password" class="toggle-password" data-target="passwd">afficher</button>
+            <button type="button" name="toggle-password" id="toggle-password" class="toggle-password"
+                data-target="passwd">afficher</button>
             <p id="informations">* reçu par mail si vous êtes un artiste</p>
             <?php
             if (!empty($_SESSION['connexion_fail'])) {
@@ -30,24 +31,25 @@
         <aside>
             <img src="<?= BASE_URL; ?>/public/assets/img/logo_doua.png" alt="logo de l'association un doua de jazz" />
             <img src="<?= BASE_URL; ?>/public/assets/img/logo_insa.png" alt="logo de l'insa" />
-            
+
         </aside>
     </div>
-    
+
     <script>
-    document.querySelectorAll('.toggle-password').forEach(button => {
-        button.addEventListener('click', () => {
-            const targetId = button.getAttribute('data-target');
-            const passwordField = document.getElementById(targetId);
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                button.textContent = 'Cacher';
-            } else {
-                passwordField.type = 'password';
-                button.textContent = 'Afficher';
-            }
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const passwordField = document.getElementById(targetId);
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    button.textContent = 'Cacher';
+                } else {
+                    passwordField.type = 'password';
+                    button.textContent = 'Afficher';
+                }
+            });
         });
-    });
     </script>
 </body>
+
 </html>

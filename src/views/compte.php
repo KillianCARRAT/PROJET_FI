@@ -25,7 +25,7 @@ $role = $tout[0][0]; ?>
         $reqArt->execute();
         $toutArt = $reqArt->fetchAll();
         ?>
-        
+
             <div id="info-compte">
                 <?php $donnees = $toutArt[0]; ?>
                 <p>

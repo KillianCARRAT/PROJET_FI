@@ -41,7 +41,7 @@ require_once 'head.php'; ?>
     <main id="create-salle">
         <a href="/Ac_Orga">Retour</a>
         <div id="info-salle">
-        <h1>La salle a été créé avec succés</h1>
+            <h1>La salle a été créé avec succés</h1>
         </div>
     </main>
     <?php require_once "basPage.php" ?>
