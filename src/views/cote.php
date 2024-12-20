@@ -35,6 +35,10 @@
             echo "<p class = 'menu'><a href='/Create_Spec'>Organiser un nouveau spectacle</a></p>";
             echo "<p class = 'menu'><a href='/Create_ART'>Créé un nouvelle artiste</a></p>";
             echo "<p class = 'menu'><a href='/Create_Salle'>Créé une nouvelle salle</a></p>";
+        } elseif ($role == "ADM"){
+            echo '<h1>admin</h1>';
+            echo "<p class = 'menu'><a href='/List_asso'>Les Associations</a></p>";
+            echo "<p class = 'menu'><a href='/ADM'>Créer une nouvelle association</a></p>";
         }
         ?>
         <form id="deco" method="POST" action="<?php CONTROLLERS_PATH; ?>/deconnexion">

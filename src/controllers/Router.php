@@ -17,6 +17,10 @@ class Router
             case '/ADM':
                 require_once VIEWS_PATH . '/admin.php';
                 break;
+            case '/List_asso':
+                require_once VIEWS_PATH . '/List_asso.php';
+                break;
+
 
                 case '/crea_Asso':
                     require_once CONTROLLERS_PATH . '/crea_Asso.php';
