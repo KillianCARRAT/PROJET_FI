@@ -38,11 +38,12 @@
                     $id = $_SESSION["idUser"];
                 } ?>
                 <input type="hidden" id="ident" name="ident" value=<?php echo $id; ?>>
-                <input type="password" id="new-passwd" name="new-passwd" placeholder="nouveau mot de passe" />
-                <button type="button" id="toggle-password" class="toggle-password"
-                    data-target="new-passwd">afficher</button>
+                <div id="zone-password">
+                    <input type="password" id="new-passwd" name="new-passwd" placeholder="nouveau mot de passe" />
+                    <input type="password" id="confirm-passwd" name="confirm-passwd" placeholder="confirmer mot de passe" />
+                    <button type="button" id="toggle-all-passwords" class="toggle-password">Afficher</button>
+                </div>
             </div>
-            <input type="password" id="confirm-passwd" name="confirm-passwd" placeholder="confirmer mot de passe" />
             <p id="informations">* : l’utilisation de mot de passe fort est conseillé (majuscule, chiffre, caractère
                 spéciaux, etc.)</p>
             <?php
@@ -58,19 +59,22 @@
 
         </div>
         <script>
-            document.querySelectorAll('.toggle-password').forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetId = button.getAttribute('data-target');
-                    const passwordField = document.getElementById(targetId);
-                    if (passwordField.type === 'password') {
-                        passwordField.type = 'text';
-                        button.textContent = 'Cacher';
-                    } else {
-                        passwordField.type = 'password';
-                        button.textContent = 'Afficher';
-                    }
-                });
+            document.getElementById('toggle-all-passwords').addEventListener('click', () => {
+                const newPasswordField = document.getElementById('new-passwd');
+                const confirmPasswordField = document.getElementById('confirm-passwd');
+                const toggleButton = document.getElementById('toggle-all-passwords');
+
+                if (newPasswordField.type === 'password' || confirmPasswordField.type === 'password') {
+                    newPasswordField.type = 'text';
+                    confirmPasswordField.type = 'text';
+                    toggleButton.textContent = 'Cacher';
+                } else {
+                    newPasswordField.type = 'password';
+                    confirmPasswordField.type = 'password';
+                    toggleButton.textContent = 'Afficher';
+                }
             });
+
 
             const popup = document.getElementById('popup');
             const closeButton = document.querySelector('.close-btn');
