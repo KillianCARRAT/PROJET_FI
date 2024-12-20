@@ -2,7 +2,7 @@
 $id_cpt = $_SESSION['idUser'];
 $title = 'Compte';
 $lesCSS = ["basPage", "cote", "compte"];
-include 'head.php';
+require_once 'head.php';
 
 $idUser = $_SESSION["idUser"];
 $reqType = $bdd->prepare('SELECT typeU FROM UTILISATEUR WHERE iden=:id');
@@ -12,10 +12,10 @@ $tout = $reqType->fetchAll();
 $role = $tout[0][0]; ?>
 
 <body>
-    <?php include "cote.php" ?>
+    <?php require_once "cote.php" ?>
     <main><?php
     if ($role == "ART") {
-        $reqId = $bdd->prepare('SELECT idG FROM LIEN WHERE iden=:id');
+        $reqId = $bdd->prepare('SELECT idG FROM LIEN NATURAL JOIN UTILISATEUR WHERE iden=:id');
         $reqId->bindParam(":id", $idUser, PDO::PARAM_STR);
         $reqId->execute();
         $IdG = $reqId->fetchAll();
@@ -27,12 +27,15 @@ $role = $tout[0][0]; ?>
 
         ?>
             <div id="info-compte">
-                <p>
-                    Identifiant :
-                    Nom :
-                    
-                    
-                </p>
+                    <?php $donnees = $toutArt[0]; ?>
+                    <p>
+                        Identifiant : <?php echo $idUser; ?><br>
+                        Nom du groupe : <?php echo $donnees['nomG']; ?><br>
+                        Mail : <?php echo $donnees['mail']; ?><br>
+                        Nombre de technicien : <?php echo $donnees['nbTechG']; ?><br>
+                        Nombre de personne dans le groupe : <?php echo $donnees['nbPersG']; ?><br>
+                    </p>
+                <?php  ?>
             </div>
             <form id="Changement de mot de passe" method="POST" action="<?php VIEWS_PATH; ?>/Cmdp">
                 <input type="submit" value="Changer son mot de passe" />
@@ -54,7 +57,7 @@ $role = $tout[0][0]; ?>
 
     ?>
     </main>
-    <?php include "basPage.php"; ?>
+    <?php require_once "basPage.php"; ?>
 </body>
 
 </html>
