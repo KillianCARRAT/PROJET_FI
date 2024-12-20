@@ -16,8 +16,6 @@ $arrive = $_POST["arrive"];
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <?php require_once "cote.php" ?>
@@ -39,17 +37,18 @@ $arrive = $_POST["arrive"];
 
         $table = $bdd->prepare("select * from SalleTemp");
         $table->execute();
-
-
         ?>
+
         <table id="tableau">
-            <tr>
-                <td scope="col">Selectionnez une salle</td>
-                <td scope="col">Nom de la salle</td>
-                <td scope="col">Longueur</td>
-                <td scope="col">Largeur</td>
-                <td scope="col">Nombre de place</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th scope="col">Selectionnez une salle</th>
+                    <th scope="col">Nom de la salle</th>
+                    <th scope="col">Longueur</th>
+                    <th scope="col">Largeur</th>
+                    <th scope="col">Nombre de place</th>
+                </tr>
+            </thead>
             <form method="POST" action="creer_specacle">
                 <?php
                 while ($row = $table->fetch()) {
@@ -71,10 +70,6 @@ $arrive = $_POST["arrive"];
         <input type="hidden" name="heure" value=<?php echo htmlspecialchars($heure); ?>>
         <input type="hidden" name="duree" value=<?php echo htmlspecialchars($duree); ?>>
         <input type="hidden" name="arrive" value=<?php echo htmlspecialchars($arrive); ?>>
-
-
-
-
 
 
         <button id="bouton" type="submit" class="bouton-bas">Ajouter le spectacle</button>

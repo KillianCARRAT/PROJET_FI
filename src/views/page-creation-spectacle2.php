@@ -1,9 +1,7 @@
 <?php $title = 'Create_Spec';
 $lesCSS = ["page-creation-spectacle2", "basPage", "cote"];
-require_once 'head.php'; ?>
-<!DOCTYPE html>
-<html lang="fr">
-=
+?>
+<?php require_once 'head.php'; ?>
 
 <body id="corps-principal">
     <?php require_once "cote.php" ?>
