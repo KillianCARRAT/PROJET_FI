@@ -1,9 +1,10 @@
 <?php
-
 use src\controllers\Database;
-$bdd = Database::getConnection();
+$_SESSION["bd"] = Database::getConnection();
 
 session_start();
+
+$bdd = $_SESSION["bd"];
 
 $id = $_POST['ident'];
 $mdp_code = $_POST['passwd'];
