@@ -1,8 +1,9 @@
 <?php
-use src\controllers\Database;
-$_SESSION["bd"] = Database::getConnection();
 
 session_start();
+
+use src\controllers\Database;
+$_SESSION["bd"] = Database::getConnection();
 
 $bdd = $_SESSION["bd"];
 
