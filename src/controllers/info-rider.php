@@ -51,5 +51,6 @@ if ($checkHotel == "on") {
 }
 
 // DIV DROITE (a faire : recuperation données; insertion BD; etc.)
+$infoRider = array_filter($_POST, 'is_array');
 
 ?>

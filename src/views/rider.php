@@ -60,7 +60,7 @@ require_once 'head.php';
                         <?php while ($mate = $mat->fetch()) { ?>
                             <tr>
                                 <td>
-                                    <select name="type[]">
+                                    <select name="type">
                                         <option value="instrument" <?php echo $mate['typeM'] === 'Instrument' ? 'selected' : ''; ?>>Instrument</option>
                                         <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>
                                             Câble</option>
@@ -69,15 +69,15 @@ require_once 'head.php';
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text" name="nom[]"
+                                    <input type="text" name="nom"
                                         value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
                                 </td>
                                 <td class="chk-container">
-                                    <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
+                                    <input type="checkbox" name="besoin" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
                                 </td>
                                 <td>
-                                    <input type="number" name="quantite[]"
-                                        value="<?php echo htmlspecialchars($mate['quantite'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>"
+                                    <input type="number" name="qte"
+                                        value="<?php echo htmlspecialchars($mate['qte'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>"
                                         min="0">
                                 </td>
                             </tr>
@@ -122,6 +122,7 @@ require_once 'head.php';
                     const option = document.createElement('option');
                     option.value = optionText.toLowerCase();
                     option.textContent = optionText;
+                    option.name = 'type[]';
                     typeSelect.appendChild(option);
                 });
 
@@ -131,6 +132,7 @@ require_once 'head.php';
                 const nameInput = document.createElement('input');
                 nameInput.type = 'text';
                 nameInput.placeholder = 'Nom du matériel';
+                nameInput = 'nom[]'
                 nameCell.appendChild(nameInput);
 
                 const besoinCell = document.createElement('td');
