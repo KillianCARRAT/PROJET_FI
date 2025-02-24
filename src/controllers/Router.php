@@ -7,8 +7,6 @@ class Router
 
     public function handleRequest()
     {
-        session_start();
-
         $data = $_SERVER['REQUEST_URI'];
         $data = str_replace('/PROJET_FI', '', $data);
         $requestUri = explode("?", $data);
@@ -29,10 +27,9 @@ class Router
                 require_once VIEWS_PATH . '/List_asso.php';
                 break;
 
-
-                case '/crea_Asso':
-                    require_once CONTROLLERS_PATH . '/crea_Asso.php';
-                    break;
+            case '/crea_Asso':
+                require_once CONTROLLERS_PATH . '/crea_Asso.php';
+                break;
 
             case "/Compte":
                 require_once VIEWS_PATH . '/compte.php';
