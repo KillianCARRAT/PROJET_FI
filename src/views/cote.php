@@ -10,6 +10,8 @@
         $tout = $reqType->fetchAll();
         $role = $tout[0][0];
 
+
+        error_log("\n\n" . 'Role : ' . $role);
         /* Affichage ASIDE de l'art*/
         if ($role == "ART") {
             $reqId = $bdd->prepare('SELECT idG FROM LIEN WHERE iden=:id');
