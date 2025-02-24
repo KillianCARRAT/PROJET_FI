@@ -2,8 +2,10 @@
     <div>
         <?php
         session_start();
-
+        use src\controllers\Database;
+        $bdd = Database::getConnection();
         $idUser = $_SESSION["idUser"];
+
         $reqType = $bdd->prepare('SELECT typeU FROM UTILISATEUR WHERE iden=:id');
         $reqType->bindParam(":id", $idUser, PDO::PARAM_STR);
         $reqType->execute();
@@ -11,7 +13,6 @@
         $role = $tout[0][0];
 
 
-        error_log("\n\n" . 'Role : ' . $role);
         /* Affichage ASIDE de l'art*/
         if ($role == "ART") {
             $reqId = $bdd->prepare('SELECT idG FROM LIEN WHERE iden=:id');

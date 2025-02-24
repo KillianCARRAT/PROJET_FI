@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 $id_cpt = $_SESSION['idUser'];
 $title = 'Compte';
 $lesCSS = ["basPage", "cote", "compte"];

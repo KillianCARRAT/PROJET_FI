@@ -1,2 +1,3 @@
-<?php header("Location: /");
-session_destroy();
+<?php session_destroy();
+header("Location: /");
+
