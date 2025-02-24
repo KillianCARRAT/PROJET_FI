@@ -1,5 +1,6 @@
 <?php
-$bdd = $_SESSION["bd"];
+use src\controllers\Database;
+$bdd = Database::getConnection();
 
 // DIV GAUCHE
 

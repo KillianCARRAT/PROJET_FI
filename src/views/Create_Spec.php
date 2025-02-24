@@ -1,7 +1,7 @@
 <?php $title = 'Create_Spec';
 $lesCSS = ["Create_Spec", "basPage", "cote"];
 require_once 'head.php';
-session_start();
+
 $fail = isset($_SESSION["mauvais_art"]) ? $_SESSION["mauvais_art"] : false;
 unset($_SESSION["mauvais_art"]);
 ?>
