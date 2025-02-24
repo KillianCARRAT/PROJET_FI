@@ -53,4 +53,39 @@ if ($checkHotel == "on") {
 // DIV DROITE (a faire : recuperation données; insertion BD; etc.)
 $infoRider = array_filter($_POST, 'is_array');
 
+for($i = 0; $i <count($infoRider); ++$i) {
+
+    $typeM = $infoRider['type'][0];
+    $nomM = $infoRider['nom'][0];
+    $qte = $infoRider['quantite'][0];
+
+    if($infoRider['besoin'] = 1) {
+
+        $reqType = $bdd->prepare('INSERT INTO MATERIEL VALUES (:nomM, :typeM, :idG, null, null)');
+        $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
+        $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
+        $reqType->bindParam(":qte", $qte, PDO::PARAM_STR);
+        $reqType->bindParam(":idG", $idG, PDO::PARAM_STR);
+        $reqType->execute();
+
+    } else {
+
+        $reqB = $bdd->prepare('SELECT qte FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
+        $reqB->bindParam(":typeM", $typeM, PDO::PARAM_STR);
+        $reqB->bindParam(":nomM", $nomM, PDO::PARAM_STR);
+        $reqB->execute();
+        $qteMat = $reqB->fetch();
+
+        if ($qteMat > $qte) {
+            $qteAjoute = $qte-$qteMat;
+
+            $reqType = $bdd->prepare('INSERT INTO BESOIN VALUES (:, :nomM, :typeM, :idG, null, null)');
+            $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
+            $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
+            $reqType->bindParam(":qte", $qte, PDO::PARAM_STR);
+            $reqType->bindParam(":idG", $idG, PDO::PARAM_STR);
+            $reqType->execute();
+        }
+    }
+}
 ?>
