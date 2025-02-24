@@ -1,7 +1,6 @@
 <?php
-$bdd = $_SESSION["bd"];
-
-session_start();
+use src\controllers\Database;
+$bdd = Database::getConnection();
 
 $iden = $_POST["identifiant"];
 $mdp = $_POST["mot_de_passe"];
