@@ -1,15 +1,9 @@
 <?php
-
-session_start();
-
 use src\controllers\Database;
-$_SESSION["bd"] = Database::getConnection();
-
-$bdd = $_SESSION["bd"];
+$bdd = Database::getConnection();
 
 $id = $_POST['ident'];
 $mdp_code = $_POST['passwd'];
-
 
 $reqType = $bdd->prepare('SELECT typeU, mdp FROM UTILISATEUR WHERE iden=:id');
 $reqType->bindParam(":id", $id, PDO::PARAM_STR);
