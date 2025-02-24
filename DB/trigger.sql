@@ -367,6 +367,8 @@ delimiter ;
 --procédure qui fait la  liste des salles disponible pour une heure et une date
 DELIMITER |
 CREATE OR REPLACE PROCEDURE salles_dispo(
+    IN arrive TIME,
+    IN duree TIME,
     IN heure TIME, 
     IN jour DATE, 
     IN place VARCHAR(255), 
@@ -392,8 +394,8 @@ BEGIN
             FROM CONCERT C
             WHERE C.dateC = jour
               AND (
-                    (heure BETWEEN C.heureArrive AND ADDTIME(C.debutConcert, C.dureeConcert))
-                    OR (C.heureArrive BETWEEN heure AND ADDTIME(heure, '01:00:00'))
+                    (arrive BETWEEN C.heureArrive AND ADDTIME(C.debutConcert, C.dureeConcert))
+                    OR (C.heureArrive BETWEEN arrive AND ADDTIME(heure, duree))
                 )
         )
         AND S.typePlaceS = place
@@ -428,3 +430,7 @@ BEGIN
     CLOSE sallesLibres;
 END |
 DELIMITER ;
+
+
+
+

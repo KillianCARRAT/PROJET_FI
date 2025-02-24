@@ -13,7 +13,11 @@ $heure = $_POST["heure"];
 $duree = $_POST["duree"];
 $arrive = $_POST["arrive"];
 
+$infos = false;
+
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -25,8 +29,10 @@ $arrive = $_POST["arrive"];
     <main>
 
         <?php
-        $procedure = "call salles_dispo(:heure,:jour,:type,:nb,:longueur,:largeur)";
+        $procedure = "call salles_dispo(:arrive,:duree,:heure,:jour,:type,:nb,:longueur,:largeur)";
         $execution = $bdd->prepare($procedure);
+        $execution->bindParam(':arrive', $arrive, PDO::PARAM_STR);
+        $execution->bindParam(':duree', $duree, PDO::PARAM_STR);
         $execution->bindParam(':heure', $heure, PDO::PARAM_STR);
         $execution->bindParam(':jour', $date, PDO::PARAM_STR);
         $execution->bindParam(':nb', $nbPers, PDO::PARAM_STR);
@@ -52,10 +58,11 @@ $arrive = $_POST["arrive"];
             <form method="POST" action="creer_specacle">
                 <?php
                 while ($row = $table->fetch()) {
+                    $infos = true;
                 ?>
 
                     <tr>
-                        <td><input type="radio" name="nomS" classe="nomS" value="<?php echo htmlspecialchars($row["nomS"]); ?>"></td>
+                        <td><input type="radio" name="nomS" classe="nomS" value="<?php echo htmlspecialchars($row["nomS"]); ?>" required></td>
                         <td><?php echo htmlspecialchars($row["nomS"]); ?></td>
                         <td><?php echo htmlspecialchars($row["longueurS"]); ?></td>
                         <td><?php echo htmlspecialchars($row["largeurS"]); ?></td>
@@ -71,9 +78,16 @@ $arrive = $_POST["arrive"];
         <input type="hidden" name="duree" value=<?php echo htmlspecialchars($duree); ?>>
         <input type="hidden" name="arrive" value=<?php echo htmlspecialchars($arrive); ?>>
 
+        <?php
+        if ($infos) {
+            echo '<button id="bouton" type="submit" class="bouton-bas">Ajouter le spectacle</button>';
+        } else {
+            echo '<button id="bouton" type="button" class="bouton-bas" onclick="window.location = \'Create_Spec2\'">Retour</button>';
+        }
+        ?>
 
-        <button id="bouton" type="submit" class="bouton-bas">Ajouter le spectacle</button>
         </form>
+
     </main>
 </body>
 <?php require_once "basPage.php" ?>
