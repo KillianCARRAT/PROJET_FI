@@ -10,8 +10,8 @@ $demandeP = $_POST["demandeP"];
 $idC = $_POST["idC"];
 $idG = $_POST["idG"];
 
-$checkVehicule = $_POST["vehicule"];
-$checkHotel = $_POST["hotel"];
+$checkVehicule = $_POST["vehicule"] ?? NULL;
+$checkHotel = $_POST["hotel"] ?? NULL;
 
 if ($checkVehicule == "on") {
     $adresseV = $_POST["adresse"];
@@ -25,10 +25,10 @@ if ($checkHotel == "on") {
     $demandeH = null;
 }
 
-$updateConcert = $bdd->prepare('UPDATE CONCERT SET besoinTransport=":bTransport", besoinHotel=":bHotel" WHERE idC=:idC');
+$updateConcert = $bdd->prepare('UPDATE CONCERT SET besoinTransport=:bTransport, besoinHotel=:bHotel WHERE idC=:idC');
 $updateConcert->bindParam("bTransport", $adresseV, PDO::PARAM_STR);
 $updateConcert->bindParam("bHotel", $demandeH, PDO::PARAM_STR);
-$updateConcert->bindParam("idC", $idC, PDO::PARAM_STR);
+$updateConcert->bindParam("idC", $idC, PDO::PARAM_INT);
 $updateConcert->execute();
 
 // DIV DROITE
@@ -46,8 +46,8 @@ for($i = 0; $i <count($infoRider); ++$i) {
         $reqType = $bdd->prepare('INSERT INTO MATERIEL VALUES (:nomM, :typeM, :idG, null, null)');
         $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
         $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
-        $reqType->bindParam(":qte", $qte, PDO::PARAM_STR);
-        $reqType->bindParam(":idG", $idG, PDO::PARAM_STR);
+        $reqType->bindParam(":qte", $qte, PDO::PARAM_INT);
+        $reqType->bindParam(":idG", $idG, PDO::PARAM_INT);
         $reqType->execute();
 
     } else {
@@ -61,7 +61,7 @@ for($i = 0; $i <count($infoRider); ++$i) {
         if ($qteMat > $qte) {
             $qteAjoute = $qte-$qteMat;
 
-            $reqType = $bdd->prepare('INSERT INTO MATERIEL VALUES (:nomM, :typeM, null, null, null)');
+            $reqType = $bdd->prepare('INSERT INTO MATERIEL VALUES (:nomM, :typeM, null, null)');
             $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
             $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
             $reqType->execute();
@@ -72,9 +72,9 @@ for($i = 0; $i <count($infoRider); ++$i) {
             $idM = $reqType->fetch();
 
             $reqType = $bdd->prepare('INSERT INTO BESOIN VALUES (:idC, :idM, :nbBesoin)');
-            $reqType->bindParam(":idC", $idC, PDO::PARAM_STR);
-            $reqType->bindParam(":idM", $idM, PDO::PARAM_STR);
-            $reqType->bindParam(":nbBesoin", $qteAjoute, PDO::PARAM_STR);
+            $reqType->bindParam(":idC", $idC, PDO::PARAM_INT);
+            $reqType->bindParam(":idM", $idM, PDO::PARAM_INT);
+            $reqType->bindParam(":nbBesoin", $qteAjoute, PDO::PARAM_INT);
             $reqType->execute();
         }
     }
