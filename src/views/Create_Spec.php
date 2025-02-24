@@ -1,14 +1,13 @@
 <?php $title = 'Create_Spec';
 $lesCSS = ["Create_Spec", "basPage", "cote"];
 require_once 'head.php';
-session_start();
 $fail = isset($_SESSION["mauvais_art"]) ? $_SESSION["mauvais_art"] : false;
-unset($_SESSION["mauvais_art"]);
 ?>
 
 <body>
     <?php require_once "cote.php" ?>
     <main id="creat-spec">
+        <h1><?php print_r($_SESSION) ?></h1>
         <h1>Créé un nouveau spectacle</h1>
         <section class="form-section">
             <form method="POST" action="verif_artiste">
