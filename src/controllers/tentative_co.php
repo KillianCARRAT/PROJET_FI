@@ -5,7 +5,6 @@ $bdd = Database::getConnection();
 $id = $_POST['ident'];
 $mdp_code = $_POST['passwd'];
 
-
 $reqType = $bdd->prepare('SELECT typeU, mdp FROM UTILISATEUR WHERE iden=:id');
 $reqType->bindParam(":id", $id, PDO::PARAM_STR);
 $reqType->execute();
@@ -14,8 +13,6 @@ $role = $row["typeU"];
 $bd_mdp = $row["mdp"];
 
 $_SESSION["idUser"] = $id;
-
-error_log("\n\n" . 'idUser : ');
 
 
 if (password_verify($mdp_code, $bd_mdp)) {
