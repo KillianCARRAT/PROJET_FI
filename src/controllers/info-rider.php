@@ -1,6 +1,6 @@
 <?php
 use src\controllers\Database;
-        $bdd = Database::getConnection();
+$bdd = Database::getConnection();
 
 // tant que ce controlleur ne renvoi pas vers une autre page avec les infos
 
