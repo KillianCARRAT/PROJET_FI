@@ -1,6 +1,6 @@
 <?php
 use src\controllers\Database;
-        $bdd = Database::getConnection();
+$bdd = Database::getConnection();
 
 $id = $_POST['ident'];
 $new_mdp = $_POST['new-passwd'];
