@@ -1,6 +1,6 @@
 <?php
 use src\controllers\Database;
-        $bdd = Database::getConnection();
+$bdd = Database::getConnection();
 
 $iden = $_POST["identifiant"];
 $mdp = $_POST["mot_de_passe"];
