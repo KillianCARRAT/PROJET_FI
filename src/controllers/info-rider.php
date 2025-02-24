@@ -6,6 +6,8 @@ $bdd = $_SESSION["bd"];
 $nom = $_POST["nom"];
 $date = $_POST["date"];
 $demandeP = $_POST["demandeP"];
+$idC = $_POST["idC"];
+$idG = $_POST["idG"];
 
 $checkVehicule = $_POST["vehicule"];
 $checkHotel = $_POST["hotel"];
@@ -21,6 +23,12 @@ if ($checkHotel == "on") {
 } else {
     $demandeH = null;
 }
+
+$updateConcert = $bdd->prepare('UPDATE CONCERT SET besoinTransport=":bTransport", besoinHotel=":bHotel" WHERE idC=:idC');
+$updateConcert->bindParam("bTransport", $adresseV, PDO::PARAM_STR);
+$updateConcert->bindParam("bHotel", $demandeH, PDO::PARAM_STR);
+$updateConcert->bindParam("idC", $idC, PDO::PARAM_STR);
+$updateConcert->execute();
 
 // DIV DROITE
 
@@ -70,6 +78,7 @@ for($i = 0; $i <count($infoRider); ++$i) {
         }
     }
 }
+
 // redirection en fonction du type
 
 $id = $_SESSION["idUser"];

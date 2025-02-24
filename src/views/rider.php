@@ -22,6 +22,8 @@ require_once 'head.php';
                     <label class="gras" for="titre">Nom</label>
                     <p><?php echo $donnees['nomG']; ?></p>
                     <input type="hidden" name="nom" id="nom" value="<?php $donnees['nomG']; ?>">
+                    <input type="hidden" name="idG" id="idG" value="<?php $donnees['idG']; ?>">
+                    <input type="hidden" name="idC" id="idC" value="<?php $idC; ?>">
 
 
                     <label class="gras" for="date-repr">Date de représentation</label>
