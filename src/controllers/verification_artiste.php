@@ -1,8 +1,8 @@
 <?php
-session_start(); // Démarre la session
 
 // Connexion à la base de données
-$bdd = $_SESSION["bd"];
+use src\controllers\Database;
+        $bdd = Database::getConnection();
 
 // Vérifie si les données du formulaire existent
 if (isset($_POST['nom-Art'], $_POST['date-Rep'], $_POST['heure-Rep'])) {

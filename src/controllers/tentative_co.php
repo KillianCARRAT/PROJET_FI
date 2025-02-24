@@ -1,11 +1,6 @@
 <?php
-
-session_start();
-
 use src\controllers\Database;
-$_SESSION["bd"] = Database::getConnection();
-
-$bdd = $_SESSION["bd"];
+$bdd = Database::getConnection();
 
 $id = $_POST['ident'];
 $mdp_code = $_POST['passwd'];
@@ -19,6 +14,8 @@ $role = $row["typeU"];
 $bd_mdp = $row["mdp"];
 
 $_SESSION["idUser"] = $id;
+
+error_log("\n\n" . 'idUser : ');
 
 
 if (password_verify($mdp_code, $bd_mdp)) {
