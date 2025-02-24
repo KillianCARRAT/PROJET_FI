@@ -1,10 +1,10 @@
 <?php
-session_start(); // Démarre la session
 
 // Connexion à la base de données
 
 use src\controllers\Database;
 $bdd = Database::getConnection();
+
 
 // Vérifie si les données du formulaire existent
 

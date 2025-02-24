@@ -52,10 +52,10 @@ $arrive = $_POST["arrive"];
             <form method="POST" action="creer_specacle">
                 <?php
                 while ($row = $table->fetch()) {
-                    ?>
+                ?>
 
                     <tr>
-                        <td><input type="radio" name="nomS" classe="nomS" value=<?php echo htmlspecialchars($row["nomS"]); ?>></td>
+                        <td><input type="radio" name="nomS" classe="nomS" value="<?php echo htmlspecialchars($row["nomS"]); ?>"></td>
                         <td><?php echo htmlspecialchars($row["nomS"]); ?></td>
                         <td><?php echo htmlspecialchars($row["longueurS"]); ?></td>
                         <td><?php echo htmlspecialchars($row["largeurS"]); ?></td>
