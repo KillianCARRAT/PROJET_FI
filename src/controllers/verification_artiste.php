@@ -2,7 +2,7 @@
 
 // Connexion à la base de données
 use src\controllers\Database;
-        $bdd = Database::getConnection();
+$bdd = Database::getConnection();
 
 // Vérifie si les données du formulaire existent
 if (isset($_POST['nom-Art'], $_POST['date-Rep'], $_POST['heure-Rep'])) {
