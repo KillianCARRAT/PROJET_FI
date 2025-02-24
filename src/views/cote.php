@@ -5,7 +5,7 @@
         use src\controllers\Database;
         $bdd = Database::getConnection();
         $idUser = $_SESSION["idUser"];
-        error_log("\n\n" . 'idUser : ' . $idUser);
+
         $reqType = $bdd->prepare('SELECT typeU FROM UTILISATEUR WHERE iden=:id');
         $reqType->bindParam(":id", $idUser, PDO::PARAM_STR);
         $reqType->execute();
