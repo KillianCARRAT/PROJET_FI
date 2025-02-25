@@ -1,9 +1,12 @@
 <?php $title = 'Create_Spec';
 $lesCSS = ["Create_Spec", "basPage", "cote"];
 require_once 'head.php';
-session_start();
-$fail = isset($_SESSION["mauvais_art"]) ? $_SESSION["mauvais_art"] : false;
-unset($_SESSION["mauvais_art"]);
+
+$procedure="select idG,nomG from GROUPE";
+$execusion=$bdd->prepare($procedure);
+$execusion->execute();
+
+
 ?>
 
 <body>
@@ -13,7 +16,15 @@ unset($_SESSION["mauvais_art"]);
         <section class="form-section">
             <form method="POST" action="verif_artiste">
                 <label for="nom-Art">Nom du groupe</label>
-                <input type="text" id="nom-Art" name="nom-Art" required>
+                <?php
+                echo "<select id='nom-Art' name='nom-Art' required>";
+                echo "<option value=''>Choisir un artiste</option>";
+                while($row=$execusion->fetch()){
+                    echo "<option value=".$row["idG"].">".$row["nomG"]."</option>";
+
+                }
+                echo "</select>";
+                ?>
 
                 <label for="date-Rep">Date de représentation</label>
                 <input type="date" id="date-Rep" name="date-Rep" required>
@@ -26,10 +37,6 @@ unset($_SESSION["mauvais_art"]);
 
                 <label for="heure-arrivé">Heure arrivée artistes</label>
                 <input type="time" id="heure-arrivé" name="heure-arrivé" required>
-
-                <?php if ($fail): ?>
-                    <p class="fail">Le groupe n'existe pas, veuillez le créer au préalable.</p>
-                <?php endif; ?>
 
                 <div id="boutons">
                     <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>

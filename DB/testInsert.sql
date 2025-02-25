@@ -26,8 +26,8 @@ VALUES (1, "Guitare électrique", "Instrument", 1, 1),
 
 -- Insertion dans la table CONCERT
 INSERT INTO CONCERT (idC, dateC, heureArrive, debutConcert, dureeConcert, idG, idS) 
-VALUES (1, "2024-10-25", "19:00:00", "20:00:00", "02:00:00",STR_TO_DATE("10/01/2025", "%d/%m/%Y"), 1, 1),
-       (2, "2024-10-26", "18:00:00", "19:00:00", "01:30:00",STR_TO_DATE("10/01/2025", "%d/%m/%Y"), 2, 2);
+VALUES (1, "2024-10-25", "19:00:00", "20:00:00", "02:00:00",STR_TO_DATE("10/01/2025", "%d/%m/%Y"),10, 1, 1),
+       (2, "2024-10-26", "18:00:00", "19:00:00", "01:30:00",STR_TO_DATE("10/01/2025", "%d/%m/%Y"),15, 2, 2);
 
 -- Insertion dans la table COMMENTAIRE
 INSERT INTO COMMENTAIRE (idCom, msg, idC) 

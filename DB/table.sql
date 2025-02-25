@@ -36,14 +36,11 @@ CREATE TABLE HEBERGEMENT (
 );
 
 CREATE TABLE MATERIEL (
-    idM INT PRIMARY KEY,
+    idM INT PRIMARY KEY AUTO_INCREMENT,
     nomM VARCHAR(50),
     typeM VARCHAR(50),
-    idG INT,
-    idS INT,
-    FOREIGN KEY(idG) REFERENCES GROUPE(idG),
-    FOREIGN KEY(idS) REFERENCES SALLE(idS)
-);
+    qteAsso INT
+    );
 
 
 CREATE TABLE CONCERT (
@@ -52,6 +49,9 @@ CREATE TABLE CONCERT (
     heureArrive TIME,
     debutConcert TIME,
     dureeConcert TIME,
+    besoinTransport VARCHAR(50),
+    besoinHotel VARCHAR(50),
+    nombreTechNecessaire INT,
     dateMax DATE,
     idG INT NOT NULL,
     idS INT NOT NULL,
@@ -63,8 +63,27 @@ CREATE TABLE CONCERT (
 CREATE TABLE BESOIN (
     idC INT,
     idM INT,
+    nbBesoin INT,
     PRIMARY KEY (idC,idM),
     FOREIGN KEY(idC) REFERENCES CONCERT(idC),
+    FOREIGN KEY(idM) REFERENCES MATERIEL(idM)
+);
+
+CREATE TABLE AVOIRGROUPE (
+    idG INT,
+    idM INT,
+    qte INT,
+    PRIMARY KEY (idG,idM),
+    FOREIGN KEY(idG) REFERENCES GROUPE(idG),
+    FOREIGN KEY(idM) REFERENCES MATERIEL(idM)
+);
+
+CREATE TABLE AVOIRSALLE (
+    idS INT,
+    idM INT,
+    qte INT,
+    PRIMARY KEY (idS,idM),
+    FOREIGN KEY(idS) REFERENCES SALLE(idS),
     FOREIGN KEY(idM) REFERENCES MATERIEL(idM)
 );
 

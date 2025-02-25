@@ -1,7 +1,94 @@
 <?php
-$bdd = $_SESSION["bd"];
+use src\controllers\Database;
+$bdd = Database::getConnection();
 
-// tant que ce controlleur ne renvoi pas vers une autre page avec les infos
+// DIV GAUCHE
+
+print_r($_POST);
+
+$nom = $_POST["nom"];
+$date = $_POST["date"];
+$demandeP = $_POST["demandeP"];
+$idC = $_POST["idC"];
+$idG = $_POST["idG"];
+
+print_r("11111111111");
+print_r($idG);
+
+$checkVehicule = $_POST["vehicule"] ?? NULL;
+$checkHotel = $_POST["hotel"] ?? NULL;
+
+if ($checkVehicule == "on") {
+    $adresseV = $_POST["adresse"];
+} else {
+    $adresseV = null;
+}
+
+if ($checkHotel == "on") {
+    $demandeH = $_POST["demande-hotel"];
+} else {
+    $demandeH = null;
+}
+
+$updateConcert = $bdd->prepare('UPDATE CONCERT SET besoinTransport=:bTransport, besoinHotel=:bHotel WHERE idC=:idC');
+$updateConcert->bindParam("bTransport", $adresseV, PDO::PARAM_STR);
+$updateConcert->bindParam("bHotel", $demandeH, PDO::PARAM_STR);
+$updateConcert->bindParam("idC", $idC, PDO::PARAM_INT);
+$updateConcert->execute();
+
+// DIV DROITE
+
+$infoRider = array_filter($_POST, 'is_array');
+
+
+for($i = 0; $i <count($infoRider); ++$i) {
+
+    $typeM = $infoRider['type'][$i];
+    $nomM = $infoRider['nom'][$i];
+    $qte = $infoRider['quantite'][$i];
+
+    $reqB = $bdd->prepare('SELECT * FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
+    $reqB->bindParam(":typeM", $typeM, PDO::PARAM_STR);
+    $reqB->bindParam(":nomM", $nomM, PDO::PARAM_STR);
+    $reqB->execute();
+    $nu = $reqB->fetch();
+
+    if (is_null($nu)){
+        $reqType = $bdd->prepare('INSERT INTO MATERIEL (nomM, typeM) VALUES (:nomM, :typeM)');
+        $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
+        $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
+        $reqType->execute();}
+
+    print_r("\n");
+    print_r($typeM);
+    print_r($nomM);
+    $reqId = $bdd->prepare('SELECT idM FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
+    $reqId->bindParam(":typeM", $typeM, PDO::PARAM_STR);
+    $reqId->bindParam(":nomM", $nomM, PDO::PARAM_STR);
+    $reqId->execute();
+    $idM = $reqId->fetch();
+
+
+
+    if($infoRider['besoin'][$i] == 1) {
+        $reqType = $bdd->prepare('INSERT INTO AVOIRGROUPE (idM, qte, idG) VALUES ( :idM, :qte, :idG)');
+        $reqType->bindParam(":idM", $idM, PDO::PARAM_STR);
+        $reqType->bindParam(":qte", $qte, PDO::PARAM_INT);
+        $reqType->bindParam(":idG", $idG, PDO::PARAM_INT);
+        $reqType->execute();
+    }
+
+    print_r("------");
+    print_r($idM);
+    $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
+    $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
+    $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
+    $insererBesoin->bindParam(":nbBesoin", $qte, PDO::PARAM_INT);
+    $insererBesoin->execute();
+
+    }
+
+// redirection en fonction du type
 
 $id = $_SESSION["idUser"];
 $reqType = $bdd->prepare('SELECT typeU FROM UTILISATEUR WHERE iden=:id');
@@ -28,32 +115,4 @@ switch ($role) {
         header("Location : /");
         exit;
 }
-
-// DIV GAUCHE (pratiquement fini)
-
-$nom = $_POST["nom"];
-$date = $_POST["date"];
-$demandeP = $_POST["demandeP"];
-
-error_log("\n\n");
-error_log(print_r($nom));
-error_log("\n\n");
-
-$checkVehicule = $_POST["vehicule"];
-$checkHotel = $_POST["hotel"];
-
-if ($checkVehicule == "on") {
-    $adresseV = $_POST["adresse"];
-} else {
-    $adresseV = null;
-}
-
-if ($checkHotel == "on") {
-    $demandeH = $_POST["demande-hotel"];
-} else {
-    $demandeH = null;
-}
-
-// DIV DROITE (a faire : recuperation données; insertion BD; etc.)
-
 ?>
