@@ -6,7 +6,7 @@ $idC = $_GET['concert'];
 
 ?>
 
-<body>
+<body id="body-plan-feu">
     <main id="main-plan-feu">
         <h1>Fiche plan-feu</h1>
 
