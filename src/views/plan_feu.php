@@ -16,16 +16,18 @@ $idC = $_GET['concert'];
         <!-- Zone des objets à droite -->
         <div class="objects">
             <?php
-            $reqB = $bdd->prepare('SELECT nomM, typeM, qteAsso FROM MATERIEL NATURAL JOIN BESOIN WHERE idC = 1');
+            $reqB = $bdd->prepare('SELECT nomM, typeM, nbBesoin FROM MATERIEL NATURAL JOIN BESOIN WHERE idC = 1');
             //$reqB->bindParam(":idC", $idC, PDO::PARAM_STR);
             $reqB->execute();
             while ($mat = $reqB->fetch()) { 
                 if ($reqB){
                     $nomM = $mat['nomM'];
-                    $typeM = $mat['typeM'];
-                    $qte = $mat['qte'];
-                    $classType = ($typeM == 'img') ? 'img' : $typeM;
-                    echo '<div class="object ' . $classType . '" draggable="true" data-name="' . $nomM . '" data-qte="' . $qte . '">' . $nomM . ' (' . $qte . ')</div>';
+                    $typeM = strtolower($mat['typeM']);
+                    $qte = $mat['nbBesoin'];
+                    echo "<section id='section'>";
+                    echo '<p class="quantity-display" data-name="'.$nomM.'">'.$qte.'X</p>'; //Ajout d'un `data-name`
+                    echo '<div id="multiplicateur" class="object base '.$typeM.'" draggable="true" data-qte="'.$qte.'" data-name="' . $nomM . '" data-type="'.$typeM.'">' . $nomM .'</div>';
+                    echo "</section>";
                 }
             }
             ?>

@@ -24,7 +24,8 @@ body {
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    width: 150px;
+    width: 200px;
+    height: 60vh;
     padding: 10px;
     background: #f0f0f0;
     border: 2px solid #ccc;
@@ -32,11 +33,12 @@ body {
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
+    overflow: auto;
 }
 
 /* Objets à glisser */
 .object {
-    width: 50px;
+    width: 150px;
     height: 50px;
     margin: 10px;
     cursor: grab;
@@ -47,12 +49,20 @@ body {
     color: white;
     font-weight: bold;
     border-radius: 5px;
-    overflow-y: auto;
+    Text-align: center;
 }
 
-.base { background: red; }
-
-.object{background-color: red;}
 
 /* Quand on déplace un objet */
 .dragging { opacity: 0.5; }
+
+#section{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.object.audio { background-color: blue; }
+.object.instrument { background-color: green; }
+.object.son { background-color: red; }
+.object.cable { background-color: orange; }
+.object { background-color: red; }
