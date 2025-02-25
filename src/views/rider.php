@@ -21,10 +21,9 @@ require_once 'head.php';
 
                     <label class="gras" for="titre">Nom</label>
                     <p><?php echo $donnees['nomG']; ?></p>
-                    <input type="hidden" name="nom" id="nom" value="<?php $donnees['nomG']; ?>">
-                    <input type="hidden" name="idG" id="idG" value="<?php $donnees['idG']; ?>">
-                    <input type="hidden" name="idC" id="idC" value="<?php $idC; ?>">
-
+                    <input type="hidden" name="nom" id="nom" value="<?php echo $donnees['nomG']; ?>">
+                    <input type="hidden" name="idGroupe" id="idGroupe" value="<?php echo $donnees['idG']; ?>">
+                    <input type="hidden" name="idC" id="idC" value="<?php echo $donnees['idC']; ?>">
 
                     <label class="gras" for="date-repr">Date de représentation</label>
                     <p><?php echo $donnees['dateC']; ?></p>
@@ -48,7 +47,7 @@ require_once 'head.php';
                 </div>
                 <div class="grand" id="matériels">
                     <?php
-                    $mat = $bdd->prepare('SELECT typeM, nomM FROM CONCERT NATURAL JOIN MATERIEL WHERE idC = :id');
+                    $mat = $bdd->prepare('SELECT typeM, nomM, nbBesoin FROM BESOIN NATURAL JOIN MATERIEL WHERE idC = :id');
                     $mat->bindParam(":id", $idC, PDO::PARAM_STR);
                     $mat->execute();
                     ?>
@@ -118,6 +117,7 @@ require_once 'head.php';
 
                 const typeCell = document.createElement('td');
                 const typeSelect = document.createElement('select');
+                typeSelect.name = 'type[]';
 
                 const options = ['Instrument', 'Câble', 'Autres'];
                 options.forEach(optionText => {
@@ -134,7 +134,7 @@ require_once 'head.php';
                 const nameInput = document.createElement('input');
                 nameInput.type = 'text';
                 nameInput.placeholder = 'Nom du matériel';
-                nameInput = 'nom[]'
+                nameInput.name = 'nom[]'
                 nameCell.appendChild(nameInput);
 
                 const besoinCell = document.createElement('td');
