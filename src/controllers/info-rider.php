@@ -35,6 +35,10 @@ $nom = $_POST["nom"];
 $date = $_POST["date"];
 $demandeP = $_POST["demandeP"];
 
+error_log("\n\n");
+error_log(print_r($nom));
+error_log("\n\n");
+
 $checkVehicule = $_POST["vehicule"];
 $checkHotel = $_POST["hotel"];
 
