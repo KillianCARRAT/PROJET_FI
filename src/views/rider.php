@@ -74,7 +74,8 @@ require_once 'head.php';
                                         value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
                                 </td>
                                 <td class="chk-container">
-                                    <input type="checkbox" name="besoin" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
+                                    <input type="hidden" name="besoin[]" value="0">
+                                    <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
                                 </td>
                                 <td>
                                     <input type="number" name="qte"

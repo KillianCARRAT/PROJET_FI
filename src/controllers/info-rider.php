@@ -12,7 +12,6 @@ $idC = $_POST["idC"];
 $idG = $_POST["idG"];
 
 
-
 $checkVehicule = $_POST["vehicule"] ?? NULL;
 $checkHotel = $_POST["hotel"] ?? NULL;
 
@@ -58,10 +57,9 @@ for($i = 0; $i < count($infoRider['type']); $i++) {
         $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
         $reqType->execute();
     }
-    else {
-        error_log("insert pas");
-    }
-
+        else {
+            error_log("insert pas");
+        }
     $reqId = $bdd->prepare('SELECT idM FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
     $reqId->bindParam(":typeM", $typeM, PDO::PARAM_STR);
     $reqId->bindParam(":nomM", $nomM, PDO::PARAM_STR);
