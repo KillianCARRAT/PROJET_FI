@@ -1,12 +1,20 @@
-function updateValue() {
+function updateValueFromSlider() {
     let slider = document.getElementById('slider');
-    let sliderValue = document.getElementById('sliderValue');
+    let sliderInput = document.getElementById('sliderInput');
 
-    sliderValue.innerHTML = slider.value;
-
-    let sliderWidth = slider.offsetWidth - slider.clientLeft * 2;
-    let valuePosition = (slider.value - slider.min) / (slider.max - slider.min) * sliderWidth;
-    sliderValue.style.left = `${valuePosition}px`;
+    sliderInput.value = slider.value;
 }
 
-updateValue();
+function updateValueFromInput() {
+    let slider = document.getElementById('slider');
+    let sliderInput = document.getElementById('sliderInput');
+
+    let newValue = parseInt(sliderInput.value);
+    
+    if (!isNaN(newValue) && newValue >= slider.min && newValue <= slider.max) {
+        slider.value = newValue;
+    }
+}
+
+document.getElementById('slider').addEventListener('input', updateValueFromSlider);
+document.getElementById('sliderInput').addEventListener('input', updateValueFromInput);

@@ -10,11 +10,12 @@ $lesCSS = ["page-creation-spectacle2", "basPage", "cote"];
         <section class="form-section">
             <form id="formulaire" method="POST" action="salles_dipo">
                 <div id="nbpersslider">
-                    <label for="nombre-Pers" class="label">Nombre personnes</label>
-                    <div class="slider-container">
-                        <span id="sliderValue" class="slider-value">641</span>
-                        <input name="nbPers" type="range" id="slider" class="slider" min="0" max="1000" value="500"
-                            oninput="updateValue()">
+                    <div id="nbpersslider">
+                        <label for="nombre-Pers" class="label">Nombre personnes</label>
+                        <div class="slider-container">
+                            <input type="number" id="sliderInput" class="slider-value" min="0" max="1000" value="500">
+                            <input name="nbPers" type="range" id="slider" class="slider" min="0" max="1000" value="500">
+                        </div>
                     </div>
                 </div>
                 <div id="combobox">
