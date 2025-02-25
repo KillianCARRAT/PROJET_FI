@@ -60,11 +60,11 @@ input[type="number"]:focus, select:focus {
 
 /* Style du champ numérique */
 input[type="number"].slider-value {
-  width: 80px; /* Largeur fixe pour éviter l'effet de variation */
-  text-align: center; /* Centrer le texte */
-  font-size: 1em; /* Agrandir le texte */
+  width: 80px; 
+  text-align: center; 
+  font-size: 1em; 
   font-weight: bold;
-  border: 2px solid #5a67d8; /* Ajout d'un contour plus visible */
+  border: 2px solid #5a67d8; 
   color: #5a67d8;
   border-radius: 5px;
 }
