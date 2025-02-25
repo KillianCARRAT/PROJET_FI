@@ -59,9 +59,14 @@ for($i = 0; $i <count($infoRider); ++$i) {
     $reqId->bindParam(":nomM", $nomM, PDO::PARAM_STR);
     $reqId->execute();
     $idM = $reqId->fetch();
-
+    
+    error_log('idm');
     error_log(print_r($idM));
+    error_log('idm');
+
     error_log(print_r($qte));
+    error_log('idm');
+
     error_log(print_r($idG));
 
 
