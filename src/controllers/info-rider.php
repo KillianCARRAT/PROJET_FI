@@ -50,16 +50,15 @@ for($i = 0; $i < count($infoRider['type']); $i++) {
     $reqB->execute();
     $nu = $reqB->fetch();
 
+    // Fini
     if ($nu===false){
-        error_log("insert materiel");
         $reqType = $bdd->prepare('INSERT INTO MATERIEL (nomM, typeM) VALUES (:nomM, :typeM)');
         $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
         $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
         $reqType->execute();
     }
-        else {
-            error_log("insert pas");
-        }
+
+
     $reqId = $bdd->prepare('SELECT idM FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
     $reqId->bindParam(":typeM", $typeM, PDO::PARAM_STR);
     $reqId->bindParam(":nomM", $nomM, PDO::PARAM_STR);
@@ -75,6 +74,7 @@ for($i = 0; $i < count($infoRider['type']); $i++) {
         $reqInserAvoirGroupe->execute();
     }
 
+    error_log("\n\n Passer par ici \n\n");
     $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
     $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
     $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
