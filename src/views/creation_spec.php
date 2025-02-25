@@ -6,16 +6,10 @@ require_once "cote.php";
 
 $date = $_POST["date"];
 $heure = $_POST["heure"];
-$nomG = $_POST["nom"];
+$idG = $_POST["id"];
 $nomS = $_POST["nomS"];
 $duree = $_POST["duree"];
 $arrive = $_POST["arrive"];
-
-
-$execution = $bdd->prepare("Select idG from GROUPE where nomG=:nomG");
-$execution->bindParam(':nomG', $nomG, PDO::PARAM_STR);
-$execution->execute();
-$idG = $execution->fetchColumn();
 
 
 $execution = $bdd->prepare("Select idS from SALLE where nomS=:nomS");
