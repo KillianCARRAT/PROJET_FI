@@ -39,15 +39,6 @@ $infos = false;
         $nbTechniciens=$nbTechMin-$result["nbTechG"];
         $nbPersG=$result["nbPersG"];
 
-        error_log($id.'aaaaa');
-        error_log($nbTechniciens.'bbbbb');
-        error_log($result["nbTechG"].'cccccc');
-        error_log($nbTechMin.'ddddd');
-
-
-
-
-
         $procedure = "call salles_dispo(:nbArt,:nbTech,:arrive,:duree,:heure,:jour,:type,:nb,:longueur,:largeur)";
         $execution = $bdd->prepare($procedure);
         $execution->bindParam(':nbArt', $nbPersG, PDO::PARAM_STR);
@@ -98,6 +89,8 @@ $infos = false;
         <input type="hidden" name="heure" value=<?php echo htmlspecialchars($heure); ?>>
         <input type="hidden" name="duree" value=<?php echo htmlspecialchars($duree); ?>>
         <input type="hidden" name="arrive" value=<?php echo htmlspecialchars($arrive); ?>>
+        <input type="hidden" name="nbTech" value=<?php echo htmlspecialchars($nbTechMin); ?>>
+
 
         <?php
         if ($infos) {
