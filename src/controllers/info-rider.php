@@ -4,7 +4,6 @@ $bdd = Database::getConnection();
 
 // DIV GAUCHE
 
-print_r($_POST);
 
 $nom = $_POST["nom"];
 $date = $_POST["date"];
@@ -12,8 +11,7 @@ $demandeP = $_POST["demandeP"];
 $idC = $_POST["idC"];
 $idG = $_POST["idG"];
 
-print_r("11111111111");
-print_r($idG);
+
 
 $checkVehicule = $_POST["vehicule"] ?? NULL;
 $checkHotel = $_POST["hotel"] ?? NULL;
@@ -40,13 +38,8 @@ $updateConcert->execute();
 
 $infoRider = array_filter($_POST, 'is_array');
 
-error_log("counttttttttttttttttttttt");
-error_log(print_r(count($infoRider)));
-error_log(print_r($infoRider));
-print_r($_POST);
-for($i = 0; $i < count($infoRider); $i++) {
-    print_r($i);
 
+for($i = 0; $i < count($infoRider['type']); $i++) {
 
     $typeM = $infoRider['type'][$i];
     $nomM = $infoRider['nom'][$i];
@@ -63,11 +56,11 @@ for($i = 0; $i < count($infoRider); $i++) {
         $reqType = $bdd->prepare('INSERT INTO MATERIEL (nomM, typeM) VALUES (:nomM, :typeM)');
         $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
         $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
-        $reqType->execute();}
+        $reqType->execute();
+    }
     else {
         error_log("insert pas");
     }
-    
 
     $reqId = $bdd->prepare('SELECT idM FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
     $reqId->bindParam(":typeM", $typeM, PDO::PARAM_STR);
@@ -75,7 +68,6 @@ for($i = 0; $i < count($infoRider); $i++) {
     $reqId->execute();
     $idM = $reqId->fetch();
     $idM = $idM["idM"];
-
 
     if($infoRider['besoin'][$i] == 1) {
         $reqInserAvoirGroupe = $bdd->prepare('INSERT INTO AVOIRGROUPE (idM, qte, idG) VALUES ( :idM, :qte, :idG)');
@@ -85,14 +77,12 @@ for($i = 0; $i < count($infoRider); $i++) {
         $reqInserAvoirGroupe->execute();
     }
 
-
     $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
     $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
     $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
     $insererBesoin->bindParam(":nbBesoin", $qte, PDO::PARAM_INT);
     $insererBesoin->execute();
-
-    }
+}
 
 // redirection en fonction du type
 
