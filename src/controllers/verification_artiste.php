@@ -16,7 +16,7 @@ $arrive = $_POST["heure-arrivé"];
 
 
 // Stocke les données dans la session
-$_SESSION["nom-art-spec"] = $nom;
+$_SESSION["id-art-spec"] = $nom;
 $_SESSION["date-art-spec"] = $date;
 $_SESSION["heure-art-spec"] = $heure;
 $_SESSION["duree-rep"] = $duree;

@@ -367,6 +367,8 @@ delimiter ;
 --procédure qui fait la  liste des salles disponible pour une heure et une date
 DELIMITER |
 CREATE OR REPLACE PROCEDURE salles_dispo(
+    IN nbArt INT,
+    IN nbTech INT,
     IN arrive TIME,
     IN duree TIME,
     IN heure TIME, 
@@ -401,7 +403,9 @@ BEGIN
         AND S.typePlaceS = place
         AND S.nbPlaceS>= nombre
         AND S.longueurS >= longueur
-        AND S.largeurS >= largeur;
+        AND S.largeurS >= largeur
+        AND S.nbPlacesLo >= nbArt
+        AND S.nbTechS >= nbTech;
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET fini = TRUE;
 
