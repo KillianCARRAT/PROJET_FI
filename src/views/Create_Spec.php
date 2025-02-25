@@ -2,7 +2,7 @@
 $lesCSS = ["Create_Spec", "basPage", "cote"];
 require_once 'head.php';
 
-$procedure="select nomG from GROUPE";
+$procedure="select idG,nomG from GROUPE";
 $execusion=$bdd->prepare($procedure);
 $execusion->execute();
 
@@ -20,7 +20,7 @@ $execusion->execute();
                 echo "<select id='nom-Art' name='nom-Art' required>";
                 echo "<option value=''>Choisir un artiste</option>";
                 while($row=$execusion->fetch()){
-                    echo "<option value=".$row["nomG"].">".$row["nomG"]."</option>";
+                    echo "<option value=".$row["idG"].">".$row["nomG"]."</option>";
 
                 }
                 echo "</select>";
