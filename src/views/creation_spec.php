@@ -17,10 +17,13 @@ $execution->bindParam(':nomG', $nomG, PDO::PARAM_STR);
 $execution->execute();
 $idG = $execution->fetchColumn();
 
+
 $execution = $bdd->prepare("Select idS from SALLE where nomS=:nomS");
 $execution->bindParam(':nomS', $nomS, PDO::PARAM_STR);
 $execution->execute();
 $idS = $execution->fetchColumn();
+
+
 
 $idma = $bdd->prepare("SELECT MAX(idC) FROM CONCERT");
 $idma->execute();

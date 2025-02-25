@@ -5,6 +5,7 @@
 
 #bouton {
     align-items: center;
+    margin-left: 500px;
 }
 
 
@@ -64,4 +65,12 @@ button.bouton-bas {
 
 button.bouton-bas:hover {
     background-color: #434190;
+}
+
+#texte  {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    text-align: center;
 }
