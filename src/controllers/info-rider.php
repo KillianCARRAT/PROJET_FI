@@ -4,12 +4,12 @@ $bdd = Database::getConnection();
 
 // DIV GAUCHE
 
+
 $nom = $_POST["nom"];
 $date = $_POST["date"];
 $demandeP = $_POST["demandeP"];
 $idC = $_POST["idC"];
 $idG = $_POST["idG"];
-
 
 
 $checkVehicule = $_POST["vehicule"] ?? NULL;
@@ -38,7 +38,7 @@ $updateConcert->execute();
 $infoRider = array_filter($_POST, 'is_array');
 
 
-for($i = 0; $i <count($infoRider); ++$i) {
+for($i = 0; $i < count($infoRider['type']); $i++) {
 
     $typeM = $infoRider['type'][$i];
     $nomM = $infoRider['nom'][$i];
@@ -50,46 +50,46 @@ for($i = 0; $i <count($infoRider); ++$i) {
     $reqB->execute();
     $nu = $reqB->fetch();
 
-    if (is_null($nu)){
+    if ($nu===false){
+        error_log("insert materiel");
         $reqType = $bdd->prepare('INSERT INTO MATERIEL (nomM, typeM) VALUES (:nomM, :typeM)');
         $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
         $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
-        $reqType->execute();}
-
-
+        $reqType->execute();
+    }
+        else {
+            error_log("insert pas");
+        }
     $reqId = $bdd->prepare('SELECT idM FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
     $reqId->bindParam(":typeM", $typeM, PDO::PARAM_STR);
     $reqId->bindParam(":nomM", $nomM, PDO::PARAM_STR);
     $reqId->execute();
     $idM = $reqId->fetch();
-
-
+    $idM = $idM["idM"];
 
     if($infoRider['besoin'][$i] == 1) {
-        $reqType = $bdd->prepare('INSERT INTO AVOIRGROUPE (idM, qte, idG) VALUES ( :idM, :qte, :idG)');
-        $reqType->bindParam(":idM", $idM, PDO::PARAM_STR);
-        $reqType->bindParam(":qte", $qte, PDO::PARAM_INT);
-        $reqType->bindParam(":idG", $idG, PDO::PARAM_INT);
-        $reqType->execute();
+        $reqInserAvoirGroupe = $bdd->prepare('INSERT INTO AVOIRGROUPE (idM, qte, idG) VALUES ( :idM, :qte, :idG)');
+        $reqInserAvoirGroupe->bindParam(":idM", $idM, PDO::PARAM_STR);
+        $reqInserAvoirGroupe->bindParam(":qte", $qte, PDO::PARAM_INT);
+        $reqInserAvoirGroupe->bindParam(":idG", $idG, PDO::PARAM_INT);
+        $reqInserAvoirGroupe->execute();
     }
-
 
     $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
     $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
     $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
     $insererBesoin->bindParam(":nbBesoin", $qte, PDO::PARAM_INT);
     $insererBesoin->execute();
-
-    }
+}
 
 // redirection en fonction du type
 
 $id = $_SESSION["idUser"];
-$reqType = $bdd->prepare('SELECT typeU FROM UTILISATEUR WHERE iden=:id');
-$reqType->bindParam(":id", $id, PDO::PARAM_STR);
-$reqType->execute();
+$selectTypeById = $bdd->prepare('SELECT typeU FROM UTILISATEUR WHERE iden=:id');
+$selectTypeById->bindParam(":id", $id, PDO::PARAM_STR);
+$selectTypeById->execute();
 
-$row = $reqType->fetch();
+$row = $selectTypeById->fetch();
 $role = $row["typeU"];
 
 switch ($role) {
