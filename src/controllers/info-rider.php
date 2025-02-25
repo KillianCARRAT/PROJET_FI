@@ -4,11 +4,16 @@ $bdd = Database::getConnection();
 
 // DIV GAUCHE
 
+print_r($_POST);
+
 $nom = $_POST["nom"];
 $date = $_POST["date"];
 $demandeP = $_POST["demandeP"];
 $idC = $_POST["idC"];
-$idG = $_POST["idGroupe"];
+$idG = $_POST["idG"];
+
+print_r("11111111111");
+print_r($idG);
 
 $checkVehicule = $_POST["vehicule"] ?? NULL;
 $checkHotel = $_POST["hotel"] ?? NULL;
@@ -48,26 +53,21 @@ for($i = 0; $i <count($infoRider); ++$i) {
     $reqB->execute();
     $nu = $reqB->fetch();
 
-    if ($nu===null){
+    if (is_null($nu)){
         $reqType = $bdd->prepare('INSERT INTO MATERIEL (nomM, typeM) VALUES (:nomM, :typeM)');
         $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
         $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
         $reqType->execute();}
 
+    print_r("\n");
+    print_r($typeM);
+    print_r($nomM);
     $reqId = $bdd->prepare('SELECT idM FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
     $reqId->bindParam(":typeM", $typeM, PDO::PARAM_STR);
     $reqId->bindParam(":nomM", $nomM, PDO::PARAM_STR);
     $reqId->execute();
     $idM = $reqId->fetch();
-    
-    error_log('idm');
-    error_log(print_r($idM));
-    error_log('idm');
 
-    error_log(print_r($qte));
-    error_log('idm');
-
-    error_log(print_r($idG));
 
 
     if($infoRider['besoin'][$i] == 1) {
@@ -78,6 +78,8 @@ for($i = 0; $i <count($infoRider); ++$i) {
         $reqType->execute();
     }
 
+    print_r("------");
+    print_r($idM);
     $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
     $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
     $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
