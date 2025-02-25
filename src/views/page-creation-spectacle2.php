@@ -31,12 +31,14 @@ $lesCSS = ["page-creation-spectacle2", "basPage", "cote"];
                     <input name="longueur" type="number" id="longueur" min=0>
                 </div>
                 <div id="largeur">
-                    <label for="largeur min">largeur minimum scène</label>
+                    <label for="largeur min">Largeur minimum scène</label>
                     <input name="largeur" type="number" id="largueur" min=0>
                 </div>
                 <div id="bouton-chercher">
                     <button type="submit" class="bouton-bas">Chercher</button>
+                    <button id="bouton" type="button" class="bouton-bas" onclick="window.location = '/Create_Spec'">Retour</button>
                 </div>
+
                 <?php $nom = $_SESSION["nom-art-spec"]; ?>
                 <?php $date = $_SESSION["date-art-spec"]; ?>
                 <?php $heure = $_SESSION["heure-art-spec"]; ?>
