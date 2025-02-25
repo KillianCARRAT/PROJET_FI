@@ -47,10 +47,12 @@ body {
     color: white;
     font-weight: bold;
     border-radius: 5px;
+    overflow-y: auto;
 }
 
 .base { background: red; }
 
+.object{background-color: red;}
 
 /* Quand on déplace un objet */
 .dragging { opacity: 0.5; }

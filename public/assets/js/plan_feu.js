@@ -24,7 +24,7 @@ dropzone.addEventListener('drop', (e) => {
 
     const draggedObject = document.querySelector('.dragging'); // Sélectionne l'objet en cours de déplacement
     if (draggedObject) {
-        if (draggedObject.className.includes('base')) {
+        
         // Définit la position de l'objet cloné en fonction de la souris
         draggedObject.style.position = 'absolute';
         draggedObject.style.left = `${e.clientX - dropzone.offsetLeft}px`; // Position X relative à la dropzone
@@ -44,4 +44,4 @@ dropzone.addEventListener('drop', (e) => {
         });
     }
     }
-});
+);

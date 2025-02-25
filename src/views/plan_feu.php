@@ -24,7 +24,7 @@ $idC = $_GET['concert'];
         while ($mat = $reqB->fetch()) { 
             if ($reqB){
                 if ($mat['typeM'] == 'img') {
-                    echo '<div class="object img" draggable="true">'.$mat[nomM].'</div>';
+                    echo '<div class="object img" draggable="true">'.$mat['nomM'].'</div>';
 
                 } else {
                     echo '<div class="object ' . $mat['typeM'] . '" draggable="true">' . $mat['nomM'] . '</div>';
