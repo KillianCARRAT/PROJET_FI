@@ -1,12 +1,17 @@
 // Sélectionne tous les objets à déplacer et leur ajoute un gestionnaire d'événements
 document.querySelectorAll('.object').forEach(obj => {
     obj.addEventListener('dragstart', (e) => {
-        e.dataTransfer.setData('text/plain', 'object'); // Stocke un type de donnée pour le drag & drop
-        obj.classList.add('dragging'); // Ajoute une classe CSS pour signaler l'objet en déplacement
+        let qte = parseInt(obj.getAttribute('data-qte'));
+        if (qte > 0) {
+            e.dataTransfer.setData('text/plain', obj.getAttribute('data-name')); // Stocke le nom de l'objet
+            obj.classList.add('dragging'); // Ajoute la classe CSS
+        } else {
+            e.preventDefault(); // Empêche le drag si la quantité est 0
+        }
     });
 
     obj.addEventListener('dragend', () => {
-        obj.classList.remove('dragging'); // Retire la classe CSS une fois le déplacement terminé
+        obj.classList.remove('dragging');
     });
 });
 
@@ -15,33 +20,36 @@ const dropzone = document.getElementById('dropzone');
 
 // Empêche le comportement par défaut pour permettre le drop
 dropzone.addEventListener('dragover', (e) => {
-    e.preventDefault(); // Par défaut, le navigateur interdit le drop. Cette ligne permet de le rendre possible.
+    e.preventDefault();
 });
 
 // Gère l'événement lorsque l'objet est déposé
 dropzone.addEventListener('drop', (e) => {
-    e.preventDefault(); // Empêche le comportement par défaut du navigateur
+    e.preventDefault();
+    const objectName = e.dataTransfer.getData('text/plain');
+    let draggedObject = document.querySelector(`.object[data-name='${objectName}']`);
 
-    const draggedObject = document.querySelector('.dragging'); // Sélectionne l'objet en cours de déplacement
     if (draggedObject) {
-        
-        // Définit la position de l'objet cloné en fonction de la souris
-        draggedObject.style.position = 'absolute';
-        draggedObject.style.left = `${e.clientX - dropzone.offsetLeft}px`; // Position X relative à la dropzone
-        draggedObject.style.top = `${e.clientY - dropzone.offsetTop}px`;   // Position Y relative à la dropzone
-        draggedObject.classList.remove('dragging'); // Supprime la classe CSS "dragging"
+        let qte = parseInt(draggedObject.getAttribute('data-qte'));
 
-        dropzone.appendChild(draggedObject); // Ajoute l'objet cloné à la dropzone
+        if (qte > 0) {
+            qte--; // Diminue la quantité
+            draggedObject.setAttribute('data-qte', qte);
+            draggedObject.innerHTML = `${objectName} (${qte})`;
 
-        // Rend les objets clonés déplaçables à leur tour
-        draggedObject.setAttribute('draggable', 'true');
-        draggedObject.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text/plain', 'object');
-            draggedObject.classList.add('dragging');
-        });
-        draggedObject.addEventListener('dragend', () => {
-            draggedObject.classList.remove('dragging');
-        });
+            if (qte === 0) {
+                draggedObject.style.opacity = "0.5"; // Rend l'objet semi-transparent quand il est épuisé
+                draggedObject.draggable = false;
+            }
+
+            // Création d'une copie et ajout dans la dropzone
+            let clone = document.createElement('div');
+            clone.classList.add('object', draggedObject.classList[1]); // Ajoute la classe de type
+            clone.textContent = objectName;
+            clone.style.position = 'absolute';
+            clone.style.left = `${e.clientX - dropzone.offsetLeft}px`;
+            clone.style.top = `${e.clientY - dropzone.offsetTop}px`;
+            dropzone.appendChild(clone);
+        }
     }
-    }
-);
+});
