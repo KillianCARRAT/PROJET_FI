@@ -19,7 +19,7 @@ require_once 'head.php'; ?>
                         <th scope="col">Fiche plan feu</th>
                     </tr>
                 </thead>
-                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE');
+                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE order by(dateC)');
                 while ($donnees = $reponse->fetch()) {
                     ?>
                     <tbody>

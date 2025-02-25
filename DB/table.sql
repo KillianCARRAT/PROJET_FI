@@ -36,9 +36,10 @@ CREATE TABLE HEBERGEMENT (
 );
 
 CREATE TABLE MATERIEL (
-    idM INT PRIMARY KEY,
+    idM INT PRIMARY KEY AUTO_INCREMENT,
     nomM VARCHAR(50),
     typeM VARCHAR(50),
+    qte INT,
     idG INT,
     idS INT,
     FOREIGN KEY(idG) REFERENCES GROUPE(idG),
@@ -52,6 +53,9 @@ CREATE TABLE CONCERT (
     heureArrive TIME,
     debutConcert TIME,
     dureeConcert TIME,
+    besoinTransport VARCHAR(50),
+    besoinHotel VARCHAR(50),
+    nombreTechNecessaire INT,
     dateMax DATE,
     idG INT NOT NULL,
     idS INT NOT NULL,
@@ -63,6 +67,7 @@ CREATE TABLE CONCERT (
 CREATE TABLE BESOIN (
     idC INT,
     idM INT,
+    nbBesoin INT,
     PRIMARY KEY (idC,idM),
     FOREIGN KEY(idC) REFERENCES CONCERT(idC),
     FOREIGN KEY(idM) REFERENCES MATERIEL(idM)

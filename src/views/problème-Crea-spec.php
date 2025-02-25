@@ -6,4 +6,4 @@ $lesCSS = ["problème-spectacle", "basPage", "cote"];
     echo "<body id=principal><main id='pro-crea-spec'>";
     echo "<h1 id=texte>Erreur : ".$erreur->getMessage()."</h1>";
     echo "</main></body>";
-    require_once "basPage.php";
+    require_once  "basPage.php";
