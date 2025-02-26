@@ -37,49 +37,48 @@ $updateConcert->execute();
 
 $infoRider = array_filter($_POST, 'is_array');
 
+if (isset($infoRider['type']) && is_array($infoRider['type'])) {
+    for ($i = 0; $i < count($infoRider['type']); $i++) {
+        $typeM = $infoRider['type'][$i];
+        $nomM = $infoRider['nom'][$i];
+        $qte = $infoRider['quantite'][$i];
 
-for($i = 0; $i < count($infoRider['type']); $i++) {
+        $reqB = $bdd->prepare('SELECT * FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
+        $reqB->bindParam(":typeM", $typeM, PDO::PARAM_STR);
+        $reqB->bindParam(":nomM", $nomM, PDO::PARAM_STR);
+        $reqB->execute();
+        $nu = $reqB->fetch();
 
-    $typeM = $infoRider['type'][$i];
-    $nomM = $infoRider['nom'][$i];
-    $qte = $infoRider['quantite'][$i];
+        if ($nu === false) {
+            $reqType = $bdd->prepare('INSERT INTO MATERIEL (nomM, typeM) VALUES (:nomM, :typeM)');
+            $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
+            $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
+            $reqType->execute();
+        }
 
-    $reqB = $bdd->prepare('SELECT * FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
-    $reqB->bindParam(":typeM", $typeM, PDO::PARAM_STR);
-    $reqB->bindParam(":nomM", $nomM, PDO::PARAM_STR);
-    $reqB->execute();
-    $nu = $reqB->fetch();
+        $reqId = $bdd->prepare('SELECT idM FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
+        $reqId->bindParam(":typeM", $typeM, PDO::PARAM_STR);
+        $reqId->bindParam(":nomM", $nomM, PDO::PARAM_STR);
+        $reqId->execute();
+        $idM = $reqId->fetch();
+        $idM = $idM["idM"];
 
-    // Fini
-    if ($nu===false){
-        $reqType = $bdd->prepare('INSERT INTO MATERIEL (nomM, typeM) VALUES (:nomM, :typeM)');
-        $reqType->bindParam(":nomM", $nomM, PDO::PARAM_STR);
-        $reqType->bindParam(":typeM", $typeM, PDO::PARAM_STR);
-        $reqType->execute();
+        if ($infoRider['besoin'][$i] == 1) {
+            $reqInserAvoirGroupe = $bdd->prepare('INSERT INTO AVOIRGROUPE (idM, qte, idG) VALUES (:idM, :qte, :idG)');
+            $reqInserAvoirGroupe->bindParam(":idM", $idM, PDO::PARAM_STR);
+            $reqInserAvoirGroupe->bindParam(":qte", $qte, PDO::PARAM_INT);
+            $reqInserAvoirGroupe->bindParam(":idG", $idG, PDO::PARAM_INT);
+            $reqInserAvoirGroupe->execute();
+        }
+
+        $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
+        $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
+        $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
+        $insererBesoin->bindParam(":nbBesoin", $qte, PDO::PARAM_INT);
+        $insererBesoin->execute();
     }
-
-
-    $reqId = $bdd->prepare('SELECT idM FROM MATERIEL WHERE :nomM=nomM AND :typeM=typeM');
-    $reqId->bindParam(":typeM", $typeM, PDO::PARAM_STR);
-    $reqId->bindParam(":nomM", $nomM, PDO::PARAM_STR);
-    $reqId->execute();
-    $idM = $reqId->fetch();
-    $idM = $idM["idM"];
-
-    if($infoRider['besoin'][$i] == 1) {
-        $reqInserAvoirGroupe = $bdd->prepare('INSERT INTO AVOIRGROUPE (idM, qte, idG) VALUES ( :idM, :qte, :idG)');
-        $reqInserAvoirGroupe->bindParam(":idM", $idM, PDO::PARAM_STR);
-        $reqInserAvoirGroupe->bindParam(":qte", $qte, PDO::PARAM_INT);
-        $reqInserAvoirGroupe->bindParam(":idG", $idG, PDO::PARAM_INT);
-        $reqInserAvoirGroupe->execute();
-    }
-
-    error_log("\n\n Passer par ici \n\n");
-    $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
-    $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
-    $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
-    $insererBesoin->bindParam(":nbBesoin", $qte, PDO::PARAM_INT);
-    $insererBesoin->execute();
+} else {
+    echo "Le tableau 'type' n'existe pas ou n'est pas un tableau.";
 }
 
 // redirection en fonction du type
