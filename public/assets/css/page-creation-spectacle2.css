@@ -1,4 +1,3 @@
-
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
@@ -19,7 +18,6 @@ body {
   font-size: 2em;
   margin-bottom: 20px;
 }
-
 
 .form-section {
   margin: 20px;
@@ -53,20 +51,34 @@ input[type="number"]:focus, select:focus {
   outline: none;
 }
 
-/* Slider */
+/* Ajustement du slider et de l'input */
 .slider-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
+/* Style du champ numérique */
+input[type="number"].slider-value {
+  width: 80px; 
+  text-align: center; 
+  font-size: 1em; 
+  font-weight: bold;
+  border: 2px solid #5a67d8; 
+  color: #5a67d8;
+  border-radius: 5px;
+}
+
+/* Style du champ numérique au focus */
+input[type="number"].slider-value:focus {
+  outline: none;
+  border-color: #434190;
+  box-shadow: 0 0 5px rgba(90, 103, 216, 0.5);
+}
+
+/* Style du slider */
 .slider {
   width: 100%;
-}
-
-.slider-value {
-  font-weight: bold;
-  color: #5a67d8;
 }
 
 /* Bouton */

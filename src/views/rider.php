@@ -21,8 +21,9 @@ require_once 'head.php';
 
                     <label class="gras" for="titre">Nom</label>
                     <p><?php echo $donnees['nomG']; ?></p>
-                    <input type="hidden" name="nom" id="nom" value="<?php $donnees['nomG']; ?>">
-
+                    <input type="hidden" name="nom" id="nom" value="<?php echo $donnees['nomG']; ?>">
+                    <input type="hidden" name="idG" id="idG" value="<?php echo $donnees['idG']; ?>">
+                    <input type="hidden" name="idC" id="idC" value="<?php echo $donnees['idC']; ?>">
 
                     <label class="gras" for="date-repr">Date de représentation</label>
                     <p><?php echo $donnees['dateC']; ?></p>
@@ -46,7 +47,7 @@ require_once 'head.php';
                 </div>
                 <div class="grand" id="matériels">
                     <?php
-                    $mat = $bdd->prepare('SELECT typeM, nomM FROM CONCERT NATURAL JOIN MATERIEL WHERE idC = :id');
+                    $mat = $bdd->prepare('SELECT idM, nbBesoin FROM BESOIN NATURAL JOIN MATERIEL WHERE idC = :id');
                     $mat->bindParam(":id", $idC, PDO::PARAM_STR);
                     $mat->execute();
                     ?>
@@ -56,29 +57,49 @@ require_once 'head.php';
                             <th>Nom</th>
                             <th>je possède ?</th>
                             <th>Quantité</th>
+                            <th>Action</th> <!-- Nouvelle colonne pour le bouton "Supprimer" -->
                         </tr>
-                        <?php while ($mate = $mat->fetch()) { ?>
+                        <?php while ($mate = $mat->fetch()) {
+                            $idM = $mate["idM"];
+                            $info = $bdd->prepare('SELECT * FROM MATERIEL WHERE idM=:idM');
+                            $info->bindParam(":idM", $idM, PDO::PARAM_STR);
+                            $info->execute();
+                            $info = $info->fetch();
+
+                            $qteBesoin = $bdd->prepare('SELECT * FROM BESOIN WHERE idM=:idM AND idC=:idC');
+                            $qteBesoin->bindParam(":idM", $idM, PDO::PARAM_STR);
+                            $qteBesoin->bindParam(":idC", $idC, PDO::PARAM_STR);
+                            $qteBesoin->execute();
+                            $qteBesoin = $qteBesoin->fetch();
+
+                            $inAvoirGroupe = $bdd->prepare('SELECT * FROM AVOIRGROUPE WHERE idM=:idM');
+                            $inAvoirGroupe->bindParam(":idM", $idM, PDO::PARAM_STR);
+                            $inAvoirGroupe->execute();
+                            $inAvoirGroupe = $inAvoirGroupe->fetch();
+
+                            ?>
                             <tr>
                                 <td>
-                                    <select name="type[]">
-                                        <option value="instrument" <?php echo $mate['typeM'] === 'Instrument' ? 'selected' : ''; ?>>Instrument</option>
-                                        <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>
-                                            Câble</option>
-                                        <option value="autres" <?php echo $mate['typeM'] === 'Autres' ? 'selected' : ''; ?>>
-                                            Autres</option>
+                                <select name="type[]">
+                                        <option value="instrument" <?php echo $info['typeM'] === 'instrument' ? 'selected' : ''; ?>>Instrument</option>
+                                        <option value="cable" <?php echo $info['typeM'] === 'câble' ? 'selected' : ''; ?>>Câble</option>
+                                        <option value="autres" <?php echo $info['typeM'] === 'autres' ? 'selected' : ''; ?>>Autres</option>
                                     </select>
                                 </td>
                                 <td>
                                     <input type="text" name="nom[]"
-                                        value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
+                                        value="<?php echo htmlspecialchars($info['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
                                 </td>
                                 <td class="chk-container">
-                                    <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
+                                    <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($inAvoirGroupe) ? 'checked' : ''; ?>>
                                 </td>
                                 <td>
                                     <input type="number" name="quantite[]"
-                                        value="<?php echo htmlspecialchars($mate['quantite'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>"
-                                        min="0">
+                                    value="<?php echo htmlspecialchars($qteBesoin['nbBesoin'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>"
+                                    min="0">
+                                </td>
+                                <td>
+                                    <button type="button" class="delete-line-btn">Supprimer</button> <!-- Bouton "Supprimer" -->
                                 </td>
                             </tr>
                         <?php } ?>
@@ -116,12 +137,14 @@ require_once 'head.php';
 
                 const typeCell = document.createElement('td');
                 const typeSelect = document.createElement('select');
+                typeSelect.name = 'type[]';
 
                 const options = ['Instrument', 'Câble', 'Autres'];
                 options.forEach(optionText => {
                     const option = document.createElement('option');
                     option.value = optionText.toLowerCase();
                     option.textContent = optionText;
+                    option.name = 'type[]';
                     typeSelect.appendChild(option);
                 });
 
@@ -131,6 +154,7 @@ require_once 'head.php';
                 const nameInput = document.createElement('input');
                 nameInput.type = 'text';
                 nameInput.placeholder = 'Nom du matériel';
+                nameInput.name = 'nom[]'
                 nameCell.appendChild(nameInput);
 
                 const besoinCell = document.createElement('td');
@@ -149,15 +173,54 @@ require_once 'head.php';
                 quantiteInput.min = '0';
                 quantiteCell.appendChild(quantiteInput);
 
+                const actionCell = document.createElement('td');
+                const deleteButton = document.createElement('button');
+                deleteButton.type = 'button';
+                deleteButton.className = 'delete-line-btn';
+                deleteButton.textContent = 'Supprimer';
+                actionCell.appendChild(deleteButton);
+
                 newRow.appendChild(typeCell);
                 newRow.appendChild(nameCell);
                 newRow.appendChild(besoinCell);
                 newRow.appendChild(quantiteCell);
+                newRow.appendChild(actionCell);
 
                 table.appendChild(newRow);
+                deleteButton.addEventListener('click', () => {
+                    newRow.remove();
+                });
             });
         }
+
+        document.querySelectorAll('.delete-line-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.target.closest('tr').remove();
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form.rider');
+
+        form.addEventListener('submit', (event) => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"][name="besoin[]"]');
+            checkboxes.forEach((checkbox, index) => {
+                if (!checkbox.checked) {
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = `besoin[${index}]`;
+                    hiddenInput.value = '0';
+                    form.appendChild(hiddenInput);
+                } else {
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = `besoin[${index}]`;
+                    hiddenInput.value = '1';
+                    form.appendChild(hiddenInput);
+                }
+            });
+        });
     });
 </script>
-
 </html>
