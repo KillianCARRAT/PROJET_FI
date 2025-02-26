@@ -140,7 +140,7 @@ document.getElementById("boutonCapture").addEventListener("click", function () {
             headers: { "Content-Type": "application/json" }
         })
         .then(response => response.text())
-        .then(data=>{window.location.href = "/Ac_Orga";})
+        .then(data=>{window.location.href = "/Ac_Art";})
 
     }).catch(error => console.error(" Erreur html2canvas :", error));
 });

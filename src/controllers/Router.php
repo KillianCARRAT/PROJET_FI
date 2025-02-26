@@ -151,6 +151,10 @@ class Router
                 require_once CONTROLLERS_PATH . '/sauvegarder_Sreen.php';
                 break;
 
+            case "/affichage_plan_feu":
+                require_once VIEWS_PATH . '/affichage_plan_feu.php';
+                break;
+
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
                 break;

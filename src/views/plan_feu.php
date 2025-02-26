@@ -1,6 +1,6 @@
 <?php
 $title = 'plan-feu';
-$lesCSS = ["plan_feu"];
+$lesCSS = ["plan_feu","image_feu"];
 require_once 'head.php';
 $idC = $_GET['concert'];
 
@@ -35,7 +35,7 @@ $idC = $_GET['concert'];
             ?>
         </div>
         <input id="idC" type="hidden" name="idC" value=<?php echo $idC ?>>
-        <input id="boutonCapture" type="submit" value="Enregister">
+        <input class="bouton" id="boutonCapture" type="submit" value="Enregister">
         
     </main>
 </body>
