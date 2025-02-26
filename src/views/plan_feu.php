@@ -7,6 +7,7 @@ $idC = $_GET['concert'];
 ?>
 
 <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <main id="main-plan-feu">
         <h1>Fiche plan-feu</h1>
 
@@ -33,6 +34,9 @@ $idC = $_GET['concert'];
             }
             ?>
         </div>
+        <input id="idC" type="hidden" name="idC" value=<?php echo $idC ?>>
+        <input id="boutonCapture" type="submit" value="Enregister">
+        
     </main>
 </body>
 
