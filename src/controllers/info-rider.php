@@ -11,8 +11,8 @@ $idC = $_POST["idC"];
 $idG = $_POST["idG"];
 
 
-$checkVehicule = $_POST["vehicule"] ?? NULL;
-$checkHotel = $_POST["hotel"] ?? NULL;
+$checkVehicule = $_POST["vehicule"] ?? null;
+$checkHotel = $_POST["hotel"] ?? null;
 
 if ($checkVehicule == "on") {
     $adresseV = $_POST["adresse"];
@@ -102,17 +102,18 @@ if (isset($infoRider['type']) && is_array($infoRider['type'])) {
         $existingBesoin = $checkBesoin->fetch();
 
         if ($existingBesoin) {
-            $newNbBesoin = $existingBesoin['nbBesoin'] + $qte;
+            $newNbBesoin = intval($existingBesoin['nbBesoin']) + intval($qte);
             $updateBesoin = $bdd->prepare('UPDATE BESOIN SET nbBesoin=:nbBesoin WHERE idC=:idC AND idM=:idM');
             $updateBesoin->bindParam(":nbBesoin", $newNbBesoin, PDO::PARAM_INT);
             $updateBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
             $updateBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
             $updateBesoin->execute();
         } else {
+            $nbBesoin = intval($qte);
             $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
             $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
             $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
-            $insererBesoin->bindParam(":nbBesoin", $qte, PDO::PARAM_INT);
+            $insererBesoin->bindParam(":nbBesoin", $nbBesoin, PDO::PARAM_INT);
             $insererBesoin->execute();
         }
     }
@@ -145,4 +146,3 @@ switch ($role) {
         header("Location : /");
         exit;
 }
-?>

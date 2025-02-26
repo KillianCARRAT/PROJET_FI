@@ -9,7 +9,7 @@ require_once 'head.php';
     <main id="main-rider">
         <h1>Fiche rider</h1>
         <section id="question">
-            <form class="rider" method="post" action="<?php CONTROLLERS_PATH; ?>/info-rider">
+            <form class="rider" method="post" action="/info-rider">
                 <div class="grand">
                     <?php
                     $idC = $_GET['concert'];
@@ -99,7 +99,7 @@ require_once 'head.php';
                                     min="0">
                                 </td>
                                 <td>
-                                    <button type="button" class="delete-line-btn">Supprimer</button> <!-- Bouton "Supprimer" -->
+                                    <button type="button" class="delete-line-btn">Supprimer</button>
                                 </td>
                             </tr>
                         <?php } ?>
