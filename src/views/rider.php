@@ -30,19 +30,17 @@ require_once 'head.php';
                     <input type="hidden" name="date" id="date" value="<?php $donnees['dateC']; ?>">
 
                     <label class="gras" for="demandeP">Demande particulière</label>
-                    <textarea name="demandeP" id="demandeP" size="80"></textarea>
-
+                    <textarea name="demandeP" id="demandeP" cols="80"><?= htmlspecialchars($donnees['commentaire'] ?? '') ?></textarea>
                     <div class="chec">
-                        <input type="checkbox" name="vehicule" id="checkbox-vehicule">
+                        <input type="checkbox" name="vehicule" id="checkbox-vehicule" <?= !empty($donnees['besoinTransport']) ? 'checked' : ''; ?>>
                         <label class="gras" for="checkbox-vehicule">Besoin d'un véhicule</label>
                     </div>
-                    <input type="text" name="adresse" id="adresse" placeholder="Adresse">
-
+                    <input type="text" name="adresse" id="adresse" placeholder="Adresse" value="<?= htmlspecialchars($donnees['besoinTransport'] ?? '') ?>">
                     <div class="chec">
-                        <input type="checkbox" name="vehicule" id="checkbox-hotel">
+                        <input type="checkbox" name="hotel" id="checkbox-hotel" <?= !empty($donnees['besoinHotel']) ? 'checked' : ''; ?>>
                         <label class="gras" for="checkbox-hotel">Besoin d'un hôtel</label>
                     </div>
-                    <textarea name="demande-hotel" id="demande-hotel" placeholder="Demande pour l'hôtel"></textarea>
+                    <textarea name="demande-hotel" id="demande-hotel" placeholder="Demande pour l'hôtel"><?= htmlspecialchars($donnees['besoinHotel'] ?? '') ?></textarea>
                     <button type="submit" id="envoyer-rider">Envoyer</button>
                 </div>
                 <div class="grand" id="matériels">
@@ -113,6 +111,7 @@ require_once 'head.php';
 </body>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
     function toggleVisibility(checkboxId, targetId) {
         const checkbox = document.getElementById(checkboxId);
         const target = document.getElementById(targetId);
@@ -120,7 +119,9 @@ require_once 'head.php';
         target.style.display = checkbox.checked ? "block" : "none";
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    toggleVisibility('checkbox-vehicule', 'adresse');
+    toggleVisibility('checkbox-hotel', 'demande-hotel');
+
         document.getElementById('checkbox-vehicule').addEventListener('change', () => toggleVisibility('checkbox-vehicule', 'adresse'));
         document.getElementById('checkbox-hotel').addEventListener('change', () => toggleVisibility('checkbox-hotel', 'demande-hotel'));
     });

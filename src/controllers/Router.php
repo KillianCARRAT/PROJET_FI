@@ -17,8 +17,6 @@ class Router
             $_POST[$unPOST[0]] = $unPOST[1];
         }
 
-
-
         switch ($requestUri[0]) {
             case '/':
                 require_once VIEWS_PATH . '/connexion.php';
@@ -45,6 +43,14 @@ class Router
 
             case '/rider':
                 require_once VIEWS_PATH . '/rider.php';
+                break;
+                
+            case '/PDF_rider':
+                require_once CONTROLLERS_PATH . '/PDF_rider.php';
+                break;
+
+            case '/plan_feu':
+                require_once VIEWS_PATH . '/plan_feu.php';
                 break;
 
             case '/plan_feu':
@@ -151,6 +157,14 @@ class Router
 
             case "/creer_specacle":
                 require_once VIEWS_PATH . '/creation_spec.php';
+                break;
+
+            case "/sauvegarder_screen":
+                require_once CONTROLLERS_PATH . '/sauvegarder_Sreen.php';
+                break;
+
+            case "/affichage_plan_feu":
+                require_once VIEWS_PATH . '/affichage_plan_feu.php';
                 break;
 
             case "/Stock_Mat":
