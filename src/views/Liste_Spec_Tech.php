@@ -16,7 +16,6 @@ require_once 'head.php'; ?>
                         <th scope="col">Salle</th>
                         <th scope="col">Atiste</th>
                         <th scope="col">Fiche rider</th>
-                        <th scope="col">Fiche plan feu</th>
                     </tr>
                 </thead>
                 <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE order by(dateC)');
@@ -30,7 +29,6 @@ require_once 'head.php'; ?>
                             <td><?php echo $donnees['nomS']; ?></td>
                             <td><?php echo $donnees['nomG']; ?></td>
                             <td><a href="rider?concert=<?php echo $donnees['idC']; ?>">Fiche rider</a></td>
-                            <td><a href="plan_feu?concert=<?php echo $donnees['idC']; ?>">Plan feu</td>
                         </tr>
                     </tbody>
                     <?php

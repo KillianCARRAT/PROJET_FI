@@ -1,12 +1,13 @@
 <?php
 $title = 'plan-feu';
-$lesCSS = ["plan_feu"];
+$lesCSS = ["plan_feu","image_feu"];
 require_once 'head.php';
 $idC = $_GET['concert'];
 
 ?>
 
 <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <main id="main-plan-feu">
         <h1>Fiche plan-feu</h1>
 
@@ -19,6 +20,7 @@ $idC = $_GET['concert'];
             $reqB = $bdd->prepare('SELECT nomM, typeM, nbBesoin FROM MATERIEL NATURAL JOIN BESOIN WHERE idC = :idC');
             $reqB->bindParam(":idC", $idC, PDO::PARAM_STR);
             $reqB->execute();
+          
             while ($mat = $reqB->fetch()) { 
                 if ($reqB){
                     $nomM = $mat['nomM'];
@@ -32,6 +34,9 @@ $idC = $_GET['concert'];
             }
             ?>
         </div>
+        <input id="idC" type="hidden" name="idC" value=<?php echo $idC ?>>
+        <input class="bouton" id="boutonCapture" type="submit" value="Enregister">
+        
     </main>
 </body>
 

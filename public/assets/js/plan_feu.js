@@ -86,7 +86,7 @@ dropzone.addEventListener('drop', (e) => {
                 dropzone.appendChild(clone);
             }
         } else {
-            // ✅ Permettre aux clones de se déplacer dans la dropzone SANS les dupliquer
+            // Permettre aux clones de se déplacer dans la dropzone SANS les dupliquer
             draggedObject.style.left = `${e.clientX - dropzone.offsetLeft}px`;
             draggedObject.style.top = `${e.clientY - dropzone.offsetTop}px`;
 
@@ -122,4 +122,25 @@ document.querySelectorAll('.object').forEach(obj => {
     obj.addEventListener('dragend', () => {
         obj.classList.remove('dragging');
     });
+});
+
+
+document.getElementById("boutonCapture").addEventListener("click", function () {
+    html2canvas(dropzone).then(canvas => {
+        let imageC = canvas.toDataURL("image/png");
+        let idC = document.getElementById("idC").value;
+
+
+        fetch("/sauvegarder_screen", {
+            method: "POST",
+            body: JSON.stringify({ 
+                image: imageC,
+                idC: idC
+            }),
+            headers: { "Content-Type": "application/json" }
+        })
+        .then(response => response.text())
+        .then(data=>{window.location.href = "/Ac_Art";})
+
+    }).catch(error => console.error(" Erreur html2canvas :", error));
 });
