@@ -125,6 +125,9 @@ document.querySelectorAll('.object').forEach(obj => {
 });
 
 
+
+
+//partie stockage des images
 document.getElementById("boutonCapture").addEventListener("click", function () {
     html2canvas(dropzone).then(canvas => {
         let imageC = canvas.toDataURL("image/png");
