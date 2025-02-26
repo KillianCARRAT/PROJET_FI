@@ -26,6 +26,16 @@ if ($checkHotel == "on") {
     $demandeH = null;
 }
 
+error_log(print_r($demandeP));
+
+if(!empty($demandeP)) {
+    var_dump($demandeP);
+    $updateCom = $bdd->prepare('UPDATE CONCERT SET commentaire=:msg WHERE idC=:idC');
+    $updateCom->bindParam("msg", $demandeP, PDO::PARAM_STR);
+    $updateCom->bindParam("idC", $idC, PDO::PARAM_STR);
+    $updateCom->execute();
+}
+
 $updateConcert = $bdd->prepare('UPDATE CONCERT SET besoinTransport=:bTransport, besoinHotel=:bHotel WHERE idC=:idC');
 $updateConcert->bindParam("bTransport", $adresseV, PDO::PARAM_STR);
 $updateConcert->bindParam("bHotel", $demandeH, PDO::PARAM_STR);
@@ -46,7 +56,6 @@ $infoRider = array_filter($_POST, 'is_array');
 
 if (isset($infoRider['type']) && is_array($infoRider['type'])) {
     for ($i = 0; $i < count($infoRider['type']); $i++) {
-        error_log("i = " . $i);
         $typeM = $infoRider['type'][$i];
         $nomM = $infoRider['nom'][$i];
         $qte = $infoRider['quantite'][$i];
@@ -71,7 +80,6 @@ if (isset($infoRider['type']) && is_array($infoRider['type'])) {
         $idM = $reqId->fetch();
         $idM = $idM["idM"];
 
-        error_log("\n\n" . $infoRider['besoin'][$i] . "\n\n");
         if ($infoRider['besoin'][$i] == 1) {
             $checkAvoirGroupe = $bdd->prepare('SELECT * FROM AVOIRGROUPE WHERE idM=:idM AND idG=:idG');
             $checkAvoirGroupe->bindParam(":idM", $idM, PDO::PARAM_STR);
