@@ -21,11 +21,11 @@ begin
         SET dateTimeVerifConcert = STR_TO_DATE(concat(YEAR(dateConcert),"-",MONTH(dateConcert),"-",DAY(dateConcert)," ",arriveConcert),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND, dateTimeNewConcert,dateTimeVerifConcert);
         IF dateTimeNewConcert > dateTimeVerifConcert AND ABS(timeDiffr) < TIME_TO_SEC(ABS(heureDebutConcert-arriveConcert+dureeC))THEN
-            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un créneau précédent.");
-            signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
+            set mes = concat ("Réservation impossible pour la réservation numéro ", new.idC, " : un autre groupe a déjà un concert sur un créneau précédent.");
+            signal SQLSTATE '45001' set MESSAGE_TEXT = mes;
         ELSEIF dateTimeNewConcert < dateTimeVerifConcert AND ABS(timeDiffr) < TIME_TO_SEC(ABS(new.debutConcert-new.heureArrive+new.dureeConcert)) THEN
-            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un créneau suivant.");
-            signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
+            set mes = concat ("Réservation impossible pour la réservation numéro ", new.idC, " : un autre groupe a déjà un concert sur un créneau suivant.");
+            signal SQLSTATE '45002' set MESSAGE_TEXT = mes;
         end if;
     end while;
     close lesHeures;
@@ -55,19 +55,19 @@ begin
         SET dateTimeVerifConcert = STR_TO_DATE(concat(YEAR(dateConcert),"-",MONTH(dateConcert),"-",DAY(dateConcert)," ",arriveConcert),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND, dateTimeNewConcert,dateTimeVerifConcert);
         IF dateTimeNewConcert > dateTimeVerifConcert AND ABS(timeDiffr) < TIME_TO_SEC(ABS(heureDebutConcert-arriveConcert+dureeC))THEN
-            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un créneau précédent.");
-            signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
+            set mes = concat ("Réservation impossible pour la réservation numéro ", new.idC, " : un autre groupe a déjà un concert sur un créneau précédent.");
+            signal SQLSTATE '45003' set MESSAGE_TEXT = mes;
         ELSEIF dateTimeNewConcert < dateTimeVerifConcert AND ABS(timeDiffr) < TIME_TO_SEC(ABS(new.debutConcert-new.heureArrive+new.dureeConcert)) THEN
-            set mes = concat ("réservation impossible pour la réservation numéro ", new.idC, " car un autre groupe à déjà un concert sur un créneau suivant.");
-            signal SQLSTATE '45000' set MESSAGE_TEXT = mes;
+            set mes = concat ("Réservation impossible pour la réservation numéro ", new.idC, " : un autre groupe a déjà un concert sur un créneau suivant.");
+            signal SQLSTATE '45004' set MESSAGE_TEXT = mes;
         end if;
     end while;
     close lesHeures;
 end |
 delimiter ;
 
-
--- 2.1 Une salle doit avoir assez de place en loge pour accueillir les artistes
+-- 2.1 Une salle doit avoir assez de place en loge pour accueillir les artistes (on insert)
+delimiter |
 delimiter |
 CREATE OR REPLACE TRIGGER PlaceEnLogesSuffisantesInsert BEFORE INSERT ON CONCERT FOR EACH ROW
 begin
@@ -162,14 +162,16 @@ begin
     DECLARE timeDiffr INT;
     DECLARE mes VARCHAR(1000) default '';
 
-    -- recupèration du premier concert avant celui ajouter
+    -- recupèration du premier concert avant celui mis à jour
     SELECT debutConcert,dureeConcert,dateC INTO heureAvant, dureeAvant, dateAvant FROM CONCERT
-    WHERE debutConcert <= new.debutConcert AND dateC=new.dateC AND idG = new.idG OR idG = new.idG AND dateC < new.dateC
+    WHERE (debutConcert <= new.debutConcert AND dateC=new.dateC AND idG = new.idG OR idG = new.idG AND dateC < new.dateC)
+    AND idC != old.idC
     ORDER BY dateC DESC,debutConcert DESC LIMIT 1;
 
-    -- recupèration du premier concert après celui ajouter
+    -- recupèration du premier concert après celui mis à jour
     SELECT debutConcert,dateC INTO heureApres,dateApres FROM CONCERT
-    WHERE debutConcert >= new.debutConcert AND dateC=new.dateC AND idG = new.idG OR idG = new.idG AND dateC > new.dateC 
+    WHERE (debutConcert >= new.debutConcert AND dateC=new.dateC AND idG = new.idG OR idG = new.idG AND dateC > new.dateC)
+    AND idC != old.idC
     ORDER BY dateC,debutConcert LIMIT 1;
 
     IF dateAvant IS NOT NULL THEN
@@ -177,18 +179,18 @@ begin
         SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.debutConcert),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeAvant,dateTimeNew);
         IF ABS(timeDiffr) < TIME_TO_SEC(dureeAvant) THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà un concert précédent sur le créneau.");
+            SET mes = concat(mes,"Mise à jour impossible car il existe déjà un concert précédent sur le créneau.");
             signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
         end if;
     end if;
 
-    -- vérification que le concert ajouté se termine avant que le concert suivant commence
+    -- vérification que le concert mis à jour se termine avant que le concert suivant commence
     IF dateApres IS NOT NULL THEN
         SET dateTimeApres = STR_TO_DATE(concat(YEAR(dateApres),"-",MONTH(dateApres),"-",DAY(dateApres)," ",heureApres),"%Y-%m-%d %H:%i:%s");
         SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.debutConcert),"%Y-%m-%d %H:%i:%s");
         SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeNew,dateTimeApres);
         IF ABS(timeDiffr) < TIME_TO_SEC(new.dureeConcert) THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà un concert suivant sur le créneau.");
+            SET mes = concat(mes,"Mise à jour impossible car il existe déjà un concert suivant sur le créneau.");
             signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
         end if;
     end if;
@@ -264,39 +266,41 @@ begin
     DECLARE timeDiffr INT;
     DECLARE mes VARCHAR(1000) default '';
 
-    -- recupèration de la première preparation concert avant celui ajouter
-    SELECT heureArrive,debutConcert,dateC INTO prepAvant, finPrepAvant, dateAvant FROM CONCERT
-    WHERE heureArrive <= new.debutConcert AND dateC=new.dateC AND idG = new.idG OR idG = new.idG AND dateC < new.dateC
-    ORDER BY dateC DESC,heureArrive DESC LIMIT 1;
+    -- recupèration de la première preparation concert avant celui mis à jour
+    SELECT heureArrive, debutConcert, dateC INTO prepAvant, finPrepAvant, dateAvant FROM CONCERT
+    WHERE (heureArrive <= new.debutConcert AND dateC = new.dateC AND idG = new.idG OR idG = new.idG AND dateC < new.dateC)
+    AND idC != old.idC
+    ORDER BY dateC DESC, heureArrive DESC LIMIT 1;
 
-    -- recupèration de la première preparation après celui ajouter
-    SELECT heureArrive,dateC INTO prepApres,dateApres FROM CONCERT
-    WHERE heureArrive >= new.debutConcert AND dateC=new.dateC AND idG = new.idG OR idG = new.idG AND dateC > new.dateC 
-    ORDER BY dateC,heureArrive LIMIT 1;
+    -- recupèration de la première preparation après celui mis à jour
+    SELECT heureArrive, dateC INTO prepApres, dateApres FROM CONCERT
+    WHERE (heureArrive >= new.debutConcert AND dateC = new.dateC AND idG = new.idG OR idG = new.idG AND dateC > new.dateC)
+    AND idC != old.idC
+    ORDER BY dateC, heureArrive LIMIT 1;
 
     IF dateAvant IS NOT NULL THEN
-        SET dureeAvant = TIMESTAMPDIFF(SECOND,prepAvant,finPrepAvant);
-        SET dateTimeAvant = STR_TO_DATE(concat(YEAR(dateAvant),"-",MONTH(dateAvant),"-",DAY(dateAvant)," ",prepAvant),"%Y-%m-%d %H:%i:%s");
-        SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.heureArrive),"%Y-%m-%d %H:%i:%s");
-        SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeAvant,dateTimeNew);
+        SET dureeAvant = TIMESTAMPDIFF(SECOND, prepAvant, finPrepAvant);
+        SET dateTimeAvant = STR_TO_DATE(concat(YEAR(dateAvant), "-", MONTH(dateAvant), "-", DAY(dateAvant), " ", prepAvant), "%Y-%m-%d %H:%i:%s");
+        SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC), "-", MONTH(new.dateC), "-", DAY(new.dateC), " ", new.heureArrive), "%Y-%m-%d %H:%i:%s");
+        SET timeDiffr = TIMESTAMPDIFF(SECOND, dateTimeAvant, dateTimeNew);
         IF ABS(timeDiffr) < dureeAvant THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà une preparation de concert précédent sur le créneau.");
-            signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
+            SET mes = concat(mes, "Mise à jour impossible car il existe déjà une préparation de concert précédent sur le créneau.");
+            signal SQLSTATE '45000' SET MESSAGE_TEXT = mes;
         end if;
     end if;
 
-    -- vérification que le concert ajouté se termine avant que le concert suivant commence
+    -- vérification que le concert mis à jour se termine avant que le concert suivant commence
     IF dateApres IS NOT NULL THEN
-        SET dureeNew = TIMESTAMPDIFF(SECOND,new.heureArrive,new.debutConcert);
-        SET dateTimeApres = STR_TO_DATE(concat(YEAR(dateApres),"-",MONTH(dateApres),"-",DAY(dateApres)," ",prepApres),"%Y-%m-%d %H:%i:%s");
-        SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC),"-",MONTH(new.dateC),"-",DAY(new.dateC)," ",new.heureArrive),"%Y-%m-%d %H:%i:%s");
-        SET timeDiffr = TIMESTAMPDIFF(SECOND,dateTimeNew,dateTimeApres);
+        SET dureeNew = TIMESTAMPDIFF(SECOND, new.heureArrive, new.debutConcert);
+        SET dateTimeApres = STR_TO_DATE(concat(YEAR(dateApres), "-", MONTH(dateApres), "-", DAY(dateApres), " ", prepApres), "%Y-%m-%d %H:%i:%s");
+        SET dateTimeNew = STR_TO_DATE(concat(YEAR(new.dateC), "-", MONTH(new.dateC), "-", DAY(new.dateC), " ", new.heureArrive), "%Y-%m-%d %H:%i:%s");
+        SET timeDiffr = TIMESTAMPDIFF(SECOND, dateTimeNew, dateTimeApres);
         IF ABS(timeDiffr) < dureeNew THEN
-            SET mes = concat(mes,"Ajout impossible car il existe déjà une preparation de concert suivant sur le créneau.");
-            signal SQLSTATE '45000' SET MESSAGE_TEXT = mes ;
+            SET mes = concat(mes, "Mise à jour impossible car il existe déjà une préparation de concert suivant sur le créneau.");
+            signal SQLSTATE '45000' SET MESSAGE_TEXT = mes;
         end if;
     end if;
-end|
+end |
 delimiter ;
 
 -- 6.1 Le nombre de place du restaurants doit être supérieur ou égal au nombre de personnes dans le groupe + techniciens
