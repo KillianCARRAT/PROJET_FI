@@ -4,7 +4,6 @@ $bdd = Database::getConnection();
 
 // DIV GAUCHE
 
-
 $nom = $_POST["nom"];
 $date = $_POST["date"];
 $demandeP = $_POST["demandeP"];
@@ -35,10 +34,15 @@ $updateConcert->execute();
 
 // DIV DROITE
 
+$deleteBesoin = $bdd->prepare('DELETE FROM BESOIN WHERE idC=:idC');
+$deleteBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
+$deleteBesoin->execute();
+
 $infoRider = array_filter($_POST, 'is_array');
 
 if (isset($infoRider['type']) && is_array($infoRider['type'])) {
     for ($i = 0; $i < count($infoRider['type']); $i++) {
+        error_log("i = " . $i);
         $typeM = $infoRider['type'][$i];
         $nomM = $infoRider['nom'][$i];
         $qte = $infoRider['quantite'][$i];
@@ -70,12 +74,27 @@ if (isset($infoRider['type']) && is_array($infoRider['type'])) {
             $reqInserAvoirGroupe->bindParam(":idG", $idG, PDO::PARAM_INT);
             $reqInserAvoirGroupe->execute();
         }
+        
+        $checkBesoin = $bdd->prepare('SELECT nbBesoin FROM BESOIN WHERE idC=:idC AND idM=:idM');
+        $checkBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
+        $checkBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
+        $checkBesoin->execute();
+        $existingBesoin = $checkBesoin->fetch();
 
-        $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
-        $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
-        $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
-        $insererBesoin->bindParam(":nbBesoin", $qte, PDO::PARAM_INT);
-        $insererBesoin->execute();
+        if ($existingBesoin) {
+            $newNbBesoin = $existingBesoin['nbBesoin'] + $qte;
+            $updateBesoin = $bdd->prepare('UPDATE BESOIN SET nbBesoin=:nbBesoin WHERE idC=:idC AND idM=:idM');
+            $updateBesoin->bindParam(":nbBesoin", $newNbBesoin, PDO::PARAM_INT);
+            $updateBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
+            $updateBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
+            $updateBesoin->execute();
+        } else {
+            $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
+            $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
+            $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
+            $insererBesoin->bindParam(":nbBesoin", $qte, PDO::PARAM_INT);
+            $insererBesoin->execute();
+        }
     }
 } else {
     echo "Le tableau 'type' n'existe pas ou n'est pas un tableau.";

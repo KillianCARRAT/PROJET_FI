@@ -57,30 +57,29 @@ require_once 'head.php';
                             <th>Nom</th>
                             <th>je possède ?</th>
                             <th>Quantité</th>
+                            <th>Action</th> <!-- Nouvelle colonne pour le bouton "Supprimer" -->
                         </tr>
                         <?php while ($mate = $mat->fetch()) { ?>
                             <tr>
                                 <td>
-                                    <select name="type">
+                                    <select name="type[]">
                                         <option value="instrument" <?php echo $mate['typeM'] === 'Instrument' ? 'selected' : ''; ?>>Instrument</option>
-                                        <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>
-                                            Câble</option>
-                                        <option value="autres" <?php echo $mate['typeM'] === 'Autres' ? 'selected' : ''; ?>>
-                                            Autres</option>
+                                        <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>Câble</option>
+                                        <option value="autres" <?php echo $mate['typeM'] === 'Autres' ? 'selected' : ''; ?>>Autres</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text" name="nom"
-                                        value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
+                                    <input type="text" name="nom[]" value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
                                 </td>
                                 <td class="chk-container">
                                     <input type="hidden" name="besoin[]" value="0">
                                     <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
                                 </td>
                                 <td>
-                                    <input type="number" name="qte"
-                                        value="<?php echo htmlspecialchars($mate['qte'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>"
-                                        min="0">
+                                    <input type="number" name="quantite[]" value="<?php echo htmlspecialchars($mate['nbBesoin'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>" min="0">
+                                </td>
+                                <td>
+                                    <button type="button" class="delete-line-btn">Supprimer</button> <!-- Bouton "Supprimer" -->
                                 </td>
                             </tr>
                         <?php } ?>
@@ -154,14 +153,34 @@ require_once 'head.php';
                 quantiteInput.min = '0';
                 quantiteCell.appendChild(quantiteInput);
 
+                const actionCell = document.createElement('td');
+                const deleteButton = document.createElement('button');
+                deleteButton.type = 'button';
+                deleteButton.className = 'delete-line-btn';
+                deleteButton.textContent = 'Supprimer';
+                actionCell.appendChild(deleteButton);
+
                 newRow.appendChild(typeCell);
                 newRow.appendChild(nameCell);
                 newRow.appendChild(besoinCell);
                 newRow.appendChild(quantiteCell);
+                newRow.appendChild(actionCell);
 
                 table.appendChild(newRow);
+
+                // Ajoutez l'événement de suppression pour le nouveau bouton
+                deleteButton.addEventListener('click', () => {
+                    newRow.remove();
+                });
             });
         }
+
+        // Ajoutez l'événement de suppression pour les boutons existants
+        document.querySelectorAll('.delete-line-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.target.closest('tr').remove();
+            });
+        });
     });
 </script>
 
