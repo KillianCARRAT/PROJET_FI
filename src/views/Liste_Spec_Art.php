@@ -18,7 +18,7 @@ require_once 'head.php'; ?>
                         <th scope="col">Fiche plan feu</th>
                     </tr>
                 </thead>
-                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE where idG=' . $idArt.'order by(dateC)');
+                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE where idG=' . $idArt.' order by (dateC)');
                 while ($donnees = $reponse->fetch()) {
                     ?>
                     <tbody>
@@ -28,7 +28,7 @@ require_once 'head.php'; ?>
                             <td><?php echo $donnees['dureeConcert']; ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>
                             <td><a href="rider?concert=<?php echo $donnees['idC']; ?>">Fiche rider</a></td>
-                            <td>Plan feu</td>
+                            <td><a href="plan_feu?concert=<?php echo $donnees['idC']; ?>">Plan feu</td>
                         </tr>
                     </tbody>
                     <?php
