@@ -76,7 +76,6 @@ require_once 'head.php';
                             $inAvoirGroupe->execute();
                             $inAvoirGroupe = $inAvoirGroupe->fetch();
 
-                            error_log(print_r($inAvoirGroupe));
                             ?>
                             <tr>
                                 <td>
@@ -181,5 +180,4 @@ require_once 'head.php';
         }
     });
 </script>
-
 </html>

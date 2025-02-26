@@ -43,6 +43,10 @@ class Router
                 require_once VIEWS_PATH . '/rider.php';
                 break;
 
+            case '/plan_feu':
+                require_once VIEWS_PATH . '/plan_feu.php';
+                break;
+
             case '/Ac_Orga':
                 require_once VIEWS_PATH . '/Liste_Spec_Orga.php';
                 break;
