@@ -167,15 +167,12 @@ require_once 'head.php';
                 newRow.appendChild(actionCell);
 
                 table.appendChild(newRow);
-
-                // Ajoutez l'événement de suppression pour le nouveau bouton
                 deleteButton.addEventListener('click', () => {
                     newRow.remove();
                 });
             });
         }
 
-        // Ajoutez l'événement de suppression pour les boutons existants
         document.querySelectorAll('.delete-line-btn').forEach(button => {
             button.addEventListener('click', (event) => {
                 event.target.closest('tr').remove();
