@@ -47,7 +47,7 @@ require_once 'head.php';
                 </div>
                 <div class="grand" id="matériels">
                     <?php
-                    $mat = $bdd->prepare('SELECT typeM, nomM, nbBesoin FROM BESOIN NATURAL JOIN MATERIEL WHERE idC = :id');
+                    $mat = $bdd->prepare('SELECT idM, nbBesoin FROM BESOIN NATURAL JOIN MATERIEL WHERE idC = :id');
                     $mat->bindParam(":id", $idC, PDO::PARAM_STR);
                     $mat->execute();
                     ?>
@@ -59,24 +59,44 @@ require_once 'head.php';
                             <th>Quantité</th>
                             <th>Action</th> <!-- Nouvelle colonne pour le bouton "Supprimer" -->
                         </tr>
-                        <?php while ($mate = $mat->fetch()) { ?>
+                        <?php while ($mate = $mat->fetch()) {
+                            $idM = $mate["idM"];
+                            $info = $bdd->prepare('SELECT * FROM MATERIEL WHERE idM=:idM');
+                            $info->bindParam(":idM", $idM, PDO::PARAM_STR);
+                            $info->execute();
+                            $info = $info->fetch();
+
+                            $qteBesoin = $bdd->prepare('SELECT * FROM BESOIN WHERE idM=:idM AND idC=:idC');
+                            $qteBesoin->bindParam(":idM", $idM, PDO::PARAM_STR);
+                            $qteBesoin->bindParam(":idC", $idC, PDO::PARAM_STR);
+                            $qteBesoin->execute();
+                            $qteBesoin = $qteBesoin->fetch();
+
+                            $inAvoirGroupe = $bdd->prepare('SELECT * FROM AVOIRGROUPE WHERE idM=:idM');
+                            $inAvoirGroupe->bindParam(":idM", $idM, PDO::PARAM_STR);
+                            $inAvoirGroupe->execute();
+                            $inAvoirGroupe = $inAvoirGroupe->fetch();
+
+                            ?>
                             <tr>
                                 <td>
-                                    <select name="type[]">
-                                        <option value="instrument" <?php echo $mate['typeM'] === 'Instrument' ? 'selected' : ''; ?>>Instrument</option>
-                                        <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>Câble</option>
-                                        <option value="autres" <?php echo $mate['typeM'] === 'Autres' ? 'selected' : ''; ?>>Autres</option>
+                                <select name="type[]">
+                                        <option value="instrument" <?php echo $info['typeM'] === 'instrument' ? 'selected' : ''; ?>>Instrument</option>
+                                        <option value="cable" <?php echo $info['typeM'] === 'câble' ? 'selected' : ''; ?>>Câble</option>
+                                        <option value="autres" <?php echo $info['typeM'] === 'autres' ? 'selected' : ''; ?>>Autres</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text" name="nom[]" value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
+                                    <input type="text" name="nom[]"
+                                        value="<?php echo htmlspecialchars($info['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
                                 </td>
                                 <td class="chk-container">
-                                    <input type="hidden" name="besoin[]" value="0">
-                                    <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
+                                    <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($inAvoirGroupe) ? 'checked' : ''; ?>>
                                 </td>
                                 <td>
-                                    <input type="number" name="quantite[]" value="<?php echo htmlspecialchars($mate['nbBesoin'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>" min="0">
+                                    <input type="number" name="quantite[]"
+                                    value="<?php echo htmlspecialchars($qteBesoin['nbBesoin'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>"
+                                    min="0">
                                 </td>
                                 <td>
                                     <button type="button" class="delete-line-btn">Supprimer</button> <!-- Bouton "Supprimer" -->
@@ -179,6 +199,28 @@ require_once 'head.php';
             });
         });
     });
-</script>
 
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form.rider');
+
+        form.addEventListener('submit', (event) => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"][name="besoin[]"]');
+            checkboxes.forEach((checkbox, index) => {
+                if (!checkbox.checked) {
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = `besoin[${index}]`;
+                    hiddenInput.value = '0';
+                    form.appendChild(hiddenInput);
+                } else {
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = `besoin[${index}]`;
+                    hiddenInput.value = '1';
+                    form.appendChild(hiddenInput);
+                }
+            });
+        });
+    });
+</script>
 </html>
