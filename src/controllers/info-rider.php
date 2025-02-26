@@ -25,9 +25,7 @@ if ($checkHotel == "on") {
 } else {
     $demandeH = null;
 }
-if(empty($_POST['message'])) {
-
-} else {
+if(!empty($_POST['message'])) {
     $insereCommentaire = $bdd->prepare('INSERT INTO COMMENTAIRE VALUES (:msg)');
     $insereCommentaire->bindParam("msg", $demandeP, PDO::PARAM_STR);
     $insereCommentaire->execute();
