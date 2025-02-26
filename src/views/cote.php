@@ -57,6 +57,8 @@
                 <p><a href='/Create_Spec'>Organiser un nouveau spectacle</a></p>
                 <p><a href='/Create_ART'>Créé un nouvelle artiste</a></p>
                 <p><a href='/Create_Salle'>Créé une nouvelle salle</a></p>
+                <p><a href='/Stock_Mat'>Stock matériel Asso</a></p>
+                <p><a href='/Liste_S'>Liste des salles</a></p>
             </div>
         <?php }
         ?>
