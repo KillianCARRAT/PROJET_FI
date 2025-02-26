@@ -25,6 +25,17 @@ if ($checkHotel == "on") {
 } else {
     $demandeH = null;
 }
+if(empty($_POST['message'])) {
+
+} else {
+    $insereCommentaire = $bdd->prepare('INSERT INTO COMMENTAIRE VALUES (:msg)');
+    $insereCommentaire->bindParam("msg", $demandeP, PDO::PARAM_STR);
+    $insereCommentaire->execute();
+    
+    $updateCom = $bdd->prepare('UPDATE CONCERT SET idCom=:idCom WHERE idC=:idC');
+    $updateCom->bindParam("idCom", $idCom, PDO::PARAM_STR);
+    $updateCom->execute();
+}
 
 $updateConcert = $bdd->prepare('UPDATE CONCERT SET besoinTransport=:bTransport, besoinHotel=:bHotel WHERE idC=:idC');
 $updateConcert->bindParam("bTransport", $adresseV, PDO::PARAM_STR);
