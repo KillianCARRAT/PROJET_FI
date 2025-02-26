@@ -16,9 +16,10 @@ $idC = $_GET['concert'];
         <!-- Zone des objets à droite -->
         <div class="objects">
             <?php
-            $reqB = $bdd->prepare('SELECT nomM, typeM, nbBesoin FROM MATERIEL NATURAL JOIN BESOIN WHERE idC = 1');
-            //$reqB->bindParam(":idC", $idC, PDO::PARAM_STR);
+            $reqB = $bdd->prepare('SELECT nomM, typeM, nbBesoin FROM MATERIEL NATURAL JOIN BESOIN WHERE idC = :idC');
+            $reqB->bindParam(":idC", $idC, PDO::PARAM_STR);
             $reqB->execute();
+          
             while ($mat = $reqB->fetch()) { 
                 if ($reqB){
                     $nomM = $mat['nomM'];
