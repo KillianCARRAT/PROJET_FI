@@ -47,7 +47,7 @@ require_once 'head.php';
                 </div>
                 <div class="grand" id="matériels">
                     <?php
-                    $mat = $bdd->prepare('SELECT typeM, nomM, nbBesoin FROM BESOIN NATURAL JOIN MATERIEL WHERE idC = :id');
+                    $mat = $bdd->prepare('SELECT idM, nbBesoin FROM BESOIN NATURAL JOIN MATERIEL WHERE idC = :id');
                     $mat->bindParam(":id", $idC, PDO::PARAM_STR);
                     $mat->execute();
                     ?>
@@ -58,28 +58,45 @@ require_once 'head.php';
                             <th>je possède ?</th>
                             <th>Quantité</th>
                         </tr>
-                        <?php while ($mate = $mat->fetch()) { ?>
+                        <?php while ($mate = $mat->fetch()) {
+                            $idM = $mate["idM"];
+                            $info = $bdd->prepare('SELECT * FROM MATERIEL WHERE idM=:idM');
+                            $info->bindParam(":idM", $idM, PDO::PARAM_STR);
+                            $info->execute();
+                            $info = $info->fetch();
+
+                            $qteBesoin = $bdd->prepare('SELECT * FROM BESOIN WHERE idM=:idM AND idC=:idC');
+                            $qteBesoin->bindParam(":idM", $idM, PDO::PARAM_STR);
+                            $qteBesoin->bindParam(":idC", $idC, PDO::PARAM_STR);
+                            $qteBesoin->execute();
+                            $qteBesoin = $qteBesoin->fetch();
+
+                            $inAvoirGroupe = $bdd->prepare('SELECT * FROM AVOIRGROUPE WHERE idM=:idM');
+                            $inAvoirGroupe->bindParam(":idM", $idM, PDO::PARAM_STR);
+                            $inAvoirGroupe->execute();
+                            $inAvoirGroupe = $inAvoirGroupe->fetch();
+
+                            error_log(print_r($inAvoirGroupe));
+                            ?>
                             <tr>
                                 <td>
                                     <select name="type">
-                                        <option value="instrument" <?php echo $mate['typeM'] === 'Instrument' ? 'selected' : ''; ?>>Instrument</option>
-                                        <option value="cable" <?php echo $mate['typeM'] === 'Câble' ? 'selected' : ''; ?>>
-                                            Câble</option>
-                                        <option value="autres" <?php echo $mate['typeM'] === 'Autres' ? 'selected' : ''; ?>>
-                                            Autres</option>
+                                        <option value="instrument" <?php echo $info['typeM'] === 'instrument' ? 'selected' : ''; ?>>Instrument</option>
+                                        <option value="cable" <?php echo $info['typeM'] === 'câble' ? 'selected' : ''; ?>>Câble</option>
+                                        <option value="autres" <?php echo $info['typeM'] === 'autres' ? 'selected' : ''; ?>>Autres</option>
                                     </select>
                                 </td>
                                 <td>
                                     <input type="text" name="nom"
-                                        value="<?php echo htmlspecialchars($mate['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
+                                        value="<?php echo htmlspecialchars($info['nomM'], ENT_QUOTES, 'UTF-8'); ?>">
                                 </td>
                                 <td class="chk-container">
                                     <input type="hidden" name="besoin[]" value="0">
-                                    <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($mate['besoin']) && $mate['besoin'] ? 'checked' : ''; ?>>
+                                    <input type="checkbox" name="besoin[]" value="1" <?php echo !empty($inAvoirGroupe) ? 'checked' : ''; ?>>
                                 </td>
                                 <td>
                                     <input type="number" name="qte"
-                                        value="<?php echo htmlspecialchars($mate['qte'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>"
+                                        value="<?php echo htmlspecialchars($qteBesoin['nbBesoin'] ?? 0, ENT_QUOTES, 'UTF-8'); ?>"
                                         min="0">
                                 </td>
                             </tr>

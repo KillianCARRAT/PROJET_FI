@@ -74,7 +74,6 @@ for($i = 0; $i < count($infoRider['type']); $i++) {
         $reqInserAvoirGroupe->execute();
     }
 
-    error_log("\n\n Passer par ici \n\n");
     $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
     $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
     $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
