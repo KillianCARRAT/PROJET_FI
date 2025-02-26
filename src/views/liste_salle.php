@@ -14,6 +14,8 @@ require_once 'head.php'; ?>
                         <th scope="col">Nombre places</th>
                         <th scope="col">Nombre techniciens</th>
                         <th scope="col">Adresse</th>
+                        <th scope="col">Modifier</th>
+                        <th scope="col">Ajouter matériel</th>
                     </tr>
                 </thead>
 
@@ -26,6 +28,8 @@ require_once 'head.php'; ?>
                             <td><?php echo $donnees['nbPlaceS']; ?></td>
                             <td><?php echo $donnees['nbTechS']; ?></td>
                             <td><?php echo $donnees['adresseS']; ?></td>
+                            <td><a href="modifier_salle?id=<?php echo $donnees['idS']; ?>">Modifier</a></td>
+                            <td><a href="materiel_salle?id=<?php echo $donnees['idS']; ?>">Ajouter matériel</a></td>
                         </tr>
                     </tbody>
                     <?php
