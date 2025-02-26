@@ -24,7 +24,7 @@ CREATE TABLE MATERIEL (
     nomM VARCHAR(50),
     typeM VARCHAR(50),
     qteAsso INT
-    );
+);
 
 CREATE TABLE CONCERT (
     idC INT PRIMARY KEY,
@@ -40,8 +40,7 @@ CREATE TABLE CONCERT (
     idG INT NOT NULL,
     idS INT NOT NULL,
     FOREIGN KEY(idS) REFERENCES SALLE(idS),
-    FOREIGN KEY(idG) REFERENCES GROUPE(idG),
-    CONSTRAINT temps CHECK ((0<ABS(debutConcert-heureArrive+dureeConcert)) AND ABS((debutConcert-heureArrive+dureeConcert<60*60*24)))
+    FOREIGN KEY(idG) REFERENCES GROUPE(idG)
 );
 
 CREATE TABLE BESOIN (
