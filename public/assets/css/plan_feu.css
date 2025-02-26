@@ -1,5 +1,6 @@
 /* Réinitialisation de la page */
-body {
+#body-plan-feu {
+
     display: flex;
     justify-content: center;
     align-items: center;
