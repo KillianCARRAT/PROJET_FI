@@ -1,0 +1,68 @@
+/* Réinitialisation de la page */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ececec;
+}
+
+/* Zone principale (dropzone) */
+.dropzone {
+    width: 70vw;  /* 70% de la largeur de l'écran */
+    height: 80vh; /* 80% de la hauteur de l'écran */
+    border: 3px dashed #999;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+/* Conteneur pour la zone des objets (fixé à droite) */
+.objects {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 60vh;
+    padding: 10px;
+    background: #f0f0f0;
+    border: 2px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+/* Objets à glisser */
+.object {
+    width: 150px;
+    height: 50px;
+    margin: 10px;
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    Text-align: center;
+}
+
+
+/* Quand on déplace un objet */
+.dragging { opacity: 0.5; }
+
+#section{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.object.audio { background-color: blue; }
+.object.instrument { background-color: green; }
+.object.son { background-color: red; }
+.object.cable { background-color: orange; }
+.object { background-color: red; }
