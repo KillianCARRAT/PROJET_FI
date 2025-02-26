@@ -28,7 +28,7 @@ require_once 'head.php'; ?>
                             <td><?php echo $donnees['dureeConcert']; ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>
                             <td><?php echo $donnees['nomG']; ?></td>
-                            <td><a href="rider?concert=<?php echo $donnees['idC']; ?>">Fiche rider</a></td>
+                            <td><a href="PDF_rider?concert=<?php echo $donnees['idC']; ?>">Fiche rider</a></td>
                         </tr>
                     </tbody>
                     <?php

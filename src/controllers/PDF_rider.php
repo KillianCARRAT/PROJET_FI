@@ -60,9 +60,6 @@ $pdf->Ln();
 
 
 
-$str = iconv('UTF-8', 'windows-1252', $str);
-
-
 
 $pdf->Cell(70,9,iconv('UTF-8', 'windows-1252', 'Nom'),1);
 $pdf->Cell(40,9,iconv('UTF-8', 'windows-1252', 'Type'),1);
@@ -137,7 +134,7 @@ while($mat = $reqMat->fetch()){
 $pdf->Ln(20);
 $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Plan Feu : '));
 $pdf->Ln(20);
-$pdf->Image(BASE_URL."/public/assets/img_capture/".$idC.'.png',10,10,190,277);
+$pdf->Image(BASE_URL."/public/assets/img_capture/".$idC.'.png',NULL,NULL,0,0,'PNG');
 $pdf->Output();
 ?>
 

@@ -1272,8 +1272,9 @@ protected function _parsepng($file)
 {
 	// Extract info from a PNG file
 	$f = fopen($file,'rb');
-	if(!$f)
+	if(!$f) {
 		$this->Error('Can\'t open image file: '.$file);
+	}
 	$info = $this->_parsepngstream($f,$file);
 	fclose($f);
 	return $info;
