@@ -42,6 +42,14 @@ class Router
             case '/rider':
                 require_once VIEWS_PATH . '/rider.php';
                 break;
+                
+            case '/PDF_rider':
+                require_once CONTROLLERS_PATH . '/PDF_rider.php';
+                break;
+
+            case '/plan_feu':
+                require_once VIEWS_PATH . '/plan_feu.php';
+                break;
 
             case '/plan_feu':
                 require_once VIEWS_PATH . '/plan_feu.php';

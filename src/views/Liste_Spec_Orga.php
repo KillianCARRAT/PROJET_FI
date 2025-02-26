@@ -31,7 +31,7 @@ require_once 'head.php'; ?>
                             </td>
                             <td><?php echo $donnees['nomS']; ?></td>
                             <td><?php echo $donnees['nomG']; ?></td>
-                            <td><a href="rider?concert=<?php echo $donnees['idC']; ?>">Fiche rider</a></td>
+                            <td><a href="PDF_rider?concert=<?php echo $donnees['idC']; ?>">Fiche rider</a></td>
                             <td><a href="plan_feu?concert=<?php echo $donnees['idC']; ?>">Plan feu</td>
                         </tr>
 
