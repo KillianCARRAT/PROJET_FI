@@ -12,7 +12,6 @@ require_once 'head.php';
             <form class="stock" method="post" action="/info-stock">
                 <div class="grand" id="matériels">
                     <?php
-                    // Sélectionner tous les matériels dont qteAsso n'est pas null
                     $mat = $bdd->prepare('SELECT * FROM MATERIEL WHERE qteAsso IS NOT NULL');
                     $mat->execute();
                     ?>

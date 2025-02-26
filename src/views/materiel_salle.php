@@ -12,13 +12,10 @@ require_once 'head.php';
             <form class="stock" method="post" action="/info-stock-salle">
                 <div class="grand" id="matériels">
                     <?php
-                    // Récupérer l'ID de la salle depuis l'URL
                     $idS = $_GET['id'];
                     ?>
                         <input type="hidden" name="idS" id="idS" value="<?php echo $idS; ?>">
                     <?php
-
-                    // Sélectionner tous les matériels associés à la salle
                     $mat = $bdd->prepare('SELECT *, qte FROM MATERIEL NATURAL JOIN AVOIRSALLE WHERE idS = :idS');
                     $mat->bindParam(":idS", $idS, PDO::PARAM_INT);
                     $mat->execute();

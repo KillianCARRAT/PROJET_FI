@@ -3,10 +3,7 @@ use src\controllers\Database;
 $bdd = Database::getConnection();
 
 $idS = $_POST['idS'];
-error_log("\n\n idS = " . $idS . "\n\n");
-
 $infoStock = array_filter($_POST, 'is_array');
-error_log("\n\n infoStock = " . print_r($infoStock, true) . "\n\n");
 
 $prepareDelete = $bdd->prepare('DELETE FROM AVOIRSALLE WHERE idS = :idS');
 $prepareDelete->bindParam(":idS", $idS, PDO::PARAM_INT);
@@ -17,8 +14,6 @@ if (isset($infoStock['type']) && is_array($infoStock['type'])) {
         $typeM = $infoStock['type'][$i];
         $nomM = $infoStock['nom'][$i];
         $qte = $infoStock['quantite'][$i];
-
-        error_log("Processing: typeM = $typeM, nomM = $nomM, qte = $qte");
 
         $reqB = $bdd->prepare('SELECT * FROM MATERIEL WHERE nomM=:nomM AND typeM=:typeM');
         $reqB->bindParam(":typeM", $typeM, PDO::PARAM_STR);
@@ -38,7 +33,6 @@ if (isset($infoStock['type']) && is_array($infoStock['type'])) {
             $idM = $result['idM'];
         }
 
-        // Vérifier si le matériel est déjà dans AVOIRSALLE
         $checkAvoirSalle = $bdd->prepare('SELECT * FROM AVOIRSALLE WHERE idS=:idS AND idM=:idM');
         $checkAvoirSalle->bindParam(":idS", $idS, PDO::PARAM_INT);
         $checkAvoirSalle->bindParam(":idM", $idM, PDO::PARAM_INT);
@@ -47,7 +41,6 @@ if (isset($infoStock['type']) && is_array($infoStock['type'])) {
         $resultAvoirSalle = $checkAvoirSalle->fetch(PDO::FETCH_ASSOC);
 
         if ($resultAvoirSalle) {
-            // Ajouter la nouvelle quantité à la quantité existante
             $newQte = $resultAvoirSalle['qte'] + $qte;
             $update = $bdd->prepare('UPDATE AVOIRSALLE SET qte=:qte WHERE idS=:idS AND idM=:idM');
             $update->bindParam(":qte", $newQte, PDO::PARAM_INT);
@@ -57,7 +50,6 @@ if (isset($infoStock['type']) && is_array($infoStock['type'])) {
                 error_log("Error updating AVOIRSALLE: " . print_r($update->errorInfo(), true));
             }
         } else {
-            // Insérer le matériel dans AVOIRSALLE
             $insert = $bdd->prepare('INSERT INTO AVOIRSALLE (idS, idM, qte) VALUES (:idS, :idM, :qte)');
             $insert->bindParam(":idS", $idS, PDO::PARAM_INT);
             $insert->bindParam(":idM", $idM, PDO::PARAM_INT);
