@@ -20,8 +20,8 @@ $loges = $_POST["loges"];
 
 
 
-$reqType = $bdd->prepare('INSERT INTO SALLE (idS, nomS, nbPlaceS, typePlaceS, adresseS, largeurS, longueurS, nbPlacesLo, nbTechS,nbPlaceVoitureS)
-VALUES (:id, :nom, :nbPlace, :types, :adresse, :largeur, :longueur, :loges, :nbTec,0);');
+$reqType = $bdd->prepare('INSERT INTO SALLE (idS, nomS, nbPlaceS, typePlaceS, adresseS, largeurS, longueurS, nbPlacesLo, nbTechS)
+VALUES (:id, :nom, :nbPlace, :types, :adresse, :largeur, :longueur, :loges, :nbTec);');
 
 $reqType->bindParam(":id", $id, PDO::PARAM_STR);
 $reqType->bindParam(":nom", $nom, PDO::PARAM_STR);

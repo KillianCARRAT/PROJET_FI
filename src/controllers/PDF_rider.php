@@ -3,7 +3,7 @@ use src\controllers\Database;
 $bdd = Database::getConnection();
 require('fpdf186/fpdf.php');
 $idC = $_GET['concert'];
-$reqType = $bdd->prepare('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE NATURAL JOIN COMMENTAIRE WHERE idC = :id');
+$reqType = $bdd->prepare('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE WHERE idC = :id');
 $reqType->bindParam(":id", $idC, PDO::PARAM_STR);
 $reqType->execute();
 $donnees = $reqType->fetch();
@@ -19,6 +19,7 @@ $pdf->Cell(40,10,'Nom du groupe : '.$donnees['nomG']);
 $pdf->Ln();
 $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Nom de la salle : '.$donnees['nomS']));
 $pdf->Ln();
+
 if ($donnees['besoinHotel'] !== NULL){
     $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', "Adresse de l'hotel demmander : ".$donnees['besoinHotel']));
 }
@@ -35,12 +36,17 @@ else{
 }
 $pdf->Ln();
 
+if ($donnees['commentaire'] !== NULL){
+    $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Demmande particulière : '));
+    $pdf->Ln(15);
+    $pdf->SetFont('Arial','',12);
+    $pdf->MultiCell(0,10,iconv('UTF-8', 'windows-1252', $donnees['commentaire']),'LBRT');
+    $pdf->SetFont('Arial','B',16);
+}
+else{
+    $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Pas de demande particulière'));
+}
 
-$pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Demmande particulière : '));
-$pdf->Ln(15);
-$pdf->SetFont('Arial','',12);
-$pdf->MultiCell(0,10,iconv('UTF-8', 'windows-1252', $donnees['msg']),'LBRT');
-$pdf->SetFont('Arial','B',16);
 
 
 $pdf->Ln(20);
