@@ -39,7 +39,7 @@ require_once 'head.php';
                     <input type="text" name="adresse" id="adresse" placeholder="Adresse">
 
                     <div class="chec">
-                        <input type="checkbox" name="vehicule" id="checkbox-hotel">
+                        <input type="checkbox" name="hotel" id="checkbox-hotel">
                         <label class="gras" for="checkbox-hotel">Besoin d'un hôtel</label>
                     </div>
                     <textarea name="demande-hotel" id="demande-hotel" placeholder="Demande pour l'hôtel"></textarea>

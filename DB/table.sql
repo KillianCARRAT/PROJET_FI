@@ -26,12 +26,6 @@ CREATE TABLE MATERIEL (
     qteAsso INT
     );
 
-CREATE TABLE COMMENTAIRE (
-    idCom INT PRIMARY KEY AUTO_INCREMENT,
-    msg VARCHAR(10000)
-);
-
-
 CREATE TABLE CONCERT (
     idC INT PRIMARY KEY,
     dateC DATE,
@@ -42,12 +36,11 @@ CREATE TABLE CONCERT (
     besoinHotel VARCHAR(50),
     nombreTechNecessaire INT,
     dateMax DATE,
+    commentaire VARCHAR(10000),
     idG INT NOT NULL,
     idS INT NOT NULL,
-    idCom INT,
     FOREIGN KEY(idS) REFERENCES SALLE(idS),
     FOREIGN KEY(idG) REFERENCES GROUPE(idG),
-    FOREIGN KEY(idCom) REFERENCES COMMENTAIRE(idCom),
     CONSTRAINT temps CHECK ((0<ABS(debutConcert-heureArrive+dureeConcert)) AND ABS((debutConcert-heureArrive+dureeConcert<60*60*24)))
 );
 
