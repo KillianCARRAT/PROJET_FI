@@ -1,5 +1,3 @@
-/* champ + images */
-
 #inside-text {
     font-style: italic;
 }
@@ -46,6 +44,7 @@ select {
 }
 
 .toggle-password {
+    width: 4em;
     cursor: pointer;
     font-size: 1em;
     background-color: #120045;
@@ -60,11 +59,6 @@ select {
     cursor: pointer;
 }
 
-.toggle-password:active {
-    transform: scale(0.95);
-}
-
-/* bouton se connecter */
 input[type="submit"] {
     background-color: #120045;
     color: white;
@@ -143,8 +137,6 @@ img {
     font-size: 3em;
 }
 
-
-/* style basique */
 a {
     text-decoration: none;
     color: #120045;

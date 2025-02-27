@@ -11,19 +11,30 @@ $idC = $_POST["idC"];
 $idG = $_POST["idG"];
 
 
-$checkVehicule = $_POST["vehicule"] ?? NULL;
-$checkHotel = $_POST["hotel"] ?? NULL;
+$checkVehicule = $_POST["vehicule"] ?? null;
+$checkHotel = $_POST["hotel"] ?? null;
 
-if ($checkVehicule == "on") {
+$transport = isset($_POST["adresse"]) ? trim($_POST["adresse"]) : null;
+$hotel = isset($_POST["demande-hotel"]) ? trim($_POST["demande-hotel"]) : null;
+
+if ($checkVehicule == "on" && !empty($transport)) {
     $adresseV = $_POST["adresse"];
 } else {
     $adresseV = null;
 }
 
-if ($checkHotel == "on") {
+if ($checkHotel == "on" && !empty($hotel)) {
     $demandeH = $_POST["demande-hotel"];
 } else {
     $demandeH = null;
+}
+
+if(!empty($demandeP)) {
+    var_dump($demandeP);
+    $updateCom = $bdd->prepare('UPDATE CONCERT SET commentaire=:msg WHERE idC=:idC');
+    $updateCom->bindParam("msg", $demandeP, PDO::PARAM_STR);
+    $updateCom->bindParam("idC", $idC, PDO::PARAM_STR);
+    $updateCom->execute();
 }
 
 $updateConcert = $bdd->prepare('UPDATE CONCERT SET besoinTransport=:bTransport, besoinHotel=:bHotel WHERE idC=:idC');
@@ -46,7 +57,6 @@ $infoRider = array_filter($_POST, 'is_array');
 
 if (isset($infoRider['type']) && is_array($infoRider['type'])) {
     for ($i = 0; $i < count($infoRider['type']); $i++) {
-        error_log("i = " . $i);
         $typeM = $infoRider['type'][$i];
         $nomM = $infoRider['nom'][$i];
         $qte = $infoRider['quantite'][$i];
@@ -71,7 +81,6 @@ if (isset($infoRider['type']) && is_array($infoRider['type'])) {
         $idM = $reqId->fetch();
         $idM = $idM["idM"];
 
-        error_log("\n\n" . $infoRider['besoin'][$i] . "\n\n");
         if ($infoRider['besoin'][$i] == 1) {
             $checkAvoirGroupe = $bdd->prepare('SELECT * FROM AVOIRGROUPE WHERE idM=:idM AND idG=:idG');
             $checkAvoirGroupe->bindParam(":idM", $idM, PDO::PARAM_STR);
@@ -102,17 +111,18 @@ if (isset($infoRider['type']) && is_array($infoRider['type'])) {
         $existingBesoin = $checkBesoin->fetch();
 
         if ($existingBesoin) {
-            $newNbBesoin = $existingBesoin['nbBesoin'] + $qte;
+            $newNbBesoin = intval($existingBesoin['nbBesoin']) + intval($qte);
             $updateBesoin = $bdd->prepare('UPDATE BESOIN SET nbBesoin=:nbBesoin WHERE idC=:idC AND idM=:idM');
             $updateBesoin->bindParam(":nbBesoin", $newNbBesoin, PDO::PARAM_INT);
             $updateBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
             $updateBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
             $updateBesoin->execute();
         } else {
+            $nbBesoin = intval($qte);
             $insererBesoin = $bdd->prepare('INSERT INTO BESOIN (idC, idM, nbBesoin) VALUES (:idC, :idM, :nbBesoin)');
             $insererBesoin->bindParam(":idC", $idC, PDO::PARAM_INT);
             $insererBesoin->bindParam(":idM", $idM, PDO::PARAM_INT);
-            $insererBesoin->bindParam(":nbBesoin", $qte, PDO::PARAM_INT);
+            $insererBesoin->bindParam(":nbBesoin", $nbBesoin, PDO::PARAM_INT);
             $insererBesoin->execute();
         }
     }
@@ -145,4 +155,3 @@ switch ($role) {
         header("Location : /");
         exit;
 }
-?>

@@ -39,8 +39,10 @@ $execusion->execute();
                 <input type="time" id="heure-arrivé" name="heure-arrivé" required>
 
                 <div id="boutons">
-                    <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>
-                    <button type="submit" class="bouton-bas">Trouver une salle</button>
+                    <section id="section">
+                        <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>
+                        <button type="submit" class="bouton-bas">Trouver une salle</button>
+                    </section>
                 </div>
             </form>
         </section>

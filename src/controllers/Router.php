@@ -18,6 +18,10 @@ class Router
         }
 
         switch ($requestUri[0]) {
+            case '/':
+                require_once VIEWS_PATH . '/connexion.php';
+                break;
+
             case '/ADM':
                 require_once VIEWS_PATH . '/admin.php';
                 break;
@@ -167,8 +171,32 @@ class Router
                 require_once VIEWS_PATH . '/affichage_plan_feu.php';
                 break;
 
-            case '/':
-                require_once VIEWS_PATH . '/connexion.php';
+            case "/Stock_Mat":
+                require_once VIEWS_PATH . '/stockMat.php';
+                break;
+
+            case "/info-stock":
+                require_once CONTROLLERS_PATH . '/info-stock.php';
+                break;
+
+            case '/modifier_salle':
+                require_once VIEWS_PATH . '/modifier_salle.php';
+                break;
+
+            case '/update_salle':
+                require_once CONTROLLERS_PATH . '/update_salle.php';
+                break;
+
+            case '/ajouter_materiel':
+                require_once VIEWS_PATH . '/ajouter_materiel.php';
+                break;
+            
+            case '/materiel_salle':
+                require_once VIEWS_PATH . '/materiel_salle.php';
+                break;
+
+            case '/info-stock-salle':
+                require_once CONTROLLERS_PATH . '/info-stock-salle.php';
                 break;
 
             default:

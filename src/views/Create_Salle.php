@@ -39,8 +39,10 @@ require_once 'head.php'; ?>
                     <label for="loges">Nombre de place dans les loges</label>
                     <input type="number" id="loges" name="loges">
                     <div id="boutons">
-                        <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>
-                        <button type="submit" class="bouton-bas">Créé la Salle</button>
+                        <section id="section">
+                            <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>
+                            <button type="submit" class="bouton-bas">Créé la Salle</button>
+                        </section>
                     </div>
 
                 </form>

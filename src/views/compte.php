@@ -1,5 +1,4 @@
-<?php 
-session_start();
+<?php
 $id_cpt = $_SESSION['idUser'];
 $title = 'Compte';
 $lesCSS = ["basPage", "cote", "compte", "compte_asso"];
@@ -11,9 +10,7 @@ $reqType->bindParam(":id", $idUser, PDO::PARAM_STR);
 $reqType->execute();
 $tout = $reqType->fetchAll();
 $role = $tout[0][0];
-?>
 
-<?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'modifier_identifiant') {
     $nouvelIdUser = $_POST['idUser'];
     $nouveauNomG = $_POST['nomG'];
@@ -22,40 +19,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $nouveauNbPersG = $_POST['nbPersG'];
     $ancienIdUser = $_SESSION['idUser'];
 
-    // Vérifier si l'identifiant existe déjà
-    $reqCheck = $bdd->prepare('SELECT COUNT(*) FROM UTILISATEUR WHERE iden = :nouvelId');
-    $reqCheck->bindParam(':nouvelId', $nouvelIdUser, PDO::PARAM_STR);
-    $reqCheck->execute();
-    $count = $reqCheck->fetchColumn();
+    if ($nouvelIdUser !== $ancienIdUser) {
+        $reqCheck = $bdd->prepare('SELECT COUNT(*) FROM UTILISATEUR WHERE iden = :nouvelId');
+        $reqCheck->bindParam(':nouvelId', $nouvelIdUser, PDO::PARAM_STR);
+        $reqCheck->execute();
+        $count = $reqCheck->fetchColumn();
 
-    if ($count > 0) {
-        // L'identifiant existe déjà, afficher un message d'erreur
-        echo "<script>alert('L\'identifiant existe déjà. Veuillez en choisir un autre.');</script>";
+        if ($count > 0) {
+            echo "<script>alert('L\'identifiant existe déjà. Veuillez en choisir un autre.');</script>";
+        } else {
+            $reqGetIdG = $bdd->prepare('SELECT idG FROM LIEN WHERE iden = :ancienId');
+            $reqGetIdG->bindParam(':ancienId', $ancienIdUser, PDO::PARAM_STR);
+            $reqGetIdG->execute();
+            $idG = $reqGetIdG->fetchColumn();
+
+            $reqDeleteLien = $bdd->prepare('DELETE FROM LIEN WHERE iden = :ancienId');
+            $reqDeleteLien->bindParam(':ancienId', $ancienIdUser, PDO::PARAM_STR);
+            $reqDeleteLien->execute();
+
+            $reqUpdate = $bdd->prepare('UPDATE UTILISATEUR SET iden = :nouvelId WHERE iden = :ancienId');
+            $reqUpdate->bindParam(':nouvelId', $nouvelIdUser, PDO::PARAM_STR);
+            $reqUpdate->bindParam(':ancienId', $ancienIdUser, PDO::PARAM_STR);
+            $reqUpdate->execute();
+
+            $reqInsertLien = $bdd->prepare('INSERT INTO LIEN (idG, iden) VALUES (:idG, :nouvelId)');
+            $reqInsertLien->bindParam(':idG', $idG, PDO::PARAM_INT);
+            $reqInsertLien->bindParam(':nouvelId', $nouvelIdUser, PDO::PARAM_STR);
+            $reqInsertLien->execute();
+
+            $reqUpdateGroupe = $bdd->prepare('UPDATE GROUPE SET nomG = :nouveauNomG, mail = :nouveauMail, nbTechG = :nouveauNbTechG, nbPersG = :nouveauNbPersG WHERE idG = :idG');
+            $reqUpdateGroupe->bindParam(':nouveauNomG', $nouveauNomG, PDO::PARAM_STR);
+            $reqUpdateGroupe->bindParam(':nouveauMail', $nouveauMail, PDO::PARAM_STR);
+            $reqUpdateGroupe->bindParam(':nouveauNbTechG', $nouveauNbTechG, PDO::PARAM_INT);
+            $reqUpdateGroupe->bindParam(':nouveauNbPersG', $nouveauNbPersG, PDO::PARAM_INT);
+            $reqUpdateGroupe->bindParam(':idG', $idG, PDO::PARAM_INT);
+            $reqUpdateGroupe->execute();
+
+            $_SESSION['idUser'] = $nouvelIdUser;
+
+            header('Location: ' . $_SERVER['REQUEST_URI']);
+            exit();
+        }
     } else {
-        // Récupérer l'ID du groupe
         $reqGetIdG = $bdd->prepare('SELECT idG FROM LIEN WHERE iden = :ancienId');
         $reqGetIdG->bindParam(':ancienId', $ancienIdUser, PDO::PARAM_STR);
         $reqGetIdG->execute();
         $idG = $reqGetIdG->fetchColumn();
 
-        // Supprimer la ligne dans la table LIEN
-        $reqDeleteLien = $bdd->prepare('DELETE FROM LIEN WHERE iden = :ancienId');
-        $reqDeleteLien->bindParam(':ancienId', $ancienIdUser, PDO::PARAM_STR);
-        $reqDeleteLien->execute();
-
-        // Mettre à jour l'identifiant dans la table UTILISATEUR
-        $reqUpdate = $bdd->prepare('UPDATE UTILISATEUR SET iden = :nouvelId WHERE iden = :ancienId');
-        $reqUpdate->bindParam(':nouvelId', $nouvelIdUser, PDO::PARAM_STR);
-        $reqUpdate->bindParam(':ancienId', $ancienIdUser, PDO::PARAM_STR);
-        $reqUpdate->execute();
-
-        // Recréer la ligne dans la table LIEN avec le nouvel identifiant
-        $reqInsertLien = $bdd->prepare('INSERT INTO LIEN (idG, iden) VALUES (:idG, :nouvelId)');
-        $reqInsertLien->bindParam(':idG', $idG, PDO::PARAM_INT);
-        $reqInsertLien->bindParam(':nouvelId', $nouvelIdUser, PDO::PARAM_STR);
-        $reqInsertLien->execute();
-
-        // Mettre à jour les informations du groupe
         $reqUpdateGroupe = $bdd->prepare('UPDATE GROUPE SET nomG = :nouveauNomG, mail = :nouveauMail, nbTechG = :nouveauNbTechG, nbPersG = :nouveauNbPersG WHERE idG = :idG');
         $reqUpdateGroupe->bindParam(':nouveauNomG', $nouveauNomG, PDO::PARAM_STR);
         $reqUpdateGroupe->bindParam(':nouveauMail', $nouveauMail, PDO::PARAM_STR);
@@ -63,8 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $reqUpdateGroupe->bindParam(':nouveauNbPersG', $nouveauNbPersG, PDO::PARAM_INT);
         $reqUpdateGroupe->bindParam(':idG', $idG, PDO::PARAM_INT);
         $reqUpdateGroupe->execute();
-
-        $_SESSION['idUser'] = $nouvelIdUser;
 
         header('Location: ' . $_SERVER['REQUEST_URI']);
         exit();

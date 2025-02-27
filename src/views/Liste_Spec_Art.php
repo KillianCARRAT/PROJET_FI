@@ -23,7 +23,7 @@ require_once 'head.php'; ?>
                     ?>
                     <tbody>
                         <tr>
-                            <td><?php echo $donnees['dateCo']; ?></td>
+                            <td><?php echo $donnees['dateC']; ?></td>
                             <td><?php echo $donnees['debutConcert']; ?></td>
                             <td><?php echo $donnees['dureeConcert']; ?></td>
                             <td><?php echo $donnees['nomS']; ?></td>

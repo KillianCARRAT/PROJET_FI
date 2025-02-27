@@ -22,8 +22,10 @@ require_once 'head.php'; ?>
                     <label for="nb_ART">Nombre de Personne dans le groupe</label>
                     <input type="number" id="nb_ART" name="nb_ART">
                     <div id="boutons">
-                        <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>
-                        <button type="submit" class="bouton-bas">Créé l'artiste</button>
+                        <section id="section">
+                            <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>
+                            <button type="submit" class="bouton-bas">Créer l'artiste</button>
+                        </section>
                     </div>
 
                 </form>

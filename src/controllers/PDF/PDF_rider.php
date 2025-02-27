@@ -1,7 +1,7 @@
-<?php 
+<?php
 use src\controllers\Database;
 $bdd = Database::getConnection();
-require('fpdf186/fpdf.php');
+require_once('fpdf186/fpdf.php');
 $idC = $_GET['concert'];
 $reqType = $bdd->prepare('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE WHERE idC = :id');
 $reqType->bindParam(":id", $idC, PDO::PARAM_STR);
@@ -48,11 +48,7 @@ else{
 }
 
 
-
 $pdf->Ln(20);
-
-
-
 
 
 $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Materiaux : '));
@@ -140,6 +136,3 @@ $pdf->Ln(20);
 $pdf->Image(CONTROLLERS_PATH.'/PDF/'.$idC.'.png',NULL,NULL,190,0,'PNG');}
 
 $pdf->Output();
-?>
-
-
