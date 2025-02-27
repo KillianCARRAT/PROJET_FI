@@ -1280,6 +1280,14 @@ protected function _parsepng($file)
 	return $info;
 }
 
+protected function RotatedImage($file,$x,$y,$w,$h,$angle)
+{
+    //Rotation de l'image autour du coin supérieur gauche
+    $this->Rotate($angle,$x,$y);
+    $this->Image($file,$x,$y,$w,$h);
+    $this->Rotate(0);
+}
+
 protected function _parsepngstream($f, $file)
 {
 	// Check signature

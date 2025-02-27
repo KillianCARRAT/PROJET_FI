@@ -132,9 +132,13 @@ while($mat = $reqMat->fetch()){
     $pdf->Ln();
 }
 $pdf->Ln(20);
+if(file_exists(CONTROLLERS_PATH.'/PDF/'.$idC.'.png')){
+
+$pdf->AddPage();
 $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Plan Feu : '));
 $pdf->Ln(20);
-$pdf->Image(BASE_URL."/public/assets/img_capture/".$idC.'.png',NULL,NULL,0,0,'PNG');
+$pdf->Image(CONTROLLERS_PATH.'/PDF/'.$idC.'.png',NULL,NULL,190,0,'PNG');}
+
 $pdf->Output();
 ?>
 
