@@ -83,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 <body>
     <?php require_once "cote.php"; ?>
     <main>
+        <h1>Profil</h1>
         <?php
         if ($role == "ART") {
             $reqId = $bdd->prepare('SELECT idG FROM LIEN NATURAL JOIN UTILISATEUR WHERE iden=:id');
@@ -98,13 +99,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             ?>
             <div id="info-compte">
                 <div id="affichage-identifiant">
-                    <p>
-                        Identifiant : <?php echo $idUser; ?><br>
-                        Nom du groupe : <?php echo $donnees['nomG']; ?><br>
-                        Mail : <?php echo $donnees['mail']; ?><br>
-                        Nombre de technicien : <?php echo $donnees['nbTechG']; ?><br>
-                        Nombre de personne dans le groupe : <?php echo $donnees['nbPersG']; ?><br>
-                    </p>
+                        <p>Identifiant : <?php echo $idUser; ?></p>
+                        <p>Nom du groupe : <?php echo $donnees['nomG']; ?></p>
+                        <p>Mail : <?php echo $donnees['mail']; ?></p>
+                        <p>Nombre de technicien : <?php echo $donnees['nbTechG']; ?></p>
+                        <p>Nombre de personne dans le groupe : <?php echo $donnees['nbPersG']; ?></p>
                     <input type="button" id="Modifier" value="Modifier" />
                 </div>
                 <div id="edition-identifiant" style="display:none;">
