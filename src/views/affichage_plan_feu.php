@@ -10,7 +10,7 @@ if(file_exists($image)){
     error_log($image);
     print '<body id="body">';
     print '<img src="'.$image.'" alt="texte alternatif" />';
-    print '<section>';
+    print '<section id="section">';
     ?>
     <button class="bouton" onclick="window.location = '/Ac_Art'">Retour</button>
     <?php

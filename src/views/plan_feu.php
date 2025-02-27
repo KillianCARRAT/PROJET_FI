@@ -1,6 +1,6 @@
 <?php
 $title = 'plan-feu';
-$lesCSS = ["plan_feu","image_feu"];
+$lesCSS = ["plan_feu"];
 require_once 'head.php';
 $idC = $_GET['concert'];
 
@@ -26,18 +26,17 @@ $idC = $_GET['concert'];
                     $nomM = $mat['nomM'];
                     $typeM = strtolower($mat['typeM']);
                     $qte = $mat['nbBesoin'];
-                    echo "<section id='section'>";
                     echo '<p class="quantity-display" data-name="'.$nomM.'">'.$qte.'X</p>'; //Ajout d'un `data-name`
                     echo '<div id="multiplicateur" class="object base '.$typeM.'" draggable="true" data-qte="'.$qte.'" data-name="' . $nomM . '" data-type="'.$typeM.'">' . $nomM .'</div>';
-                    echo "</section>";
                 }
             }
             ?>
         </div>
         <input id="idC" type="hidden" name="idC" value=<?php echo $idC ?>>
-        <button class="bouton" onclick="window.location = '/Ac_Art'">Retour</button>
-        <input class="bouton" id="boutonCapture" type="submit" value="Enregister">
-        
+        <section id="section">
+            <button class="bouton" onclick="window.location = '/Ac_Art'">Retour</button>
+            <input class="bouton" id="boutonCapture" type="submit" value="Enregister">
+        </section>
     </main>
 </body>
 
