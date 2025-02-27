@@ -31,7 +31,7 @@ CONQUERANT Dan
 
 ### Backend
 - **[PHP, JavaScript]**
-  - PHP : gestion des affichages liés à la base de données, gestion des inscriptions aux cours, gestion de la connexion/l'inscription, gestion des ajouts dans la base de données.
+  - PHP : gestion des affichages liés à la base de données, gestion de la connexion, gestion des ajouts dans la base de données.
   - JavaScript : bouton afficher/cacher sur les formulaires.
 
 ### Frontend
@@ -40,7 +40,7 @@ CONQUERANT Dan
 
 ### Base de données
 - **[SQL, MariaDB]**
-  - Stockage des informations sur les adhérents, poneys et plannings.
+  - Stockage des informations sur les utilisateurs, le materiel, donnée de la fiche rider, ... .
 
 ## Lien
 Lien vers les pages quand on est sur le serveur local
