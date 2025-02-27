@@ -5,8 +5,6 @@ require_once 'head.php';
 $procedure="select idG,nomG from GROUPE";
 $execusion=$bdd->prepare($procedure);
 $execusion->execute();
-
-
 ?>
 
 <body>

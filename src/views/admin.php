@@ -21,15 +21,13 @@ require_once 'head.php'; ?>
 
                     <label for="mot_de_passe">Mot de passe:</label>
                     <input type="text" id="mot_de_passe" name="mot_de_passe">
-                    <div id="boutons">
+                    <div id="boutons-admin">
                         <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>
                         <button type="submit" class="bouton-bas">Créer une nouvelle association</button>
                     </div>
-
                 </form>
             </section>
     </main>
     <?php require_once "basPage.php" ?>
 </body>
-
 </html>

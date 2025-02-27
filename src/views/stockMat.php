@@ -4,6 +4,7 @@ $lesCSS = ["basPage", "cote", "style-stock"];
 require_once 'head.php';
 ?>
 
+<html>
 <body>
     <?php require_once "cote.php"; ?>
     <main id="main-stock">

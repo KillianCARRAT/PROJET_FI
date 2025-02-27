@@ -34,9 +34,7 @@ img {
 #section {
     display: flex;
     justify-content: center;
-    /* Centre les boutons */
     gap: 20px;
-    /* Espace entre les boutons */
     margin-top: 20px;
 }
 

@@ -9,7 +9,6 @@
     color: white;
 }
 
-/* accès compte */
 #aside-tout h1#cote {
     display: flex;
     align-items: center;
@@ -27,7 +26,6 @@
     height: auto;
 }
 
-/* menu aside */
 #menu {
     text-align: center;
 }
@@ -44,7 +42,6 @@
     text-decoration: none;
 }
 
-/* bouton se déconnecter */
 #deco {
     position: fixed;
     bottom: 1em;

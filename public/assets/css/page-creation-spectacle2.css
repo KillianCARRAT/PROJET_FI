@@ -14,7 +14,7 @@ body {
 
 #texte {
   text-align: center;
-  color: #5a67d8;
+  color: #120045;
   font-size: 2em;
   margin-bottom: 20px;
 }
@@ -35,7 +35,18 @@ form#formulaire {
   color: #444;
 }
 
-/* Inputs et Select */
+/* SLIDER */
+
+.slider {
+  width: 100%;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 input[type="number"],
 select {
   width: 100%;
@@ -49,45 +60,36 @@ select {
 
 input[type="number"]:focus,
 select:focus {
-  border-color: #5a67d8;
+  border-color: #120045;
   outline: none;
 }
 
-/* Ajustement du slider et de l'input */
-.slider-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-/* Style du champ numérique */
 input[type="number"].slider-value {
   width: 80px;
   text-align: center;
   font-size: 1em;
   font-weight: bold;
-  border: 2px solid #5a67d8;
-  color: #5a67d8;
+  border: 2px solid #120045;
+  color: #120045;
   border-radius: 5px;
 }
 
-/* Style du champ numérique au focus */
 input[type="number"].slider-value:focus {
   outline: none;
-  border-color: #434190;
+  border-color: #120045;
   box-shadow: 0 0 5px rgba(90, 103, 216, 0.5);
 }
 
-/* Style du slider */
-.slider {
-  width: 100%;
+input[type="range"] {
+  background-color: #120045;
 }
 
-/* Bouton */
+/* BOUTON DU BAS */
+
 button.bouton-bas {
   padding: 10px 20px;
   font-size: 1em;
-  background-color: #5a67d8;
+  background-color: #120045;
   color: white;
   border: none;
   border-radius: 5px;
@@ -96,10 +98,9 @@ button.bouton-bas {
 }
 
 button.bouton-bas:hover {
-  background-color: #434190;
+  background-color: #2a0199;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   #principal {
     padding: 15px;

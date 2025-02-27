@@ -55,7 +55,7 @@ require_once 'head.php';
                             <th>Nom</th>
                             <th>je possède ?</th>
                             <th>Quantité</th>
-                            <th>Action</th> <!-- Nouvelle colonne pour le bouton "Supprimer" -->
+                            <th>Action</th>
                         </tr>
                         <?php while ($mate = $mat->fetch()) {
                             $idM = $mate["idM"];
@@ -114,4 +114,5 @@ require_once 'head.php';
 $lesJS = ["rider"];
 require_once 'script.php';
 ?>
+
 </html>
