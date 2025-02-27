@@ -14,19 +14,20 @@ $idG = $_POST["idG"];
 $checkVehicule = $_POST["vehicule"] ?? null;
 $checkHotel = $_POST["hotel"] ?? null;
 
-if ($checkVehicule == "on") {
+$transport = isset($_POST["adresse"]) ? trim($_POST["adresse"]) : null;
+$hotel = isset($_POST["demande-hotel"]) ? trim($_POST["demande-hotel"]) : null;
+
+if ($checkVehicule == "on" && !empty($transport)) {
     $adresseV = $_POST["adresse"];
 } else {
     $adresseV = null;
 }
 
-if ($checkHotel == "on") {
+if ($checkHotel == "on" && !empty($hotel)) {
     $demandeH = $_POST["demande-hotel"];
 } else {
     $demandeH = null;
 }
-
-error_log(print_r($demandeP));
 
 if(!empty($demandeP)) {
     var_dump($demandeP);
