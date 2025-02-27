@@ -1,4 +1,4 @@
-#body{
+#body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,7 +17,7 @@ img {
 }
 
 .bouton {
-    width: 150px; 
+    width: 150px;
     padding: 10px;
     background-color: #120045;
     color: white;
@@ -33,8 +33,10 @@ img {
 
 #section {
     display: flex;
-    justify-content: center; /* Centre les boutons */
-    gap: 20px; /* Espace entre les boutons */
+    justify-content: center;
+    /* Centre les boutons */
+    gap: 20px;
+    /* Espace entre les boutons */
     margin-top: 20px;
 }
 

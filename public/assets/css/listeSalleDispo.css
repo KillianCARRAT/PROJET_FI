@@ -39,7 +39,7 @@
 
 
 #tableau td a {
-    color: #800080; 
+    color: #800080;
     text-decoration: none;
 }
 
@@ -67,7 +67,7 @@ button.bouton-bas:hover {
     background-color: #434190;
 }
 
-#texte  {
+#texte {
     width: 100%;
     border-collapse: collapse;
     margin: 20px auto;

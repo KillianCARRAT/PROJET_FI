@@ -1,4 +1,5 @@
-#creat-spec, #create-art {
+#creat-spec,
+#create-art {
     margin-left: 17em;
 }
 
@@ -36,12 +37,14 @@ input[type="time"],
 input[type="number"],
 select {
     width: 100%;
-    max-width: 100%; /* Taille uniforme */
+    max-width: 100%;
+    /* Taille uniforme */
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Évite que padding augmente la largeur */
+    box-sizing: border-box;
+    /* Évite que padding augmente la largeur */
 }
 
 .bouton-bas {
@@ -68,6 +71,6 @@ select {
     align-items: center;
 }
 
-#section{
+#section {
     display: flex;
 }
