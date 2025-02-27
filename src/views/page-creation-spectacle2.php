@@ -59,7 +59,10 @@ $lesCSS = ["page-creation-spectacle2", "basPage", "cote"];
             </form>
         </section>
     </main>
-    <script src="../../public/assets/js/slider.js"></script>
+    <?php
+    $lesJS = ["slider"];
+    require_once 'script.php';
+    ?>
 </body>
 <?php require_once "basPage.php" ?>
 

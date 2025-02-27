@@ -45,7 +45,4 @@ $lesJS = ["plan_feu"];
 require_once 'script.php';
 ?>
 
-
-
-
 </html>
