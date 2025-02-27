@@ -1,0 +1,2 @@
+INSERT INTO UTILISATEUR (iden, mdp, typeU)
+VALUES('admin', '$2y$10$leCZZPMUv3pJMLz1hDDVz.rJklH7z9POSFYcGIc2VoDgMDAiY5Cq2', 'ADM');
