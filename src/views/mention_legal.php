@@ -4,9 +4,6 @@ require_once 'head.php'; ?>
 
 <body>
     <?php require_once "cote.php" ?>
-
-
-
     <main>
         <h3 id="mentionsTitle">Mentions Légales</h3>
         <hr>

@@ -46,7 +46,11 @@ class Router
                 break;
                 
             case '/PDF_rider':
-                require_once CONTROLLERS_PATH . '/PDF_rider.php';
+                require_once CONTROLLERS_PATH . '/PDF/PDF_rider.php';
+                break;
+                                
+            case '/PDF_test':
+                require_once CONTROLLERS_PATH . '/PDF/testPDF.php';
                 break;
 
             case '/plan_feu':

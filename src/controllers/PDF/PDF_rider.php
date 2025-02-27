@@ -55,7 +55,6 @@ $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Materiaux : '));
 $pdf->Ln();
 
 
-$str = iconv('UTF-8', 'windows-1252', $str);
 
 
 $pdf->Cell(70,9,iconv('UTF-8', 'windows-1252', 'Nom'),1);
@@ -127,6 +126,13 @@ while($mat = $reqMat->fetch()){
 
     }
     $pdf->Ln();
-
 }
+$pdf->Ln(20);
+if(file_exists(CONTROLLERS_PATH.'/PDF/'.$idC.'.png')){
+
+$pdf->AddPage();
+$pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Plan Feu : '));
+$pdf->Ln(20);
+$pdf->Image(CONTROLLERS_PATH.'/PDF/'.$idC.'.png',NULL,NULL,190,0,'PNG');}
+
 $pdf->Output();

@@ -1272,11 +1272,20 @@ protected function _parsepng($file)
 {
 	// Extract info from a PNG file
 	$f = fopen($file,'rb');
-	if(!$f)
+	if(!$f) {
 		$this->Error('Can\'t open image file: '.$file);
+	}
 	$info = $this->_parsepngstream($f,$file);
 	fclose($f);
 	return $info;
+}
+
+protected function RotatedImage($file,$x,$y,$w,$h,$angle)
+{
+    //Rotation de l'image autour du coin supérieur gauche
+    $this->Rotate($angle,$x,$y);
+    $this->Image($file,$x,$y,$w,$h);
+    $this->Rotate(0);
 }
 
 protected function _parsepngstream($f, $file)
