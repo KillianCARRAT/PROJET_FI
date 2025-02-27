@@ -116,6 +116,11 @@ class Router
                 require_once VIEWS_PATH . '/page-changement-mdp.php';
                 break;
 
+            case '/rate-vide-mdp':
+                $_SESSION['mdp-bool'] = "vide";
+                require_once VIEWS_PATH . '/page-changement-mdp.php';
+                break;
+
             case '/Create_ART':
                 require_once VIEWS_PATH . '/Crea_ART.php';
                 break;
