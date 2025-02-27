@@ -29,7 +29,7 @@ require_once 'head.php';
             <label for="adresseS">Adresse</label>
             <input type="text" name="adresseS" id="adresseS" value="<?php echo $salle['adresseS']; ?>" required>
 
-            <button type="submit">Modifier</button>
+            <button type="submit" id="envoye-form">Modifier</button>
         </form>
     </main>
     <?php require_once "basPage.php"; ?>
