@@ -1,3 +1,125 @@
 main {
     margin-left: 15em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#info-compte {
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#affichage-identifiant,
+#edition-identifiant {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+#affichage-identifiant .colonne-gauche,
+#affichage-identifiant .colonne-droite {
+    width: 45%;
+}
+
+#affichage-identifiant p,
+#edition-identifiant p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+#affichage-identifiant input[type="button"],
+#edition-identifiant input[type="button"],
+#edition-identifiant input[type="submit"],
+form#ChangementDeMotDePasse input[type="submit"] {
+    height: 40px;
+}
+
+#affichage-identifiant input[type="button"] {
+    margin-bottom: 10px;
+    align-self: center;
+}
+
+#edition-identifiant input[type="submit"],
+#edition-identifiant input[type="button"] {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #269626;
+    color: white;
+    cursor: pointer;
+    width: 10em;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#edition-identifiant input[type="button"] {
+    background-color: #0056b3;
+}
+
+#edition-identifiant input[type="submit"]:hover,
+#edition-identifiant input[type="button"]:hover {
+    background-color: #afafaf;
+}
+
+#Modifier,
+#edition-identifiant input[type="button"] {
+    background-color: #0056b3;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    align-self: center;
+}
+
+#affichage-identifiant input[type="button"]:hover,
+#edition-identifiant input[type="button"]:hover,
+#edition-identifiant input[type="submit"]:hover {
+    background-color: #afafaf;
+}
+
+#edition-identifiant {
+    display: none;
+}
+
+#edition-identifiant input[type="text"],
+#edition-identifiant input[type="number"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 12px);
+    margin-bottom: 10px;
+}
+
+form#ChangementDeMotDePasse {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+form#ChangementDeMotDePasse input[type="submit"] {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555555;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+form#ChangementDeMotDePasse input[type="submit"]:hover {
+    background-color: #424242;
 }
