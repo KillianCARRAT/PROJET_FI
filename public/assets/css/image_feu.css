@@ -1,4 +1,4 @@
-#body {
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +12,6 @@
 img {
     max-width: 100%;
     height: auto;
-    display: block;
     margin: 20px auto;
 }
 
@@ -34,9 +33,7 @@ img {
 #section {
     display: flex;
     justify-content: center;
-    /* Centre les boutons */
     gap: 20px;
-    /* Espace entre les boutons */
     margin-top: 20px;
 }
 

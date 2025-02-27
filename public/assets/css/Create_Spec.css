@@ -37,27 +37,21 @@ input[type="time"],
 input[type="number"],
 select {
     width: 100%;
-    max-width: 100%;
-    /* Taille uniforme */
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    /* Évite que padding augmente la largeur */
 }
 
 .bouton-bas {
-    align-items: center;
     width: 55%;
-    margin-top: 20px;
+    margin: 20px 5% 0;
     padding: 10px;
     background-color: #120045;
     color: white;
     border: none;
     border-radius: 4px;
-    margin-right: 5%;
-    margin-left: 5%;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.1s ease;
 }
