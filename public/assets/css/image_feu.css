@@ -1,10 +1,12 @@
-#body {
+#body{
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    text-align: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ececec;
 }
 
 img {
@@ -15,31 +17,27 @@ img {
 }
 
 .bouton {
-    display: inline-block;
-    padding: 15px 35px;
-    font-size: 20px;
-    font-weight: bold;
+    width: 150px; 
+    padding: 10px;
+    background-color: #120045;
     color: white;
-    background: #007BFF; /* Bleu sobre */
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
+    text-align: center;
 }
 
 .bouton:hover {
-    background: #0056b3; /* Bleu plus foncé au survol */
-    transform: scale(1.03);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: #2a0199;
 }
 
-.bouton:active {
-    transform: scale(0.97);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+#section {
+    display: flex;
+    justify-content: center; /* Centre les boutons */
+    gap: 20px; /* Espace entre les boutons */
+    margin-top: 20px;
 }
 
 a {
-    text-decoration: none; /* Supprime le soulignement du lien */
+    text-decoration: none;
 }
