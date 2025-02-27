@@ -18,6 +18,8 @@ if ($new_mdp != $confirm_mdp) {
     header("Location: /rate-diff-mdp");
 } elseif (password_verify($new_mdp, $mdp_code)) {
     header("Location: /rate-meme-mdp");
+} elseif (empty($new_mdp) || empty($confirm_mdp)) {
+    header("Location: /rate-vide-mdp");
 } else {
     $hash_mdp = password_hash($new_mdp, PASSWORD_DEFAULT);
     $reqUpdateMDP = $bdd->prepare('UPDATE UTILISATEUR SET mdp=:mdp WHERE iden=:id');
