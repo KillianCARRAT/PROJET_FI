@@ -10,7 +10,12 @@ if(file_exists($image)){
     error_log($image);
     print '<body id="body">';
     print '<img src="'.$image.'" alt="texte alternatif" />';
+    print '<section>';
+    ?>
+    <button class="bouton" onclick="window.location = '/Ac_Art'">Retour</button>
+    <?php
     print '<a href="/plan_feu?concert='.$nom.'"><button class="bouton">Modifier</button></a>';
+    print '</section>';
     print '</body>';
 }
 else{

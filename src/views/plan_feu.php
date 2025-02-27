@@ -35,6 +35,7 @@ $idC = $_GET['concert'];
             ?>
         </div>
         <input id="idC" type="hidden" name="idC" value=<?php echo $idC ?>>
+        <button class="bouton" onclick="window.location = '/Ac_Art'">Retour</button>
         <input class="bouton" id="boutonCapture" type="submit" value="Enregister">
         
     </main>
