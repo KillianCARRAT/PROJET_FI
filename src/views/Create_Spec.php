@@ -11,7 +11,7 @@ $execusion->execute();
 
 <body>
     <?php require_once "cote.php" ?>
-    <main id="creat-spec">
+    <main id="creat-spec main-crate">
         <h1>Créé un nouveau spectacle</h1>
         <section class="form-section">
             <form method="POST" action="verif_artiste">

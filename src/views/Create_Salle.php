@@ -4,7 +4,7 @@ require_once 'head.php'; ?>
 
 <body>
     <?php require_once "cote.php" ?>
-    <main>
+    <main id="main-crate">
         <div>
             <h1>Création d'une Salle</h1>
             <section class="form-section">
