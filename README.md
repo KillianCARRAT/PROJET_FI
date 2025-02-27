@@ -27,6 +27,20 @@ CONQUERANT Dan
 - remplissage de la fiche rider par les artistes
 - consultation des fiches rider et plan feu par les associations en pdf
 
+## Technologies utilisées :
+
+### Backend
+- **[PHP, JavaScript]**
+  - PHP : gestion des affichages liés à la base de données, gestion des inscriptions aux cours, gestion de la connexion/l'inscription, gestion des ajouts dans la base de données.
+  - JavaScript : bouton afficher/cacher sur les formulaires.
+
+### Frontend
+- **[HTML, CSS]**
+  - Interface utilisateur conviviale et responsive.
+
+### Base de données
+- **[SQL, MariaDB]**
+  - Stockage des informations sur les adhérents, poneys et plannings.
 
 ## Lien
 Lien vers les pages quand on est sur le serveur local
