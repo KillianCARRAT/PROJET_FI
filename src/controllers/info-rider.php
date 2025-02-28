@@ -128,8 +128,6 @@ if (isset($infoRider['type']) && is_array($infoRider['type'])) {
     }
 }
 
-// redirection en fonction du type
-
 $id = $_SESSION["idUser"];
 $selectTypeById = $bdd->prepare('SELECT typeU FROM UTILISATEUR WHERE iden=:id');
 $selectTypeById->bindParam(":id", $id, PDO::PARAM_STR);

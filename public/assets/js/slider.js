@@ -16,5 +16,12 @@ function updateValueFromInput() {
     }
 }
 
+const slider = document.querySelector('input[type="range"]');
+
+slider.addEventListener('input', function () {
+  const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+  slider.style.setProperty('--slider-value', value);
+});
+
 document.getElementById('slider').addEventListener('input', updateValueFromSlider);
 document.getElementById('sliderInput').addEventListener('input', updateValueFromInput);

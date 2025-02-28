@@ -66,4 +66,5 @@ require_once 'head.php';
     $lesJS = ["materielSalle"];
     require_once 'script.php';
     ?>
+ 
 </html>

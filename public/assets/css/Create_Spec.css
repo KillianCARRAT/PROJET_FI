@@ -37,6 +37,7 @@ input[type="time"],
 input[type="number"],
 select {
     width: 100%;
+    max-width: 100%;
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -63,6 +64,10 @@ select {
 .boutons {
     display: flex;
     align-items: center;
+}
+
+#boutons-admin {
+    display: flex;
 }
 
 #section {
