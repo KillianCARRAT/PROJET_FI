@@ -1,4 +1,4 @@
-<?php $title = 'mention legale';
+<?php $title = 'Mentions légales';
 $lesCSS = ["mention", "basPage", "cote"];
 require_once 'head.php'; ?>
 
@@ -7,24 +7,21 @@ require_once 'head.php'; ?>
     <main>
         <h3 id="mentionsTitle">Mentions Légales</h3>
         <hr>
-        <p class="mentionsSTitle">MENTIONS LEGALES - ASSOCIATION DE LOI 1901 : </p>
-        <p class="mentionsSubtitle">IDENTITE</p>
+        <p class="mentionsSTitle">MENTIONS LÉGALES - ASSOCIATION DE LOI 1901 : </p>
+        <p class="mentionsSubtitle">IDENTITÉ</p>
         <p>Nom de l'association : Festival Un Doua De Jazz<br>Adresse Siège Social : Bat 608 MDE BDE - 20 Avenue Albert
-            Einstein
-            - 69100 VILLEURBANNE<br>Telephone : 0695632301 <br>Co-Présidents de l'Association : Elyn WALTER - Guillaume
+            Einstein - 69100 VILLEURBANNE<br>Téléphone : 0695632301 <br>Co-Présidents de l'Association : Elyn WALTER - Guillaume
             CARPENTIER<br>Association loi 1901<br></p>
-        <p class="mentionsSubtitle">HEBERGEUR</p>
+        <p class="mentionsSubtitle">HÉBERGEUR</p>
         <p>Scaleway<br>8 rue de la Ville l’Evêque, 75008 Paris, France<br>+33 1 84 13 00 00<br></p>
         <p class="mentionsSTitle">CONDITIONS D’UTILISATION DU SITE WEB :</p>
         <p>L’utilisation du présent site implique l’acceptation pleine et entière des conditions générales d’utilisation
             décrites ci-après. Ces conditions d’utilisation sont susceptibles d’être modifiées ou complétées à tout
             moment.</p>
         <p class="mentionsSubtitle">INFORMATIONS</p>
-        <p>Les informations et documents du site sont présentés à titre indicatif, sans de caractère exhaustif, et ne
-            peuvent
-            engager la responsabilité du propriétaire du site.<br>Le propriétaire du site ne peut être tenu responsable
-            des
-            dommages directs et indirects consécutifs à l’accès au site.</p>
+        <p>Les informations et documents du site sont présentés à titre indicatif, sans caractère exhaustif, et ne
+            peuvent engager la responsabilité du propriétaire du site.<br>Le propriétaire du site ne peut être tenu responsable
+            des dommages directs et indirects consécutifs à l’accès au site.</p>
         <p class="mentionsSubtitle">PROPRIÉTÉ INTELLECTUELLE</p>
         <p>Sauf mention contraire, tous les éléments accessibles sur le site (textes, images, graphismes, logo, icônes,
             sons,
@@ -54,9 +51,7 @@ require_once 'head.php'; ?>
         </p>
         <p class="mentionsSTitle">CRÉDITS</p>
         <p>Site web : <br>Carrat Killian<br>Fonteny Noa<br>Chesneau Marin<br>Lepage Nicolas<br>Coquerant Dan</p>
-
     </main>
     <?php require_once "basPage.php" ?>
 </body>
-
 </html>

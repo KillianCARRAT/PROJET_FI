@@ -8,7 +8,6 @@ $reqType->bindParam(":id", $idC, PDO::PARAM_STR);
 $reqType->execute();
 $donnees = $reqType->fetch();
 
-
 $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->SetTitle('Fiche_rider');
@@ -21,15 +20,15 @@ $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Nom de la salle : '.$donnees['n
 $pdf->Ln();
 
 if ($donnees['besoinHotel'] !== NULL){
-    $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', "Adresse de l'hotel demmander : ".$donnees['besoinHotel']));
+    $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', "Adresse de l'hôtel demandée : ".$donnees['besoinHotel']));
 }
 else{
-    $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Pas de demande d\'hotel'));
+    $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Pas de demande d\'hôtel'));
 }
 $pdf->Ln();
 
 if ($donnees['besoinTransport'] !== NULL){
-    $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', "Transport demmander : ".$donnees['besoinTransport']));
+    $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', "Transport demandé : ".$donnees['besoinTransport']));
 }
 else{
     $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Pas de demande de transport'));
@@ -37,7 +36,7 @@ else{
 $pdf->Ln();
 
 if ($donnees['commentaire'] !== NULL){
-    $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Demmande particulière : '));
+    $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Demande particulière : '));
     $pdf->Ln(15);
     $pdf->SetFont('Arial','',12);
     $pdf->MultiCell(0,10,iconv('UTF-8', 'windows-1252', $donnees['commentaire']),'LBRT');
@@ -47,21 +46,15 @@ else{
     $pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Pas de demande particulière'));
 }
 
-
 $pdf->Ln(20);
 
-
-$pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Materiaux : '));
+$pdf->Cell(40,10,iconv('UTF-8', 'windows-1252', 'Matériaux : '));
 $pdf->Ln();
-
-
-
 
 $pdf->Cell(70,9,iconv('UTF-8', 'windows-1252', 'Nom'),1);
 $pdf->Cell(40,9,iconv('UTF-8', 'windows-1252', 'Type'),1);
 $pdf->Cell(30,9,iconv('UTF-8', 'windows-1252', 'Quantité'),1);
 $pdf->Cell(70,9,iconv('UTF-8', 'windows-1252', 'Quantité manquante'),1,1);
-
 
 $reqMat = $bdd->prepare('SELECT nomM,typeM,nbBesoin FROM MATERIEL NATURAL JOIN BESOIN WHERE idC = :id');
 $reqMat->bindParam(":id", $idC, PDO::PARAM_STR);
@@ -100,7 +93,6 @@ while($mat = $reqMat->fetch()){
     $qteGroupe = $reqgrp->fetch();
     $qteGroupe = $qteGroupe['qte'];
 
-
     $reqSalle = $bdd->prepare('SELECT qte FROM AVOIRSALLE WHERE idM = :idM and idS = :idS');
     $reqSalle->bindParam(":idM", $id, PDO::PARAM_STR);
     $reqSalle->bindParam(":idS", $donnees['idS'], PDO::PARAM_STR);
@@ -123,7 +115,6 @@ while($mat = $reqMat->fetch()){
         $pdf -> SetTextColor(255, 0, 0);
         $pdf->Cell(70,7,iconv('UTF-8', 'windows-1252', $res),1);
         $pdf -> SetTextColor(0, 0, 0);
-
     }
     $pdf->Ln();
 }
@@ -136,3 +127,4 @@ $pdf->Ln(20);
 $pdf->Image(CONTROLLERS_PATH.'/PDF/'.$idC.'.png',NULL,NULL,190,0,'PNG');}
 
 $pdf->Output();
+?>
