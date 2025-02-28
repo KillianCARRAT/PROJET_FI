@@ -10,7 +10,7 @@ Chef de projet : CARRAT Killian
 LEPAGE Nicolas  
 CHESNEAU Marin  
 FONTENY Noa  
--CONQUERANT Dan-
+~~CONQUERANT Dan~~
 
 ## Fonctionnalitées
 
