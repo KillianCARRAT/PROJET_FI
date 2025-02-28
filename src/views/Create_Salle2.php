@@ -7,7 +7,6 @@ $idma = $bdd->query('SELECT MAX(idS) FROM SALLE');
 
 $idF = $idma->fetch();
 
-
 $id = $idF[0] + 1;
 $nom = $_POST["nom-Salle"];
 $nbPlace = $_POST["nb_place"];
@@ -17,8 +16,6 @@ $largeur = $_POST["largeur"];
 $Longeur = $_POST["Longeur"];
 $nbT = $_POST["nb_Tec"];
 $loges = $_POST["loges"];
-
-
 
 $reqType = $bdd->prepare('INSERT INTO SALLE (idS, nomS, nbPlaceS, typePlaceS, adresseS, largeurS, longueurS, nbPlacesLo, nbTechS)
 VALUES (:id, :nom, :nbPlace, :types, :adresse, :largeur, :longueur, :loges, :nbTec);');

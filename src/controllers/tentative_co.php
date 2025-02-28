@@ -14,7 +14,6 @@ $bd_mdp = $row["mdp"];
 
 $_SESSION["idUser"] = $id;
 
-
 if (password_verify($mdp_code, $bd_mdp)) {
     switch ($role) {
         case "ART":

@@ -41,52 +41,29 @@ main {
 #edition-identifiant input[type="submit"],
 form#ChangementDeMotDePasse input[type="submit"] {
     height: 40px;
-}
-
-#affichage-identifiant input[type="button"] {
     margin-bottom: 10px;
     align-self: center;
-}
-
-#edition-identifiant input[type="submit"],
-#edition-identifiant input[type="button"] {
-    margin-top: 10px;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #269626;
     color: white;
     cursor: pointer;
-    width: 10em;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
 }
 
-#edition-identifiant input[type="button"] {
+#edition-identifiant input[type="submit"],
+#edition-identifiant input[type="button"],
+#Modifier {
+    margin-top: 10px;
     background-color: #0056b3;
 }
 
 #edition-identifiant input[type="submit"]:hover,
-#edition-identifiant input[type="button"]:hover {
-    background-color: #afafaf;
-}
-
-#Modifier,
-#edition-identifiant input[type="button"] {
-    background-color: #0056b3;
-    margin-top: 10px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    align-self: center;
-}
-
-#affichage-identifiant input[type="button"]:hover,
 #edition-identifiant input[type="button"]:hover,
-#edition-identifiant input[type="submit"]:hover {
+#affichage-identifiant input[type="button"]:hover,
+#Modifier:hover {
     background-color: #afafaf;
 }
 
@@ -117,7 +94,6 @@ form#ChangementDeMotDePasse input[type="submit"] {
     background-color: #555555;
     color: white;
     cursor: pointer;
-    margin-bottom: 10px;
 }
 
 form#ChangementDeMotDePasse input[type="submit"]:hover {

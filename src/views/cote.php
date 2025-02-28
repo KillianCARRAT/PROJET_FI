@@ -32,9 +32,8 @@
                 <p><a href="/Ac_Art">Vos spectacles</a></p>
             </div>
             <?php
-        }
-
-        /* Affichage ASIDE de l'asso tech*/ elseif ($role == "TEC") {
+        } /* Affichage ASIDE de l'asso tech*/ 
+        elseif ($role == "TEC") {
             ?>
             <h1 id="cote">Asso Technique<a href="/Compte"><img src="<?= BASE_URL; ?>/public/assets/img/cpt.png"
                         alt="Logo compte"></a></h1>
@@ -42,13 +41,15 @@
                 <p><a href="/Ac_Tech">Les spectacles</a></p>
             </div>
             <?php
-        } elseif ($role == "ADM"){
-            echo '<h1>admin</h1>';
-            echo "<p class = 'menu'><a href='/List_asso'>Les Associations</a></p>";
-            echo "<p class = 'menu'><a href='/ADM'>Créer une nouvelle association</a></p>";
-        }
-
-        /* Affichage ASIDE de l'asso orga*/ elseif ($role == "ORG") {
+        } /* Affichage ASIDE de l'ADMIN*/ 
+        elseif ($role == "ADM"){ ?>
+            <h1 id="cote">Admin</h1>
+            <div id="menu">
+                <p><a href='/List_asso'>Les Associations</a></p>
+                <p><a href='/ADM'>Créer une nouvelle association</a></p>
+            </div>
+        <?php } /* Affichage ASIDE de l'asso orga*/ 
+        elseif ($role == "ORG") {
             ?>
             <h1 id="cote">Asso Organisatrice<a href="/Compte"><img src="<?= BASE_URL; ?>/public/assets/img/cpt.png"
                         alt="Logo compte"></a></h1>

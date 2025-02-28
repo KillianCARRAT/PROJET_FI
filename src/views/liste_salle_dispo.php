@@ -2,7 +2,6 @@
 $lesCSS = ["listeSalleDispo", "basPage", "cote"];
 require_once 'head.php';
 
-
 $type = $_POST["typePlace"];
 $nbPers = $_POST["nbPers"];
 $longueur = $_POST["longueur"];
@@ -15,20 +14,14 @@ $arrive = $_POST["arrive"];
 $nbTechMin=$_POST["nbTech"];
 
 $infos = false;
-
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
 <?php require_once "cote.php" ?>
 
 <body id="principal">
-
     <main>
-
         <?php
         $nbTechNecessaire=$bdd->prepare("select nbTechG,nbPersG from GROUPE where idG=:id");
         $nbTechNecessaire->bindParam(':id', $id, PDO::PARAM_STR);
@@ -90,7 +83,6 @@ $infos = false;
         <input type="hidden" name="duree" value=<?php echo htmlspecialchars($duree); ?>>
         <input type="hidden" name="arrive" value=<?php echo htmlspecialchars($arrive); ?>>
         <input type="hidden" name="nbTech" value=<?php echo htmlspecialchars($nbTechMin); ?>>
-
 
         <?php
         if ($infos) {

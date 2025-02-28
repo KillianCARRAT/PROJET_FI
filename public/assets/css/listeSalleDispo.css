@@ -1,13 +1,12 @@
-#principal {
+#principal,
+main {
     margin-left: 15em;
 }
-
 
 #bouton {
     align-items: center;
     margin-left: 500px;
 }
-
 
 #tableau {
     width: 100%;
@@ -16,13 +15,11 @@
     font-family: Arial, sans-serif;
 }
 
-
 #tableau,
 #tableau th,
 #tableau td {
     border: 1px solid #000;
 }
-
 
 #tableau th {
     background-color: #f8f8f8;
@@ -31,25 +28,18 @@
     padding: 10px;
 }
 
-
 #tableau td {
     text-align: center;
     padding: 10px;
 }
 
-
 #tableau td a {
-    color: #800080; 
+    color: #800080;
     text-decoration: none;
 }
 
 #tableau td a:hover {
     text-decoration: underline;
-}
-
-
-main {
-    margin-left: 15em;
 }
 
 button.bouton-bas {
@@ -67,7 +57,7 @@ button.bouton-bas:hover {
     background-color: #434190;
 }
 
-#texte  {
+#texte {
     width: 100%;
     border-collapse: collapse;
     margin: 20px auto;

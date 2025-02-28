@@ -1,15 +1,14 @@
 #aside-tout {
     width: 15em;
-    left: 0;
+    position: fixed;
     top: 0;
     bottom: 0;
+    left: 0;
     text-align: center;
-    position: fixed;
-    background:#3d00b6;
+    background: #3d00b6;
     color: white;
 }
 
-/* accès compte */
 #aside-tout h1#cote {
     display: flex;
     align-items: center;
@@ -17,24 +16,20 @@
     margin: 0;
     padding: 0.5em;
     background-color: black;
-    color: white;
-    border-bottom: solid 5px #e2d2ff;
+    border-bottom: 5px solid #e2d2ff;
 }
 
 #aside-tout h1#cote img {
     margin-left: 10px;
     width: 1.5em;
-    height: auto;
 }
 
-/* menu aside */
 #menu {
     text-align: center;
 }
 
 #menu p {
-    text-align: center;
-    border-bottom: 5px #e2d2ff solid;
+    border-bottom: 5px solid #e2d2ff;
     padding: 1.5em;
     margin: 0;
 }
@@ -44,7 +39,6 @@
     text-decoration: none;
 }
 
-/* bouton se déconnecter */
 #deco {
     position: fixed;
     bottom: 1em;
