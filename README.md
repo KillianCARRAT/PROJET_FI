@@ -12,21 +12,6 @@ CHESNEAU Marin
 FONTENY Noa  
 CONQUERANT Dan  
 
-## Fonctionnalitées
-
-- Lien entre la fiche d’accueil et l’application
-- Système de login avec des rôles différents
-- Choix des dates et des invités
-- Envoi des informations à l’association technique
-- Inventaire des besoins (hébergement, restauration, transport, matériel, etc.)
-- Recherche de salle
-- Gestion des comptes, des artistes et des représentations
-- Création d'événements
-- Programmation des concerts
-- gestion du stock des salles et des associations
-- remplissage de la fiche rider par les artistes
-- consultation des fiches rider et plan feu par les associations en pdf
-
 ## Technologies utilisées :
 
 ### Backend
