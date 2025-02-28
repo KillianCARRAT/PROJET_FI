@@ -9,8 +9,11 @@
 
 <body>
     <div class="header">
-        <a href="/Compte">Retour</a>
-
+        <?php if ($_POST["admin"] == "tr") {?>
+            <a href="/List_asso">Retour</a>
+        <?php } else {?>
+            <a href="/Compte">Retour</a>
+        <?php }?>
         <h1>Concert'asso</h1>
     </div>
     <?php
