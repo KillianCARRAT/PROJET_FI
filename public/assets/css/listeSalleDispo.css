@@ -1,13 +1,12 @@
-#principal {
+#principal,
+main {
     margin-left: 15em;
 }
-
 
 #bouton {
     align-items: center;
     margin-left: 500px;
 }
-
 
 #tableau {
     width: 100%;
@@ -16,13 +15,11 @@
     font-family: Arial, sans-serif;
 }
 
-
 #tableau,
 #tableau th,
 #tableau td {
     border: 1px solid #000;
 }
-
 
 #tableau th {
     background-color: #f8f8f8;
@@ -31,12 +28,10 @@
     padding: 10px;
 }
 
-
 #tableau td {
     text-align: center;
     padding: 10px;
 }
-
 
 #tableau td a {
     color: #800080;
@@ -45,11 +40,6 @@
 
 #tableau td a:hover {
     text-decoration: underline;
-}
-
-
-main {
-    margin-left: 15em;
 }
 
 button.bouton-bas {

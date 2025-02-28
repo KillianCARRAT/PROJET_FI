@@ -7,7 +7,6 @@
 
 #main-rider section {
     display: flex;
-    flex-direction: left;
 }
 
 #main-rider h1 {
@@ -46,7 +45,6 @@
 
 #envoyer-rider:hover {
     background-color: #2a0199;
-    cursor: pointer;
 }
 
 #envoyer-rider:active {
@@ -63,12 +61,12 @@
     font-weight: bold;
 }
 
-.rider {
+.rider,
+.grand {
     display: flex;
 }
 
 .grand {
-    display: flex;
     flex-direction: column;
     flex-basis: 45%;
     margin: 1em;
@@ -78,7 +76,6 @@
     margin-bottom: 2%;
     border-radius: 5px;
 }
-
 
 .question {
     margin: 10px;
@@ -155,7 +152,6 @@ td:nth-child(4) input[type="number"] {
     text-align: center;
 }
 
-
 .bouton-bas {
     align-items: center;
     width: 50%;
@@ -166,7 +162,6 @@ td:nth-child(4) input[type="number"] {
     border: none;
     border-radius: 4px;
     text-align: center;
-
 }
 
 .bouton-bas:hover {

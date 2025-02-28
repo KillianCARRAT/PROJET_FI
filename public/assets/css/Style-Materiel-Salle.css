@@ -7,11 +7,9 @@
 
 #main-stock-salle section {
     display: flex;
-    flex-direction: left;
 }
 
 #main-stock-salle h1 {
-    flex-wrap: wrap;
     text-align: center;
     font-size: 2em;
 }
@@ -26,8 +24,7 @@
 #demandeP,
 #demande-hotel {
     margin-bottom: 1em;
-    max-width: 500px;
-    min-width: 500px;
+    width: 500px;
     max-height: 25em;
 }
 
@@ -46,7 +43,6 @@
 
 #envoyer-stock-salle:hover {
     background-color: #2a0199;
-    cursor: pointer;
 }
 
 #envoyer-stock-salle:active {
@@ -63,12 +59,12 @@
     font-weight: bold;
 }
 
-.stock-salle {
+.stock-salle,
+.grand {
     display: flex;
 }
 
 .grand {
-    display: flex;
     flex-direction: column;
     flex-basis: 45%;
     margin: 1em;
@@ -155,7 +151,8 @@ td:nth-child(4) input[type="number"] {
 }
 
 .bouton-bas {
-    align-items: center;
+    display: flex;
+    justify-content: center;
     width: 50%;
     margin-top: 20px;
     padding: 10px;

@@ -7,11 +7,9 @@
 
 #main-stock section {
     display: flex;
-    flex-direction: left;
 }
 
 #main-stock h1 {
-    flex-wrap: wrap;
     text-align: center;
     font-size: 2em;
 }
@@ -46,7 +44,6 @@
 
 #envoyer-stock:hover {
     background-color: #2a0199;
-    cursor: pointer;
 }
 
 #envoyer-stock:active {
@@ -63,12 +60,12 @@
     font-weight: bold;
 }
 
-.stock {
+.stock,
+.grand {
     display: flex;
 }
 
 .grand {
-    display: flex;
     flex-direction: column;
     flex-basis: 45%;
     margin: 1em;
@@ -155,6 +152,8 @@ td:nth-child(4) input[type="number"] {
 }
 
 .bouton-bas {
+    display: flex;
+    justify-content: center;
     align-items: center;
     width: 50%;
     margin-top: 20px;
