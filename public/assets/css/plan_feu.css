@@ -48,21 +48,12 @@
     text-align: center;
 }
 
-.object.audio {
-    background-color: blue;
-}
+.object.audio { background-color: blue; }
+.object.instrument { background-color: green; }
+.object.son { background-color: red; }
+.object.câble { background-color: orange; }
+.object { background-color: red; }
 
-.object.instrument {
-    background-color: green;
-}
-
-.object.son {
-    background-color: red;
-}
-
-.object.cable {
-    background-color: orange;
-}
 
 .dragging {
     opacity: 0.5;
