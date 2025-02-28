@@ -34,6 +34,7 @@ CONQUERANT Dan
   - PHP : gestion des affichages liés à la base de données, gestion de la connexion, gestion des ajouts dans la base de données.
   - JavaScript : bouton afficher/cacher sur les formulaires.
 
+<<<<<<< HEAD
 ### Frontend
 - **[HTML, CSS]**
   - Interface utilisateur conviviale et responsive.
@@ -58,3 +59,5 @@ Page de création d'un spectacle : /Create_Spec
 
 Tout autre lien se redirige vers /
 
+=======
+>>>>>>> 6c503d71767b709d4bbbacfb4d3d1eb191efaf18
