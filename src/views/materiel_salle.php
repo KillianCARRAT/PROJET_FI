@@ -19,6 +19,10 @@ require_once 'head.php';
                     $mat = $bdd->prepare('SELECT *, qte FROM MATERIEL NATURAL JOIN AVOIRSALLE WHERE idS = :idS');
                     $mat->bindParam(":idS", $idS, PDO::PARAM_INT);
                     $mat->execute();
+
+
+                    $type = $bdd->prepare('SELECT * FROM TYPEM');
+                    $type->execute();
                     ?>
                     <table>
                         <tr>
@@ -33,9 +37,9 @@ require_once 'head.php';
                             <tr>
                                 <td>
                                     <select name="type[]">
-                                        <option value="instrument" <?php echo $mate['typeM'] === 'instrument' ? 'selected' : ''; ?>>Instrument</option>
-                                        <option value="cable" <?php echo $mate['typeM'] === 'câble' ? 'selected' : ''; ?>>Câble</option>
-                                        <option value="autres" <?php echo $mate['typeM'] === 'autres' ? 'selected' : ''; ?>>Autres</option>
+                                        <?php while ($type = $type->fetch()) { ?>
+                                            <option value="<?php echo $type['typeM']; ?>" <?php echo $mate['typeM'] === $type['typeM'] ? 'selected' : ''; ?>><?php echo $type['typeM']; ?></option>
+                                        <?php } ?>
                                     </select>
                                 </td>
                                 <td>
