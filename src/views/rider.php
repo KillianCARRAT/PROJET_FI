@@ -114,5 +114,4 @@ require_once 'head.php';
 $lesJS = ["rider"];
 require_once 'script.php';
 ?>
-
 </html>
