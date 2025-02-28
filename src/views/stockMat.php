@@ -30,7 +30,7 @@ require_once 'head.php';
                                 <td>
                                     <select name="type[]">
                                         <option value="instrument" <?php echo $mate['typeM'] === 'instrument' ? 'selected' : ''; ?>>Instrument</option>
-                                        <option value="cable" <?php echo $mate['typeM'] === 'câble' ? 'selected' : ''; ?>>Câble</option>
+                                        <option value="câble" <?php echo $mate['typeM'] === 'câble' ? 'selected' : ''; ?>>Câble</option>
                                         <option value="autres" <?php echo $mate['typeM'] === 'autres' ? 'selected' : ''; ?>>Autres</option>
                                     </select>
                                 </td>
