@@ -57,14 +57,14 @@ form#ChangementDeMotDePasse input[type="submit"] {
 #edition-identifiant input[type="button"],
 #Modifier {
     margin-top: 10px;
-    background-color: #0056b3;
+    background-color: #120045;
 }
 
 #edition-identifiant input[type="submit"]:hover,
 #edition-identifiant input[type="button"]:hover,
 #affichage-identifiant input[type="button"]:hover,
 #Modifier:hover {
-    background-color: #afafaf;
+    background-color: #2a0199;
 }
 
 #edition-identifiant {

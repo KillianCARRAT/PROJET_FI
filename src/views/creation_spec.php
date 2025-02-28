@@ -40,5 +40,5 @@ try {
 
 <h1 id="texte">Le spectacle a été créé avec succès</h1>
 <form method="POST" action="Ac_Orga">
-    <button id="bouton" type="submit">Retourner à la liste des concerts</button>
+    <button id="bouton" type="submit">Retourner à la liste des spectacles</button>
 </form>

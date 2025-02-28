@@ -28,15 +28,15 @@ $lesCSS = ["page-creation-spectacle2", "basPage", "cote"];?>
                 </div>
                 <div id="longueur">
                     <label for="longueur min">Longueur minimum scène</label>
-                    <input name="longueur" type="number" id="longueur" min=0>
+                    <input name="longueur" type="number" id="longueur" min=0 required>
                 </div>
                 <div id="largeur">
                     <label for="largeur min">Largeur minimum scène</label>
-                    <input name="largeur" type="number" id="largueur" min=0>
+                    <input name="largeur" type="number" id="largueur" min=0 required>
                 </div>
                 <div id="nbTech">
                     <label for="nbTech">Nombre techniciens nécessaire</label>
-                    <input name="nbTech" type="number" id="nbTech" min=0>
+                    <input name="nbTech" type="number" id="nbTech" min=0 required>
                 </div>
                 <div id="bouton-chercher">
                     <button type="submit" class="bouton-bas">Chercher</button>
