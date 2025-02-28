@@ -11,16 +11,16 @@ require_once 'head.php'; ?>
                 <form method="POST" action="/Create_ART2">
 
                     <label for="nom-Art">Nom de l'artiste</label>
-                    <input type="text" id="nom-Art" name="nom-Art">
+                    <input type="text" id="nom-Art" name="nom-Art" required>
 
                     <label for="mail-Art">Mail de l'artiste</label>
-                    <input type="email" id="mail-Art" name="mail-Art">
+                    <input type="email" id="mail-Art" name="mail-Art" required>
 
                     <label for="nb_Tec">Nombre de Technicien</label>
-                    <input type="number" id="nb_Tec" name="nb_Tec">
+                    <input type="number" id="nb_Tec" name="nb_Tec" required>
 
                     <label for="nb_ART">Nombre de Personne dans le groupe</label>
-                    <input type="number" id="nb_ART" name="nb_ART">
+                    <input type="number" id="nb_ART" name="nb_ART" required>
                     <div id="boutons">
                         <section id="section">
                             <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>
@@ -33,5 +33,4 @@ require_once 'head.php'; ?>
     </main>
     <?php require_once "basPage.php" ?>
 </body>
-
 </html>

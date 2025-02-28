@@ -11,10 +11,10 @@ require_once 'head.php'; ?>
                 <form method="POST" action="Create_Salle2">
 
                 <label for="nom-Salle">Nom de la salle  (mettre des tirets a la place des espaces)</label>
-                <input type="text" id="nom-Salle" name="nom-Salle">
+                <input type="text" id="nom-Salle" name="nom-Salle" required>
 
                     <label for="nb_place">Nombre de place</label>
-                    <input type="number" id="nb_place" name="nb_place">
+                    <input type="number" id="nb_place" name="nb_place" required>
 
                     <label for="type-Place" class="label">Type de place</label>
                     <select name="typePlace" id="typePlace">
@@ -25,19 +25,19 @@ require_once 'head.php'; ?>
                     </select>
 
                     <label for="adresse">Adresse de la salle</label>
-                    <input type="text" id="adresse" name="adresse">
+                    <input type="text" id="adresse" name="adresse" required>
 
                     <label for="largeur">Largeur de la scene</label>
-                    <input type="number" id="largeur" name="largeur">
+                    <input type="number" id="largeur" name="largeur" required>
 
                     <label for="Longeur">Longeur de la scene</label>
-                    <input type="number" id="Longeur" name="Longeur">
+                    <input type="number" id="Longeur" name="Longeur" required>
 
                     <label for="nb_Tec">Nombre de Technicien</label>
-                    <input type="number" id="nb_Tec" name="nb_Tec">
+                    <input type="number" id="nb_Tec" name="nb_Tec" required>
 
                     <label for="loges">Nombre de place dans les loges</label>
-                    <input type="number" id="loges" name="loges">
+                    <input type="number" id="loges" name="loges" required>
                     <div id="boutons">
                         <section id="section">
                             <button type="reset" class="bouton-bas">Reinitailiser le formulaire</button>
@@ -50,5 +50,4 @@ require_once 'head.php'; ?>
     </main>
     <?php require_once "basPage.php" ?>
 </body>
-
 </html>

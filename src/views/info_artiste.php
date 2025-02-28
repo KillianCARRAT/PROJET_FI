@@ -26,7 +26,6 @@ require_once 'head.php'; ?>
                     <p class="fix">Mot de passe :</p>
                     <p class="rep"><?php $_SESSION["$mdpUser"]; ?></p>
                 </div>
-
             </div>
             <table id="spectacle">
                 <thead>
@@ -59,5 +58,4 @@ require_once 'head.php'; ?>
     </main>
     <?php require_once "basPage.php" ?>
 </body>
-
 </html>

@@ -28,4 +28,5 @@ if ($new_mdp != $confirm_mdp) {
     $reqUpdateMDP->execute();
     error_log("mdp change");
     header("Location: /chan-mdp-reussi");
+    exit();
 }

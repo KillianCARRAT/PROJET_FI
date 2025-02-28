@@ -39,6 +39,5 @@ include 'head.php'; ?>
     </main>
     <?php include "basPage.php"; ?>
 </body>
-
 </html>
 

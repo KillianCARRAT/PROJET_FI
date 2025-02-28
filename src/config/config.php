@@ -10,4 +10,5 @@ define('VIEWS_PATH', SRC_PATH . '/views');
 define('CONTROLLERS_PATH', SRC_PATH . '/controllers');
 define('ASSETS_PATH', PUBLIC_PATH . '/assets');
 
+
 define('BASE_URL', 'http://localhost:8000');

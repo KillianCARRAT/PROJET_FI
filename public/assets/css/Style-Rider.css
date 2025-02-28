@@ -7,7 +7,6 @@
 
 #main-rider section {
     display: flex;
-    flex-direction: left;
 }
 
 #main-rider h1 {
@@ -16,13 +15,15 @@
     font-size: 2em;
 }
 
-#adresse, #demande-hotel {
+#adresse,
+#demande-hotel {
     display: none;
     margin-bottom: 1em;
     width: 490px;
 }
 
-#demandeP, #demande-hotel {
+#demandeP,
+#demande-hotel {
     margin-bottom: 1em;
     max-width: 500px;
     min-width: 500px;
@@ -40,11 +41,10 @@
     margin-top: 1em;
     padding: 0.5em;
     width: 10em;
-    }
-      
+}
+
 #envoyer-rider:hover {
     background-color: #2a0199;
-    cursor: pointer;
 }
 
 #envoyer-rider:active {
@@ -61,12 +61,12 @@
     font-weight: bold;
 }
 
-.rider{
+.rider,
+.grand {
     display: flex;
 }
 
 .grand {
-    display: flex;
     flex-direction: column;
     flex-basis: 45%;
     margin: 1em;
@@ -77,13 +77,13 @@
     border-radius: 5px;
 }
 
-
 .question {
     margin: 10px;
     padding: 10px;
     background-color: #f0f0f0;
     border-radius: 5px;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -92,7 +92,8 @@ table {
     text-align: center;
 }
 
-th, td {
+th,
+td {
     padding: 12px 15px;
     border: 1px solid #ddd;
 }
@@ -112,7 +113,9 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-select, input[type="text"], input[type="number"] {
+select,
+input[type="text"],
+input[type="number"] {
     font-size: 14px;
     padding: 8px;
     border: 1px solid #ccc;
@@ -121,7 +124,7 @@ select, input[type="text"], input[type="number"] {
 }
 
 input[type="checkbox"] {
-    width: 20px; 
+    width: 20px;
     height: 20px;
     margin: 0 auto;
 }
@@ -137,7 +140,7 @@ td {
 }
 
 td:first-child select {
-    width: 100%; 
+    width: 100%;
 }
 
 td:nth-child(2) input[type="text"] {
@@ -149,7 +152,6 @@ td:nth-child(4) input[type="number"] {
     text-align: center;
 }
 
-
 .bouton-bas {
     align-items: center;
     width: 50%;
@@ -160,7 +162,6 @@ td:nth-child(4) input[type="number"] {
     border: none;
     border-radius: 4px;
     text-align: center;
-
 }
 
 .bouton-bas:hover {

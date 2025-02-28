@@ -12,7 +12,6 @@ if ($type == "organisatrice") {
     $type = 'TEC';
 }
 
-
 $reqType = $bdd->prepare("INSERT INTO UTILISATEUR (iden, mdp, typeU) VALUES (:id, :mdp, :typ);3");
 
 $reqType->bindParam(":id", $iden, PDO::PARAM_STR);

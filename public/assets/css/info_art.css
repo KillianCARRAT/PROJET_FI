@@ -6,16 +6,13 @@ table {
     letter-spacing: 1px;
 }
 
-th,
-td {
+th, td {
     border: 1px solid black;
     padding: 8px 10px;
 }
 
 .image {
-    padding: auto;
     border: 1px solid black;
-    justify-content: center;
     text-align: center;
 }
 
@@ -26,32 +23,20 @@ td {
 }
 
 #info-art section {
-    display: flex;
-    flex-direction: column;
     padding: 20px;
 }
 
 #info-art h1 {
-    flex-wrap: wrap;
-    flex-basis: 100%;
     text-align: center;
     font-size: 24px;
 }
 
 #Infos {
-    display: flex;
-    flex-direction: column;
     flex-basis: 45%;
     margin: 2%;
 }
 
-.rep {
-    margin-bottom: 2%;
-    border-radius: 5px;
-    margin-left: 2%;
-}
-
-.fixe {
+.rep, .fixe {
     margin-bottom: 2%;
     border-radius: 5px;
 }

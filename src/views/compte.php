@@ -151,15 +151,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     </main>
     <?php require_once "basPage.php"; ?>
 </body>
-<script>
-document.getElementById('Modifier').addEventListener('click', function() {
-    document.getElementById('affichage-identifiant').style.display = 'none';
-    document.getElementById('edition-identifiant').style.display = 'block';
-});
-
-document.getElementById('Retour').addEventListener('click', function() {
-    document.getElementById('affichage-identifiant').style.display = 'block';
-    document.getElementById('edition-identifiant').style.display = 'none';
-});
-</script>
+<?php
+    $lesJS = ["compte"];
+    require_once 'script.php';
+    ?>
 </html>

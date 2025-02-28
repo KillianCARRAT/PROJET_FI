@@ -18,7 +18,7 @@ require_once 'head.php'; ?>
                         <th scope="col">Fiche rider</th>
                     </tr>
                 </thead>
-                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE order by(dateC)');
+                <?php $reponse = $bdd->query('SELECT * FROM CONCERT NATURAL JOIN SALLE NATURAL JOIN GROUPE WHERE dateC>=CURRENT_DATE() order by(dateC)');
                 while ($donnees = $reponse->fetch()) {
                     ?>
                     <tbody>

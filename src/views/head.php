@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-    
     <?php foreach ($lesCSS as $css): ?>
         <link rel="stylesheet" href="../../public/assets/css/<?php echo $css ?>.css">
     <?php endforeach; ?>
@@ -13,6 +12,5 @@
         $bdd = new PDO('mysql:host=servinfo-maria;dbname=DBlepage', 'lepage', 'lepage');
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
-    }
-    ?>
+    }?>
 </head>

@@ -5,21 +5,21 @@
 #footer {
     position: fixed;
     bottom: 0;
-    right: 0;
     left: 15em;
-    border-top: solid 0.1em;
+    right: 0;
+    border-top: 0.1em solid;
     height: 6em;
     background-color: gray;
 }
 
-#footer .footer-images {
+.footer-images {
     position: absolute;
     top: 1em;
     right: 1em;
     height: 4em;
 }
 
-#footer .footer-images img {
+.footer-images img {
     height: 4em;
     width: auto;
 }
