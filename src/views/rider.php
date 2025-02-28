@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         target.style.display = checkbox.checked ? "block" : "none";
     }
-
+    
     toggleVisibility('checkbox-vehicule', 'adresse');
     toggleVisibility('checkbox-hotel', 'demande-hotel');
 
