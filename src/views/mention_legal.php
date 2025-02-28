@@ -53,7 +53,7 @@ require_once 'head.php'; ?>
             demander la suppression d’un lien s’il estime que le site source ne respecte pas les règles ainsi définies.
         </p>
         <p class="mentionsSTitle">CRÉDITS</p>
-        <p>Site web : <br>Carrat Killian<br>Fonteny Noa<br>Chesneau Marin<br>Coquerant Dan<br>Lepage Nicolas</p>
+        <p>Site web : <br>Carrat Killian<br>Fonteny Noa<br>Chesneau Marin<br>Lepage Nicolas<br>Coquerant Dan</p>
 
     </main>
     <?php require_once "basPage.php" ?>

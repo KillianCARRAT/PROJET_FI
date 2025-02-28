@@ -1,4 +1,3 @@
-/* Réinitialisation de la page */
 #body-plan-feu {
     display: flex;
     justify-content: center;
@@ -9,16 +8,14 @@
     background-color: #ececec;
 }
 
-/* Zone principale (dropzone) */
 .dropzone {
-    width: 70vw;  /* 70% de la largeur de l'écran */
-    height: 80vh; /* 80% de la hauteur de l'écran */
+    width: 70vw;
+    height: 80vh;
     border: 3px dashed #999;
     background-color: #f9f9f9;
     position: relative;
 }
 
-/* Conteneur pour la zone des objets (fixé à droite) */
 .objects {
     position: absolute;
     right: 20px;
@@ -36,7 +33,6 @@
     overflow: auto;
 }
 
-/* Objets à glisser */
 .object {
     width: 150px;
     height: 50px;
@@ -49,15 +45,22 @@
     color: white;
     font-weight: bold;
     border-radius: 5px;
-    Text-align: center;
+    text-align: center;
 }
 
+.object.audio { background-color: blue; }
+.object.instrument { background-color: green; }
+.object.son { background-color: red; }
+.object.câble { background-color: orange; }
+.object { background-color: red; }
 
-/* Quand on déplace un objet */
-.dragging { opacity: 0.5; }
+
+.dragging {
+    opacity: 0.5;
+}
 
 .bouton {
-    width: 150px; 
+    width: 150px;
     padding: 10px;
     background-color: #120045;
     color: white;
@@ -73,13 +76,7 @@
 
 #section {
     display: flex;
-    justify-content: center; 
-    gap: 20px; 
+    justify-content: center;
+    gap: 20px;
     margin-top: 20px;
 }
-
-.object.audio { background-color: blue; }
-.object.instrument { background-color: green; }
-.object.son { background-color: red; }
-.object.cable { background-color: orange; }
-.object { background-color: red; }

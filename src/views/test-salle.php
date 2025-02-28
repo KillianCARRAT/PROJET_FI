@@ -2,6 +2,7 @@
 $lesCSS = ["Table_Spec", "basPage", "cote"];
 require_once 'head.php'; ?>
 
+<html>
 <body>
     <?php require_once "cote.php" ?>
     <main>
@@ -41,5 +42,4 @@ require_once 'head.php'; ?>
     </main>
     <?php require_once "basPage.php" ?>
 </body>
-
 </html>

@@ -1,6 +1,5 @@
 <?php $title = 'Create_Spec';
-$lesCSS = ["page-creation-spectacle2", "basPage", "cote"];
-?>
+$lesCSS = ["page-creation-spectacle2", "basPage", "cote"];?>
 <?php require_once 'head.php'; ?>
 
 <body id="corps-principal">
@@ -13,8 +12,8 @@ $lesCSS = ["page-creation-spectacle2", "basPage", "cote"];
                     <div id="nbpersslider">
                         <label for="nombre-Pers" class="label">Nombre personnes</label>
                         <div class="slider-container">
-                            <input type="number" id="sliderInput" class="slider-value" min="0" max="1000" value="500">
-                            <input name="nbPers" type="range" id="slider" class="slider" min="0" max="1000" value="500">
+                            <input type="number" id="sliderInput" class="slider-value" min="0" max="1000" value="0">
+                            <input name="nbPers" type="range" id="slider" class="slider" min="0" max="1000" value="0">
                         </div>
                     </div>
                 </div>
@@ -59,7 +58,10 @@ $lesCSS = ["page-creation-spectacle2", "basPage", "cote"];
             </form>
         </section>
     </main>
-    <script src="../../public/assets/js/slider.js"></script>
+    <?php
+    $lesJS = ["slider"];
+    require_once 'script.php';
+    ?>
 </body>
 <?php require_once "basPage.php" ?>
 
